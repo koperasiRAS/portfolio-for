@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 
 <BaseLayout
   title="Photography Portfolio | Frame Of Rangga"
-  description="Portofolio fotografi Rangga Danuarta wedding, komersial, automotive, lifestyle, dan brand photography dengan pendekatan visual storytelling."
+  description="Portofolio fotografi Rangga Danuarta birthday, event, komersial, automotive, lifestyle, dan brand photography dengan pendekatan visual storytelling."
   ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-foto.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/foto"
   hasGlightbox={true}
@@ -27,8 +27,8 @@ import Footer from "../components/Footer.astro";
       <!-- Subtitle -->
       <p class="stitch-hero-sub">
         Momen-momen yang diabadikan dengan sentuhan visual yang kuat dan
-        storytelling yang autentik. Dari pernikahan hingga konten brand, setiap
-        frame bercerita.
+        storytelling yang autentik. Dari perayaan ulang tahun hingga konten
+        brand, setiap frame bercerita.
       </p>
     </div>
   </section>
@@ -38,72 +38,73 @@ import Footer from "../components/Footer.astro";
     <!-- Filter Bar Stitch pill style -->
     <div class="filter-bar fade-up" aria-label="Filter by category">
       <button class="filter-btn active" data-filter="all">Semua</button>
-      <button class="filter-btn" data-filter="wedding">Wedding</button>
+      <button class="filter-btn" data-filter="birthday">Birthday Party</button>
       <button class="filter-btn" data-filter="komersial">Komersial</button>
       <button class="filter-btn" data-filter="automotive">Automotive</button>
       <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
-      <button class="filter-btn" data-filter="fotografer">Fotografer</button>
+      <button class="filter-btn" data-filter="yearbook">Yearbook</button>
+      <button class="filter-btn" data-filter="fotografi">Fotografi</button>
     </div>
 
     <!-- Bento Grid Gallery Stitch asymmetric layout -->
     <div class="stitch-bento-grid fade-up">
-      <!-- Wedding 1 Featured Large (col-span-8) -->
+      <!-- Birthday Party 1 Featured Large (col-span-8) -->
       <a
         class="stitch-card stitch-card-featured glightbox"
         href="/assets/foto/wedding/ultah raden 2 landscape.JPG"
         data-gallery="portfolio-gallery"
-        data-title="Wedding: Ultah Rangen"
-        data-category="wedding"
+        data-title="Birthday Party: Ultah Rangen"
+        data-category="birthday"
       >
         <div class="stitch-card-img-wrap">
           <img
             src="/assets/foto/wedding/ultah raden 2 landscape.JPG"
-            alt="Wedding Photography"
+            alt="Birthday Photography"
             loading="lazy"
             width="960"
             height="600"
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Wedding</span>
-          <h3 class="stitch-card-title">Wedding: Ultah</h3>
+          <span class="stitch-card-cat">Birthday</span>
+          <h3 class="stitch-card-title">Birthday Party</h3>
           <p class="stitch-card-desc">
-            Momen pernikahan yang diabadikan dengan cahaya natural dan komposisi
+            Momen perayaan yang diabadikan dengan cahaya natural dan komposisi
             sinematik.
           </p>
         </div>
       </a>
 
-      <!-- Wedding 2 (col-span-4) -->
+      <!-- Yearbook Square -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/wedding/anggie 2 landscape.jpg"
+        href="/assets/foto/yearbook/yearbook-3.jpg"
         data-gallery="portfolio-gallery"
-        data-title="Wedding: Anggie"
-        data-category="wedding"
+        data-title="YearBook: Foto Buku Tahunan"
+        data-category="yearbook"
       >
         <div class="stitch-card-img-wrap stitch-card-img-square">
           <img
-            src="/assets/foto/wedding/anggie 2 landscape.jpg"
-            alt="Portrait Photography"
+            src="/assets/foto/yearbook/yearbook-3.jpg"
+            alt="Yearbook Photography"
             loading="lazy"
             width="480"
             height="480"
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Wedding</span>
-          <h3 class="stitch-card-title">Wedding: Anggie</h3>
+          <span class="stitch-card-cat">Yearbook</span>
+          <h3 class="stitch-card-title">YearBook: Foto Buku Tahunan</h3>
         </div>
       </a>
 
-      <!-- Wedding 3 (col-span-4) -->
+      <!-- Lifestyle Portrait -->
       <a
         class="stitch-card glightbox"
         href="/assets/foto/wedding/anggie 4 landscape.jpg"
         data-gallery="portfolio-gallery"
-        data-title="Wedding: Anggie Editorial"
-        data-category="wedding"
+        data-title="Lifestyle: Anggie Editorial"
+        data-category="lifestyle"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
           <img
@@ -115,31 +116,31 @@ import Footer from "../components/Footer.astro";
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Wedding</span>
-          <h3 class="stitch-card-title">Wedding: Anggie Editorial</h3>
+          <span class="stitch-card-cat">Lifestyle</span>
+          <h3 class="stitch-card-title">Lifestyle: Anggie Editorial</h3>
         </div>
       </a>
 
-      <!-- Wedding 4 Portrait (card baru) -->
+      <!-- Yearbook Portrait -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/wedding/anggie 1.jpg"
+        href="/assets/foto/yearbook/yearbook-4.jpg"
         data-gallery="portfolio-gallery"
-        data-title="Wedding: Anggie"
-        data-category="wedding"
+        data-title="YearBook: Foto Buku Tahunan"
+        data-category="yearbook"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
           <img
-            src="/assets/foto/wedding/anggie 1.jpg"
-            alt="Wedding Photography"
+            src="/assets/foto/yearbook/yearbook-4.jpg"
+            alt="Yearbook Photography"
             loading="lazy"
             width="480"
             height="600"
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Wedding</span>
-          <h3 class="stitch-card-title">Wedding: Anggie</h3>
+          <span class="stitch-card-cat">Yearbook</span>
+          <h3 class="stitch-card-title">YearBook: Foto Buku Tahunan</h3>
         </div>
       </a>
 
@@ -166,59 +167,59 @@ import Footer from "../components/Footer.astro";
         </div>
       </a>
 
-      <!-- Komersial (col-span-4) -->
+      <!-- Fotografi Portrait -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/fashion/foto baju coklat.jpg"
+        href="/assets/foto/fotografi/style.jpeg"
         data-gallery="portfolio-gallery"
-        data-title="Komersial: Fashion Shoot"
-        data-category="komersial"
+        data-title="Fotografi"
+        data-category="fotografi"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
           <img
-            src="/assets/foto/fashion/foto baju coklat.jpg"
-            alt="Commercial Photography"
+            src="/assets/foto/fotografi/style.jpeg"
+            alt="Fotografi"
             loading="lazy"
             width="480"
             height="600"
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Komersial</span>
-          <h3 class="stitch-card-title">Komersial: Fashion Shoot</h3>
+          <span class="stitch-card-cat">Fotografi</span>
+          <h3 class="stitch-card-title">Fotografi</h3>
         </div>
       </a>
 
-      <!-- Lifestyle (col-span-4) -->
+      <!-- Yearbook Lifestyle -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/fotografer/ccm rangga.jpg"
+        href="/assets/foto/yearbook/yearbook-5.jpg"
         data-gallery="portfolio-gallery"
-        data-title="Lifestyle: CCM Rangga"
-        data-category="lifestyle"
+        data-title="YearBook: Foto Buku Tahunan"
+        data-category="yearbook"
       >
         <div class="stitch-card-img-wrap stitch-card-img-square">
           <img
-            src="/assets/foto/fotografer/ccm rangga.jpg"
-            alt="Lifestyle Photography"
+            src="/assets/foto/yearbook/yearbook-5.jpg"
+            alt="Yearbook Photography"
             loading="lazy"
             width="480"
             height="480"
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Lifestyle</span>
-          <h3 class="stitch-card-title">Lifestyle: CCM Rangga</h3>
+          <span class="stitch-card-cat">Yearbook</span>
+          <h3 class="stitch-card-title">YearBook: Foto Buku Tahunan</h3>
         </div>
       </a>
 
-      <!-- Fotografer (col-span-4) -->
+      <!-- Fotografi (col-span-4) -->
       <a
         class="stitch-card glightbox"
         href="/assets/foto/fotografer/fotografi gojek.jpg"
         data-gallery="portfolio-gallery"
-        data-title="Fotografer: Fotografi Gojek"
-        data-category="fotografer"
+        data-title="Fotografi: Fotografi Gojek"
+        data-category="fotografi"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
           <img
@@ -230,8 +231,8 @@ import Footer from "../components/Footer.astro";
           />
         </div>
         <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Fotografer</span>
-          <h3 class="stitch-card-title">Fotografer: Fotografi Gojek</h3>
+          <span class="stitch-card-cat">Fotografi</span>
+          <h3 class="stitch-card-title">Fotografi: Fotografi Gojek</h3>
         </div>
       </a>
     </div>

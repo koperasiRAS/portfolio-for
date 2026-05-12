@@ -13,7 +13,7 @@ export const WA_MESSAGES = {
   // ── PHOTOGRAPHY ──────────────────────────────────────────
   foto_general: `Halo Rangga! Saya melihat portofolio fotografi Anda dan sangat tertarik. Boleh saya diskusikan kebutuhan foto saya?`,
 
-  foto_wedding: `Halo Rangga! Saya tertarik dengan jasa foto wedding/dokumentasi dari Frame Of Rangga. Boleh saya tahu paket dan harganya?`,
+  foto_wedding: `Halo Rangga! Saya tertarik dengan jasa foto birthday/event/dokumentasi dari Frame Of Rangga. Boleh saya tahu paket dan harganya?`,
 
   foto_komersial: `Halo Rangga! Saya tertarik dengan jasa foto komersial/produk dari Frame Of Rangga. Bisa kita diskusikan kebutuhan saya?`,
 
@@ -21,7 +21,7 @@ export const WA_MESSAGES = {
 
   foto_lifestyle: `Halo Rangga! Saya tertarik dengan jasa foto lifestyle dari Frame Of Rangga. Bisa kita diskusikan konsepnya?`,
 
-  foto_fotografer: `Halo Rangga! Saya melihat karya fotografi Anda dan tertarik untuk berkolaborasi. Boleh kita diskusikan?`,
+  foto_fotografi: `Halo Rangga! Saya melihat karya Fotografi Anda dan tertarik untuk berkolaborasi. Boleh kita diskusikan?`,
 
   // ── VIDEOGRAPHY ──────────────────────────────────────────
   video_general: `Halo Rangga! Saya melihat portofolio video Anda dan sangat tertarik. Boleh saya diskusikan kebutuhan video saya?`,
