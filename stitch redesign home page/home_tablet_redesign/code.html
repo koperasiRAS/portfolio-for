@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@200;400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#0a0081",
+                    "tertiary-fixed-dim": "#73a2ff",
+                    "on-tertiary-fixed": "#00163b",
+                    "on-error-container": "#ffb2b9",
+                    "primary-dim": "#6063ee",
+                    "surface-bright": "#1f2b49",
+                    "surface-dim": "#060e20",
+                    "tertiary-dim": "#699cff",
+                    "surface-container-lowest": "#000000",
+                    "on-secondary": "#33005b",
+                    "secondary": "#c180ff",
+                    "error-container": "#a70138",
+                    "surface-container": "#0f1930",
+                    "on-tertiary": "#001e4a",
+                    "inverse-surface": "#faf8ff",
+                    "surface-variant": "#192540",
+                    "on-error": "#490013",
+                    "error": "#ff6e84",
+                    "surface-container-high": "#141f38",
+                    "outline": "#6d758c",
+                    "inverse-on-surface": "#4d556b",
+                    "surface-container-highest": "#192540",
+                    "on-tertiary-container": "#000311",
+                    "background": "#060e20",
+                    "on-surface-variant": "#a3aac4",
+                    "secondary-fixed-dim": "#dbb4ff",
+                    "primary-fixed-dim": "#8387ff",
+                    "on-tertiary-fixed-variant": "#00377b",
+                    "primary-fixed": "#9396ff",
+                    "surface": "#060e20",
+                    "tertiary-container": "#4388fd",
+                    "on-background": "#dee5ff",
+                    "on-surface": "#dee5ff",
+                    "inverse-primary": "#494bd7",
+                    "secondary-fixed": "#e5c6ff",
+                    "on-secondary-fixed-variant": "#7511c3",
+                    "tertiary": "#699cff",
+                    "secondary-container": "#6f00be",
+                    "on-secondary-fixed": "#4f0089",
+                    "primary-container": "#9396ff",
+                    "on-primary": "#0f00a4",
+                    "surface-container-low": "#091328",
+                    "on-primary-fixed": "#000000",
+                    "secondary-dim": "#9c48ea",
+                    "error-dim": "#d73357",
+                    "surface-tint": "#a3a6ff",
+                    "primary": "#a3a6ff",
+                    "outline-variant": "#40485d",
+                    "on-primary-fixed-variant": "#0e009d",
+                    "tertiary-fixed": "#8ab0ff",
+                    "on-secondary-container": "#e9cdff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(25, 37, 64, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#060e20]/60 backdrop-blur-2xl shadow-[0_10px_40px_rgba(6,14,32,0.08)]">
+<div class="flex justify-between items-center h-20 px-8 md:px-12 w-full">
+<div class="text-xl font-headline font-black tracking-tighter text-[#a3a6ff]">
+                CREATIVE.DIR
+            </div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="text-[#a3a6ff] font-bold font-headline text-sm tracking-widest uppercase transition-all duration-300" href="#">Work</a>
+<a class="text-[#a3aac4] font-headline text-sm tracking-widest uppercase hover:text-[#c180ff] transition-all duration-300" href="#">Studio</a>
+<a class="text-[#a3aac4] font-headline text-sm tracking-widest uppercase hover:text-[#c180ff] transition-all duration-300" href="#">Exhibitions</a>
+<a class="text-[#a3aac4] font-headline text-sm tracking-widest uppercase hover:text-[#c180ff] transition-all duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-gradient-to-br from-primary to-primary-dim text-on-primary font-headline text-sm px-8 py-3 rounded-full font-bold tracking-wide active:scale-95 transition-transform shadow-[0_0_20px_rgba(163,166,255,0.2)]">
+                    Contact
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center px-8 md:px-16 overflow-hidden">
+<!-- Background Glow -->
+<div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="grid md:grid-cols-12 gap-12 w-full items-center">
+<!-- Text Content -->
+<div class="md:col-span-7 z-10">
+<span class="inline-block px-4 py-1.5 rounded-full bg-surface-container-highest text-secondary text-xs font-bold tracking-widest uppercase mb-8 border border-outline-variant/20">
+                        Portfolio 2024
+                    </span>
+<h1 class="text-[5rem] leading-[0.9] font-headline font-extrabold tracking-tighter mb-8">
+                        The <span class="text-primary italic">Nocturnal</span><br/>Visionary.
+                    </h1>
+<p class="text-on-surface-variant text-lg max-w-lg mb-12 leading-relaxed">
+                        Curating digital experiences at the intersection of high-end editorial aesthetics and functional authority.
+                    </p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-3 gap-8 pt-12 border-t border-outline-variant/10">
+<div>
+<div class="text-4xl font-headline font-bold text-on-surface">12+</div>
+<div class="text-xs text-on-surface-variant tracking-widest uppercase mt-2">Years Exp.</div>
+</div>
+<div>
+<div class="text-4xl font-headline font-bold text-on-surface">150</div>
+<div class="text-xs text-on-surface-variant tracking-widest uppercase mt-2">Projects</div>
+</div>
+<div>
+<div class="text-4xl font-headline font-bold text-on-surface">24</div>
+<div class="text-xs text-on-surface-variant tracking-widest uppercase mt-2">Awards</div>
+</div>
+</div>
+</div>
+<!-- Portrait Image Container -->
+<div class="md:col-span-5 relative">
+<div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative group">
+<img alt="Portrait of the Creative Director" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 transition-all duration-700" data-alt="dramatic cinematic portrait of a male creative director in black clothing, soft rim lighting, dark moody background, high fashion photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXrqnAmZyiq_SvJzxp9Tw5fLVbCEXVETBips3MGsv0c8hDMofsP5elCy8-eeiyhVHcfsTKh489pD-VxI5RUeC1HofCiLnhRB8INB2ugllr7-R5LIssrGucEoVGx1mydrjNzkDmZAmqYiXKmUg2VASjRD4snG3Nw7EEDXntfR9y3Uj79O5GmgTQ0-8xGs2u365HkszeAEFOkshD6YkXURJ9gzMGw1NhyLRpDzUVUWov-_crl_XR9CLE1093AJ83yGjuTzvKIZggEzE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+<!-- Floating Glass Badge -->
+<div class="absolute bottom-6 left-6 right-6 glass-card p-6 rounded-2xl border border-outline-variant/20">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant tracking-widest uppercase">Lead Director</p>
+<p class="text-sm font-bold text-on-surface">Julian V. Night</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Section -->
+<section class="py-32 px-8 md:px-16 bg-surface-container-low">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-xl">
+<h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">Explore <span class="text-tertiary">Categories</span></h2>
+<p class="text-on-surface-variant leading-relaxed">Specialized creative directions tailored for brands that demand a premium digital presence and unmatched visual storytelling.</p>
+</div>
+<button class="flex items-center gap-3 text-primary font-headline font-bold tracking-widest uppercase text-xs group">
+                    View All Services
+                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- 2x2 Category Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Card 1 -->
+<div class="group relative aspect-video rounded-3xl overflow-hidden bg-surface-container-highest cursor-pointer">
+<img alt="Brand Identity Design" class="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" data-alt="minimalist luxury brand style guide showing typography and neutral color swatches on a sleek dark desk with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPpb5yM4aGUYZDVkEAGEha9VApIKgAZicF-vszIs1mXAXBtM9XCK0oYW3gSmF9UaP6ZxlK6B7Rl-Tbu9wJO-LC27OGl_rOWVnegycQGAZQNmNEniJA7Dz_NQNpV9Y1BwvAn8pffdT5PyQuz5ElFsa2xqrWUTNO9Lk-hc1hSNvuAHe23DDt-ZVelgEWesATP-AdZjmOMA8chw2aBz9ISZpR44aMPDfGyD_j0osliK_6FJduT3-94rHeiWIQQTPWotTgxqn-FJN3EvI"/>
+<div class="absolute inset-0 p-12 flex flex-col justify-end">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-3xl font-headline font-bold mb-2">Visual Identity</h3>
+<p class="text-on-surface-variant text-sm">Strategic branding &amp; visual systems.</p>
+</div>
+<div class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface group-hover:text-on-primary">north_east</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative aspect-video rounded-3xl overflow-hidden bg-surface-container-highest cursor-pointer">
+<img alt="Experience Design" class="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" data-alt="abstract high-tech user interface glowing elements in dark blue space with futuristic aesthetic and geometric lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHaklEpDNvyawnPKg0FfXge7r0VyvafzeWOA2sxC32eRHksyXRLYSTVUHfjlMx2oPHFpsgWU8GfrKyYCw2sS7M9g1h3zKRp6O0vl-72T49qJuv4ioPaw3U6XwT_b8s89zkQRElevVIvrRvDmGxNbJkvcH7SA-aECEvzvLNNmw-KcGTSDcek_3QrPBzcm0rqnnz79AyReM4b_3c_2M-LFjuZ5Rjc0m2N8EwW1lqDbBrqfWuM2aQpQLAdugFzbWXDO3HpPsT_11NQS4"/>
+<div class="absolute inset-0 p-12 flex flex-col justify-end">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-3xl font-headline font-bold mb-2">Digital Products</h3>
+<p class="text-on-surface-variant text-sm">Next-gen UI/UX &amp; interactive labs.</p>
+</div>
+<div class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface group-hover:text-on-primary">north_east</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative aspect-video rounded-3xl overflow-hidden bg-surface-container-highest cursor-pointer">
+<img alt="Editorial Direction" class="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" data-alt="close up of premium black textured paper with silver foil lettering and minimalist layout photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJE8HwLGXl5Kwls2ZqakMNCMGxu-Y61vhxik__9M2_LGG__ADQmlgbAUIq0mN_jzRSpSeJwW-mbZvrECKqCAutU91Lr6hq16nFiaOOjhDm8y_Wm1N-H-f8PPsmE_0y08_djuRgreBeeNYvbW3_Uqlqy4YszASx9ImrZ4yqC6Fk11DvQpwl9Zc6GVHE8MF4MiN9rZ4AM49FyLppFRClNlIG14_Vz0fBvN5Uql4_n656f8NlKU4iYODONf_F85BTS24PCSSug5rFkRY"/>
+<div class="absolute inset-0 p-12 flex flex-col justify-end">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-3xl font-headline font-bold mb-2">Editorial Design</h3>
+<p class="text-on-surface-variant text-sm">Print &amp; digital publishing excellence.</p>
+</div>
+<div class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface group-hover:text-on-primary">north_east</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative aspect-video rounded-3xl overflow-hidden bg-surface-container-highest cursor-pointer">
+<img alt="Art Direction" class="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" data-alt="3d render of flowing liquid metal silk in purple and navy blue light with elegant folds and reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAswjBMvLkf7Jtq9GZUMa7Ik-Mfc3ymNKhc2IKNmnJJoqSEpJn_Am6E19bUrONWILUNRNsCPKVAGnEVQjRisRDoxwCHk9HvDQu1UE3kWgyZD95FBeAqzLkoRCZAz3YKw_CueiOf1aU0O1a3drCjoFduNBtZxxMI0i0x9gqsXp6uQoE807pCScXCrEFELu0MlSoU1tY_sgeftlZQoeiRH9cnZ90jPn446eTOrnB6d_GO2wrFcRMr7E_uHA0YsGaocw4-UUsDDd5_Yvk"/>
+<div class="absolute inset-0 p-12 flex flex-col justify-end">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-3xl font-headline font-bold mb-2">Creative Direction</h3>
+<p class="text-on-surface-variant text-sm">Visionary leadership &amp; concepting.</p>
+</div>
+<div class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface group-hover:text-on-primary">north_east</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Teaser / Featured Work -->
+<section class="py-32 px-8 md:px-16 overflow-hidden">
+<div class="mb-20 text-center">
+<h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter mb-4 opacity-10 select-none">PORTFOLIO.24</h2>
+<p class="text-xl text-primary font-headline font-bold tracking-widest uppercase -mt-16">Selected Works</p>
+</div>
+<div class="flex flex-nowrap gap-8 pb-12 overflow-x-auto snap-x no-scrollbar">
+<!-- Featured Item 1 -->
+<div class="min-w-[400px] aspect-[3/4] rounded-3xl overflow-hidden snap-center group cursor-pointer relative">
+<img alt="Project Aether" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="abstract light painting with vibrant neon purple and blue streaks against a pitch black background, sleek and energetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA12Zd9TKJTFTebYZXeoulk74y1BtucqjnQeLZkznH_oeDPj6uadS_oDhUijNlz7WYxcVU5kP8Lo9_77KEik8R5qSMjHCxCE8DKcxdYzTdFkhUCgM7CyQzc-hNo8GPvyq2KFdPwQOaRFpf7RA9vJ_MU9RAauWyj5vqC1iBPiJVsbwTZiGshWQEhuI1ODS5lAN5acUv3imNMvEPMuRWWahd3LypGs8K94KGA6s0e8O4JezEjTv7S2zW4-NKmpx665Me_ELe8ooiObWQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<p class="text-xs font-bold text-secondary tracking-widest uppercase mb-2">Branding</p>
+<h4 class="text-2xl font-headline font-bold">Project Aether</h4>
+</div>
+</div>
+<!-- Featured Item 2 -->
+<div class="min-w-[400px] aspect-[3/4] rounded-3xl overflow-hidden snap-center group cursor-pointer relative">
+<img alt="Elysium App" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="3d isometric view of a high-end smartphone display with a dark elegant interface floating in a void of soft particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA41bsxXumCpoL1BrL8PiAlLL8Uy6MPdskkE1CCAcHmXmsAGqf4c1fn-K2Js7PYuJLjQNxBDxf18db1r2bZ3zVuyw1JiYkOJDwMxAXgIH24OrEeUK5nW84qi69OzS8zx3CcpuJoNKpLtCYfHOjqPD8LyGIYLXTC7olTLnFH-Mj111DUbaUr-oWTvpUJbq2BBnrOjUxEQN50CyKQh3zOm_zW9cPbu8wkDkUAacqNQzJuZVFwLd_EVw1tsF_qExsYNfB4JG-VI1yx5eU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<p class="text-xs font-bold text-secondary tracking-widest uppercase mb-2">UI/UX Design</p>
+<h4 class="text-2xl font-headline font-bold">Elysium App</h4>
+</div>
+</div>
+<!-- Featured Item 3 -->
+<div class="min-w-[400px] aspect-[3/4] rounded-3xl overflow-hidden snap-center group cursor-pointer relative">
+<img alt="The Monolith" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="geometric black architecture monolithic structure under a dramatic moonlit sky with sharp shadows and stark lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPNfPnQ24wS6oL-kodQE-B6iJvq5lzrqQYLWesuJ0o22A69acjLsHkn9HJKjGVYCCuoCH3nzAPCiuh9Ed4nzn_NaPtwXKSQXTrwDRH-v8Y7tcSntUjYn27jRVWtzufj14qx7MhylaFaVvyQ2x4F8b3_UEwUf16KzH6TT2i8xkPOygzV0dEN8_SivRUdGVqI4PvMoPnqLkweg7nHiVa5IWKG4ka6ZzMft9U6IBbK1NV-odxuVmiNNmkj_KAdKEPNl6FPkcCG_kSNO4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<p class="text-xs font-bold text-secondary tracking-widest uppercase mb-2">Art Direction</p>
+<h4 class="text-2xl font-headline font-bold">The Monolith</h4>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-20 pb-10 bg-[#000000] border-t border-[#192540]/30 px-8 md:px-16">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-12 md:gap-4">
+<div class="flex flex-col gap-6">
+<div class="text-lg font-headline font-bold text-[#a3a6ff]">
+                    CREATIVE.DIR
+                </div>
+<p class="max-w-xs text-[#a3aac4] font-body text-xs tracking-wide">
+                    Elevating brands through the lens of sophisticated digital architecture and nocturnal aesthetics.
+                </p>
+</div>
+<div class="flex flex-wrap gap-8 md:gap-16">
+<div class="flex flex-col gap-4">
+<p class="text-[10px] text-primary/50 tracking-widest uppercase font-bold">Socials</p>
+<div class="flex flex-col gap-3">
+<a class="text-[#a3aac4] font-body text-xs tracking-wide hover:text-[#699cff] transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Instagram</a>
+<a class="text-[#a3aac4] font-body text-xs tracking-wide hover:text-[#699cff] transition-colors duration-200 opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<p class="text-[10px] text-primary/50 tracking-widest uppercase font-bold">Network</p>
+<div class="flex flex-col gap-3">
+<a class="text-[#a3aac4] font-body text-xs tracking-wide hover:text-[#699cff] transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Behance</a>
+<a class="text-[#a3aac4] font-body text-xs tracking-wide hover:text-[#699cff] transition-colors duration-200 opacity-80 hover:opacity-100" href="#">Dribbble</a>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-[#192540]/20 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[#a3aac4] font-body text-[10px] tracking-wide">
+                © 2024 The Nocturnal Gallery. All Rights Reserved.
+            </p>
+<div class="flex gap-6">
+<a class="text-[#a3aac4] font-body text-[10px] tracking-wide hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-[#a3aac4] font-body text-[10px] tracking-wide hover:text-primary" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>
