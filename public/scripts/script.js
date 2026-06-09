@@ -108,7 +108,7 @@ if (backToTop) {
 
 /* ---------- COUNTER ANIMATION ---------- */
 function animateCounters() {
-  const counters = document.querySelectorAll('.stat-number[data-target]');
+  const counters = document.querySelectorAll('.stat-number[data-target], .about-highlight-num[data-target]');
   if (!counters.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -116,19 +116,24 @@ function animateCounters() {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseInt(el.dataset.target, 10);
-      const duration = 1800;
-      const startTime = performance.now();
+      const duration = 2000;
+      let startTime = null;
 
       function tick(now) {
+        if (!startTime) startTime = now;
+        if (document.visibilityState === 'hidden') {
+          startTime += (now - startTime); // pause roughly
+          requestAnimationFrame(tick);
+          return;
+        }
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        // Ease out cubic
         const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(eased * target);
+        el.textContent = Math.round(eased * target) + '+';
         if (progress < 1) {
           requestAnimationFrame(tick);
         } else {
-          el.textContent = target;
+          el.textContent = target + '+';
         }
       }
 
