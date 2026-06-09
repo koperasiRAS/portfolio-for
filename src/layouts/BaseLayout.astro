@@ -174,6 +174,90 @@ const isHome = pathname === '/';
   )}
   <script is:inline src="/scripts/script.js"></script>
 
+  <!-- VanillaTilt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  
+  <!-- Micro-Interactions -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check for touch devices
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+
+      // ==========================================
+      // INTERACTION 1: CUSTOM CURSOR
+      // ==========================================
+      document.body.style.cursor = 'none';
+      
+      const dot = document.createElement('div');
+      dot.className = 'custom-cursor-dot';
+      document.body.appendChild(dot);
+      
+      const ring = document.createElement('div');
+      ring.className = 'custom-cursor-ring';
+      document.body.appendChild(ring);
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+      let isHovering = false;
+
+      // Hide cursor by default on clickable elements
+      const style = document.createElement('style');
+      style.textContent = 'a, button, [role="button"], input, select, textarea { cursor: none !important; }';
+      document.head.appendChild(style);
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) ${isHovering ? 'scale(1.666)' : 'scale(1)'}`;
+      });
+
+      const renderCursor = () => {
+        ringX += (mouseX - ringX) * 0.1;
+        ringY += (mouseY - ringY) * 0.1;
+        ring.style.transform = `translate(${ringX}px, ${ringY}px) ${isHovering ? 'scale(1.5)' : 'scale(1)'}`;
+        requestAnimationFrame(renderCursor);
+      };
+      requestAnimationFrame(renderCursor);
+
+      const setupHoverEffects = () => {
+        const clickables = document.querySelectorAll('a, button, [role="button"], input, select, textarea');
+        clickables.forEach(el => {
+          if (el.dataset.cursorHoverAttached) return;
+          el.dataset.cursorHoverAttached = 'true';
+          
+          el.addEventListener('mouseenter', () => {
+            isHovering = true;
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1.666)`;
+            ring.classList.add('hover');
+          });
+          el.addEventListener('mouseleave', () => {
+            isHovering = false;
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1)`;
+            ring.classList.remove('hover');
+          });
+        });
+      };
+      setupHoverEffects();
+      setTimeout(setupHoverEffects, 1000); // catch dynamically rendered elements
+
+      // ==========================================
+      // INTERACTION 2: PARALLAX HOVER
+      // ==========================================
+      if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll(".stitch-card, .stitch-design-card, .stitch-video-card-featured, .stitch-video-card-regular, .web-project-browser-frame, .cat-card, .svc-card, .pricing-card"), {
+          max: 8,
+          speed: 400,
+          glare: false,
+          scale: 1.02,
+          perspective: 1000,
+          easing: "cubic-bezier(.03,.98,.52,.99)"
+        });
+      }
+    });
+  </script>
+
   <!-- Plausible Analytics privacy-friendly, GDPR-compliant -->
   <!-- Replace with your actual Plausible domain if you have an account -->
   <!-- Register at https://plausible.io to get your domain -->

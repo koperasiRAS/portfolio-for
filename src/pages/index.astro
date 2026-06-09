@@ -2097,3 +2097,37 @@ import { waLink } from "../utils/whatsapp.js";
     <i class="fas fa-envelope"></i> Hubungi Kami
   </a>
 </div>
+
+<script is:inline>
+  function initMagneticButton() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const btn = document.querySelector('.availability-cta');
+
+    if (!btn) return;
+
+    const radius = 80;
+    const maxMove = 20;
+
+    document.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const btnCenterX = rect.left + rect.width / 2;
+      const btnCenterY = rect.top + rect.height / 2;
+      const distX = e.clientX - btnCenterX;
+      const distY = e.clientY - btnCenterY;
+      const dist = Math.sqrt(distX * distX + distY * distY);
+
+      if (dist < radius) {
+        const moveX = (distX / radius) * maxMove;
+        const moveY = (distY / radius) * maxMove;
+        btn.style.transition = 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)';
+        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      } else {
+        btn.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        btn.style.transform = 'translate(0px, 0px)';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initMagneticButton);
+</script>
