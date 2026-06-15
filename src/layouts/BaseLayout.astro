@@ -184,14 +184,8 @@ const isHome = pathname === '/';
       if (window.matchMedia('(pointer: coarse)').matches) return;
 
       // ==========================================
-      // INTERACTION 1: CUSTOM CURSOR
+      // INTERACTION 1: CUSTOM CURSOR (Glow only)
       // ==========================================
-      document.body.style.cursor = 'none';
-      
-      const dot = document.createElement('div');
-      dot.className = 'custom-cursor-dot';
-      document.body.appendChild(dot);
-      
       const ring = document.createElement('div');
       ring.className = 'custom-cursor-ring';
       document.body.appendChild(ring);
@@ -202,15 +196,9 @@ const isHome = pathname === '/';
       let ringY = mouseY;
       let isHovering = false;
 
-      // Hide cursor by default on clickable elements
-      const style = document.createElement('style');
-      style.textContent = 'a, button, [role="button"], input, select, textarea { cursor: none !important; }';
-      document.head.appendChild(style);
-
       document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) ${isHovering ? 'scale(1.666)' : 'scale(1)'}`;
       });
 
       const renderCursor = () => {
@@ -229,12 +217,10 @@ const isHome = pathname === '/';
           
           el.addEventListener('mouseenter', () => {
             isHovering = true;
-            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1.666)`;
             ring.classList.add('hover');
           });
           el.addEventListener('mouseleave', () => {
             isHovering = false;
-            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1)`;
             ring.classList.remove('hover');
           });
         });
