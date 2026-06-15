@@ -180,53 +180,7 @@ const isHome = pathname === '/';
   <!-- Micro-Interactions -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
-      // Check for touch devices
-      if (window.matchMedia('(pointer: coarse)').matches) return;
 
-      // ==========================================
-      // INTERACTION 1: CUSTOM CURSOR (Glow only)
-      // ==========================================
-      const ring = document.createElement('div');
-      ring.className = 'custom-cursor-ring';
-      document.body.appendChild(ring);
-
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let ringX = mouseX;
-      let ringY = mouseY;
-      let isHovering = false;
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
-
-      const renderCursor = () => {
-        ringX += (mouseX - ringX) * 0.1;
-        ringY += (mouseY - ringY) * 0.1;
-        ring.style.transform = `translate(${ringX}px, ${ringY}px) ${isHovering ? 'scale(1.5)' : 'scale(1)'}`;
-        requestAnimationFrame(renderCursor);
-      };
-      requestAnimationFrame(renderCursor);
-
-      const setupHoverEffects = () => {
-        const clickables = document.querySelectorAll('a, button, [role="button"], input, select, textarea');
-        clickables.forEach(el => {
-          if (el.dataset.cursorHoverAttached) return;
-          el.dataset.cursorHoverAttached = 'true';
-          
-          el.addEventListener('mouseenter', () => {
-            isHovering = true;
-            ring.classList.add('hover');
-          });
-          el.addEventListener('mouseleave', () => {
-            isHovering = false;
-            ring.classList.remove('hover');
-          });
-        });
-      };
-      setupHoverEffects();
-      setTimeout(setupHoverEffects, 1000); // catch dynamically rendered elements
 
       // ==========================================
       // INTERACTION 2: PARALLAX HOVER
