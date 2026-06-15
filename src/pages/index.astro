@@ -5,6 +5,20 @@ import Footer from "../components/Footer.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import { waLink } from "../utils/whatsapp.js";
+import { Image } from "astro:assets";
+import imgAsset1 from "../assets/design/social/carousels 1.png";
+import imgAsset2 from "../assets/foto/foto cover halaman utama.jpg";
+import imgAsset3 from "../assets/foto/wedding/ultah raden 2 landscape.JPG";
+import imgAsset4 from "../assets/thumbnails/thumbnail-video.png";
+import imgAsset5 from "../assets/thumbnails/web2.png";
+import imgAsset6 from "../assets/thumbnails/thumbnail-design.png";
+import imgAsset7 from "../assets/foto/about rangga.jpg";
+import imgAsset8 from "../assets/logos/ptnr-tokopedia.png";
+import imgAsset9 from "../assets/logos/ptnr-kitabisa.png";
+import imgAsset10 from "../assets/logos/ptnr-shopee.png";
+import imgAsset11 from "../assets/logos/ptnr-bankqurban.png";
+import imgAsset12 from "../assets/logos/ptnr-shinepartner.png";
+import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 ---
 
 <BaseLayout
@@ -25,8 +39,7 @@ import { waLink } from "../utils/whatsapp.js";
 
     <!-- Background image -->
     <div class="stitch-hero-bg" aria-hidden="true">
-      <img
-        src="/assets/design/social/carousels 1.png"
+      <Image         src={imgAsset1}
         alt="Hero background Frame Of Rangga portfolio showcase"
         class="stitch-hero-bg-img"
         loading="eager"
@@ -56,8 +69,7 @@ import { waLink } from "../utils/whatsapp.js";
       <!-- Portrait -->
       <div class="stitch-hero-portrait">
         <div class="stitch-hero-portrait-inner">
-          <img
-            src="/assets/foto/foto cover halaman utama.jpg"
+          <Image             src={imgAsset2}
             alt="Rangga Danuarta Frame Of Rangga"
             class="stitch-hero-portrait-img"
             loading="eager"
@@ -110,8 +122,7 @@ import { waLink } from "../utils/whatsapp.js";
       </div>
       <div class="cat-grid">
         <a href="/foto" class="cat-card cat-card-foto">
-          <img
-            src="/assets/foto/wedding/ultah raden 2 landscape.JPG"
+          <Image             src={imgAsset3}
             alt="Birthday Photography Momen perayaan oleh Rangga Danuarta"
             loading="lazy"
           />
@@ -125,8 +136,7 @@ import { waLink } from "../utils/whatsapp.js";
           </div>
         </a>
         <a href="/video" class="cat-card cat-card-video">
-          <img
-            src="/assets/thumbnails/thumbnail-video.png"
+          <Image             src={imgAsset4}
             alt="Videography Portfolio Brand video dan dokumentasi event oleh Frame Of Rangga"
             loading="lazy"
           />
@@ -137,8 +147,7 @@ import { waLink } from "../utils/whatsapp.js";
           </div>
         </a>
         <a href="/website" class="cat-card cat-card-website">
-          <img
-            src="/assets/thumbnails/web2.png"
+          <Image             src={imgAsset5}
             alt="Web Development Portfolio Portfolio dan landing page oleh Frame Of Rangga"
             loading="lazy"
           />
@@ -149,8 +158,7 @@ import { waLink } from "../utils/whatsapp.js";
           </div>
         </a>
         <a href="/design" class="cat-card cat-card-design">
-          <img
-            src="/assets/thumbnails/thumbnail-design.png"
+          <Image             src={imgAsset6}
             alt="Brand Design Portfolio Identity dan advertising design oleh Frame Of Rangga"
             loading="lazy"
           />
@@ -172,8 +180,7 @@ import { waLink } from "../utils/whatsapp.js";
     <div class="about-inner">
       <div class="about-photo fade-up">
         <div class="about-photo-wrap">
-          <img
-            src="/assets/foto/about rangga.jpg"
+          <Image             src={imgAsset7}
             alt="Rangga Danuarta"
             loading="lazy"
             onerror="this.style.display='none'"
@@ -237,43 +244,37 @@ import { waLink } from "../utils/whatsapp.js";
       <p class="brands-label">Trusted by brands &amp; clients</p>
       <div class="logo-strip">
         <div class="logo-item">
-          <img
-            src="/assets/logos/ptnr-tokopedia.png"
+          <Image             src={imgAsset8}
             alt="Tokopedia"
             loading="lazy"
           />
         </div>
         <div class="logo-item">
-          <img
-            src="/assets/logos/ptnr-kitabisa.png"
+          <Image             src={imgAsset9}
             alt="KitaBisa"
             loading="lazy"
           />
         </div>
         <div class="logo-item">
-          <img
-            src="/assets/logos/ptnr-shopee.png"
+          <Image             src={imgAsset10}
             alt="Shopee"
             loading="lazy"
           />
         </div>
         <div class="logo-item">
-          <img
-            src="/assets/logos/ptnr-bankqurban.png"
+          <Image             src={imgAsset11}
             alt="Bank Qurban"
             loading="lazy"
           />
         </div>
         <div class="logo-item">
-          <img
-            src="/assets/logos/ptnr-shinepartner.png"
+          <Image             src={imgAsset12}
             alt="Shinepartner"
             loading="lazy"
           />
         </div>
         <div class="logo-item">
-          <img
-            src="/assets/logos/ptnr-mandiri.png"
+          <Image             src={imgAsset13}
             alt="Mandiri"
             loading="lazy"
           />

@@ -247,14 +247,34 @@ const isHome = pathname === '/';
       // ==========================================
       if (typeof VanillaTilt !== 'undefined') {
         VanillaTilt.init(document.querySelectorAll(".stitch-card, .stitch-design-card, .stitch-video-card-featured, .stitch-video-card-regular, .web-project-browser-frame, .cat-card, .svc-card, .pricing-card"), {
-          max: 8,
-          speed: 400,
+          max: 5,
+          speed: 800,
           glare: false,
           scale: 1.02,
-          perspective: 1000,
-          easing: "cubic-bezier(.03,.98,.52,.99)"
+          perspective: 1200,
+          easing: "cubic-bezier(.03,.98,.52,.99)",
+          transition: true
         });
       }
+
+      // ==========================================
+      // INTERACTION 3: MAGNETIC BUTTON
+      // ==========================================
+      const magneticButtons = document.querySelectorAll('.btn-primary, .btn-ghost, .availability-cta, .btn-wa-category, .cat-card, .stitch-card');
+      magneticButtons.forEach(btn => {
+        // Prevent conflict with VanillaTilt on cards
+        if(btn.vanillaTilt) return; 
+
+        btn.addEventListener('mousemove', function(e) {
+          const rect = this.getBoundingClientRect();
+          const hX = e.clientX - rect.left - rect.width / 2;
+          const hY = e.clientY - rect.top - rect.height / 2;
+          this.style.transform = `translate(${hX * 0.2}px, ${hY * 0.2}px) scale(1.02)`;
+        });
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = `translate(0, 0) scale(1)`;
+        });
+      });
     });
   </script>
 

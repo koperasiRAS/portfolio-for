@@ -2,6 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import imgAsset1 from "../assets/foto/wedding/ultah raden 2 landscape.JPG";
+import imgAsset2 from "../assets/foto/yearbook/yearbook-3.jpg";
+import imgAsset3 from "../assets/foto/wedding/anggie 4 landscape.jpg";
+import imgAsset4 from "../assets/foto/yearbook/yearbook-4.jpg";
+import imgAsset5 from "../assets/foto/graduation/sampel-wisuda-1.jpg";
+import imgAsset6 from "../assets/foto/fotografi/style.jpeg";
+import imgAsset7 from "../assets/foto/graduation/sampel-wisuda-3.jpg";
+import imgAsset8 from "../assets/foto/fotografer/fotografi gojek.jpg";
 ---
 
 <BaseLayout
@@ -51,14 +60,13 @@ import Footer from "../components/Footer.astro";
       <!-- Birthday Party 1 Featured Large (col-span-8) -->
       <a
         class="stitch-card stitch-card-featured glightbox"
-        href="/assets/foto/wedding/ultah raden 2 landscape.JPG"
+        href={imgAsset1.src}
         data-gallery="portfolio-gallery"
         data-title="Birthday Party: Ultah Rangen"
         data-category="birthday"
       >
         <div class="stitch-card-img-wrap">
-          <img
-            src="/assets/foto/wedding/ultah raden 2 landscape.JPG"
+          <Image             src={imgAsset1}
             alt="Birthday Photography"
             loading="lazy"
             width="960"
@@ -78,14 +86,13 @@ import Footer from "../components/Footer.astro";
       <!-- Yearbook Square -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/yearbook/yearbook-3.jpg"
+        href={imgAsset2.src}
         data-gallery="portfolio-gallery"
         data-title="YearBook: Foto Buku Tahunan"
         data-category="yearbook"
       >
         <div class="stitch-card-img-wrap stitch-card-img-square">
-          <img
-            src="/assets/foto/yearbook/yearbook-3.jpg"
+          <Image             src={imgAsset2}
             alt="Yearbook Photography"
             loading="lazy"
             width="480"
@@ -101,14 +108,13 @@ import Footer from "../components/Footer.astro";
       <!-- Lifestyle Portrait -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/wedding/anggie 4 landscape.jpg"
+        href={imgAsset3.src}
         data-gallery="portfolio-gallery"
         data-title="Lifestyle: Anggie Editorial"
         data-category="lifestyle"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <img
-            src="/assets/foto/wedding/anggie 4 landscape.jpg"
+          <Image             src={imgAsset3}
             alt="Editorial Photography"
             loading="lazy"
             width="480"
@@ -124,14 +130,13 @@ import Footer from "../components/Footer.astro";
       <!-- Yearbook Portrait -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/yearbook/yearbook-4.jpg"
+        href={imgAsset4.src}
         data-gallery="portfolio-gallery"
         data-title="YearBook: Foto Buku Tahunan"
         data-category="yearbook"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <img
-            src="/assets/foto/yearbook/yearbook-4.jpg"
+          <Image             src={imgAsset4}
             alt="Yearbook Photography"
             loading="lazy"
             width="480"
@@ -147,14 +152,13 @@ import Footer from "../components/Footer.astro";
       <!-- Graduation (col-span-4) -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/graduation/sampel-wisuda-1.jpg"
+        href={imgAsset5.src}
         data-gallery="portfolio-gallery"
         data-title="Graduation: Wisuda"
         data-category="graduation"
       >
         <div class="stitch-card-img-wrap stitch-card-img-square">
-          <img
-            src="/assets/foto/graduation/sampel-wisuda-1.jpg"
+          <Image             src={imgAsset5}
             alt="Graduation Photography"
             loading="lazy"
             width="480"
@@ -170,14 +174,13 @@ import Footer from "../components/Footer.astro";
       <!-- Fotografi Portrait -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/fotografi/style.jpeg"
+        href={imgAsset6.src}
         data-gallery="portfolio-gallery"
         data-title="Fotografi"
         data-category="fotografi"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <img
-            src="/assets/foto/fotografi/style.jpeg"
+          <Image             src={imgAsset6}
             alt="Fotografi"
             loading="lazy"
             width="480"
@@ -193,14 +196,13 @@ import Footer from "../components/Footer.astro";
       <!-- Graduation Yearbook -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/graduation/sampel-wisuda-3.jpg"
+        href={imgAsset7.src}
         data-gallery="portfolio-gallery"
         data-title="Graduation: Wisuda"
         data-category="graduation"
       >
         <div class="stitch-card-img-wrap stitch-card-img-square">
-          <img
-            src="/assets/foto/graduation/sampel-wisuda-3.jpg"
+          <Image             src={imgAsset7}
             alt="Graduation Photography"
             loading="lazy"
             width="480"
@@ -216,14 +218,13 @@ import Footer from "../components/Footer.astro";
       <!-- Fotografi (col-span-4) -->
       <a
         class="stitch-card glightbox"
-        href="/assets/foto/fotografer/fotografi gojek.jpg"
+        href={imgAsset8.src}
         data-gallery="portfolio-gallery"
         data-title="Fotografi: Fotografi Gojek"
         data-category="fotografi"
       >
         <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <img
-            src="/assets/foto/fotografer/fotografi gojek.jpg"
+          <Image             src={imgAsset8}
             alt="Brand Photography"
             loading="lazy"
             width="480"
@@ -357,7 +358,6 @@ import Footer from "../components/Footer.astro";
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     transition:
-      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
       border-color 0.3s ease,
       box-shadow 0.3s ease;
   }

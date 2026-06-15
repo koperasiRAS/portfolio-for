@@ -145,21 +145,41 @@ function animateCounters() {
   counters.forEach(el => observer.observe(el));
 }
 
-/* ---------- FADE-UP ON SCROLL (IntersectionObserver) ---------- */
+/* ---------- FADE-UP ON SCROLL (IntersectionObserver / ScrollReveal) ---------- */
 function initFadeUp() {
   const elements = document.querySelectorAll('.fade-up');
   if (!elements.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+  if (typeof ScrollReveal !== 'undefined') {
+    const sr = ScrollReveal({
+      distance: '40px',
+      duration: 1000,
+      easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+      interval: 100, // Stagger effect
+      reset: false,
+      mobile: true,
+      viewFactor: 0.1
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  elements.forEach(el => observer.observe(el));
+    sr.reveal('.fade-up');
+    
+    // Additional granular reveals if desired
+    sr.reveal('.stitch-card', { interval: 100, distance: '30px', delay: 100 });
+    sr.reveal('.cat-card', { interval: 100, distance: '30px' });
+    sr.reveal('.pricing-card', { interval: 150, distance: '50px' });
+  } else {
+    // Fallback
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    elements.forEach(el => observer.observe(el));
+  }
 }
 
 /* ---------- LIGHTBOX ---------- */

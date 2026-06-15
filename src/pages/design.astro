@@ -2,6 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from "astro:assets";
+import imgAsset1 from "../assets/design/social/desain iklan parfum.png";
+import imgAsset2 from "../assets/design/social/poster edukasi.png";
+import imgAsset3 from "../assets/design/brand/desain elektronik.png";
+import imgAsset4 from "../assets/design/brand/LACOSTE.png";
+import imgAsset5 from "../assets/design/social/carousels 1.png";
+import imgAsset6 from "../assets/design/brand/skincare.png";
 ---
 
 <BaseLayout
@@ -44,13 +51,12 @@ import Footer from '../components/Footer.astro';
 
       <!-- Project 1: Wide Featured col-span-8, row-span-2 -->
       <a class="stitch-design-card stitch-design-card-lg glightbox"
-         href="/assets/design/social/desain iklan parfum.png"
+         href={imgAsset1.src}
          data-gallery="design-gallery"
          data-title="Advertising: Parfum Campaign"
          data-category="advertising">
         <div class="stitch-design-img-wrap">
-          <img
-            src="/assets/design/social/desain iklan parfum.png"
+          <Image             src={imgAsset1}
             alt="Parfum Advertisement Design"
             loading="lazy"
             width="960"
@@ -69,13 +75,12 @@ import Footer from '../components/Footer.astro';
 
       <!-- Project 2: Tall Portrait col-span-4, row-span-3 -->
       <a class="stitch-design-card stitch-design-card-tall glightbox"
-         href="/assets/design/social/poster edukasi.png"
+         href={imgAsset2.src}
          data-gallery="design-gallery"
          data-title="Poster: Edukasi"
          data-category="social">
         <div class="stitch-design-img-wrap">
-          <img
-            src="/assets/design/social/poster edukasi.png"
+          <Image             src={imgAsset2}
             alt="Educational Poster Design"
             loading="lazy"
             width="480"
@@ -94,13 +99,12 @@ import Footer from '../components/Footer.astro';
 
       <!-- Project 3: Medium Square col-span-4, row-span-2 -->
       <a class="stitch-design-card stitch-design-card-md glightbox"
-         href="/assets/design/brand/desain elektronik.png"
+         href={imgAsset3.src}
          data-gallery="design-gallery"
          data-title="Brand Identity: Elektronik"
          data-category="brand">
         <div class="stitch-design-img-wrap">
-          <img
-            src="/assets/design/brand/desain elektronik.png"
+          <Image             src={imgAsset3}
             alt="Elektronik Product Design"
             loading="lazy"
             width="480"
@@ -119,13 +123,12 @@ import Footer from '../components/Footer.astro';
 
       <!-- Project 4: Wide col-span-4, row-span-1 -->
       <a class="stitch-design-card stitch-design-card-wide glightbox"
-         href="/assets/design/brand/LACOSTE.png"
+         href={imgAsset4.src}
          data-gallery="design-gallery"
          data-title="Brand Identity: LACOSTE"
          data-category="brand">
         <div class="stitch-design-img-wrap">
-          <img
-            src="/assets/design/brand/LACOSTE.png"
+          <Image             src={imgAsset4}
             alt="LACOSTE Brand Design"
             loading="lazy"
             width="480"
@@ -139,13 +142,12 @@ import Footer from '../components/Footer.astro';
 
       <!-- Project 5: Wide Bottom col-span-8, row-span-2 -->
       <a class="stitch-design-card stitch-design-card-wide-bottom glightbox"
-         href="/assets/design/social/carousels 1.png"
+         href={imgAsset5.src}
          data-gallery="design-gallery"
          data-title="Social Media: Carousels"
          data-category="social">
         <div class="stitch-design-img-wrap">
-          <img
-            src="/assets/design/social/carousels 1.png"
+          <Image             src={imgAsset5}
             alt="Social Media Carousel Design"
             loading="lazy"
             width="960"
@@ -164,13 +166,12 @@ import Footer from '../components/Footer.astro';
 
       <!-- Project 6: Small col-span-4, row-span-1 -->
       <a class="stitch-design-card stitch-design-card-small glightbox"
-         href="/assets/design/brand/skincare.png"
+         href={imgAsset6.src}
          data-gallery="design-gallery"
          data-title="Brand Identity: Skincare"
          data-category="brand">
         <div class="stitch-design-img-wrap">
-          <img
-            src="/assets/design/brand/skincare.png"
+          <Image             src={imgAsset6}
             alt="Skincare Brand Design"
             loading="lazy"
             width="480"

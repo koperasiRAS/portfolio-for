@@ -2,6 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from "astro:assets";
+import imgAsset1 from "../assets/thumbnails/web1.png";
+import imgAsset2 from "../assets/thumbnails/landing-placeholder.svg";
+import imgAsset3 from "../assets/thumbnails/pos-placeholder.svg";
 ---
 
 <BaseLayout
@@ -58,11 +62,10 @@ import Footer from '../components/Footer.astro';
           </div>
           <!-- Screenshot -->
           <a class="glightbox web-screenshot-link"
-             href="/assets/thumbnails/web1.png"
+             href={imgAsset1.src}
              data-gallery="web-gallery"
              data-title="Web Portfolio: Frame Of Rangga">
-            <img
-              src="/assets/thumbnails/web1.png"
+            <Image               src={imgAsset1}
               alt="Web Portfolio Frame Of Rangga"
               loading="lazy"
               width="960"
@@ -129,11 +132,10 @@ import Footer from '../components/Footer.astro';
           </div>
           <!-- Screenshot -->
           <a class="glightbox web-screenshot-link"
-             href="/assets/thumbnails/landing-placeholder.svg"
+             href={imgAsset2.src}
              data-gallery="web-gallery"
              data-title="Landing Page: Client Project">
-            <img
-              src="/assets/thumbnails/landing-placeholder.svg"
+            <Image               src={imgAsset2}
               alt="Landing Page Client Project"
               loading="lazy"
               width="960"
@@ -161,11 +163,10 @@ import Footer from '../components/Footer.astro';
           </div>
           <!-- Screenshot -->
           <a class="glightbox web-screenshot-link"
-             href="/assets/thumbnails/pos-placeholder.svg"
+             href={imgAsset3.src}
              data-gallery="web-gallery"
              data-title="Sistem POS Point of Sale">
-            <img
-              src="/assets/thumbnails/pos-placeholder.svg"
+            <Image               src={imgAsset3}
               alt="Sistem POS Point of Sale"
               loading="lazy"
               width="960"
@@ -230,11 +231,10 @@ import Footer from '../components/Footer.astro';
           </div>
           <!-- Screenshot -->
           <a class="glightbox web-screenshot-link"
-             href="/assets/thumbnails/landing-placeholder.svg"
+             href={imgAsset2.src}
              data-gallery="web-gallery"
              data-title="Landing Page Produk & Brand">
-            <img
-              src="/assets/thumbnails/landing-placeholder.svg"
+            <Image               src={imgAsset2}
               alt="Landing Page Produk dan Brand"
               loading="lazy"
               width="960"
