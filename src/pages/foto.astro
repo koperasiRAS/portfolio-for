@@ -11,6 +11,11 @@ import imgAsset5 from "../assets/foto/graduation/sampel-wisuda-1.jpg";
 import imgAsset6 from "../assets/foto/fotografi/style.jpeg";
 import imgAsset7 from "../assets/foto/graduation/sampel-wisuda-3.jpg";
 import imgAsset8 from "../assets/foto/fotografer/fotografi gojek.jpg";
+import imgAsset9 from "../assets/foto/wedding/wedding_nikita_1.jpeg";
+import imgAsset10 from "../assets/foto/fotografi/foto_ala_ala_strobis_fotografi_1.jpeg";
+import imgAsset11 from "../assets/foto/fotografi/fotografi_1.jpeg";
+import imgAsset12 from "../assets/foto/wedding/wedding_nikita_2.jpeg";
+import imgAsset13 from "../assets/foto/lifestyle/fotografi_kenzo.jpeg";
 ---
 
 <BaseLayout
@@ -47,6 +52,7 @@ import imgAsset8 from "../assets/foto/fotografer/fotografi gojek.jpg";
     <!-- Filter Bar Stitch pill style -->
     <div class="filter-bar fade-up" aria-label="Filter by category">
       <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="wedding">Wedding</button>
       <button class="filter-btn" data-filter="birthday">Birthday Party</button>
       <button class="filter-btn" data-filter="komersial">Komersial</button>
       <button class="filter-btn" data-filter="graduation">Graduation</button>
@@ -236,6 +242,106 @@ import imgAsset8 from "../assets/foto/fotografer/fotografi gojek.jpg";
           <h3 class="stitch-card-title">Fotografi: Fotografi Gojek</h3>
         </div>
       </a>
+
+      <!-- Wedding Nikita -->
+      <a
+        class="stitch-card glightbox"
+        href={imgAsset9.src}
+        data-gallery="portfolio-gallery"
+        data-title="Wedding: Nikita"
+        data-category="wedding"
+      >
+        <div class="stitch-card-img-auto">
+          <Image src={imgAsset9}
+            alt="Wedding Nikita"
+            loading="lazy"
+          />
+        </div>
+        <div class="stitch-card-overlay">
+          <span class="stitch-card-cat">Wedding</span>
+          <h3 class="stitch-card-title">Wedding: Nikita</h3>
+        </div>
+      </a>
+
+      <!-- Fotografi Strobis -->
+      <a
+        class="stitch-card glightbox"
+        href={imgAsset10.src}
+        data-gallery="portfolio-gallery"
+        data-title="Fotografi: Teknik Strobis"
+        data-category="fotografi"
+      >
+        <div class="stitch-card-img-auto">
+          <Image src={imgAsset10}
+            alt="Fotografi Teknik Strobis"
+            loading="lazy"
+          />
+        </div>
+        <div class="stitch-card-overlay">
+          <span class="stitch-card-cat">Fotografi</span>
+          <h3 class="stitch-card-title">Fotografi: Teknik Strobis</h3>
+        </div>
+      </a>
+
+      <!-- Fotografi -->
+      <a
+        class="stitch-card glightbox"
+        href={imgAsset11.src}
+        data-gallery="portfolio-gallery"
+        data-title="Fotografi"
+        data-category="fotografi"
+      >
+        <div class="stitch-card-img-auto">
+          <Image src={imgAsset11}
+            alt="Fotografi"
+            loading="lazy"
+          />
+        </div>
+        <div class="stitch-card-overlay">
+          <span class="stitch-card-cat">Fotografi</span>
+          <h3 class="stitch-card-title">Fotografi</h3>
+        </div>
+      </a>
+
+      <!-- Wedding Nikita 2 -->
+      <a
+        class="stitch-card glightbox"
+        href={imgAsset12.src}
+        data-gallery="portfolio-gallery"
+        data-title="Wedding: Nikita 2"
+        data-category="wedding"
+      >
+        <div class="stitch-card-img-auto">
+          <Image src={imgAsset12}
+            alt="Wedding Nikita 2"
+            loading="lazy"
+          />
+        </div>
+        <div class="stitch-card-overlay">
+          <span class="stitch-card-cat">Wedding</span>
+          <h3 class="stitch-card-title">Wedding: Nikita 2</h3>
+        </div>
+      </a>
+
+      <!-- Lifestyle Kenzo -->
+      <a
+        class="stitch-card glightbox"
+        href={imgAsset13.src}
+        data-gallery="portfolio-gallery"
+        data-title="Lifestyle: Kenzo"
+        data-category="lifestyle"
+      >
+        <div class="stitch-card-img-auto">
+          <Image src={imgAsset13}
+            alt="Lifestyle Kenzo"
+            loading="lazy"
+          />
+        </div>
+        <div class="stitch-card-overlay">
+          <span class="stitch-card-cat">Lifestyle</span>
+          <h3 class="stitch-card-title">Lifestyle: Kenzo</h3>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -392,6 +498,23 @@ import imgAsset8 from "../assets/foto/fotografer/fotografi gojek.jpg";
   }
 
   .stitch-card:hover .stitch-card-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  /* Auto height image container to prevent cropping */
+  .stitch-card-img-auto {
+    overflow: hidden;
+  }
+
+  .stitch-card-img-auto img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .stitch-card:hover .stitch-card-img-auto img {
     transform: scale(1.06);
   }
 
