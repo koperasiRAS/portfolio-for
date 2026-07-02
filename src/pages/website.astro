@@ -4,10 +4,12 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { Image } from "astro:assets";
 import imgAsset1 from "../assets/thumbnails/web1.png";
+import imgPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
 import imgAsset2 from "../assets/thumbnails/landing-placeholder.svg";
 import imgAsset3 from "../assets/thumbnails/pos-placeholder.svg";
 import imgLanding from "../assets/thumbnails/thumbnail_landing_page.png";
 import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
+import imgLandingFlowFor from "../assets/thumbnails/thumbnail_landing_page_flowfor.png";
 ---
 
 <BaseLayout
@@ -59,19 +61,17 @@ import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
               <span class="web-browser-dot web-browser-dot-green"></span>
             </div>
             <div class="web-browser-url-bar">
-              for-portfolio-mu.vercel.app
+              portfolio-for-delta.vercel.app
             </div>
           </div>
           <!-- Screenshot -->
           <a class="glightbox web-screenshot-link"
-             href={imgAsset1.src}
+             href={imgPortfolio.src}
              data-gallery="web-gallery"
              data-title="Web Portfolio: Frame Of Rangga">
-            <Image               src={imgAsset1}
+            <Image src={imgPortfolio}
               alt="Web Portfolio Frame Of Rangga"
               loading="lazy"
-              width="960"
-              height="540"
             />
           </a>
         </div>
@@ -80,16 +80,10 @@ import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
         <span class="web-project-badge web-project-badge-purple">Portfolio Website</span>
         <h2 class="web-project-title">Web Portfolio: Frame Of Rangga</h2>
         <p class="web-project-desc">
-          Portfolio website personal dengan Astro framework, featuring dark glassmorphism design yang elegan dan modern. Fast loading, responsive, dan optimized untuk SEO.
+          Portfolio website profesional untuk memamerkan karya dan layanan Frame of Rangga. Desain modern, elegan, responsif, dan dioptimasi penuh (SEO & Performa) untuk menarik klien baru.
         </p>
-        <div class="web-project-tech">
-          <span class="web-tech-pill">Astro</span>
-          <span class="web-tech-pill">CSS</span>
-          <span class="web-tech-pill">JavaScript</span>
-          <span class="web-tech-pill">Vercel</span>
-        </div>
         <div class="web-project-links">
-          <a href="https://for-portfolio-mu.vercel.app" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-primary">
+          <a href="https://portfolio-for-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-primary">
             <i class="fas fa-external-link-alt"></i> Kunjungi Website
           </a>
           <a href="https://wa.me/6287779560264?text=Halo%20Rangga%2C%20saya%20tertarik%20dengan%20web%20portfolio%20anda" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-ghost">
@@ -107,11 +101,6 @@ import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
         <p class="web-project-desc">
           Landing page yang didesain untuk mengkonversi visitor jadi leads. Dengan CTA yang jelas, layout yang clean, dan pengalaman pengguna yang seamless di semua device.
         </p>
-        <div class="web-project-tech">
-          <span class="web-tech-pill">HTML</span>
-          <span class="web-tech-pill">CSS</span>
-          <span class="web-tech-pill">JavaScript</span>
-        </div>
         <div class="web-project-links web-project-links-right">
           <a href="https://cemerlanglaundry.rayaabadisaudara.com" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-primary">
             <i class="fas fa-external-link-alt"></i> Kunjungi Website
@@ -181,12 +170,6 @@ import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
         <p class="web-project-desc">
           Aplikasi kasir sederhana untuk UMKM. Fitur: input produk, transaksi, laporan harian. Dirancang praktis dan mudah digunakan untuk pelaku usaha kecil.
         </p>
-        <div class="web-project-tech">
-          <span class="web-tech-pill">HTML</span>
-          <span class="web-tech-pill">CSS</span>
-          <span class="web-tech-pill">JavaScript</span>
-          <span class="web-tech-pill">Laragon</span>
-        </div>
         <div class="web-project-links">
           <a href="https://ajilplastik.vercel.app" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-primary">
             <i class="fas fa-external-link-alt"></i> Kunjungi Website
@@ -206,13 +189,10 @@ import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
         <p class="web-project-desc">
           Landing page konversi tinggi untuk campaign produk atau brand promotion. Dirancang dengan CTA yang jelas dan layout yang clean untuk hasil maksimal.
         </p>
-        <div class="web-project-tech">
-          <span class="web-tech-pill">HTML</span>
-          <span class="web-tech-pill">CSS</span>
-          <span class="web-tech-pill">JavaScript</span>
-        </div>
         <div class="web-project-links web-project-links-right">
-          <span class="web-demo-label" style="color: var(--text-secondary); font-size: 12px; margin-right: auto;">Live demo available on request</span>
+          <a href="https://florebyfor-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-primary">
+            <i class="fas fa-external-link-alt"></i> Kunjungi Website
+          </a>
           <a href="https://wa.me/6287779560264?text=Halo%20Rangga%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website" target="_blank" rel="noopener noreferrer" class="web-project-link web-project-link-ghost">
             <i class="fab fa-whatsapp"></i> Tanya Project
           </a>
@@ -228,19 +208,17 @@ import imgPOS from "../assets/thumbnails/thumbnail_POS.png";
               <span class="web-browser-dot web-browser-dot-green"></span>
             </div>
             <div class="web-browser-url-bar">
-              <i class="fas fa-lock" style="font-size:9px;opacity:0.5;margin-right:4px;"></i>by request via WhatsApp
+              florebyfor-seven.vercel.app
             </div>
           </div>
           <!-- Screenshot -->
           <a class="glightbox web-screenshot-link"
-             href={imgAsset2.src}
+             href={imgLandingFlowFor.src}
              data-gallery="web-gallery"
              data-title="Landing Page Produk & Brand">
-            <Image               src={imgAsset2}
+            <Image src={imgLandingFlowFor}
               alt="Landing Page Produk dan Brand"
               loading="lazy"
-              width="960"
-              height="540"
             />
           </a>
         </div>
