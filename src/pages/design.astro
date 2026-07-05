@@ -9,6 +9,7 @@ import imgAsset3 from "../assets/design/brand/desain elektronik.png";
 import imgAsset4 from "../assets/design/brand/LACOSTE.png";
 import imgAsset5 from "../assets/design/social/carousels 1.png";
 import imgAsset6 from "../assets/design/brand/skincare.png";
+import imgBrosurCemerlang from "../assets/design/poster/brosur_cemerlang.png";
 ---
 
 <BaseLayout
@@ -78,7 +79,7 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
          href={imgAsset2.src}
          data-gallery="design-gallery"
          data-title="Poster: Edukasi"
-         data-category="social">
+         data-category="poster">
         <div class="stitch-design-img-wrap">
           <Image             src={imgAsset2}
             alt="Educational Poster Design"
@@ -89,7 +90,7 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
         </div>
         <div class="stitch-design-card-overlay">
           <div class="stitch-design-card-badges">
-            <span class="stitch-badge-pill stitch-badge-social">Social</span>
+            <span class="stitch-badge-pill stitch-badge-social">Poster</span>
             <span class="stitch-badge-pill">2024</span>
           </div>
           <h3 class="stitch-design-card-title">Poster Edukasi</h3>
@@ -183,6 +184,30 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
             <p class="stitch-design-card-title">Skincare Brand</p>
             <span class="stitch-design-card-meta">Branding Design</span>
           </div>
+        </div>
+      </a>
+
+      <!-- Project 7: Poster Brosur Cemerlang col-span-4, row-span-2 -->
+      <a class="stitch-design-card stitch-design-card-md glightbox"
+         href={imgBrosurCemerlang.src}
+         data-gallery="design-gallery"
+         data-title="Poster: Brosur Cemerlang Laundry"
+         data-category="poster">
+        <div class="stitch-design-img-wrap">
+          <Image src={imgBrosurCemerlang}
+            alt="Brosur Cemerlang Laundry"
+            loading="lazy"
+            width="480"
+            height="900"
+          />
+        </div>
+        <div class="stitch-design-card-overlay">
+          <div class="stitch-design-card-badges">
+            <span class="stitch-badge-pill stitch-badge-social">Poster</span>
+            <span class="stitch-badge-pill">2024</span>
+          </div>
+          <h3 class="stitch-design-card-title">Cemerlang Laundry</h3>
+          <p class="stitch-design-card-desc">Desain brosur promosi untuk Cemerlang Laundry.</p>
         </div>
       </a>
 
@@ -280,19 +305,11 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
      12-column, variable row heights
      ============================================= */
   .stitch-design-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 280px;
-    gap: 16px;
+    column-count: 3;
+    column-gap: 24px;
   }
 
-  /* Card sizing variants */
-  .stitch-design-card-lg      { grid-column: span 8; grid-row: span 2; }
-  .stitch-design-card-tall    { grid-column: span 4; grid-row: span 3; }
-  .stitch-design-card-md      { grid-column: span 4; grid-row: span 2; }
-  .stitch-design-card-wide    { grid-column: span 4; grid-row: span 1; }
-  .stitch-design-card-wide-bottom { grid-column: span 8; grid-row: span 2; }
-  .stitch-design-card-small   { grid-column: span 4; grid-row: span 1; }
+  /* Note: Sizing variants removed as masonry uses intrinsic heights */
 
   /* Card base */
   .stitch-design-card {
@@ -302,7 +319,10 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
     background: var(--surface-container-highest);
     border: 1px solid rgba(163, 166, 255, 0.06);
     cursor: pointer;
-    display: block;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 24px;
+    break-inside: avoid;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
                 box-shadow 0.3s ease,
                 border-color 0.3s ease;
@@ -316,17 +336,17 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
 
   /* Image */
   .stitch-design-img-wrap {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    width: 100%;
     overflow: hidden;
   }
 
   .stitch-design-img-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
+    height: auto;
+    object-fit: contain;
     display: block;
+    transition: transform 0.7s ease;
   }
 
   .stitch-design-card:hover .stitch-design-img-wrap img {
@@ -521,18 +541,7 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
     }
 
     .stitch-design-grid {
-      grid-template-columns: 1fr;
-      grid-auto-rows: 260px;
-    }
-
-    .stitch-design-card-lg,
-    .stitch-design-card-tall,
-    .stitch-design-card-md,
-    .stitch-design-card-wide,
-    .stitch-design-card-wide-bottom,
-    .stitch-design-card-small {
-      grid-column: span 1;
-      grid-row: span 1;
+      column-count: 2;
     }
 
     .filter-bar {
@@ -549,6 +558,11 @@ import imgAsset6 from "../assets/design/brand/skincare.png";
 
   /* Responsive Mobile (480px) */
   @media (max-width: 600px) {
+    .stitch-design-grid {
+      column-count: 1;
+    }
+
+
     .stitch-hero {
       padding: 88px 20px 40px;
       text-align: center;

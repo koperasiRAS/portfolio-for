@@ -5,6 +5,10 @@ import Footer from '../components/Footer.astro';
 import { Image } from "astro:assets";
 import imgAsset1 from "../assets/thumbnails/web1.png";
 import imgAsset2 from "../assets/thumbnails/web2.png";
+import imgQurban from "../assets/thumbnails/thumbnail_qurban.png";
+import imgWedding from "../assets/thumbnails/thumbnail_wedding.png";
+import imgUltah from "../assets/thumbnails/thumbnail_ultah.png";
+import imgVlog from "../assets/thumbnails/thumbnail_vlog.png";
 ---
 
 <BaseLayout
@@ -35,8 +39,9 @@ import imgAsset2 from "../assets/thumbnails/web2.png";
     <!-- Filter Bar Stitch pill style -->
     <div class="filter-bar fade-up" aria-label="Filter by category">
       <button class="filter-btn active" data-filter="all">Semua</button>
-      <button class="filter-btn" data-filter="brand">Brand Video</button>
+      <button class="filter-btn" data-filter="wedding">Wedding</button>
       <button class="filter-btn" data-filter="dokumentasi">Dokumentasi</button>
+      <button class="filter-btn" data-filter="vlog">Vlog</button>
       <button class="filter-btn" data-filter="sosmed">Konten Sosmed</button>
       <button class="filter-btn" data-filter="promosi">Promosi</button>
     </div>
@@ -83,21 +88,20 @@ import imgAsset2 from "../assets/thumbnails/web2.png";
       <!-- Regular Video Cards 2 column grid -->
       <div class="stitch-video-grid-regular">
 
-        <!-- Card 1: Brand Video -->
+        <!-- Card 1: Wedding Video -->
         <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-           data-type="video"
-           data-source="youtube"
+           href="https://drive.google.com/file/d/1_DVJqrqzKQTcVfcmptCpcYdK5kB0Zvgr/preview"
+           data-type="external"
            data-gallery="videos"
-           data-category="brand">
+           data-category="wedding">
           <div class="stitch-video-thumb-wrap">
-            <Image               src={imgAsset1}
-              alt="Brand Video"
+            <Image src={imgWedding}
+              alt="Wedding Video"
               loading="lazy"
               width="640"
               height="360"
             />
-            <div class="stitch-duration-badge">3:45</div>
+            <div class="stitch-duration-badge">00:20</div>
             <div class="stitch-video-play-overlay">
               <div class="stitch-play-btn">
                 <i class="fas fa-play"></i>
@@ -106,8 +110,36 @@ import imgAsset2 from "../assets/thumbnails/web2.png";
           </div>
           <div class="stitch-video-card-footer">
             <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Brand Video: Client Project</h3>
-              <p class="stitch-video-card-meta">Brand Video &bull; 2024</p>
+              <h3 class="stitch-video-card-title">Wedding Video</h3>
+              <p class="stitch-video-card-meta">Wedding &bull; 2024</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 1.5: Qurban Video (Google Drive) -->
+        <a class="stitch-video-card stitch-video-card-regular glightbox"
+           href="https://drive.google.com/file/d/18pG0trX9PeHOtLr_0KBJa2FyB3DbC1R4/preview"
+           data-type="external"
+           data-gallery="videos"
+           data-category="dokumentasi">
+          <div class="stitch-video-thumb-wrap">
+            <Image src={imgQurban}
+              alt="Dokumentasi Qurban"
+              loading="lazy"
+              width="640"
+              height="360"
+            />
+            <div class="stitch-duration-badge">05:05</div>
+            <div class="stitch-video-play-overlay">
+              <div class="stitch-play-btn">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+          </div>
+          <div class="stitch-video-card-footer">
+            <div class="stitch-video-card-info">
+              <h3 class="stitch-video-card-title">Dokumentasi Qurban</h3>
+              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
             </div>
           </div>
         </a>
@@ -141,21 +173,20 @@ import imgAsset2 from "../assets/thumbnails/web2.png";
           </div>
         </a>
 
-        <!-- Card 3: Konten Sosmed -->
+        <!-- Card 3: Ultah Raden -->
         <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-           data-type="video"
-           data-source="youtube"
+           href="https://drive.google.com/file/d/1t6vxuhS_dEVlTHuDCfMXCTKimzecRkWT/preview"
+           data-type="external"
            data-gallery="videos"
-           data-category="sosmed">
+           data-category="dokumentasi">
           <div class="stitch-video-thumb-wrap">
-            <Image               src={imgAsset1}
-              alt="Konten Sosial Media"
+            <Image src={imgUltah}
+              alt="Dokumentasi Ultah Raden"
               loading="lazy"
               width="640"
               height="360"
             />
-            <div class="stitch-duration-badge">0:30</div>
+            <div class="stitch-duration-badge">03:03</div>
             <div class="stitch-video-play-overlay">
               <div class="stitch-play-btn">
                 <i class="fas fa-play"></i>
@@ -164,27 +195,26 @@ import imgAsset2 from "../assets/thumbnails/web2.png";
           </div>
           <div class="stitch-video-card-footer">
             <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Konten Sosial Media</h3>
-              <p class="stitch-video-card-meta">Konten Sosmed &bull; 2024</p>
+              <h3 class="stitch-video-card-title">Dokumentasi Ultah Raden</h3>
+              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
             </div>
           </div>
         </a>
 
-        <!-- Card 4: Promosi -->
+        <!-- Card 4: Vlog -->
         <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-           data-type="video"
-           data-source="youtube"
+           href="https://drive.google.com/file/d/1GwEOsxdmDSVyvGkr14-KGSNvw5sp4tC6/preview"
+           data-type="external"
            data-gallery="videos"
-           data-category="promosi">
+           data-category="vlog">
           <div class="stitch-video-thumb-wrap">
-            <Image               src={imgAsset2}
-              alt="Video Promosi"
+            <Image src={imgVlog}
+              alt="Video Vlog"
               loading="lazy"
               width="640"
               height="360"
             />
-            <div class="stitch-duration-badge">1:00</div>
+            <div class="stitch-duration-badge">11:00</div>
             <div class="stitch-video-play-overlay">
               <div class="stitch-play-btn">
                 <i class="fas fa-play"></i>
@@ -193,8 +223,8 @@ import imgAsset2 from "../assets/thumbnails/web2.png";
           </div>
           <div class="stitch-video-card-footer">
             <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Video Promosi Produk</h3>
-              <p class="stitch-video-card-meta">Promosi &bull; 2024</p>
+              <h3 class="stitch-video-card-title">Vlog Pribadi</h3>
+              <p class="stitch-video-card-meta">Vlog &bull; 2024</p>
             </div>
           </div>
         </a>
