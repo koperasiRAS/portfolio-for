@@ -9,9 +9,13 @@ import { waLink } from '../utils/whatsapp.js';
 
 // Server-side email rendered at build time, no JS needed
 // Obfuscated as HTML entities to reduce spam bot exposure
-const emailParts = ['fr', 'ameo', 'fr', 'ang', 'ga@', 'gm', 'ail.', 'co', 'm'];
-const emailDisplay = emailParts.join('');
-const emailHref = 'mailto:' + emailParts.join('');
+const bizEmailParts = ['fr', 'ameo', 'fr', 'ang', 'ga@', 'gm', 'ail.', 'co', 'm'];
+const bizEmailDisplay = bizEmailParts.join('');
+const bizEmailHref = 'mailto:' + bizEmailParts.join('');
+
+const adminEmailParts = ['danu', 'artar', 'angga', '02@', 'gm', 'ail.', 'co', 'm'];
+const adminEmailDisplay = adminEmailParts.join('');
+const adminEmailHref = 'mailto:' + adminEmailParts.join('');
 ---
 
 <footer class={variant === 'full' ? 'footer-full' : 'footer-minimal'}>
@@ -21,7 +25,7 @@ const emailHref = 'mailto:' + emailParts.join('');
         <div class="footer-logo">FOR</div>
         <p class="footer-tagline">Visual storytelling yang autentik dan berkesan.</p>
         <div class="footer-social">
-          <a href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <a href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
           <a href="https://www.tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
@@ -30,7 +34,7 @@ const emailHref = 'mailto:' + emailParts.join('');
           <a href={waLink('general')} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </a>
-          <a href={emailHref} target="_blank" rel="noopener noreferrer" aria-label="Email">
+          <a href={bizEmailHref} target="_blank" rel="noopener noreferrer" aria-label="Email">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -67,13 +71,23 @@ const emailHref = 'mailto:' + emailParts.join('');
             </a>
           </li>
           <li>
-            <a href={emailHref} target="_blank" rel="noopener noreferrer" aria-label="Email">
-              <i class="fas fa-envelope"></i> {emailDisplay}
+            <a href={bizEmailHref} target="_blank" rel="noopener noreferrer" aria-label="Business Email">
+              <i class="fas fa-envelope"></i> Business Inquiries: {bizEmailDisplay}
+            </a>
+          </li>
+          <li>
+            <a href={adminEmailHref} target="_blank" rel="noopener noreferrer" aria-label="Admin Email">
+              <i class="fas fa-envelope"></i> Personal/Admin: {adminEmailDisplay}
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> @rggadnrt
             </a>
           </li>
           <li>
             <a href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-instagram"></i> @frameofrangga
+              <i class="fab fa-instagram"></i> @frameofrangga (Design Portfolio)
             </a>
           </li>
           <li>
@@ -88,7 +102,7 @@ const emailHref = 'mailto:' + emailParts.join('');
 
   {variant === 'minimal' && (
     <div class="footer-social-minimal">
-      <a href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <a href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <i class="fab fa-instagram"></i>
       </a>
       <a href="https://www.tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer" aria-label="TikTok">

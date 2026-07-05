@@ -121,19 +121,14 @@ function animateCounters() {
 
       function tick(now) {
         if (!startTime) startTime = now;
-        if (document.visibilityState === 'hidden') {
-          startTime += (now - startTime); // pause roughly
-          requestAnimationFrame(tick);
-          return;
-        }
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(eased * target) + '+';
+        el.textContent = Math.round(eased * target) + (el.dataset.suffix || '+');
         if (progress < 1) {
           requestAnimationFrame(tick);
         } else {
-          el.textContent = target + '+';
+          el.textContent = target + (el.dataset.suffix || '+');
         }
       }
 
@@ -424,8 +419,7 @@ function initLazyBlur() {
 })();
 
 /* ---------- INIT ALL ---------- */
-document.addEventListener('DOMContentLoaded', () => {
-  // Init features
+function initAll() {
   animateCounters();
   initFadeUp();
   initLightbox();
@@ -434,7 +428,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (swiperInstance) window.mySwiper = swiperInstance;
   initVideoThumbs();
   initLazyBlur();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
 
 /* ---------- GALLERY (GLightbox + Category Filter) ---------- */
 function initGallery() {
