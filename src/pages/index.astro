@@ -6,6 +6,7 @@ import ServiceCard from "../components/ServiceCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import { waLink } from "../utils/whatsapp.js";
 import { Image } from "astro:assets";
+
 import imgAsset1 from "../assets/design/social/carousels 1.png";
 import imgAsset2 from "../assets/foto/foto cover halaman utama.jpg";
 import imgAsset3 from "../assets/foto/wedding/ultah raden 2 landscape.JPG";
@@ -13,6 +14,7 @@ import imgAsset4 from "../assets/thumbnails/thumbnail-video.png";
 import imgAsset5 from "../assets/thumbnails/web2.png";
 import imgAsset6 from "../assets/thumbnails/thumbnail-design.png";
 import imgAsset7 from "../assets/foto/about rangga.jpg";
+
 import imgAsset8 from "../assets/logos/ptnr-tokopedia.png";
 import imgAsset9 from "../assets/logos/ptnr-kitabisa.png";
 import imgAsset10 from "../assets/logos/ptnr-shopee.png";
@@ -22,8 +24,8 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 ---
 
 <BaseLayout
-  title="Frame Of Rangga | Visual Storyteller Foto, Video, Design & Web"
-  description="Rangga Danuarta, Visual Storyteller berbasis di Depok. Spesialis fotografi komersial, videografi, brand design, dan web development untuk brand dan bisnis Anda."
+  title="Frame Of Rangga — Visual Storyteller & Creative Developer"
+  description="Rangga Danuarta, Visual Storyteller & Developer berbasis di Depok. Spesialis fotografi komersial, videografi sinematik, brand design, dan web engineering."
   ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-default.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/"
   hasHeroPreload={true}
@@ -31,16 +33,17 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Navbar slot -->
   <Navbar slot="navbar" activePage="home" />
 
-  <!-- HERO Stitch Nocturnal Design -->
+  <!-- HERO SECTION WITH NOCTURNAL GLASSMORPHISM & STRONG VALUE PROP -->
   <header class="stitch-hero" id="hero" transition:animate="fade">
-    <!-- Background glow blobs (desktop) -->
+    <!-- Background ambient glow blobs -->
     <div class="stitch-hero-glow-r" aria-hidden="true"></div>
     <div class="stitch-hero-glow-l" aria-hidden="true"></div>
 
-    <!-- Background image -->
+    <!-- Background showcase artwork -->
     <div class="stitch-hero-bg" aria-hidden="true">
-      <Image         src={imgAsset1}
-        alt="Hero background Frame Of Rangga portfolio showcase"
+      <Image
+        src={imgAsset1}
+        alt="Frame Of Rangga Visual Portfolio Showcase"
         class="stitch-hero-bg-img"
         loading="eager"
         fetchpriority="high"
@@ -48,39 +51,51 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       <div class="stitch-hero-bg-overlay"></div>
     </div>
 
-    <!-- Hero grid: text left, portrait right -->
+    <!-- Hero grid: Left Text & Value Prop, Right Portrait -->
     <div class="stitch-hero-grid">
       <!-- Text Content -->
       <div class="stitch-hero-content">
         <!-- Badge -->
-        <span class="stitch-badge"> Visual Storyteller </span>
-        <!-- H1 -->
+        <span class="stitch-badge">
+          <i class="fas fa-sparkles"></i> Visual Storyteller &amp; Creative Developer
+        </span>
+
+        <!-- H1 Headline -->
         <h1 class="stitch-hero-title">
-          Frame of<br />
-          <span class="stitch-hero-title-accent">Rangga</span>
+          Crafting Visual Stories<br />
+          <span class="stitch-hero-title-accent">That Drive Real Impact.</span>
         </h1>
-        <!-- Description -->
+
+        <!-- High-Converting Description -->
         <p class="stitch-hero-desc">
-          Crafting visual narratives through the lens of cinematic precision and
-          editorial depth. Creative Direction for the digital age.
+          Satu pintu solusi kreatif untuk brand Anda — memadukan seni fotografi komersial, videografi sinematik, desain identitas visual, dan <em>web engineering</em> modern yang responsif.
         </p>
+
+        <!-- CTA Buttons -->
+        <div class="stitch-hero-cta-group">
+          <a href="#categories" class="btn btn-primary">
+            <i class="fas fa-layer-group"></i> Jelajahi Karya
+          </a>
+          <a href={waLink("collab")} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            <i class="fab fa-whatsapp"></i> Chat via WhatsApp
+          </a>
+        </div>
       </div>
 
-      <!-- Portrait -->
+      <!-- Portrait Card -->
       <div class="stitch-hero-portrait">
         <div class="stitch-hero-portrait-inner">
-          <Image             src={imgAsset2}
+          <Image
+            src={imgAsset2}
             alt="Rangga Danuarta Frame Of Rangga"
             class="stitch-hero-portrait-img"
             loading="eager"
             fetchpriority="high"
           />
-          <!-- Floating badge -->
+          <!-- Floating Verified Badge -->
           <div class="stitch-hero-float-badge">
             <div class="stitch-float-badge-icon">
-              <span class="material-symbols-outlined stitch-icon-filled"
-                >verified</span
-              >
+              <span class="material-symbols-outlined stitch-icon-filled">verified</span>
             </div>
             <div>
               <p class="stitch-float-badge-sub">Visual Storyteller</p>
@@ -95,60 +110,81 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-
-  <!-- EXPLORE CATEGORIES -->
+  <!-- EXPLORE CATEGORIES GRID -->
   <section class="cat-section" id="categories" transition:animate="fade">
     <div class="cat-inner">
       <div class="cat-header fade-up">
+        <span class="section-label gradient-label">CURATED DISCIPLINES</span>
         <h2 class="cat-title">Explore Categories</h2>
         <div class="cat-title-line"></div>
       </div>
+
       <div class="cat-grid">
+        <!-- Foto -->
         <a href="/foto" class="cat-card cat-card-foto">
-          <Image             src={imgAsset3}
-            alt="Birthday Photography Momen perayaan oleh Rangga Danuarta"
+          <Image
+            src={imgAsset3}
+            alt="Photography Showcase Rangga Danuarta"
             loading="lazy"
           />
           <div class="cat-card-overlay"></div>
           <div class="cat-card-content">
-            <span class="cat-card-label">Capturing Essence</span>
+            <span class="cat-card-label">Commercial &amp; Event Capture</span>
             <h3 class="cat-card-title">Foto</h3>
           </div>
           <div class="cat-card-arrow">
             <span class="material-symbols-outlined">arrow_outward</span>
           </div>
         </a>
+
+        <!-- Video -->
         <a href="/video" class="cat-card cat-card-video">
-          <Image             src={imgAsset4}
-            alt="Videography Portfolio Brand video dan dokumentasi event oleh Frame Of Rangga"
+          <Image
+            src={imgAsset4}
+            alt="Videography Portfolio Frame Of Rangga"
             loading="lazy"
           />
           <div class="cat-card-overlay"></div>
           <div class="cat-card-content">
-            <span class="cat-card-label">Motion Theory</span>
+            <span class="cat-card-label">Cinematic Reels &amp; Motion</span>
             <h3 class="cat-card-title">Video</h3>
           </div>
-        </a>
-        <a href="/website" class="cat-card cat-card-website">
-          <Image             src={imgAsset5}
-            alt="Web Development Portfolio Portfolio dan landing page oleh Frame Of Rangga"
-            loading="lazy"
-          />
-          <div class="cat-card-overlay"></div>
-          <div class="cat-card-content">
-            <span class="cat-card-label">Web App</span>
-            <h3 class="cat-card-title">Website</h3>
+          <div class="cat-card-arrow">
+            <span class="material-symbols-outlined">arrow_outward</span>
           </div>
         </a>
-        <a href="/design" class="cat-card cat-card-design">
-          <Image             src={imgAsset6}
-            alt="Brand Design Portfolio Identity dan advertising design oleh Frame Of Rangga"
+
+        <!-- Website -->
+        <a href="/website" class="cat-card cat-card-website">
+          <Image
+            src={imgAsset5}
+            alt="Web Development Portfolio Frame Of Rangga"
             loading="lazy"
           />
           <div class="cat-card-overlay"></div>
           <div class="cat-card-content">
-            <span class="cat-card-label">Visual Social Media</span>
+            <span class="cat-card-label">Interactive Web Applications</span>
+            <h3 class="cat-card-title">Website</h3>
+          </div>
+          <div class="cat-card-arrow">
+            <span class="material-symbols-outlined">arrow_outward</span>
+          </div>
+        </a>
+
+        <!-- Design -->
+        <a href="/design" class="cat-card cat-card-design">
+          <Image
+            src={imgAsset6}
+            alt="Brand Identity Design Frame Of Rangga"
+            loading="lazy"
+          />
+          <div class="cat-card-overlay"></div>
+          <div class="cat-card-content">
+            <span class="cat-card-label">Brand Systems &amp; Identity</span>
             <h3 class="cat-card-title">Design</h3>
+          </div>
+          <div class="cat-card-arrow">
+            <span class="material-symbols-outlined">arrow_outward</span>
           </div>
         </a>
       </div>
@@ -158,49 +194,52 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- ABOUT -->
+  <!-- ABOUT ME SECTION (ONE-STOP CREATIVE SOLUTION) -->
   <section class="about" id="about" transition:animate="fade">
     <div class="about-inner">
       <div class="about-photo fade-up">
         <div class="about-photo-wrap">
-          <Image             src={imgAsset7}
-            alt="Rangga Danuarta"
+          <Image
+            src={imgAsset7}
+            alt="Rangga Danuarta Portrait"
             loading="lazy"
-            onerror="this.style.display='none'"
           />
         </div>
       </div>
       <div class="about-text fade-up">
-        <span class="section-label gradient-label">TENTANG FOR</span>
+        <span class="section-label gradient-label">ONE-STOP CREATIVE SOLUTION</span>
         <h2 class="section-title">About Me</h2>
         <p class="about-bio">
-          Saya Rangga Danuarta, videografer, fotografer, dan developer yang berbasis di Depok. Selama lebih dari 3 tahun, saya membantu berbagai brand dan bisnis menghadirkan konten visual dan digital yang tidak hanya enak dipandang, tetapi juga memberikan dampak nyata bagi tujuan pemasaran mereka, mulai dari foto dan video, desain, hingga pengembangan website.
+          Saya Rangga Danuarta, fotografer, videografer, brand designer, dan web developer berbasis di Depok, Indonesia. Selama lebih dari 3 tahun, saya membantu brand dan bisnis menghadirkan konten visual serta platform digital yang tidak hanya estetis, namun berorientasi pada hasil nyata.
         </p>
         <p class="about-bio">
-          Kombinasi ini bukan sebuah kebetulan. Saya percaya bahwa proses kreatif yang baik tidak berhenti pada satu bidang saja. Konten yang kuat membutuhkan visual yang tepat, sekaligus platform yang mendukungnya. Oleh karena itu, saya membangun setiap project mulai dari riset kebutuhan klien, eksekusi teknis, hingga hasil akhir yang siap digunakan, baik berupa video, desain, maupun website.
+          Saya percaya bahwa proses kreatif yang baik tidak berhenti pada satu disiplin saja. Visual yang memukau membutuhkan narasi yang tepat dan platform web yang cepat untuk menyampaikannya. Oleh karena itu, saya meng-handle eksekusi kreatif secara end-to-end tanpa perlu merekrut banyak vendor terpisah.
         </p>
+
+        <!-- Stats Counters -->
         <div class="about-stats">
           <div class="stat-card">
             <span class="stat-number" data-target="3">0</span>
-            <span class="stat-label">Years</span>
+            <span class="stat-label">Tahun Pengalaman</span>
           </div>
           <div class="stat-card">
             <span class="stat-number" data-target="50">0</span>
-            <span class="stat-label">Projects</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number" data-target="4">0</span>
-            <span class="stat-label">Services</span>
+            <span class="stat-label">Project Selesai</span>
           </div>
           <div class="stat-card">
             <span class="stat-number" data-target="10">0</span>
             <span class="stat-label">Brand Partners</span>
           </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="4">0</span>
+            <span class="stat-label">Layanan Utama</span>
+          </div>
         </div>
+
         <a
           href={waLink("collab")}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="btn btn-ghost"
         >
           <i class="fab fa-whatsapp"></i> Chat via WhatsApp
@@ -212,46 +251,28 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- BRANDS -->
+  <!-- PROMINENT CLIENT BRANDS -->
   <section class="brands" id="brands" transition:animate="fade">
-    <div class="brands-inner fade-up">
-      <p class="brands-label">Trusted by brands &amp; clients</p>
+    <div class="brands-inner fade-up text-center">
+      <p class="brands-label">TRUSTED BY BRANDS &amp; CLIENTS</p>
       <div class="logo-strip">
         <div class="logo-item">
-          <Image             src={imgAsset8}
-            alt="Tokopedia"
-            loading="lazy"
-          />
+          <Image src={imgAsset8} alt="Tokopedia" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset9}
-            alt="KitaBisa"
-            loading="lazy"
-          />
+          <Image src={imgAsset9} alt="KitaBisa" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset10}
-            alt="Shopee"
-            loading="lazy"
-          />
+          <Image src={imgAsset10} alt="Shopee" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset11}
-            alt="Bank Qurban"
-            loading="lazy"
-          />
+          <Image src={imgAsset11} alt="Bank Qurban" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset12}
-            alt="Shinepartner"
-            loading="lazy"
-          />
+          <Image src={imgAsset12} alt="Shinepartner" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset13}
-            alt="Mandiri"
-            loading="lazy"
-          />
+          <Image src={imgAsset13} alt="Mandiri" loading="lazy" />
         </div>
       </div>
     </div>
@@ -260,39 +281,39 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- SERVICES -->
+  <!-- SERVICES SECTION (NO PRICELIST - DIRECT CONSULTATION) -->
   <section class="services" id="services" transition:animate="fade">
     <div class="services-inner">
       <div class="services-header fade-up">
         <span class="section-label gradient-label">WHAT I DO</span>
         <h2 class="section-title">Services</h2>
         <p class="section-sub" style="text-align: center;">
-          Solusi kreatif lengkap untuk brand dan bisnis Anda
+          Solusi kreatif lengkap untuk memperkuat citra dan pemasaran brand Anda
         </p>
       </div>
       <div class="services-grid">
         <ServiceCard
           icon="fas fa-camera"
           title="Photography"
-          description="Foto komersial, birthday & event, editorial, dan automotive dengan pendekatan storytelling yang kuat dan estetik yang tajam."
+          description="Fotografi komersial, event & birthday, editorial, serta produk dengan pencahayaan profesional dan tone warna tajam."
           whatsappKey="foto_general"
         />
         <ServiceCard
           icon="fas fa-video"
           title="Videography"
-          description="Produksi video mulai dari konsep hingga final cut. Cocok untuk konten brand, dokumentasi acara, dan video promosi."
+          description="Produksi video promosi, dokumentasi acara sinematik, dan reels media sosial dari konsep storyboard hingga final edit."
           whatsappKey="video_general"
         />
         <ServiceCard
           icon="fas fa-palette"
           title="Brand Design"
-          description="Identitas visual, desain sosial media, poster, dan materi iklan yang membangun karakter brand secara konsisten."
+          description="Identitas brand, aset materi promosi, desain media sosial, dan materi iklan yang konsisten membangun citra bisnis Anda."
           whatsappKey="design_general"
         />
         <ServiceCard
           icon="fas fa-code"
           title="Web Development"
-          description="Website portofolio, landing page, dan undangan digital yang responsif, cepat, dan berorientasi pada pengalaman pengguna."
+          description="Aplikasi web portofolio, landing page komersial, dan sistem web interaktif yang cepat, responsif, dan berorientasi UX."
           whatsappKey="web_general"
         />
       </div>
@@ -302,19 +323,14 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-
-
-  <!-- =============================================
-       WORKFLOW SECTION
-       ============================================= -->
+  <!-- WORKFLOW SECTION -->
   <section class="workflow-section" id="workflow" transition:animate="fade">
     <div class="workflow-inner">
       <div class="workflow-header fade-up">
         <span class="section-label gradient-label">CARA KERJA</span>
         <h2 class="section-title">Alur Kerja Dari Brief sampai Delivery</h2>
         <p class="section-sub">
-          Proses yang transparan dan terstruktur, supaya kamu tahu apa yang
-          diharapkan di setiap tahap.
+          Proses terstruktur dan transparan untuk memastikan hasil project memenuhi standar tertinggi.
         </p>
       </div>
       <div class="workflow-steps fade-up">
@@ -323,8 +339,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-comments"></i></div>
           <h3 class="workflow-step-title">Brief &amp; Konsultasi</h3>
           <p class="workflow-step-desc">
-            Ceritakan kebutuhan kamu topik, target audiens, dan goal. Diskusi
-            gratis via WhatsApp. Saya bantu clarifikasi ide kamu.
+            Diskusi kebutuhan, konsep awal, dan target yang ingin dicapai melalui WhatsApp atau online meeting.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -333,10 +348,9 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
         <div class="workflow-step">
           <div class="workflow-step-num">02</div>
           <div class="workflow-step-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3 class="workflow-step-title">Konsep &amp; Pitch</h3>
+          <h3 class="workflow-step-title">Konsep &amp; Storyboard</h3>
           <p class="workflow-step-desc">
-            Saya kembangkan konsep visual sesuai brief. Moodboard, storyboard,
-            atau wireframe dikasih untuk alignment sebelum eksekusi.
+            Penyusunan moodboard, sketsa visual, atau wireframe untuk menyelaraskan ekspektasi sebelum eksekusi.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -347,8 +361,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-cogs"></i></div>
           <h3 class="workflow-step-title">Eksekusi &amp; Produksi</h3>
           <p class="workflow-step-desc">
-            Proses shooting, editing, atau development dengan update berkala.
-            Kamu bisa monitor progress dan kasih feedback mid way.
+            Proses shooting, pencahayaan, editing, atau coding web dengan standar kualitas teknis tinggi.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -357,10 +370,9 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
         <div class="workflow-step">
           <div class="workflow-step-num">04</div>
           <div class="workflow-step-icon"><i class="fas fa-sync-alt"></i></div>
-          <h3 class="workflow-step-title">Revisi &amp; Fine-tuning</h3>
+          <h3 class="workflow-step-title">Revisi &amp; Review</h3>
           <p class="workflow-step-desc">
-            Feedback loop revisi hingga hasil sesuai ekspektasi. Revisi minor
-            biasanya free, revisi major dihitung terpisah.
+            Feedback loop untuk penyempurnaan detail karya hingga memenuhi kepuasan akhir Anda.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -369,10 +381,9 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
         <div class="workflow-step">
           <div class="workflow-step-num">05</div>
           <div class="workflow-step-icon"><i class="fas fa-download"></i></div>
-          <h3 class="workflow-step-title">Delivery Final</h3>
+          <h3 class="workflow-step-title">Final Delivery</h3>
           <p class="workflow-step-desc">
-            File final dikirim dalam format yang disepakati. Untuk web: deployed
-            dan ready. Untuk desain: print ready atau digital optimized.
+            Penyerahan file resolusi tinggi, aset lengkap, atau live deployment website yang siap digunakan.
           </p>
         </div>
       </div>
@@ -382,9 +393,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- =============================================
-       FAQ SECTION
-       ============================================= -->
+  <!-- FAQ SECTION -->
   <section class="faq-section" id="faq" transition:animate="fade">
     <div class="faq-inner">
       <div class="faq-header fade-up">
@@ -394,75 +403,38 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       <div class="faq-list fade-up">
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text"
-              >Berapa lama pengerjaan setiap project?</span
-            >
+            <span class="faq-q-text">Berapa lama estimasi pengerjaan setiap project?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </summary>
           <div class="faq-answer">
-            Tergantung scope dan kompleksitas. Foto single session: 1-3 hari.
-            Video: 3-7 hari. Desain brand: 1-2 minggu. Website: 2-4 minggu.
-            Timeline exact akan dikasih setelah brief.
+            Foto komersial/event: 1–3 hari kerja. Video &amp; Reels editing: 3–7 hari kerja. Brand Design: 1–2 minggu. Web Development: 2–3 minggu tergantung scope.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text">Apakah bisa revisi?</span>
+            <span class="faq-q-text">Apakah setiap project mendapatkan garansi revisi?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </summary>
           <div class="faq-answer">
-            Ya! Setiap project include revisi. Photography: revisi edit 1x.
-            Video: revisi 2x. Design: revisi 2x. Website: revisi minor included.
-            Revisi major dihitung terpisah tapi biasanya masih reasonable.
+            Ya! Setiap project menyertakan revisi untuk memastikan hasil akhir sesuai dengan brief dan kebutuhan brand Anda.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text"
-              >Apakah melayani luar Depok atau Jakarta?</span
-            >
+            <span class="faq-q-text">Apakah melayani lokasi shooting di luar Depok atau Jakarta?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </summary>
           <div class="faq-answer">
-            Untuk photography & videography lokasi, saya bisa ke Jabodetabek.
-            Untuk luar area, bisa arrange shoot dengan partner atau via remote
-            editing. Web & desain: anywhere, 100% remote.
+            Tentu. Saya melayani shooting on-location di seluruh wilayah Jabodetabek maupun area luar kota. Untuk project web dan desain dapat dilakukan 100% remote.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text">Bagaimana cara pembayaran?</span>
+            <span class="faq-q-text">Apakah bisa berdiskusi atau konsultasi ide terlebih dahulu?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </summary>
           <div class="faq-answer">
-            Pembayaran via transfer bank (BCA, Mandiri, BSI). Skema: 50% DP saat
-            konfirmasi, 50% sisanya saat final delivery. Untuk project kecil
-            biasanya full payment di awal.
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span class="faq-q-text"
-              >Apakah bisa konsultasi dulu sebelum deal?</span
-            >
-            <i class="fas fa-chevron-down faq-chevron"></i>
-          </summary>
-          <div class="faq-answer">
-            Absolutely! Konsultasi awal via WhatsApp itu gratis dan tidak
-            mengikat. Ceritakan ide kamu, kita diskusi bareng kalau memang
-            cocok, lanjut. Kalau tidak, ya tidak apa apa.
-          </div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span class="faq-q-text">File apa saja yang di-deliver?</span>
-            <i class="fas fa-chevron-down faq-chevron"></i>
-          </summary>
-          <div class="faq-answer">
-            Foto: JPEG high-res + web-optimized. Video: MP4 (1080p atau sesuai
-            request). Desain: PNG/JPG + source file (AI/PSD/Figma). Website:
-            deployed + source code. Semua dalam Google Drive atau sesuai
-            preference kamu.
+            Sangat bisa. Konsultasi awal via WhatsApp atau Google Meet bersifat gratis tanpa ikatan untuk membantu merumuskan kebutuhan visual Anda.
           </div>
         </details>
       </div>
@@ -472,12 +444,12 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS SECTION -->
   <section class="testimonials" id="testimonials" transition:animate="fade">
     <div class="testimonials-inner">
       <div class="testimonials-header fade-up">
-        <span class="section-label">Reviews</span>
-        <h2 class="section-title">Kata Mereka</h2>
+        <span class="section-label gradient-label">REVIEWS</span>
+        <h2 class="section-title">Kata Klien &amp; Partner</h2>
       </div>
       <div class="testimonials-scroll">
         <TestimonialCard
@@ -505,95 +477,66 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- CONTACT -->
+  <!-- INTERACTIVE CONTACT FORM SECTION -->
   <section class="contact" id="contact" transition:animate="fade">
     <div class="contact-inner fade-up">
       <div class="contact-header">
         <span class="section-label gradient-label">GET IN TOUCH</span>
         <h2 class="section-title">Let's Create Together</h2>
         <p class="section-sub">
-          Hubungi saya untuk kolaborasi dan proyek kreatif berikutnya.
+          Sampaikan gambaran project Anda dan mari diskusi mengenai kolaborasi selanjutnya.
         </p>
       </div>
 
       <!-- Contact Form -->
       <form id="contact-form" class="contact-form stitch-form" novalidate>
-        <!-- Honeypot bot-only, hidden from humans -->
-        <input
-          type="text"
-          name="_gotcha"
-          tabindex="-1"
-          autocomplete="off"
-          style="position:absolute;left:-9999px;opacity:0;"
-        />
-
         <div class="form-row">
           <div class="form-group">
-            <label for="name">Nama</label>
+            <label for="name">Nama Anda / Brand *</label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Nama lengkap"
+              placeholder="mis. John Doe / Tokopedia"
               autocomplete="name"
+              required
             />
-            <span class="form-error" id="name-error"></span>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">WhatsApp / Email *</label>
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
-              placeholder="email@contoh.com"
-              autocomplete="email"
+              placeholder="mis. 08123456789 / email@domain.com"
+              required
             />
-            <span class="form-error" id="email-error"></span>
           </div>
         </div>
         <div class="form-group">
           <label for="project">Jenis Project</label>
           <select id="project" name="project">
-            <option value="" disabled selected>Pilih jenis project</option>
-            <option value="Photography">Photography</option>
-            <option value="Videography">Videography</option>
-            <option value="Brand Design">Brand Design</option>
-            <option value="Web Development">Web Development</option>
-            <option value="Lainnya">Lainnya</option>
+            <option value="" disabled selected>Pilih jenis project yang dibutuhkan</option>
+            <option value="Photography">Fotografi Komersial / Event</option>
+            <option value="Videography">Videography / Reels</option>
+            <option value="Brand Design">Brand Design &amp; Assets</option>
+            <option value="Web Development">Web Application / Portfolio</option>
+            <option value="Lainnya">Lainnya / All-in-One Package</option>
           </select>
-          <span class="form-error" id="project-error"></span>
         </div>
         <div class="form-group">
-          <label for="message">Pesan</label>
+          <label for="message">Detail Project *</label>
           <textarea
             id="message"
             name="message"
-            rows="5"
-            placeholder="Ceritakan project yang ingin dibuat..."></textarea>
-          <span class="form-error" id="message-error"></span>
-        </div>
-
-        <!-- Status messages -->
-        <div
-          id="form-success"
-          class="form-message form-success"
-          style="display:none;"
-        >
-          <i class="fas fa-check-circle"></i> Pesan terkirim! Saya akan menghubungi
-          Anda dalam 1x24 jam.
-        </div>
-        <div
-          id="form-error-msg"
-          class="form-message form-error-msg"
-          style="display:none;"
-        >
-          <i class="fas fa-exclamation-circle"></i> Gagal mengirim. Silakan hubungi
-          via WhatsApp.
+            rows="4"
+            placeholder="Ceritakan tujuan, lokasi, atau konsep project yang Anda rencanakan..."
+            required></textarea>
         </div>
 
         <div class="form-submit">
           <button type="submit" id="submit-btn" class="btn btn-primary">
-            <i class="fas fa-paper-plane"></i> Kirim Pesan
+            <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
           </button>
         </div>
       </form>
@@ -601,11 +544,12 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       <div class="contact-divider">
         <span>atau hubungi langsung</span>
       </div>
+
       <div class="contact-buttons">
         <a
           href={waLink("contact")}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="btn btn-ghost"
         >
           <i class="fab fa-whatsapp"></i> WhatsApp
@@ -613,18 +557,18 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
         <a
           href="https://instagram.com/rggadnrt"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="btn btn-ghost"
         >
-          <i class="fab fa-instagram"></i> Instagram
+          <i class="fab fa-instagram"></i> Personal Instagram
         </a>
         <a
-          href="https://www.tiktok.com/@madebyrangga"
+          href="https://instagram.com/frameofrangga"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="btn btn-ghost"
         >
-          <i class="fab fa-tiktok"></i> TikTok
+          <i class="fas fa-camera"></i> Design Portfolio
         </a>
       </div>
     </div>
@@ -634,1349 +578,25 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <Footer slot="footer" variant="full" />
 </BaseLayout>
 
-<style>
-  /* =============================================
-     STITCH HERO Mobile-first responsive
-     ============================================= */
-
-  /* ---- BASE (MOBILE DEFAULT) ---- */
-  .stitch-hero {
-    position: relative;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 80px 24px 48px;
-  }
-
-  /* Background glow blobs */
-  .stitch-hero-glow-r {
-    position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(
-      circle,
-      rgba(193, 128, 255, 0.12) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .stitch-hero-glow-l {
-    position: absolute;
-    bottom: -5%;
-    left: -5%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(
-      circle,
-      rgba(163, 166, 255, 0.1) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Background image */
-  .stitch-hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .stitch-hero-bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5;
-    filter: grayscale(60%);
-  }
-
-  .stitch-hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      125deg,
-      rgba(6, 14, 32, 0.92) 0%,
-      rgba(6, 14, 32, 0.75) 40%,
-      rgba(10, 8, 28, 0.65) 100%
-    );
-  }
-
-  /* Hero grid: single column on mobile */
-  .stitch-hero-grid {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-
-  /* Content */
-  .stitch-hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  /* Badge pill */
-  .stitch-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 16px;
-    border-radius: 9999px;
-    background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.12);
-    color: var(--secondary);
-    font-family: "Manrope", sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    width: fit-content;
-  }
-
-  /* H1 */
-  .stitch-hero-title {
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(52px, 14vw, 96px);
-    font-weight: 800;
-    line-height: 0.92;
-    letter-spacing: -2px;
-    color: var(--on-surface);
-  }
-
-  .stitch-hero-title-accent {
-    color: var(--accent-primary);
-    font-style: italic;
-  }
-
-  /* Desc */
-  .stitch-hero-desc {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--on-surface-variant);
-    max-width: 520px;
-  }
-
-  /* Portrait */
-  .stitch-hero-portrait {
-    display: flex;
-    justify-content: center;
-  }
-
-  .stitch-hero-portrait-inner {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-  }
-
-  .stitch-hero-portrait-img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    display: block;
-    filter: grayscale(30%);
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-  }
-
-  /* Floating badge */
-  .stitch-hero-float-badge {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(25, 37, 64, 0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(64, 72, 93, 0.3);
-    border-radius: 16px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .stitch-float-badge-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(163, 166, 255, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .stitch-icon-filled {
-    font-variation-settings:
-      "FILL" 1,
-      "wght" 400,
-      "GRAD" 0,
-      "opsz" 24;
-    color: var(--accent-primary);
-    font-size: 20px;
-  }
-
-  .stitch-float-badge-sub {
-    font-family: "Inter", sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--on-surface-variant);
-    margin-bottom: 2px;
-  }
-
-  .stitch-float-badge-name {
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--on-surface);
-  }
-
-  /* ---- Material Symbols shared ---- */
-  .material-symbols-outlined {
-    font-variation-settings:
-      "FILL" 0,
-      "wght" 400,
-      "GRAD" 0,
-      "opsz" 24;
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-  }
-
-  /* ---- MEDIA QUERY: TABLET (768px+) ---- */
-  @media (min-width: 768px) {
-    .stitch-hero {
-      padding: 100px 48px 64px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(72px, 12vw, 120px);
-    }
-
-    .stitch-hero-desc {
-      font-size: 16px;
-    }
-
-    .stitch-hero-portrait-inner {
-      max-width: 400px;
-    }
-
-    .stitch-hero-float-badge {
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-    }
-  }
-
-  /* ---- MEDIA QUERY: DESKTOP (1024px+) ---- */
-  @media (min-width: 1024px) {
-    .stitch-hero {
-      padding: 120px 64px 80px;
-      min-height: 100vh;
-    }
-
-    /* Two-column grid */
-    .stitch-hero-grid {
-      grid-template-columns: 7fr 5fr;
-      gap: 64px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(80px, 8vw, 128px);
-      letter-spacing: -3px;
-    }
-
-    .stitch-hero-desc {
-      max-width: 520px;
-      font-size: 16px;
-    }
-
-    .stitch-hero-portrait {
-      justify-content: flex-end;
-    }
-
-    .stitch-hero-portrait-inner {
-      max-width: 100%;
-    }
-
-    .stitch-hero-float-badge {
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-    }
-
-    /* Glow positions for large screens */
-    .stitch-hero-glow-r {
-      width: 600px;
-      height: 600px;
-    }
-  }
-
-  /* ---- EXISTING PAGE RESPONSIVE ---- */
-  @media (max-width: 768px) {
-    .about-inner {
-      grid-template-columns: 1fr;
-      gap: 48px;
-      padding: 0 24px;
-    }
-    .about-text {
-      text-align: center;
-    }
-    .about-stats {
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .about-inner {
-      padding: 0 20px;
-      gap: 32px;
-    }
-    .about-bio {
-      font-size: 14px;
-    }
-    .about-stats {
-      gap: 12px;
-    }
-    .section-title {
-      font-size: 28px;
-    }
-  }
-
-  /* ---- CATEGORIES SECTION ---- */
-  .cat-section {
-    padding: 80px 0;
-    background: var(--surface-container);
-  }
-
-  .cat-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .cat-header {
-    margin-bottom: 48px;
-  }
-
-  .cat-title {
-    font-family: "Manrope", sans-serif;
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--on-surface);
-    letter-spacing: -0.5px;
-    margin-bottom: 16px;
-  }
-
-  .cat-title-line {
-    width: 80px;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--secondary);
-  }
-
-  .cat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .cat-card {
-    display: block;
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    text-decoration: none;
-    aspect-ratio: 4 / 3;
-    border: 1px solid rgba(163, 166, 255, 0.06);
-    transition:
-      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-      box-shadow 0.3s ease,
-      border-color 0.3s ease;
-    cursor: pointer;
-  }
-
-  .cat-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
-    border-color: rgba(163, 166, 255, 0.15);
-  }
-
-  .cat-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(50%);
-    transition:
-      transform 0.7s ease,
-      filter 0.4s ease;
-  }
-
-  .cat-card:hover img {
-    transform: scale(1.08);
-    filter: grayscale(0%);
-  }
-
-  .cat-card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(15, 25, 48, 0.95) 0%,
-      rgba(15, 25, 48, 0.3) 50%,
-      transparent 100%
-    );
-    z-index: 1;
-  }
-
-  .cat-card-content {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .cat-card-label {
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--secondary);
-  }
-
-  .cat-card-title {
-    font-family: "Manrope", sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--on-surface);
-    letter-spacing: -0.5px;
-    line-height: 1;
-  }
-
-  .cat-card-desc {
-    font-size: 12px;
-    color: var(--on-surface-variant);
-    max-width: 240px;
-    line-height: 1.5;
-  }
-
-  .cat-card-arrow {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(163, 166, 255, 0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(163, 166, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition:
-      opacity 0.3s ease,
-      transform 0.3s ease;
-  }
-
-  .cat-card:hover .cat-card-arrow {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .cat-card-arrow .material-symbols-outlined {
-    font-size: 18px;
-    color: var(--accent-primary);
-  }
-
-  /* Tablet */
-  @media (min-width: 640px) {
-    .cat-section {
-      padding: 100px 0;
-    }
-    .cat-inner {
-      padding: 0 48px;
-    }
-    .cat-title {
-      font-size: 42px;
-    }
-    .cat-grid {
-      gap: 20px;
-    }
-    .cat-card-title {
-      font-size: 32px;
-    }
-    .cat-card-desc {
-      font-size: 13px;
-    }
-  }
-
-  /* Desktop bento asymmetric grid */
-  @media (min-width: 1024px) {
-    .cat-section {
-      padding: 120px 0;
-    }
-    .cat-inner {
-      padding: 0 64px;
-    }
-    .cat-header {
-      margin-bottom: 56px;
-    }
-    .cat-title {
-      font-size: 48px;
-    }
-    .cat-grid {
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: 420px 300px;
-      gap: 20px;
-    }
-    .cat-card-foto {
-      grid-column: span 8;
-      grid-row: 1;
-      aspect-ratio: unset;
-    }
-    .cat-card-video {
-      grid-column: span 4;
-      grid-row: 1;
-      aspect-ratio: unset;
-    }
-    .cat-card-website {
-      grid-column: span 5;
-      grid-row: 2;
-      aspect-ratio: unset;
-    }
-    .cat-card-design {
-      grid-column: span 7;
-      grid-row: 2;
-      aspect-ratio: unset;
-    }
-  }
-</style>
-
-<!-- GLOBAL SCOPED STYLES FOR NEW SECTIONS -->
-<style>
-  /* =============================================
-     AVAILABILITY BANNER
-     ============================================= */
-  .availability-banner {
-    background: var(--surface-container);
-    border-bottom: 1px solid rgba(163, 166, 255, 0.06);
-    padding: 16px 0;
-  }
-
-  .availability-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .availability-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 18px;
-    border-radius: 9999px;
-    font-family: "Manrope", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    background: rgba(37, 211, 102, 0.08);
-    border: 1px solid rgba(37, 211, 102, 0.2);
-    color: #25d366;
-  }
-
-  .availability-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #25d366;
-    animation: availability-pulse 2s infinite;
-    flex-shrink: 0;
-  }
-
-  @keyframes availability-pulse {
-    0%,
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.6;
-      transform: scale(0.85);
-    }
-  }
-
-  .availability-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 20px;
-    border-radius: 9999px;
-    background: rgba(37, 211, 102, 0.12);
-    border: 1px solid rgba(37, 211, 102, 0.3);
-    color: #25d366;
-    font-family: "Manrope", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s ease;
-  }
-
-  .availability-cta:hover {
-    background: rgba(37, 211, 102, 0.22);
-    transform: translateY(-2px);
-  }
-
-  .availability-cta i {
-    font-size: 14px;
-  }
-
-  /* =============================================
-     PRICING SECTION
-     ============================================= */
-  .pricing-section {
-    padding: 80px 0;
-  }
-
-  .pricing-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .pricing-header {
-    text-align: center;
-    margin-bottom: 56px;
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 32px;
-    align-items: stretch;
-  }
-
-  .pricing-card {
-    background: var(--surface-container);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    border-radius: 24px;
-    padding: 32px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-    transition:
-      transform 0.4s ease,
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .pricing-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(163, 166, 255, 0.2);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-  }
-
-  .pricing-card-featured {
-    border-color: rgba(163, 166, 255, 0.2);
-    background: var(--surface-container-high);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .pricing-card-header {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .pricing-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: rgba(163, 166, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .pricing-icon i {
-    font-size: 20px;
-    color: var(--accent-primary);
-  }
-
-  .pricing-card-title {
-    font-family: "Manrope", sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--on-surface);
-  }
-
-  .pricing-price {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .pricing-from {
-    font-size: 11px;
-    color: var(--on-surface-variant);
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-  }
-
-  .pricing-amount {
-    font-family: "Manrope", sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--accent-primary);
-    letter-spacing: -1px;
-    line-height: 1;
-  }
-
-  .pricing-unit {
-    font-size: 12px;
-    color: var(--on-surface-variant);
-    font-family: "Inter", sans-serif;
-  }
-
-  .pricing-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-  }
-
-  .pricing-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--on-surface-variant);
-    font-family: "Inter", sans-serif;
-    line-height: 1.4;
-  }
-
-  .pricing-features li i {
-    color: var(--accent-primary);
-    margin-top: 2px;
-    flex-shrink: 0;
-    font-size: 12px;
-  }
-
-  .pricing-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 20px;
-    border-radius: 9999px;
-    border: 1px solid rgba(163, 166, 255, 0.2);
-    color: var(--accent-primary);
-    font-family: "Manrope", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    text-align: center;
-    margin-top: auto;
-  }
-
-  .pricing-cta:hover {
-    background: rgba(163, 166, 255, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .pricing-cta i {
-    font-size: 14px;
-  }
-
-  .pricing-cta-featured {
-    background: linear-gradient(
-      135deg,
-      var(--accent-primary),
-      var(--accent-secondary)
-    );
-    color: #0f00a4;
-    border: none;
-    box-shadow: 0 6px 20px rgba(163, 166, 255, 0.25);
-  }
-
-  .pricing-cta-featured:hover {
-    background: linear-gradient(
-      135deg,
-      var(--accent-secondary),
-      var(--accent-primary)
-    );
-    box-shadow: 0 10px 28px rgba(163, 166, 255, 0.4);
-  }
-
-  .pricing-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 4px 16px;
-    border-radius: 9999px;
-    background: linear-gradient(
-      135deg,
-      var(--accent-primary),
-      var(--accent-secondary)
-    );
-    color: #0f00a4;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(163, 166, 255, 0.3);
-  }
-
-  .pricing-note {
-    text-align: center;
-    font-size: 13px;
-    color: var(--on-surface-variant);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 0 24px;
-  }
-
-  .pricing-note i {
-    color: var(--accent-primary);
-    font-size: 14px;
-  }
-
-  /* =============================================
-     WORKFLOW SECTION
-     ============================================= */
-  .workflow-section {
-    padding: 80px 0;
-    background: var(--surface-container);
-  }
-
-  .workflow-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .workflow-header {
-    text-align: center;
-    margin-bottom: 56px;
-  }
-
-  .workflow-steps {
-    display: flex;
-    align-items: stretch;
-    gap: 12px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 8px;
-  }
-
-  .workflow-steps::-webkit-scrollbar {
-    display: none;
-  }
-
-  .workflow-step {
-    flex: 1;
-    min-width: 200px;
-    background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    border-radius: 20px;
-    padding: 28px 20px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    text-align: center;
-    transition:
-      transform 0.3s ease,
-      border-color 0.3s ease;
-  }
-
-  .workflow-step:hover {
-    transform: translateY(-4px);
-    border-color: rgba(163, 166, 255, 0.2);
-  }
-
-  .workflow-step-num {
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    color: var(--accent-secondary);
-    text-transform: uppercase;
-  }
-
-  .workflow-step-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(163, 166, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .workflow-step-icon i {
-    font-size: 18px;
-    color: var(--accent-primary);
-  }
-
-  .workflow-step-title {
-    font-family: "Manrope", sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--on-surface);
-    line-height: 1.3;
-  }
-
-  .workflow-step-desc {
-    font-size: 12px;
-    line-height: 1.7;
-    color: var(--on-surface-variant);
-  }
-
-  .workflow-connector {
-    display: flex;
-    align-items: center;
-    color: var(--accent-primary);
-    opacity: 0.3;
-    flex-shrink: 0;
-    padding-top: 40px;
-    font-size: 16px;
-  }
-
-  /* =============================================
-     FAQ SECTION
-     ============================================= */
-  .faq-section {
-    padding: 80px 0;
-  }
-
-  .faq-inner {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .faq-header {
-    margin-bottom: 48px;
-  }
-
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .faq-item {
-    background: var(--surface-container);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: border-color 0.3s ease;
-  }
-
-  .faq-item:hover {
-    border-color: rgba(163, 166, 255, 0.15);
-  }
-
-  .faq-item[open] {
-    border-color: rgba(163, 166, 255, 0.2);
-  }
-
-  .faq-question {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 24px;
-    cursor: pointer;
-    list-style: none;
-    gap: 16px;
-    user-select: none;
-    transition: background 0.2s ease;
-  }
-
-  .faq-question::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq-question:hover {
-    background: var(--surface-container-high);
-  }
-
-  .faq-q-text {
-    font-family: "Manrope", sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--on-surface);
-    line-height: 1.4;
-  }
-
-  .faq-chevron {
-    font-size: 14px;
-    color: var(--accent-primary);
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-  }
-
-  .faq-item[open] .faq-chevron {
-    transform: rotate(180deg);
-  }
-
-  .faq-answer {
-    padding: 0 24px 20px;
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--on-surface-variant);
-    font-family: "Inter", sans-serif;
-    border-top: 1px solid rgba(163, 166, 255, 0.06);
-    padding-top: 16px;
-  }
-
-  /* Smooth dropdown animation */
-  .faq-item[open] .faq-answer {
-    animation: faqSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes faqSlideDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-12px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* =============================================
-     RESPONSIVE new sections
-     ============================================= */
-  @media (max-width: 1024px) {
-    .pricing-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .availability-inner {
-      gap: 16px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .pricing-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .workflow-steps {
-      gap: 8px;
-    }
-    .workflow-connector {
-      display: none;
-    }
-    .workflow-step {
-      min-width: 160px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .pricing-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    .availability-inner {
-      flex-direction: column;
-      gap: 12px;
-      align-items: stretch;
-    }
-    .availability-badge,
-    .availability-cta {
-      justify-content: center;
-    }
-    .workflow-step {
-      min-width: 200px;
-    }
-    .faq-question {
-      padding: 16px 20px;
-    }
-    .faq-answer {
-      padding: 0 20px 16px;
-    }
-  }
-
-  /* =============================================
-     MOBILE STICKY CTA BAR
-     ============================================= */
-  .mobile-sticky-cta {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9000;
-    background: rgba(6, 14, 32, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(163, 166, 255, 0.1);
-    padding: 12px 16px;
-    gap: 10px;
-    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
-  }
-
-  .mobile-sticky-cta.show {
-    display: flex;
-  }
-
-  .mobile-sticky-cta a {
-    flex: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 12px 16px;
-    border-radius: 9999px;
-    font-family: "Manrope", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.25s ease;
-  }
-
-  .mobile-sticky-cta a:first-child {
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    color: #fff;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
-  }
-
-  .mobile-sticky-cta a:first-child:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-  }
-
-  .mobile-sticky-cta a:last-child {
-    border: 1px solid rgba(163, 166, 255, 0.2);
-    color: var(--on-surface);
-    flex: 0 0 auto;
-    padding: 12px 20px;
-  }
-
-  .mobile-sticky-cta a:last-child:hover {
-    background: rgba(163, 166, 255, 0.08);
-  }
-
-  /* Desktop: hide sticky CTA */
-  @media (min-width: 901px) {
-    .mobile-sticky-cta {
-      display: none !important;
-    }
-  }
-</style>
-
 <script is:inline>
-  /* ---------- CONTACT FORM ---------- */
-  const form = document.getElementById("contact-form");
-  const submitBtn = document.getElementById("submit-btn");
-  const successMsg = document.getElementById("form-success");
-  const errorMsg = document.getElementById("form-error-msg");
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name')?.value || '';
+        const contact = document.getElementById('email')?.value || '';
+        const project = document.getElementById('project')?.value || 'General Inquiry';
+        const msg = document.getElementById('message')?.value || '';
 
-  function showError(fieldId, msg) {
-    const el = document.getElementById(fieldId + "-error");
-    if (el) {
-      el.textContent = msg;
+        const textMessage = `Halo Rangga! Saya ${name} (${contact}).\n\n` +
+          `*Jenis Project:* ${project}\n` +
+          `*Detail:* ${msg}\n\n` +
+          `Saya tertarik untuk berdiskusi mengenai kolaborasi dengan Anda. Terima kasih!`;
+
+        const waUrl = `https://wa.me/6287779560264?text=${encodeURIComponent(textMessage)}`;
+        window.open(waUrl, '_blank');
+      });
     }
-    const input = document.getElementById(fieldId);
-    if (input) input.classList.add("input-error");
-  }
-
-  function clearError(fieldId) {
-    const el = document.getElementById(fieldId + "-error");
-    if (el) {
-      el.textContent = "";
-    }
-    const input = document.getElementById(fieldId);
-    if (input) input.classList.remove("input-error");
-  }
-
-  function validateForm() {
-    let valid = true;
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const project = document.getElementById("project").value;
-    const message = document.getElementById("message").value.trim();
-
-    clearError("name");
-    clearError("email");
-    clearError("project");
-    clearError("message");
-
-    if (!name) {
-      showError("name", "Nama harus diisi.");
-      valid = false;
-    }
-    if (!email) {
-      showError("email", "Email harus diisi.");
-      valid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showError("email", "Format email tidak valid.");
-      valid = false;
-    }
-    if (!project) {
-      showError("project", "Pilih jenis project.");
-      valid = false;
-    }
-    if (!message) {
-      showError("message", "Pesan harus diisi.");
-      valid = false;
-    } else if (message.length < 10) {
-      showError("message", "Pesan minimal 10 karakter.");
-      valid = false;
-    }
-
-    return valid;
-  }
-
-  if (form) {
-    // Clear errors on input
-    ["name", "email", "project", "message"].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("input", () => clearError(id));
-    });
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      if (!validateForm()) return;
-
-      // Loading state
-      submitBtn.disabled = true;
-      submitBtn.innerHTML =
-        '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-      successMsg.style.display = "none";
-      errorMsg.style.display = "none";
-
-      try {
-        const formData = new FormData(form);
-        const res = await fetch("https://formspree.io/f/xpqoyeez", {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        });
-
-        if (res.ok) {
-          form.reset();
-          successMsg.style.display = "flex";
-          successMsg.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        } else {
-          errorMsg.style.display = "flex";
-        }
-      } catch {
-        errorMsg.style.display = "flex";
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
-      }
-    });
-  }
-
-  // Mobile sticky CTA show after scrolling
-  const stickyCta = document.querySelector(".mobile-sticky-cta");
-  if (stickyCta) {
-    let ctaShown = false;
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!ctaShown && window.scrollY > 400) {
-          stickyCta.classList.add("show");
-          ctaShown = true;
-        }
-      },
-      { passive: true },
-    );
-  }
-</script>
-
-<!-- Mobile Sticky CTA Bar -->
-<div class="mobile-sticky-cta" aria-label="Hubungi kami">
-  <a
-    href="https://wa.me/6287779560264?text=Halo%20Rangga%2C%20saya%20tertarik%20dengan%20layanan%20anda"
-    target="_blank"
-    rel="noopener"
-    class="sticky-wa"
-  >
-    <i class="fab fa-whatsapp"></i> WhatsApp
-  </a>
-  <a href="#contact" class="sticky-cta">
-    <i class="fas fa-envelope"></i> Hubungi Kami
-  </a>
-</div>
-
-<script is:inline>
-  function initMagneticButton() {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-
-    const btn = document.querySelector('.availability-cta');
-
-    if (!btn) return;
-
-    const radius = 80;
-    const maxMove = 20;
-
-    document.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const btnCenterX = rect.left + rect.width / 2;
-      const btnCenterY = rect.top + rect.height / 2;
-      const distX = e.clientX - btnCenterX;
-      const distY = e.clientY - btnCenterY;
-      const dist = Math.sqrt(distX * distX + distY * distY);
-
-      if (dist < radius) {
-        const moveX = (distX / radius) * maxMove;
-        const moveY = (distY / radius) * maxMove;
-        btn.style.transition = 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)';
-        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      } else {
-        btn.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
-        btn.style.transform = 'translate(0px, 0px)';
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', initMagneticButton);
+  });
 </script>
