@@ -34,7 +34,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <Navbar slot="navbar" activePage="home" />
 
   <!-- HERO SECTION WITH NOCTURNAL GLASSMORPHISM & STRONG VALUE PROP -->
-  <header class="stitch-hero" id="hero" transition:animate="fade">
+  <header class="stitch-hero" id="hero">
     <!-- Background ambient glow blobs -->
     <div class="stitch-hero-glow-r" aria-hidden="true"></div>
     <div class="stitch-hero-glow-l" aria-hidden="true"></div>
@@ -111,7 +111,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- EXPLORE CATEGORIES GRID -->
-  <section class="cat-section" id="categories" transition:animate="fade">
+  <section class="cat-section" id="categories">
     <div class="cat-inner">
       <div class="cat-header fade-up">
         <span class="section-label gradient-label">CURATED DISCIPLINES</span>
@@ -195,7 +195,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- ABOUT ME SECTION (ONE-STOP CREATIVE SOLUTION) -->
-  <section class="about" id="about" transition:animate="fade">
+  <section class="about" id="about">
     <div class="about-inner">
       <div class="about-photo fade-up">
         <div class="about-photo-wrap">
@@ -252,7 +252,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- PROMINENT CLIENT BRANDS -->
-  <section class="brands" id="brands" transition:animate="fade">
+  <section class="brands" id="brands">
     <div class="brands-inner fade-up text-center">
       <p class="brands-label">TRUSTED BY BRANDS &amp; CLIENTS</p>
       <div class="logo-strip">
@@ -282,7 +282,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- SERVICES SECTION (NO PRICELIST - DIRECT CONSULTATION) -->
-  <section class="services" id="services" transition:animate="fade">
+  <section class="services" id="services">
     <div class="services-inner">
       <div class="services-header fade-up">
         <span class="section-label gradient-label">WHAT I DO</span>
@@ -324,7 +324,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- WORKFLOW SECTION -->
-  <section class="workflow-section" id="workflow" transition:animate="fade">
+  <section class="workflow-section" id="workflow">
     <div class="workflow-inner">
       <div class="workflow-header fade-up">
         <span class="section-label gradient-label">CARA KERJA</span>
@@ -394,7 +394,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- FAQ SECTION -->
-  <section class="faq-section" id="faq" transition:animate="fade">
+  <section class="faq-section" id="faq">
     <div class="faq-inner">
       <div class="faq-header fade-up">
         <span class="section-label gradient-label">FAQ</span>
@@ -445,7 +445,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- TESTIMONIALS SECTION -->
-  <section class="testimonials" id="testimonials" transition:animate="fade">
+  <section class="testimonials" id="testimonials">
     <div class="testimonials-inner">
       <div class="testimonials-header fade-up">
         <span class="section-label gradient-label">REVIEWS</span>
@@ -478,7 +478,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <div class="section-divider" aria-hidden="true"></div>
 
   <!-- INTERACTIVE CONTACT FORM SECTION -->
-  <section class="contact" id="contact" transition:animate="fade">
+  <section class="contact" id="contact">
     <div class="contact-inner fade-up">
       <div class="contact-header">
         <span class="section-label gradient-label">GET IN TOUCH</span>
@@ -602,18 +602,19 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 </script>
 
 <style>
+
   /* =============================================
      STITCH HERO Mobile-first responsive
      ============================================= */
 
+  /* ---- BASE (MOBILE DEFAULT) ---- */
   .stitch-hero {
     position: relative;
-    min-height: 90vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 100px 24px 64px;
-    background-color: var(--bg-primary);
+    padding: 80px 24px 48px;
   }
 
   /* Background glow blobs */
@@ -651,36 +652,30 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     z-index: 1;
   }
 
-  /* Background image container & overlay */
+  /* Background image */
   .stitch-hero-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
-    overflow: hidden;
   }
 
   .stitch-hero-bg-img {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    opacity: 0.15;
-    filter: blur(2px) grayscale(30%);
-    pointer-events: none;
+    opacity: 0.15; filter: blur(2px) grayscale(30%);
+    filter: grayscale(60%);
   }
 
   .stitch-hero-bg-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      180deg,
-      rgba(6, 14, 32, 0.75) 0%,
-      rgba(6, 14, 32, 0.92) 50%,
-      rgba(6, 14, 32, 1) 100%
+      125deg,
+      rgba(6, 14, 32, 0.92) 0%,
+      rgba(6, 14, 32, 0.75) 40%,
+      rgba(10, 8, 28, 0.65) 100%
     );
-    z-index: 1;
   }
 
   /* Hero grid: single column on mobile */
@@ -707,12 +702,11 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   .stitch-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
     padding: 6px 16px;
     border-radius: 9999px;
     background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.15);
-    color: var(--accent-primary);
+    border: 1px solid rgba(163, 166, 255, 0.12);
+    color: var(--secondary);
     font-family: "Manrope", sans-serif;
     font-size: 11px;
     font-weight: 700;
@@ -724,34 +718,24 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   /* H1 */
   .stitch-hero-title {
     font-family: "Manrope", sans-serif;
-    font-size: clamp(38px, 6vw, 68px);
+    font-size: clamp(52px, 14vw, 96px);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    color: var(--text-primary);
+    line-height: 0.92;
+    letter-spacing: -2px;
+    color: var(--on-surface);
   }
 
   .stitch-hero-title-accent {
     color: var(--accent-primary);
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-style: italic;
   }
 
   /* Desc */
   .stitch-hero-desc {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    max-width: 540px;
-  }
-
-  .stitch-hero-cta-group {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--on-surface-variant);
+    max-width: 520px;
   }
 
   /* Portrait */
@@ -768,11 +752,13 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 
   .stitch-hero-portrait-img {
     width: 100%;
-    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
     border-radius: 24px;
     display: block;
+    filter: grayscale(30%);
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(163, 166, 255, 0.15);
   }
 
   /* Floating badge */
@@ -781,10 +767,10 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     bottom: 20px;
     left: 20px;
     right: 20px;
-    background: rgba(25, 37, 64, 0.85);
+    background: rgba(25, 37, 64, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(163, 166, 255, 0.2);
+    border: 1px solid rgba(64, 72, 93, 0.3);
     border-radius: 16px;
     padding: 16px 20px;
     display: flex;
@@ -819,7 +805,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--text-secondary);
+    color: var(--on-surface-variant);
     margin-bottom: 2px;
   }
 
@@ -827,13 +813,37 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     font-family: "Manrope", sans-serif;
     font-size: 14px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--on-surface);
+  }
+
+  /* ---- Material Symbols shared ---- */
+  .material-symbols-outlined {
+    font-variation-settings:
+      "FILL" 0,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
   }
 
   /* ---- MEDIA QUERY: TABLET (768px+) ---- */
   @media (min-width: 768px) {
     .stitch-hero {
-      padding: 110px 48px 64px;
+      padding: 100px 48px 64px;
+    }
+
+    .stitch-hero-title {
+      font-size: clamp(72px, 12vw, 120px);
+    }
+
+    .stitch-hero-desc {
+      font-size: 16px;
     }
 
     .stitch-hero-portrait-inner {
@@ -851,13 +861,23 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   @media (min-width: 1024px) {
     .stitch-hero {
       padding: 120px 64px 80px;
-      min-height: 90vh;
+      min-height: 100vh;
     }
 
     /* Two-column grid */
     .stitch-hero-grid {
       grid-template-columns: 7fr 5fr;
       gap: 64px;
+    }
+
+    .stitch-hero-title {
+      font-size: clamp(80px, 8vw, 128px);
+      letter-spacing: -3px;
+    }
+
+    .stitch-hero-desc {
+      max-width: 520px;
+      font-size: 16px;
     }
 
     .stitch-hero-portrait {
@@ -868,16 +888,54 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       max-width: 100%;
     }
 
+    .stitch-hero-float-badge {
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+    }
+
+    /* Glow positions for large screens */
     .stitch-hero-glow-r {
       width: 600px;
       height: 600px;
     }
   }
 
+  /* ---- EXISTING PAGE RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 0 24px;
+    }
+    .about-text {
+      text-align: center;
+    }
+    .about-stats {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-inner {
+      padding: 0 20px;
+      gap: 32px;
+    }
+    .about-bio {
+      font-size: 14px;
+    }
+    .about-stats {
+      gap: 12px;
+    }
+    .section-title {
+      font-size: 28px;
+    }
+  }
+
   /* ---- CATEGORIES SECTION ---- */
   .cat-section {
     padding: 80px 0;
-    background: var(--bg-secondary);
+    background: var(--surface-container);
   }
 
   .cat-inner {
@@ -894,7 +952,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     font-family: "Manrope", sans-serif;
     font-size: 36px;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--on-surface);
     letter-spacing: -0.5px;
     margin-bottom: 16px;
   }
@@ -903,13 +961,13 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     width: 80px;
     height: 4px;
     border-radius: 2px;
-    background: var(--accent-primary);
+    background: var(--secondary);
   }
 
   .cat-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
   .cat-card {
@@ -918,8 +976,8 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     border-radius: var(--radius-lg);
     overflow: hidden;
     text-decoration: none;
-    aspect-ratio: 16 / 9;
-    border: 1px solid rgba(163, 166, 255, 0.1);
+    aspect-ratio: 4 / 3;
+    border: 1px solid rgba(163, 166, 255, 0.06);
     transition:
       transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
       box-shadow 0.3s ease,
@@ -928,23 +986,23 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   }
 
   .cat-card:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: translateY(-6px) scale(1.02);
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
-    border-color: rgba(163, 166, 255, 0.3);
+    border-color: rgba(163, 166, 255, 0.15);
   }
 
   .cat-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(30%);
+    filter: grayscale(50%);
     transition:
       transform 0.7s ease,
       filter 0.4s ease;
   }
 
   .cat-card:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08);
     filter: grayscale(0%);
   }
 
@@ -953,8 +1011,8 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     inset: 0;
     background: linear-gradient(
       to top,
-      rgba(6, 14, 32, 0.95) 0%,
-      rgba(6, 14, 32, 0.3) 50%,
+      rgba(15, 25, 48, 0.95) 0%,
+      rgba(15, 25, 48, 0.3) 50%,
       transparent 100%
     );
     z-index: 1;
@@ -972,20 +1030,27 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 
   .cat-card-label {
     font-family: "Manrope", sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--accent-primary);
+    color: var(--secondary);
   }
 
   .cat-card-title {
     font-family: "Manrope", sans-serif;
     font-size: 28px;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--on-surface);
     letter-spacing: -0.5px;
     line-height: 1;
+  }
+
+  .cat-card-desc {
+    font-size: 12px;
+    color: var(--on-surface-variant);
+    max-width: 240px;
+    line-height: 1.5;
   }
 
   .cat-card-arrow {
@@ -996,10 +1061,10 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(163, 166, 255, 0.15);
+    background: rgba(163, 166, 255, 0.12);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(163, 166, 255, 0.25);
+    border: 1px solid rgba(163, 166, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1032,11 +1097,13 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       font-size: 42px;
     }
     .cat-grid {
-      grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
     .cat-card-title {
       font-size: 32px;
+    }
+    .cat-card-desc {
+      font-size: 13px;
     }
   }
 
@@ -1080,5 +1147,5 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       aspect-ratio: unset;
     }
   }
-</style>
 
+</style>
