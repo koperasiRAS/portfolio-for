@@ -600,3 +600,485 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     }
   });
 </script>
+
+<style>
+  /* =============================================
+     STITCH HERO Mobile-first responsive
+     ============================================= */
+
+  .stitch-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 100px 24px 64px;
+    background-color: var(--bg-primary);
+  }
+
+  /* Background glow blobs */
+  .stitch-hero-glow-r {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(193, 128, 255, 0.12) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .stitch-hero-glow-l {
+    position: absolute;
+    bottom: -5%;
+    left: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+      circle,
+      rgba(163, 166, 255, 0.1) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Background image container & overlay */
+  .stitch-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .stitch-hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.15;
+    filter: blur(2px) grayscale(30%);
+    pointer-events: none;
+  }
+
+  .stitch-hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(6, 14, 32, 0.75) 0%,
+      rgba(6, 14, 32, 0.92) 50%,
+      rgba(6, 14, 32, 1) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Hero grid: single column on mobile */
+  .stitch-hero-grid {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  /* Content */
+  .stitch-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Badge pill */
+  .stitch-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: var(--surface-container-highest);
+    border: 1px solid rgba(163, 166, 255, 0.15);
+    color: var(--accent-primary);
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  /* H1 */
+  .stitch-hero-title {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(38px, 6vw, 68px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+  }
+
+  .stitch-hero-title-accent {
+    color: var(--accent-primary);
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Desc */
+  .stitch-hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 540px;
+  }
+
+  .stitch-hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  /* Portrait */
+  .stitch-hero-portrait {
+    display: flex;
+    justify-content: center;
+  }
+
+  .stitch-hero-portrait-inner {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .stitch-hero-portrait-img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    display: block;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(163, 166, 255, 0.15);
+  }
+
+  /* Floating badge */
+  .stitch-hero-float-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(25, 37, 64, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(163, 166, 255, 0.2);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .stitch-float-badge-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(163, 166, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stitch-icon-filled {
+    font-variation-settings:
+      "FILL" 1,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+    color: var(--accent-primary);
+    font-size: 20px;
+  }
+
+  .stitch-float-badge-sub {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .stitch-float-badge-name {
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* ---- MEDIA QUERY: TABLET (768px+) ---- */
+  @media (min-width: 768px) {
+    .stitch-hero {
+      padding: 110px 48px 64px;
+    }
+
+    .stitch-hero-portrait-inner {
+      max-width: 400px;
+    }
+
+    .stitch-hero-float-badge {
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+    }
+  }
+
+  /* ---- MEDIA QUERY: DESKTOP (1024px+) ---- */
+  @media (min-width: 1024px) {
+    .stitch-hero {
+      padding: 120px 64px 80px;
+      min-height: 90vh;
+    }
+
+    /* Two-column grid */
+    .stitch-hero-grid {
+      grid-template-columns: 7fr 5fr;
+      gap: 64px;
+    }
+
+    .stitch-hero-portrait {
+      justify-content: flex-end;
+    }
+
+    .stitch-hero-portrait-inner {
+      max-width: 100%;
+    }
+
+    .stitch-hero-glow-r {
+      width: 600px;
+      height: 600px;
+    }
+  }
+
+  /* ---- CATEGORIES SECTION ---- */
+  .cat-section {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+  }
+
+  .cat-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cat-header {
+    margin-bottom: 48px;
+  }
+
+  .cat-title {
+    font-family: "Manrope", sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .cat-title-line {
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--accent-primary);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cat-card {
+    display: block;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(163, 166, 255, 0.1);
+    transition:
+      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+    border-color: rgba(163, 166, 255, 0.3);
+  }
+
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition:
+      transform 0.7s ease,
+      filter 0.4s ease;
+  }
+
+  .cat-card:hover img {
+    transform: scale(1.06);
+    filter: grayscale(0%);
+  }
+
+  .cat-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(6, 14, 32, 0.95) 0%,
+      rgba(6, 14, 32, 0.3) 50%,
+      transparent 100%
+    );
+    z-index: 1;
+  }
+
+  .cat-card-content {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cat-card-label {
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+  }
+
+  .cat-card-title {
+    font-family: "Manrope", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .cat-card-arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(163, 166, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(163, 166, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .cat-card:hover .cat-card-arrow {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .cat-card-arrow .material-symbols-outlined {
+    font-size: 18px;
+    color: var(--accent-primary);
+  }
+
+  /* Tablet */
+  @media (min-width: 640px) {
+    .cat-section {
+      padding: 100px 0;
+    }
+    .cat-inner {
+      padding: 0 48px;
+    }
+    .cat-title {
+      font-size: 42px;
+    }
+    .cat-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .cat-card-title {
+      font-size: 32px;
+    }
+  }
+
+  /* Desktop bento asymmetric grid */
+  @media (min-width: 1024px) {
+    .cat-section {
+      padding: 120px 0;
+    }
+    .cat-inner {
+      padding: 0 64px;
+    }
+    .cat-header {
+      margin-bottom: 56px;
+    }
+    .cat-title {
+      font-size: 48px;
+    }
+    .cat-grid {
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 420px 300px;
+      gap: 20px;
+    }
+    .cat-card-foto {
+      grid-column: span 8;
+      grid-row: 1;
+      aspect-ratio: unset;
+    }
+    .cat-card-video {
+      grid-column: span 4;
+      grid-row: 1;
+      aspect-ratio: unset;
+    }
+    .cat-card-website {
+      grid-column: span 5;
+      grid-row: 2;
+      aspect-ratio: unset;
+    }
+    .cat-card-design {
+      grid-column: span 7;
+      grid-row: 2;
+      aspect-ratio: unset;
+    }
+  }
+</style>
+
