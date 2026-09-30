@@ -2,16 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { Image } from "astro:assets";
-import imgAsset1 from "../assets/thumbnails/web1.png";
-import imgAsset2 from "../assets/thumbnails/web2.png";
-import imgQurban from "../assets/thumbnails/thumbnail_qurban.png";
-import imgWedding from "../assets/thumbnails/thumbnail_wedding.png";
-import imgUltah from "../assets/thumbnails/thumbnail_ultah.png";
-import imgUltahArdheen from "../assets/thumbnails/thumbnail_ultah_ardheen.png";
-import imgPromosiIdecraft from "../assets/thumbnails/thumbnail_promosi_idecraft.png";
-import imgPadel from "../assets/thumbnails/thumbnail_padel.jpg";
-import imgVlog from "../assets/thumbnails/thumbnail_vlog.png";
+import { getVideos } from '../utils/content.js';
+
+const videos = getVideos();
+const featuredVideo = videos.find(v => v.isFeatured) || videos[0];
+const regularVideos = videos.filter(v => v !== featuredVideo);
 ---
 
 <BaseLayout
@@ -52,270 +47,84 @@ import imgVlog from "../assets/thumbnails/thumbnail_vlog.png";
     <!-- Video Grid -->
     <div class="stitch-video-grid fade-up">
 
-      <!-- FEATURED VIDEO CARD Full width featured -->
-      <a class="stitch-video-card stitch-video-card-featured glightbox"
-         href="https://www.youtube.com/watch?v=iVcwjQdDL74"
-         data-type="video"
-         data-source="youtube"
-         data-gallery="videos"
-         data-category="dokumentasi">
+      {featuredVideo && (
+        <!-- FEATURED VIDEO CARD Full width featured -->
+        <a class="stitch-video-card stitch-video-card-featured glightbox"
+           href={featuredVideo.videoUrl}
+           data-type={featuredVideo.videoUrl.includes('youtu') ? 'video' : 'external'}
+           data-source={featuredVideo.videoUrl.includes('youtu') ? 'youtube' : undefined}
+           data-gallery="videos"
+           data-category={featuredVideo.category}>
 
-        <div class="stitch-video-thumb-wrap">
-          <Image             src="https://img.youtube.com/vi/iVcwjQdDL74/maxresdefault.jpg"
-            alt="The Coastal Escape Featured Project"
-            loading="lazy"
-            width="1280"
-            height="549"
-          />
-          <div class="stitch-video-thumb-overlay"></div>
-        </div>
-
-        <div class="stitch-video-card-featured-body">
-          <div class="stitch-video-card-featured-left">
-            <span class="stitch-featured-badge">Featured Project</span>
-            <h2 class="stitch-video-card-featured-title">The Coastal Escape</h2>
-            <p class="stitch-video-card-featured-desc">Rekap visual dari footage alam dan pantai dengan pendekatan cinematic editing yang mendalam.</p>
+          <div class="stitch-video-thumb-wrap">
+            <img
+              src={featuredVideo.thumbnail || featuredVideo.thumbnailPath}
+              alt={featuredVideo.title}
+              loading="lazy"
+            />
+            <div class="stitch-video-thumb-overlay"></div>
           </div>
-          <div class="stitch-video-card-featured-right">
-            <div class="stitch-duration-block">
-              <span class="stitch-duration-label">Duration</span>
-              <span class="stitch-duration-value">02:30</span>
+
+          <div class="stitch-video-card-featured-body">
+            <div class="stitch-video-card-featured-left">
+              <span class="stitch-featured-badge">Featured Project</span>
+              <h2 class="stitch-video-card-featured-title">{featuredVideo.title}</h2>
+              {featuredVideo.description && (
+                <p class="stitch-video-card-featured-desc">{featuredVideo.description}</p>
+              )}
             </div>
-            <button class="stitch-play-btn stitch-play-btn-lg" aria-label="Play video">
-              <i class="fas fa-play"></i>
-            </button>
+            <div class="stitch-video-card-featured-right">
+              {featuredVideo.duration && (
+                <div class="stitch-duration-block">
+                  <span class="stitch-duration-label">Duration</span>
+                  <span class="stitch-duration-value">{featuredVideo.duration}</span>
+                </div>
+              )}
+              <button class="stitch-play-btn stitch-play-btn-lg" aria-label="Play video">
+                <i class="fas fa-play"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      )}
 
       <!-- Regular Video Cards 2 column grid -->
       <div class="stitch-video-grid-regular">
-
-        <!-- Card 1: Wedding Video -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1_DVJqrqzKQTcVfcmptCpcYdK5kB0Zvgr/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="wedding">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgWedding}
-              alt="Wedding Video"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">00:20</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
+        {regularVideos.map((video) => {
+          const isYouTube = video.videoUrl.includes('youtu');
+          const thumbSrc = video.thumbnail || video.thumbnailPath;
+          
+          return (
+            <a class="stitch-video-card stitch-video-card-regular glightbox"
+               href={video.videoUrl}
+               data-type={isYouTube ? 'video' : 'external'}
+               data-source={isYouTube ? 'youtube' : undefined}
+               data-gallery="videos"
+               data-category={video.category}>
+              <div class="stitch-video-thumb-wrap">
+                <img
+                  src={thumbSrc}
+                  alt={video.title}
+                  loading="lazy"
+                />
+                {video.duration && (
+                  <div class="stitch-duration-badge">{video.duration}</div>
+                )}
+                <div class="stitch-video-play-overlay">
+                  <div class="stitch-play-btn">
+                    <i class="fas fa-play"></i>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Wedding Video</h3>
-              <p class="stitch-video-card-meta">Wedding &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 1.5: Qurban Video (Google Drive) -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/18pG0trX9PeHOtLr_0KBJa2FyB3DbC1R4/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgQurban}
-              alt="Dokumentasi Qurban"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">05:05</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
+              <div class="stitch-video-card-footer">
+                <div class="stitch-video-card-info">
+                  <h3 class="stitch-video-card-title">{video.title}</h3>
+                  <p class="stitch-video-card-meta">{video.category.toUpperCase()} &bull; {video.year || '2024'}</p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Qurban</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 2: Dokumentasi -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-          href="https://youtu.be/34ju_IWZc34"
-           data-type="video"
-           data-source="youtube"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image               src="https://img.youtube.com/vi/34ju_IWZc34/maxresdefault.jpg"
-              alt="Dokumentasi Event"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">3:40</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Event</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 3: Ultah Raden -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1t6vxuhS_dEVlTHuDCfMXCTKimzecRkWT/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgUltah}
-              alt="Dokumentasi Ultah Raden"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">03:03</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Ultah Raden</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 3.5: Ultah Ardheen -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/177A_AuA9K0VJSyIHp0WAqeu7hPgxVc4U/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgUltahArdheen}
-              alt="Dokumentasi Ultah Ardheen"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">03:02</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Ultah Ardheen</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 4: Vlog -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1GwEOsxdmDSVyvGkr14-KGSNvw5sp4tC6/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="vlog">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgVlog}
-              alt="Video Vlog"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">11:00</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Vlog Pribadi</h3>
-              <p class="stitch-video-card-meta">Vlog &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 5: Promosi Idecraft -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/13HhJOFKogrR_UWqVuX1Dc12odTSGzpv2/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="promosi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgPromosiIdecraft}
-              alt="Video Promosi Idecraft"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">00:45</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Video Promosi Idecraft</h3>
-              <p class="stitch-video-card-meta">Promosi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 6: Dokumentasi Padel -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1auyWgTuE50Q3sOUaJoaGqbYi4pqSbiSc/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgPadel}
-              alt="Dokumentasi Padel"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">01:53</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Padel</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
+            </a>
+          );
+        })}
       </div>
     </div>
 
@@ -448,126 +257,126 @@ import imgVlog from "../assets/thumbnails/thumbnail_vlog.png";
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
     transition: transform 0.7s ease;
   }
 
-  .stitch-video-card-featured:hover .stitch-video-thumb-wrap img {
+  .stitch-video-card-featured:hover .stitch-video-thumb-wrap img,
+  .stitch-video-card-regular:hover .stitch-video-thumb-wrap img {
     transform: scale(1.04);
   }
 
   .stitch-video-thumb-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(6, 14, 32, 0.95) 0%,
-      rgba(6, 14, 32, 0.4) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(to top, rgba(6, 14, 32, 0.95) 0%, rgba(6, 14, 32, 0.4) 50%, rgba(6, 14, 32, 0.1) 100%);
   }
 
-  /* Featured body: text left, controls right */
+  /* Featured Body */
   .stitch-video-card-featured-body {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 40px 48px;
+    padding: 40px;
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
+    justify-content: space-between;
     gap: 24px;
+    z-index: 2;
   }
 
   .stitch-featured-badge {
     display: inline-block;
-    padding: 5px 14px;
-    border-radius: 9999px;
-    background: rgba(163, 166, 255, 0.15);
-    border: 1px solid rgba(163, 166, 255, 0.25);
-    color: var(--accent-primary);
-    font-size: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 14px;
-    backdrop-filter: blur(8px);
+    color: var(--accent-primary);
+    background: rgba(163, 166, 255, 0.15);
+    border: 1px solid rgba(163, 166, 255, 0.25);
+    padding: 4px 12px;
+    border-radius: 9999px;
+    margin-bottom: 12px;
   }
 
   .stitch-video-card-featured-title {
     font-family: 'Manrope', sans-serif;
-    font-size: clamp(24px, 3vw, 44px);
-    font-weight: 700;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
     color: var(--text-primary);
+    letter-spacing: -0.5px;
     margin-bottom: 8px;
-    line-height: 1.1;
+    line-height: 1.2;
   }
 
   .stitch-video-card-featured-desc {
     font-size: 14px;
     color: var(--text-secondary);
-    max-width: 500px;
-    line-height: 1.5;
+    line-height: 1.6;
+    max-width: 540px;
   }
 
   .stitch-video-card-featured-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     flex-shrink: 0;
   }
 
   .stitch-duration-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 2px;
+    text-align: right;
   }
 
   .stitch-duration-label {
-    font-size: 10px;
-    font-weight: 600;
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
+    margin-bottom: 2px;
   }
 
   .stitch-duration-value {
     font-family: 'Manrope', sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
   }
 
   /* Play Button */
   .stitch-play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: var(--surface-base);
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: var(--accent-primary);
-    color: #0f00a4;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .stitch-play-btn i {
-    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(163, 166, 255, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
 
   .stitch-play-btn-lg {
     width: 64px;
     height: 64px;
-    font-size: 22px;
-    box-shadow: 0 0 30px rgba(163, 166, 255, 0.35);
+    font-size: 20px;
   }
 
-  .stitch-video-card-featured:hover .stitch-play-btn-lg {
+  .stitch-video-card-featured:hover .stitch-play-btn,
+  .stitch-video-card-regular:hover .stitch-play-btn {
     transform: scale(1.1);
-    box-shadow: 0 0 40px rgba(163, 166, 255, 0.5);
+    background: #ffffff;
   }
 
-  /* Regular Grid */
+  /* Regular Video Grid (2 columns) */
   .stitch-video-grid-regular {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -579,284 +388,94 @@ import imgVlog from "../assets/thumbnails/thumbnail_vlog.png";
     display: block;
     border-radius: 16px;
     overflow: hidden;
-    background: var(--surface-container-high);
+    background: var(--surface-container);
     border: 1px solid rgba(163, 166, 255, 0.08);
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
   }
 
   .stitch-video-card-regular:hover {
-    transform: translateY(-6px);
-    border-color: rgba(163, 166, 255, 0.18);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
   }
 
   .stitch-video-card-regular .stitch-video-thumb-wrap {
     aspect-ratio: 16 / 9;
-    overflow: hidden;
   }
 
-  .stitch-video-card-regular:hover .stitch-video-thumb-wrap img {
-    transform: scale(1.05);
-  }
-
-  /* Duration badge top right */
   .stitch-duration-badge {
     position: absolute;
-    top: 14px;
-    right: 14px;
-    padding: 4px 10px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
-    color: #fff;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(6, 14, 32, 0.85);
+    border: 1px solid rgba(163, 166, 255, 0.2);
+    color: var(--text-primary);
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    z-index: 2;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
   }
 
-  /* Play overlay on hover */
   .stitch-video-play-overlay {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(6, 14, 32, 0.3);
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 1;
   }
 
   .stitch-video-card-regular:hover .stitch-video-play-overlay {
     opacity: 1;
   }
 
-  .stitch-play-btn:not(.stitch-play-btn-lg) {
-    width: 52px;
-    height: 52px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #fff;
-  }
-
-  .stitch-video-card-regular:hover .stitch-play-btn:not(.stitch-play-btn-lg) {
-    transform: scale(1.1);
-  }
-
-  /* Card footer */
   .stitch-video-card-footer {
+    padding: 20px 24px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    padding: 18px 20px;
-    gap: 12px;
-  }
-
-  .stitch-video-card-info {
-    flex: 1;
   }
 
   .stitch-video-card-title {
     font-family: 'Manrope', sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 5px;
-    line-height: 1.2;
+    margin-bottom: 4px;
+    line-height: 1.3;
   }
 
   .stitch-video-card-meta {
     font-size: 12px;
-    color: var(--text-secondary);
-    font-weight: 500;
+    color: var(--text-tertiary);
   }
 
-  .stitch-more-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 4px;
-    font-size: 14px;
-    transition: color 0.2s ease;
-    flex-shrink: 0;
-    margin-top: 3px;
-  }
-
-  .stitch-more-btn:hover {
-    color: var(--accent-primary);
-  }
-
-  /* Responsive iPad (768px) */
-  @media (max-width: 768px) {
-    .stitch-hero {
-      padding: 100px 24px 48px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(36px, 9vw, 60px);
-    }
-
-    .filter-bar,
-    .video-section {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .filter-bar {
-      gap: 8px;
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      margin-bottom: 32px;
-    }
-
-    .filter-bar::-webkit-scrollbar { display: none; }
-
-    .stitch-video-card-featured {
-      aspect-ratio: 16 / 9;
-    }
-
-    .stitch-video-grid-regular {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .stitch-video-card-featured-body {
-      padding: 20px 24px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .stitch-duration-block {
-      display: none;
-    }
-  }
-
-  /* Responsive Mobile (480px) */
-  @media (max-width: 600px) {
-    .stitch-hero {
-      padding: 88px 20px 40px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(32px, 11vw, 48px);
-    }
-
-    .stitch-hero-sub {
-      font-size: 15px;
-    }
-
-    .filter-bar {
-      padding: 0 20px 8px;
-      margin-bottom: 24px;
-    }
-
-    .filter-btn {
-      flex-shrink: 0;
-      font-size: 12px;
-      padding: 8px 16px;
-    }
-
-    .stitch-video-card-featured {
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
-    }
-
+  @media (max-width: 900px) {
     .stitch-video-grid-regular {
       grid-template-columns: 1fr;
-      gap: 12px;
     }
-
+    .stitch-video-card-featured {
+      aspect-ratio: 16 / 9;
+    }
     .stitch-video-card-featured-body {
-      padding: 16px 20px;
-    }
-
-    .stitch-video-card-featured-title {
-      font-size: clamp(18px, 5vw, 24px);
-    }
-
-    .stitch-video-card-regular {
-      border-radius: 12px;
+      padding: 24px;
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .stitch-hero {
-      padding: 80px 20px 36px;
+      padding: 120px 24px 40px;
     }
-
-    .stitch-video-card-featured-body {
-      padding: 14px 16px;
+    .filter-bar {
+      padding: 0 24px;
     }
-
-    .stitch-play-btn-lg {
-      width: 44px;
-      height: 44px;
-      font-size: 14px;
+    .video-section {
+      padding: 0 24px 60px;
     }
   }
 </style>
-
-<script is:inline>
-  /* ---------- GLIGHTBOX (YouTube embed) ---------- */
-  document.addEventListener('DOMContentLoaded', function initGL() {
-    if (typeof GLightbox === 'undefined') {
-      setTimeout(initGL, 100);
-      return;
-    }
-    GLightbox({
-      selector: '.glightbox',
-      touchNavigation: true,
-      loop: false,
-      autoplayVideos: true,
-    });
-  });
-
-  /* ---------- VIDEO FILTER ---------- */
-  (function() {
-    const filterBar = document.querySelector('.filter-bar');
-    if (!filterBar) return;
-
-    const btns = filterBar.querySelectorAll('.filter-btn');
-    const featuredCard = document.querySelector('.stitch-video-card-featured');
-    const regularGrid = document.querySelector('.stitch-video-grid-regular');
-    if (!regularGrid) return;
-
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const filter = btn.dataset.filter;
-
-        // Update active button
-        btns.forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-
-        // Filter regular cards
-        const cards = regularGrid.querySelectorAll('.stitch-video-card-regular');
-        cards.forEach(function(card) {
-          const cat = card.dataset.category || '';
-          if (filter === 'all' || cat === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-
-        // Also filter featured card
-        if (featuredCard) {
-          const featCat = featuredCard.dataset.category || '';
-          featuredCard.style.display =
-            (filter === 'all' || featCat === filter) ? '' : 'none';
-        }
-      });
-    });
-  })();
-</script>

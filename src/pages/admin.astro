@@ -1,0 +1,2335 @@
+---
+// Master Studio Admin CMS - Frame Of Rangga (Bespoke Pro Edition)
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio CMS | Frame Of Rangga</title>
+  <meta name="robots" content="noindex, nofollow" />
+  
+  <!-- Premium Modern Typography: Outfit (Display) & Plus Jakarta Sans (UI) & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style is:inline>
+    /* ============================================================== */
+    /* MASTER STUDIO DESIGN SYSTEM & BESPOKE UI/UX TOKENS             */
+    /* ============================================================== */
+    :root {
+      /* Rich Slate & Ambient Indigo Mesh Background */
+      --bg-base: #080c14;
+      --bg-mesh: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+                 radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.16) 0px, transparent 50%),
+                 radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 55%),
+                 #0b101d;
+
+      /* Surfaces */
+      --surface-glass: rgba(18, 26, 43, 0.75);
+      --surface-glass-hover: rgba(26, 36, 58, 0.9);
+      --surface-card: rgba(20, 29, 48, 0.68);
+      --surface-card-hover: rgba(30, 43, 70, 0.9);
+      --surface-input: rgba(11, 16, 28, 0.85);
+
+      /* Refined Borders */
+      --border-subtle: rgba(148, 163, 184, 0.12);
+      --border-card: rgba(148, 163, 184, 0.18);
+      --border-active: #818cf8;
+      --border-glow: rgba(129, 140, 248, 0.35);
+
+      /* Typography Colors */
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-dim: #94a3b8;
+      --text-faint: #64748b;
+
+      /* Premium Vibrant Accents */
+      --accent-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      --accent-grad-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+      --accent-indigo: #6366f1;
+      --accent-violet: #a855f7;
+      --accent-pink: #ec4899;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-cyan: #06b6d4;
+
+      /* Radii */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+
+      /* Motion */
+      --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-fluid);
+      --transition-smooth: 0.35s var(--ease-fluid);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg-mesh);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 0;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+
+    h1, h2, h3, h4, .brand-title {
+      font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    /* Custom Sleek Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(8, 12, 20, 0.9); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.5), rgba(168, 85, 247, 0.5));
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #6366f1, #a855f7);
+    }
+
+    /* ── 1. LOGIN SCREEN ── */
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+    }
+
+    .login-ambient-orb {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(99, 102, 241, 0.12) 50%, transparent 70%);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(32px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 44px 38px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 0 0 40px rgba(99, 102, 241, 0.15);
+      position: relative;
+      z-index: 2;
+      animation: loginFloat 0.6s var(--ease-fluid);
+    }
+
+    @keyframes loginFloat {
+      from { opacity: 0; transform: translateY(24px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .login-brand { text-align: center; margin-bottom: 32px; }
+    
+    .brand-logo-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: var(--accent-grad);
+      color: #ffffff;
+      border-radius: 18px;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 25px rgba(168, 85, 247, 0.45);
+    }
+
+    .login-brand h2 {
+      font-size: 26px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .login-brand p { font-size: 13.5px; color: var(--text-muted); }
+
+    .login-error {
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    /* ── 2. DASHBOARD FRAMEWORK ── */
+    .dashboard-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOPBAR */
+    .admin-topbar {
+      height: 72px;
+      background: rgba(11, 16, 29, 0.85);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left { display: flex; align-items: center; gap: 14px; }
+    
+    .topbar-logo-badge {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-grad);
+      color: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+    }
+
+    .topbar-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .status-live-chip {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1px;
+    }
+    .status-live-chip .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+
+    .admin-body { display: flex; flex: 1; }
+
+    /* SIDEBAR */
+    .admin-sidebar {
+      width: 280px;
+      background: rgba(11, 16, 29, 0.7);
+      backdrop-filter: blur(24px);
+      border-right: 1px solid var(--border-subtle);
+      padding: 24px 16px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 16px 14px 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 13.5px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--transition-fast);
+      width: 100%;
+    }
+
+    .nav-item i { font-size: 14px; width: 18px; text-align: center; color: var(--text-dim); }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+    .nav-item:hover i { color: #ffffff; }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+      color: #ffffff;
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.18);
+    }
+    .nav-item.active i { color: #a5b4fc; }
+
+    .nav-badge {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+    .nav-item.active .nav-badge {
+      background: var(--accent-grad);
+      color: #ffffff;
+    }
+
+    /* MAIN CONTENT VIEW */
+    .admin-content {
+      flex: 1;
+      padding: 36px 44px;
+      max-width: 1340px;
+    }
+
+    .tab-pane { display: none; }
+    .tab-pane.active {
+      display: block;
+      animation: tabFade 0.35s var(--ease-fluid);
+    }
+
+    @keyframes tabFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tab-header-left h2 {
+      font-size: 26px;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .tab-header-left p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    /* STATS OVERVIEW CARDS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .stat-box {
+      background: var(--surface-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+    }
+
+    .stat-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-active);
+      background: var(--surface-card-hover);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 24px rgba(99, 102, 241, 0.2);
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-purple { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
+    .icon-blue { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
+    .icon-pink { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+    .icon-green { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+
+    .stat-data h3 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+
+    .stat-data span {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ── LUXURY COMMAND SEARCH & FILTER BAR ── */
+    .command-bar-wrapper {
+      background: var(--surface-glass);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .search-command-box {
+      display: flex;
+      align-items: center;
+      background: var(--surface-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 6px 14px;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .search-command-box:focus-within {
+      border-color: var(--border-active);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25), 0 6px 20px rgba(0, 0, 0, 0.35);
+      background: rgba(14, 20, 36, 0.95);
+    }
+
+    .search-icon-orb {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-indigo);
+      font-size: 15px;
+      margin-right: 8px;
+    }
+
+    .search-command-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      padding: 8px 0;
+    }
+
+    .search-command-input::placeholder {
+      color: var(--text-dim);
+      font-size: 13.5px;
+    }
+
+    .search-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-clear-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-dim);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all var(--transition-fast);
+    }
+    .search-clear-pill:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+    }
+
+    .kbd-shortcut-chip {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--text-dim);
+      user-select: none;
+    }
+
+    .command-bar-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* PILL FILTER CHIPS */
+    .filter-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+
+    .filter-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .filter-chip.active {
+      background: var(--accent-grad);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+    }
+
+    .chip-count {
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.25);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .items-counter-chip {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* ── ITEMS GRID ── */
+    .admin-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .admin-card {
+      background: var(--surface-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-smooth);
+    }
+
+    .admin-card:hover {
+      border-color: var(--border-active);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 24px rgba(99, 102, 241, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .admin-card-thumb {
+      width: 100%;
+      height: 190px;
+      background: #080c14;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .admin-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s var(--ease-fluid);
+    }
+
+    .admin-card:hover .admin-card-thumb img {
+      transform: scale(1.05);
+    }
+
+    .card-top-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .card-cat-pill {
+      background: rgba(11, 16, 29, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #d8b4fe;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-star-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(11, 16, 29, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-dim);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all var(--transition-fast);
+      z-index: 2;
+    }
+    .card-star-btn:hover {
+      transform: scale(1.15);
+      color: #ffffff;
+    }
+    .card-star-btn.is-active {
+      color: var(--accent-amber);
+      border-color: var(--accent-amber);
+      background: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+    }
+
+    .admin-card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .admin-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .admin-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .card-order-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .card-actions { display: flex; gap: 8px; }
+
+    .btn-sm-edit {
+      background: rgba(99, 102, 241, 0.16);
+      color: #c7d2fe;
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+    .btn-sm-edit:hover {
+      background: var(--accent-indigo);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-sm-delete {
+      background: rgba(239, 68, 68, 0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .btn-sm-delete:hover {
+      background: #ef4444;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* ── FORMS & BUTTONS ── */
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--surface-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 11px 15px;
+      color: #ffffff;
+      font-size: 13.5px;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--border-active);
+      background: rgba(18, 26, 44, 0.95);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .req { color: #f87171; }
+    .form-hint { display: block; font-size: 12px; color: var(--text-dim); margin-top: 6px; }
+
+    .btn-primary-admin {
+      background: var(--accent-grad);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 11px 22px;
+      font-size: 13.5px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
+    }
+    .btn-primary-admin:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(168, 85, 247, 0.5);
+    }
+
+    .btn-ghost-admin {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: #ffffff;
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+    .btn-ghost-admin:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .btn-danger-admin {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all var(--transition-fast);
+    }
+    .btn-danger-admin:hover { background: rgba(239, 68, 68, 0.25); }
+
+    /* ── 3. UNIVERSAL MODAL WITH SPLIT LIVE PREVIEW ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 12, 20, 0.85);
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 1000;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 960px;
+      max-height: 92vh;
+      background: rgba(18, 26, 44, 0.96);
+      backdrop-filter: blur(32px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      overflow-y: auto;
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.22);
+      display: flex;
+      flex-direction: column;
+      animation: modalPop 0.35s var(--ease-fluid);
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.96) translateY(14px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      padding: 22px 30px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(18, 26, 44, 0.98);
+      z-index: 10;
+    }
+    .modal-header h3 { font-size: 20px; font-weight: 700; color: #ffffff; }
+    .modal-close-btn { background: transparent; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+    .modal-close-btn:hover { color: #ffffff; }
+
+    .modal-split-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      padding: 26px 30px;
+    }
+
+    .modal-form-col { display: flex; flex-direction: column; }
+    .modal-preview-col {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border-subtle);
+      padding-left: 28px;
+    }
+
+    .preview-col-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-indigo);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* DROPZONE IMAGE UPLOADER */
+    .dropzone-container {
+      border: 2px dashed var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      background: rgba(11, 16, 28, 0.6);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+    .dropzone-container:hover, .dropzone-container.drag-over {
+      border-color: var(--accent-indigo);
+      background: rgba(99, 102, 241, 0.08);
+    }
+    .dropzone-icon {
+      font-size: 28px;
+      color: var(--accent-indigo);
+      margin-bottom: 8px;
+    }
+    .dropzone-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .dropzone-hint {
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .image-preview-box {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-top: 12px;
+      background: #080c14;
+      border: 1px solid var(--border-subtle);
+    }
+    .image-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .remove-img-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(239, 68, 68, 0.9);
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 11px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 18px 30px;
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(18, 26, 44, 0.98);
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+    }
+
+    /* TOAST */
+    .toast-box {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: rgba(18, 26, 44, 0.96);
+      border: 1px solid var(--border-active);
+      color: #ffffff;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 2000;
+      animation: toastIn 0.3s var(--ease-fluid);
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .toast-box.toast-success { border-color: rgba(16, 185, 129, 0.5); background: rgba(6, 78, 59, 0.95); color: #a7f3d0; }
+    .toast-box.toast-error { border-color: rgba(239, 68, 68, 0.5); background: rgba(127, 29, 29, 0.95); color: #fecaca; }
+
+    @media (max-width: 960px) {
+      .modal-split-grid { grid-template-columns: 1fr; }
+      .modal-preview-col { border-left: none; padding-left: 0; border-top: 1px solid var(--border-subtle); padding-top: 24px; }
+      .admin-body { flex-direction: column; }
+      .admin-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .admin-content { padding: 24px 18px; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="admin-app">
+    <!-- 1. LOGIN SCREEN -->
+    <div id="login-screen" class="login-wrapper">
+      <div class="login-ambient-orb"></div>
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="brand-logo-pill">FOR</div>
+          <h2>Studio CMS</h2>
+          <p>Login ke panel admin untuk mengelola portofolio & website</p>
+        </div>
+
+        <form id="login-form">
+          <div id="login-error" class="login-error" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="login-error-text">Username atau password salah</span>
+          </div>
+
+          <div class="form-group">
+            <label for="login-username"><i class="fas fa-user"></i> Username</label>
+            <input type="text" id="login-username" placeholder="Masukkan username" required autocomplete="username" />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="login-password" placeholder="Masukkan password" required autocomplete="current-password" />
+          </div>
+
+          <button type="submit" id="login-btn" class="btn-primary-admin" style="width: 100%; margin-top: 10px;">
+            <span>Masuk ke Dashboard</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. MAIN DASHBOARD -->
+    <div id="dashboard-screen" class="dashboard-wrapper" style="display: none;">
+      <!-- TOPBAR -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <div class="topbar-logo-badge">FOR</div>
+          <div>
+            <h1 class="topbar-title">Content Studio</h1>
+            <span class="status-live-chip"><span class="pulse-dot"></span> Online & Terhubung</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn-ghost-admin" onclick="fetchData(true)" title="Sinkronisasi & Refresh Data">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+          <button class="btn-ghost-admin" onclick="exportDataBackup()" title="Download Backup JSON">
+            <i class="fas fa-download"></i> Backup Data
+          </button>
+          <a href="/" target="_blank" class="btn-ghost-admin">
+            <i class="fas fa-external-link-alt"></i> Lihat Website ↗
+          </a>
+          <button id="logout-btn" class="btn-danger-admin">
+            <i class="fas fa-sign-out-alt"></i> Keluar
+          </button>
+        </div>
+      </header>
+
+      <div class="admin-body">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+          <span class="sidebar-section-title">Navigasi Utama</span>
+          <button class="nav-item active" data-tab="overview">
+            <i class="fas fa-chart-pie"></i>
+            <span>Ringkasan</span>
+          </button>
+          
+          <span class="sidebar-section-title">Koleksi Portofolio</span>
+          <button class="nav-item" data-tab="photos">
+            <i class="fas fa-camera"></i>
+            <span>Foto Portfolio</span>
+            <span id="badge-photos" class="nav-badge">0</span>
+          </button>
+          <button class="nav-item" data-tab="videos">
+            <i class="fas fa-video"></i>
+            <span>Video Portfolio</span>
+            <span id="badge-videos" class="nav-badge">0</span>
+          </button>
+          <button class="nav-item" data-tab="designs">
+            <i class="fas fa-palette"></i>
+            <span>Design & Branding</span>
+            <span id="badge-designs" class="nav-badge">0</span>
+          </button>
+          <button class="nav-item" data-tab="websites">
+            <i class="fas fa-code"></i>
+            <span>Website Projects</span>
+            <span id="badge-websites" class="nav-badge">0</span>
+          </button>
+
+          <span class="sidebar-section-title">Konfigurasi Terpusat</span>
+          <button class="nav-item" data-tab="profile">
+            <i class="fas fa-user-cog"></i>
+            <span>Profil & WhatsApp</span>
+          </button>
+          <button class="nav-item" data-tab="security">
+            <i class="fas fa-shield-alt"></i>
+            <span>Ganti Password</span>
+          </button>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="admin-content">
+          <!-- TAB 1: OVERVIEW -->
+          <section id="tab-overview" class="tab-pane active">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Ringkasan Konten Portfolio</h2>
+                <p>Status seluruh data portofolio aktif di website Frame Of Rangga</p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-box" onclick="switchTab('photos')">
+                <div class="stat-icon icon-purple"><i class="fas fa-camera"></i></div>
+                <div class="stat-data">
+                  <h3 id="stat-count-photos">0</h3>
+                  <span>Foto Portfolio</span>
+                </div>
+              </div>
+
+              <div class="stat-box" onclick="switchTab('videos')">
+                <div class="stat-icon icon-blue"><i class="fas fa-video"></i></div>
+                <div class="stat-data">
+                  <h3 id="stat-count-videos">0</h3>
+                  <span>Video Portfolio</span>
+                </div>
+              </div>
+
+              <div class="stat-box" onclick="switchTab('designs')">
+                <div class="stat-icon icon-pink"><i class="fas fa-palette"></i></div>
+                <div class="stat-data">
+                  <h3 id="stat-count-designs">0</h3>
+                  <span>Design & Branding</span>
+                </div>
+              </div>
+
+              <div class="stat-box" onclick="switchTab('websites')">
+                <div class="stat-icon icon-green"><i class="fas fa-code"></i></div>
+                <div class="stat-data">
+                  <h3 id="stat-count-websites">0</h3>
+                  <span>Website Projects</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-header" style="margin-top: 36px;">
+              <div class="tab-header-left">
+                <h2>Aksi Cepat Tambah Konten</h2>
+                <p>Pilih kategori untuk langsung membuat portofolio baru</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <button class="btn-primary-admin" onclick="openAddModal('photos')"><i class="fas fa-plus"></i> Tambah Foto Baru</button>
+              <button class="btn-primary-admin" onclick="openAddModal('videos')"><i class="fas fa-plus"></i> Tambah Video Baru</button>
+              <button class="btn-primary-admin" onclick="openAddModal('designs')"><i class="fas fa-plus"></i> Tambah Desain Baru</button>
+              <button class="btn-primary-admin" onclick="openAddModal('websites')"><i class="fas fa-plus"></i> Tambah Website Baru</button>
+            </div>
+          </section>
+
+          <!-- TAB 2: PHOTOS -->
+          <section id="tab-photos" class="tab-pane">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Kelola Foto Portfolio</h2>
+                <p>Tambah, edit, atau hapus item di halaman <a href="/foto" target="_blank" style="color: var(--accent-indigo); text-decoration: none;">/foto ↗</a></p>
+              </div>
+              <button class="btn-primary-admin" onclick="openAddModal('photos')">
+                <i class="fas fa-plus"></i> Tambah Foto
+              </button>
+            </div>
+
+            <!-- COMMAND CONTROL BAR -->
+            <div class="command-bar-wrapper">
+              <div class="search-command-box">
+                <div class="search-icon-orb"><i class="fas fa-search"></i></div>
+                <input type="text" id="search-photos" class="search-command-input" placeholder="Cari karya foto berdasarkan judul, kategori, atau deskripsi..." oninput="filterItems('photos')" />
+                <div class="search-actions-right">
+                  <button type="button" id="clear-search-photos" class="search-clear-pill" onclick="clearSearch('photos')" style="display: none;">
+                    <i class="fas fa-times"></i> Clear
+                  </button>
+                  <div class="kbd-shortcut-chip"><span>⌘K / /</span></div>
+                </div>
+              </div>
+
+              <!-- PILL CATEGORY CHIPS -->
+              <div class="command-bar-bottom">
+                <div class="filter-pills-row" id="pills-photos">
+                  <button class="filter-chip active" onclick="setCategoryFilter('photos', 'all', this)"><span>Semua</span> <span class="chip-count" id="count-pill-photos-all">0</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'wedding', this)"><span>Wedding</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'birthday', this)"><span>Birthday Party</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'komersial', this)"><span>Komersial</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'graduation', this)"><span>Graduation</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'lifestyle', this)"><span>Lifestyle</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'yearbook', this)"><span>Yearbook</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('photos', 'fotografi', this)"><span>Fotografi</span></button>
+                </div>
+                <div class="items-counter-chip" id="counter-photos">
+                  <i class="fas fa-images"></i> <span>0 foto</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="photos-list" class="admin-items-grid"></div>
+          </section>
+
+          <!-- TAB 3: VIDEOS -->
+          <section id="tab-videos" class="tab-pane">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Kelola Video Portfolio</h2>
+                <p>Video dari YouTube & Google Drive di halaman <a href="/video" target="_blank" style="color: var(--accent-indigo); text-decoration: none;">/video ↗</a></p>
+              </div>
+              <button class="btn-primary-admin" onclick="openAddModal('videos')">
+                <i class="fas fa-plus"></i> Tambah Video
+              </button>
+            </div>
+
+            <div class="command-bar-wrapper">
+              <div class="search-command-box">
+                <div class="search-icon-orb"><i class="fas fa-search"></i></div>
+                <input type="text" id="search-videos" class="search-command-input" placeholder="Cari karya video berdasarkan judul, kategori..." oninput="filterItems('videos')" />
+                <div class="search-actions-right">
+                  <button type="button" id="clear-search-videos" class="search-clear-pill" onclick="clearSearch('videos')" style="display: none;">
+                    <i class="fas fa-times"></i> Clear
+                  </button>
+                  <div class="kbd-shortcut-chip"><span>⌘K / /</span></div>
+                </div>
+              </div>
+
+              <div class="command-bar-bottom">
+                <div class="filter-pills-row" id="pills-videos">
+                  <button class="filter-chip active" onclick="setCategoryFilter('videos', 'all', this)"><span>Semua</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('videos', 'wedding', this)"><span>Wedding</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('videos', 'dokumentasi', this)"><span>Dokumentasi</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('videos', 'vlog', this)"><span>Vlog</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('videos', 'sosmed', this)"><span>Konten Sosmed</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('videos', 'promosi', this)"><span>Promosi</span></button>
+                </div>
+                <div class="items-counter-chip" id="counter-videos">
+                  <i class="fas fa-play-circle"></i> <span>0 video</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="videos-list" class="admin-items-grid"></div>
+          </section>
+
+          <!-- TAB 4: DESIGNS -->
+          <section id="tab-designs" class="tab-pane">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Kelola Design & Branding</h2>
+                <p>Karya grafis, brand identity & poster di halaman <a href="/design" target="_blank" style="color: var(--accent-indigo); text-decoration: none;">/design ↗</a></p>
+              </div>
+              <button class="btn-primary-admin" onclick="openAddModal('designs')">
+                <i class="fas fa-plus"></i> Tambah Desain
+              </button>
+            </div>
+
+            <div class="command-bar-wrapper">
+              <div class="search-command-box">
+                <div class="search-icon-orb"><i class="fas fa-search"></i></div>
+                <input type="text" id="search-designs" class="search-command-input" placeholder="Cari karya desain berdasarkan nama atau brand..." oninput="filterItems('designs')" />
+                <div class="search-actions-right">
+                  <button type="button" id="clear-search-designs" class="search-clear-pill" onclick="clearSearch('designs')" style="display: none;">
+                    <i class="fas fa-times"></i> Clear
+                  </button>
+                  <div class="kbd-shortcut-chip"><span>⌘K / /</span></div>
+                </div>
+              </div>
+
+              <div class="command-bar-bottom">
+                <div class="filter-pills-row" id="pills-designs">
+                  <button class="filter-chip active" onclick="setCategoryFilter('designs', 'all', this)"><span>Semua</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('designs', 'brand', this)"><span>Brand Identity</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('designs', 'social', this)"><span>Social Media</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('designs', 'poster', this)"><span>Poster</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('designs', 'advertising', this)"><span>Advertising</span></button>
+                </div>
+                <div class="items-counter-chip" id="counter-designs">
+                  <i class="fas fa-paint-brush"></i> <span>0 desain</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="designs-list" class="admin-items-grid"></div>
+          </section>
+
+          <!-- TAB 5: WEBSITES -->
+          <section id="tab-websites" class="tab-pane">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Kelola Website Projects</h2>
+                <p>Proyek web development di halaman <a href="/website" target="_blank" style="color: var(--accent-indigo); text-decoration: none;">/website ↗</a></p>
+              </div>
+              <button class="btn-primary-admin" onclick="openAddModal('websites')">
+                <i class="fas fa-plus"></i> Tambah Website
+              </button>
+            </div>
+
+            <div class="command-bar-wrapper">
+              <div class="search-command-box">
+                <div class="search-icon-orb"><i class="fas fa-search"></i></div>
+                <input type="text" id="search-websites" class="search-command-input" placeholder="Cari project web berdasarkan nama atau teknologi..." oninput="filterItems('websites')" />
+                <div class="search-actions-right">
+                  <button type="button" id="clear-search-websites" class="search-clear-pill" onclick="clearSearch('websites')" style="display: none;">
+                    <i class="fas fa-times"></i> Clear
+                  </button>
+                  <div class="kbd-shortcut-chip"><span>⌘K / /</span></div>
+                </div>
+              </div>
+
+              <div class="command-bar-bottom">
+                <div class="filter-pills-row" id="pills-websites">
+                  <button class="filter-chip active" onclick="setCategoryFilter('websites', 'all', this)"><span>Semua</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('websites', 'portfolio', this)"><span>Portfolio</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('websites', 'landing', this)"><span>Landing Page</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('websites', 'sistem', this)"><span>Sistem Sederhana</span></button>
+                  <button class="filter-chip" onclick="setCategoryFilter('websites', 'company', this)"><span>Company Profile</span></button>
+                </div>
+                <div class="items-counter-chip" id="counter-websites">
+                  <i class="fas fa-laptop-code"></i> <span>0 website</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="websites-list" class="admin-items-grid"></div>
+          </section>
+
+          <!-- TAB 6: PROFILE & WHATSAPP -->
+          <section id="tab-profile" class="tab-pane">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Profil & Kontak WhatsApp Terpusat</h2>
+                <p>Update nomor WhatsApp, bio, dan link media sosial website</p>
+              </div>
+            </div>
+
+            <form id="profile-form" style="max-width: 760px; background: var(--surface-card); backdrop-filter: blur(24px); padding: 36px; border-radius: var(--radius-lg); border: 1px solid var(--border-card);">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-name">Nama Lengkap</label>
+                  <input type="text" id="prof-name" required />
+                </div>
+                <div class="form-group">
+                  <label for="prof-brand">Nama Brand</label>
+                  <input type="text" id="prof-brand" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-wa">
+                  <i class="fab fa-whatsapp" style="color: #25D366; font-size: 16px;"></i> Nomor WhatsApp (Format: 628xxxxxxxx)
+                </label>
+                <input type="text" id="prof-wa" placeholder="6287779560264" required />
+                <small class="form-hint">Semua tombol konsultasi & inquiry di seluruh website otomatis tersambung ke nomor ini.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-tagline">Tagline</label>
+                <input type="text" id="prof-tagline" />
+              </div>
+
+              <div class="form-group">
+                <label for="prof-bio">Bio Singkat</label>
+                <textarea id="prof-bio" rows="3"></textarea>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-email"><i class="fas fa-envelope"></i> Email</label>
+                  <input type="email" id="prof-email" />
+                </div>
+                <div class="form-group">
+                  <label for="prof-ig"><i class="fab fa-instagram"></i> Link Instagram</label>
+                  <input type="url" id="prof-ig" />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="prof-tiktok"><i class="fab fa-tiktok"></i> Link TikTok</label>
+                  <input type="url" id="prof-tiktok" />
+                </div>
+                <div class="form-group">
+                  <label for="prof-site"><i class="fas fa-globe"></i> URL Website Live</label>
+                  <input type="url" id="prof-site" />
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary-admin" style="margin-top: 14px;">
+                <i class="fas fa-save"></i> Simpan Profil & Kontak
+              </button>
+            </form>
+          </section>
+
+          <!-- TAB 7: SECURITY -->
+          <section id="tab-security" class="tab-pane">
+            <div class="tab-header">
+              <div class="tab-header-left">
+                <h2>Keamanan & Ganti Password</h2>
+                <p>Ubah password login panel admin CMS</p>
+              </div>
+            </div>
+
+            <form id="security-form" style="max-width: 520px; background: var(--surface-card); backdrop-filter: blur(24px); padding: 36px; border-radius: var(--radius-lg); border: 1px solid var(--border-card);">
+              <div class="form-group">
+                <label for="sec-current">Password Saat Ini</label>
+                <input type="password" id="sec-current" required />
+              </div>
+              <div class="form-group">
+                <label for="sec-new">Password Baru</label>
+                <input type="password" id="sec-new" placeholder="Minimal 5 karakter" required />
+              </div>
+              <div class="form-group">
+                <label for="sec-confirm">Konfirmasi Password Baru</label>
+                <input type="password" id="sec-confirm" required />
+              </div>
+
+              <button type="submit" class="btn-primary-admin" style="margin-top: 14px;">
+                <i class="fas fa-key"></i> Update Password
+              </button>
+            </form>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- 3. UNIVERSAL CREATE / EDIT MODAL WITH SPLIT LIVE PREVIEW -->
+    <div id="admin-modal" class="modal-backdrop" style="display: none;">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="modal-title">Tambah Item Baru</h3>
+          <button type="button" class="modal-close-btn" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form id="modal-form">
+          <div class="modal-split-grid">
+            <!-- LEFT COLUMN: FORM INPUTS -->
+            <div class="modal-form-col">
+              <input type="hidden" id="modal-type" />
+              <input type="hidden" id="modal-slug" />
+              <input type="hidden" id="modal-action" value="create" />
+
+              <div class="form-group">
+                <label for="item-title">Judul / Nama Karya <span class="req">*</span></label>
+                <input type="text" id="item-title" required oninput="updateLivePreview()" />
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="item-category">Kategori <span class="req">*</span></label>
+                  <select id="item-category" required onchange="updateLivePreview()"></select>
+                </div>
+
+                <div class="form-group" id="group-sort-order">
+                  <label for="item-order">Urutan Tampil (Order)</label>
+                  <input type="number" id="item-order" value="1" oninput="updateLivePreview()" />
+                </div>
+              </div>
+
+              <!-- IMAGE UPLOAD / DROPZONE -->
+              <div class="form-group" id="group-image">
+                <label>Media / Gambar Utama</label>
+                
+                <div class="dropzone-container" id="dropzone" onclick="document.getElementById('item-image-file').click()">
+                  <i class="fas fa-cloud-upload-alt dropzone-icon"></i>
+                  <div class="dropzone-text">Klik untuk pilih gambar atau seret file ke sini</div>
+                  <div class="dropzone-hint">Format: JPG, PNG, WEBP (Maks. 15MB)</div>
+                  <input type="file" id="item-image-file" accept="image/*" style="display: none;" onchange="previewUploadedImage(event)" />
+                </div>
+
+                <input type="text" id="item-image-path" placeholder="Atau masukkan path gambar (contoh: /assets/foto/...)" style="margin-top: 10px;" oninput="previewManualPath(event)" />
+                
+                <div id="image-preview-container" class="image-preview-box" style="display: none;">
+                  <img id="image-preview" src="" alt="Preview" />
+                  <button type="button" class="remove-img-btn" onclick="clearImagePreview()"><i class="fas fa-trash"></i> Hapus</button>
+                </div>
+              </div>
+
+              <!-- VIDEOS FIELDS -->
+              <div class="form-group" id="group-video-url" style="display: none;">
+                <label for="item-video-url">URL Video (YouTube / Google Drive) <span class="req">*</span></label>
+                <input type="text" id="item-video-url" placeholder="https://www.youtube.com/watch?v=..." />
+              </div>
+
+              <div class="form-grid-2" id="group-video-meta" style="display: none;">
+                <div class="form-group">
+                  <label for="item-video-duration">Durasi Video (Contoh: 02:30)</label>
+                  <input type="text" id="item-video-duration" placeholder="02:30" />
+                </div>
+                <div class="form-group">
+                  <label for="item-video-year">Tahun</label>
+                  <input type="text" id="item-video-year" value="2024" />
+                </div>
+              </div>
+
+              <!-- WEBSITES FIELDS -->
+              <div class="form-group" id="group-web-url" style="display: none;">
+                <label for="item-web-url">URL Website Live</label>
+                <input type="text" id="item-web-url" placeholder="https://domain-anda.com" />
+              </div>
+
+              <div class="form-group" id="group-web-tech" style="display: none;">
+                <label for="item-web-tech">Tech Stack (Contoh: Astro, React, Tailwind)</label>
+                <input type="text" id="item-web-tech" placeholder="Astro, CSS, JavaScript" />
+              </div>
+
+              <!-- DESIGNS CLIENT -->
+              <div class="form-group" id="group-design-client" style="display: none;">
+                <label for="item-design-client">Nama Klien / Brand</label>
+                <input type="text" id="item-design-client" placeholder="Contoh: Brand Fashion" />
+              </div>
+
+              <!-- LAYOUT OPTION -->
+              <div class="form-group" id="group-layout" style="display: none;">
+                <label for="item-layout">Ukuran Layout Grid</label>
+                <select id="item-layout">
+                  <option value="landscape">Landscape (Lebar)</option>
+                  <option value="portrait">Portrait (Tinggi)</option>
+                  <option value="square">Square (Kotak)</option>
+                  <option value="featured">Featured (Besar)</option>
+                  <option value="auto">Auto / Natural (Masonry)</option>
+                </select>
+              </div>
+
+              <!-- DESCRIPTION -->
+              <div class="form-group">
+                <label for="item-desc">Deskripsi Singkat</label>
+                <textarea id="item-desc" rows="3" placeholder="Ceritakan konsep atau detail karya ini..." oninput="updateLivePreview()"></textarea>
+              </div>
+
+              <!-- FEATURED TOGGLE -->
+              <div style="margin-bottom: 12px;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; font-weight: 500;">
+                  <input type="checkbox" id="item-featured" style="width: 18px; height: 18px;" onchange="updateLivePreview()" />
+                  <span>Tampilkan di Halaman Utama (Featured)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: LIVE CARD PREVIEW -->
+            <div class="modal-preview-col">
+              <div class="preview-col-title">
+                <i class="fas fa-eye"></i> Live Card Preview
+              </div>
+              
+              <div class="admin-card" style="box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);">
+                <div class="admin-card-thumb">
+                  <img id="live-prev-img" src="" alt="Live Preview" />
+                  <div class="card-top-badges">
+                    <span id="live-prev-cat" class="card-cat-pill">Category</span>
+                  </div>
+                  <button type="button" id="live-prev-star" class="card-star-btn" title="Featured Preview">
+                    <i class="fas fa-star"></i>
+                  </button>
+                </div>
+                <div class="admin-card-body">
+                  <h4 id="live-prev-title" class="admin-card-title">Judul Karya Portofolio</h4>
+                  <p id="live-prev-desc" class="admin-card-desc">Deskripsi karya akan otomatis disesuaikan secara dinamis di sini...</p>
+                  <div class="admin-card-footer">
+                    <span id="live-prev-order" class="card-order-tag">Order #1</span>
+                    <span style="font-size: 11px; color: var(--accent-emerald); font-weight: 600;"><i class="fas fa-check-circle"></i> Siap Tayang</span>
+                  </div>
+                </div>
+              </div>
+              <small style="display: block; margin-top: 14px; font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                <i class="fas fa-magic" style="color: var(--accent-indigo);"></i> <strong>Otomatisasi Grid:</strong> Portofolio yang ditambahkan otomatis tertata rapi sesuai sistem grid masonry responsive tanpa celah.
+              </small>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-ghost-admin" onclick="closeModal()">Batal</button>
+            <button type="submit" id="modal-save-btn" class="btn-primary-admin">
+              <i class="fas fa-save"></i> Simpan Data
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast-box"></div>
+  </div>
+
+  <script is:inline>
+    // ADVANCED CLIENT-SIDE CMS ENGINE
+    const FALLBACK_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23121a2c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='14'%3EFrame Of Rangga%3C/text%3E%3C/svg%3E";
+
+    let state = {
+      auth: false,
+      token: null,
+      data: { photos: [], videos: [], designs: [], websites: [], profile: {} },
+      activeTab: 'overview',
+      activeFilter: { photos: 'all', videos: 'all', designs: 'all', websites: 'all' }
+    };
+
+    const CATEGORY_MAP = {
+      photos: [
+        { label: 'Wedding', value: 'wedding' },
+        { label: 'Birthday Party', value: 'birthday' },
+        { label: 'Komersial', value: 'komersial' },
+        { label: 'Graduation', value: 'graduation' },
+        { label: 'Lifestyle', value: 'lifestyle' },
+        { label: 'Yearbook', value: 'yearbook' },
+        { label: 'Fotografi', value: 'fotografi' },
+      ],
+      videos: [
+        { label: 'Wedding', value: 'wedding' },
+        { label: 'Dokumentasi', value: 'dokumentasi' },
+        { label: 'Vlog', value: 'vlog' },
+        { label: 'Konten Sosmed', value: 'sosmed' },
+        { label: 'Promosi', value: 'promosi' },
+      ],
+      designs: [
+        { label: 'Brand Identity', value: 'brand' },
+        { label: 'Social Media', value: 'social' },
+        { label: 'Poster', value: 'poster' },
+        { label: 'Advertising', value: 'advertising' },
+      ],
+      websites: [
+        { label: 'Portfolio', value: 'portfolio' },
+        { label: 'Landing Page', value: 'landing' },
+        { label: 'Sistem Sederhana', value: 'sistem' },
+        { label: 'Company Profile', value: 'company' },
+      ]
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkStoredAuth();
+      setupEventListeners();
+      setupDragAndDrop();
+      setupKeyboardShortcuts();
+    });
+
+    function checkStoredAuth() {
+      const token = localStorage.getItem('for_admin_token');
+      if (token) {
+        state.token = token;
+        state.auth = true;
+        showDashboard();
+        fetchData();
+      } else {
+        showLogin();
+      }
+    }
+
+    function showLogin() {
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('dashboard-screen').style.display = 'none';
+    }
+
+    function showDashboard() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard-screen').style.display = 'flex';
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast-box ${isError ? 'toast-error' : 'toast-success'}`;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3500);
+    }
+
+    function setupKeyboardShortcuts() {
+      window.addEventListener('keydown', (e) => {
+        // Ctrl+K or '/' to focus search in active tab
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k' || (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA')) {
+          e.preventDefault();
+          const curSearch = document.getElementById(`search-${state.activeTab}`);
+          if (curSearch) curSearch.focus();
+        }
+        // Esc to close modal
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+    }
+
+    function setupDragAndDrop() {
+      const dropzone = document.getElementById('dropzone');
+      if (!dropzone) return;
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.add('drag-over');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.remove('drag-over');
+        }, false);
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length) {
+          document.getElementById('item-image-file').files = files;
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            document.getElementById('image-preview').src = event.target.result;
+            document.getElementById('image-preview-container').style.display = 'block';
+            updateLivePreview(event.target.result);
+          };
+          reader.readAsDataURL(files[0]);
+        }
+      });
+    }
+
+    function setupEventListeners() {
+      // Login Form Submit
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const user = document.getElementById('login-username').value.trim();
+        const pass = document.getElementById('login-password').value;
+        const errorBox = document.getElementById('login-error');
+        const btn = document.getElementById('login-btn');
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memeriksa...';
+
+        try {
+          const res = await fetch('/api/admin/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'login', username: user, password: pass })
+          });
+          const json = await res.json();
+
+          if (json.success) {
+            localStorage.setItem('for_admin_token', json.token);
+            state.token = json.token;
+            state.auth = true;
+            errorBox.style.display = 'none';
+            showDashboard();
+            fetchData();
+            showToast('Selamat datang kembali, ' + json.user.name);
+          } else {
+            errorBox.style.display = 'flex';
+            document.getElementById('login-error-text').textContent = json.error || 'Login gagal';
+          }
+        } catch (err) {
+          errorBox.style.display = 'flex';
+          document.getElementById('login-error-text').textContent = 'Terjadi kesalahan server';
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Masuk ke Dashboard</span> <i class="fas fa-arrow-right"></i>';
+        }
+      });
+
+      // Logout
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('for_admin_token');
+        state.token = null;
+        state.auth = false;
+        showLogin();
+        showToast('Berhasil keluar');
+      });
+
+      // Sidebar navigation tabs
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.getAttribute('data-tab');
+          switchTab(tab);
+        });
+      });
+
+      // Profile Save
+      document.getElementById('profile-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const profileData = {
+          name: document.getElementById('prof-name').value,
+          brandName: document.getElementById('prof-brand').value,
+          tagline: document.getElementById('prof-tagline').value,
+          whatsapp: document.getElementById('prof-wa').value,
+          bio: document.getElementById('prof-bio').value,
+          email: document.getElementById('prof-email').value,
+          instagram: document.getElementById('prof-ig').value,
+          tiktok: document.getElementById('prof-tiktok').value,
+          siteUrl: document.getElementById('prof-site').value,
+        };
+
+        try {
+          const res = await fetch('/api/admin/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type: 'profile', data: profileData })
+          });
+          const json = await res.json();
+          if (json.success) {
+            state.data.profile = profileData;
+            showToast('Profil & nomor WhatsApp berhasil diperbarui!');
+          } else {
+            showToast(json.error || 'Gagal menyimpan', true);
+          }
+        } catch (err) {
+          showToast('Error koneksi server', true);
+        }
+      });
+
+      // Security Save
+      document.getElementById('security-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const currentPassword = document.getElementById('sec-current').value;
+        const newPassword = document.getElementById('sec-new').value;
+        const confirmPassword = document.getElementById('sec-confirm').value;
+
+        if (newPassword !== confirmPassword) {
+          showToast('Konfirmasi password tidak cocok!', true);
+          return;
+        }
+
+        try {
+          const res = await fetch('/api/admin/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'change-password', currentPassword, newPassword })
+          });
+          const json = await res.json();
+          if (json.success) {
+            showToast('Password berhasil diubah!');
+            document.getElementById('security-form').reset();
+          } else {
+            showToast(json.error || 'Gagal mengubah password', true);
+          }
+        } catch (err) {
+          showToast('Error koneksi server', true);
+        }
+      });
+
+      // Modal Submit
+      document.getElementById('modal-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await handleModalSubmit();
+      });
+    }
+
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      document.querySelectorAll('.nav-item').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-tab') === tabId);
+      });
+      document.querySelectorAll('.tab-pane').forEach(p => {
+        p.classList.toggle('active', p.id === `tab-${tabId}`);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function fetchData(showFeedback = false) {
+      try {
+        const res = await fetch('/api/admin/data');
+        const json = await res.json();
+        if (json.success) {
+          state.data = json.data;
+          renderAll();
+          if (showFeedback) showToast('Data berhasil disinkronkan!');
+        }
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        if (showFeedback) showToast('Gagal sinkronisasi data', true);
+      }
+    }
+
+    function renderAll() {
+      const pCount = state.data.photos.length;
+      const vCount = state.data.videos.length;
+      const dCount = state.data.designs.length;
+      const wCount = state.data.websites.length;
+
+      document.getElementById('stat-count-photos').textContent = pCount;
+      document.getElementById('stat-count-videos').textContent = vCount;
+      document.getElementById('stat-count-designs').textContent = dCount;
+      document.getElementById('stat-count-websites').textContent = wCount;
+
+      document.getElementById('badge-photos').textContent = pCount;
+      document.getElementById('badge-videos').textContent = vCount;
+      document.getElementById('badge-designs').textContent = dCount;
+      document.getElementById('badge-websites').textContent = wCount;
+
+      const pillPhotoCount = document.getElementById('count-pill-photos-all');
+      if (pillPhotoCount) pillPhotoCount.textContent = pCount;
+
+      renderList('photos', state.data.photos);
+      renderList('videos', state.data.videos);
+      renderList('designs', state.data.designs);
+      renderList('websites', state.data.websites);
+
+      const prof = state.data.profile || {};
+      document.getElementById('prof-name').value = prof.name || 'Rangga Danuarta';
+      document.getElementById('prof-brand').value = prof.brandName || 'Frame Of Rangga';
+      document.getElementById('prof-tagline').value = prof.tagline || 'Visual Storyteller';
+      document.getElementById('prof-wa').value = prof.whatsapp || '6287779560264';
+      document.getElementById('prof-bio').value = prof.bio || '';
+      document.getElementById('prof-email').value = prof.email || '';
+      document.getElementById('prof-ig').value = prof.instagram || '';
+      document.getElementById('prof-tiktok').value = prof.tiktok || '';
+      document.getElementById('prof-site').value = prof.siteUrl || '';
+    }
+
+    function renderList(type, items) {
+      const container = document.getElementById(`${type}-list`);
+      const counter = document.getElementById(`counter-${type}`);
+      if (!container) return;
+
+      if (counter) {
+        const total = (state.data[type] || []).length;
+        const typeLabel = type === 'photos' ? 'foto' : type === 'videos' ? 'video' : type === 'designs' ? 'desain' : 'website';
+        counter.innerHTML = `<i class="fas fa-layer-group"></i> <span>Menampilkan ${items.length} dari ${total} ${typeLabel}</span>`;
+      }
+
+      if (!items || items.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 56px 20px; color: var(--text-dim); background: var(--surface-card); border-radius: var(--radius-lg); border: 1px dashed var(--border-card);"><i class="fas fa-folder-open" style="font-size: 32px; margin-bottom: 12px; opacity: 0.5;"></i><br/>Tidak ada item yang sesuai dengan filter/pencarian ini.</div>`;
+        return;
+      }
+
+      container.innerHTML = items.map(item => {
+        let rawThumb = item.image || item.imagePath || item.thumbnail || item.thumbnailPath || '';
+        let encodedThumb = rawThumb ? encodeURI(rawThumb) : FALLBACK_IMG;
+        const cat = item.category || 'General';
+        const isFeatured = !!(item.featured || item.isFeatured || item.featuredHome);
+
+        return `
+          <div class="admin-card">
+            <div class="admin-card-thumb">
+              <img src="${encodedThumb}" alt="${item.title}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}'" loading="lazy" />
+              <div class="card-top-badges">
+                <span class="card-cat-pill">${cat}</span>
+              </div>
+              <button type="button" class="card-star-btn ${isFeatured ? 'is-active' : ''}" onclick="toggleFeaturedQuick('${type}', '${item.slug}')" title="${isFeatured ? 'Featured di Homepage (Klik untuk matikan)' : 'Jadikan Featured di Homepage'}">
+                <i class="fas fa-star"></i>
+              </button>
+            </div>
+            <div class="admin-card-body">
+              <h4 class="admin-card-title">${item.title}</h4>
+              <p class="admin-card-desc">${item.description || 'Tidak ada deskripsi.'}</p>
+              <div class="admin-card-footer">
+                <span class="card-order-tag">Order #${item.sortOrder || 1}</span>
+                <div class="card-actions">
+                  <button class="btn-sm-edit" onclick="openEditModal('${type}', '${item.slug}')"><i class="fas fa-edit"></i> Edit</button>
+                  <button class="btn-sm-delete" onclick="deleteItem('${type}', '${item.slug}')" title="Hapus item"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setCategoryFilter(type, category, btn) {
+      state.activeFilter[type] = category;
+      const pillsContainer = document.getElementById(`pills-${type}`);
+      if (pillsContainer) {
+        pillsContainer.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      }
+      if (btn) btn.classList.add('active');
+      filterItems(type);
+    }
+
+    function filterItems(type) {
+      const searchInput = document.getElementById(`search-${type}`);
+      const clearBtn = document.getElementById(`clear-search-${type}`);
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      const cat = state.activeFilter[type] || 'all';
+
+      if (clearBtn) {
+        clearBtn.style.display = query ? 'inline-flex' : 'none';
+      }
+
+      const originalList = state.data[type] || [];
+      const filtered = originalList.filter(item => {
+        const matchTitle = (item.title || '').toLowerCase().includes(query) || (item.description || '').toLowerCase().includes(query) || (item.client || '').toLowerCase().includes(query) || (item.techStack || '').toLowerCase().includes(query);
+        const matchCat = cat === 'all' || (item.category || '').toLowerCase() === cat.toLowerCase();
+        return matchTitle && matchCat;
+      });
+
+      renderList(type, filtered);
+    }
+
+    function clearSearch(type) {
+      const searchInput = document.getElementById(`search-${type}`);
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+      }
+      filterItems(type);
+    }
+
+    async function toggleFeaturedQuick(type, slug) {
+      const list = state.data[type] || [];
+      const item = list.find(i => i.slug === slug);
+      if (!item) return;
+
+      const currentFeatured = !!(item.featured || item.isFeatured || item.featuredHome);
+      const newFeatured = !currentFeatured;
+      item.featured = newFeatured;
+      item.isFeatured = newFeatured;
+      item.featuredHome = newFeatured;
+
+      try {
+        const res = await fetch('/api/admin/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type, action: 'update', slug, data: item })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(newFeatured ? '★ Berhasil ditambahkan ke Featured Homepage' : 'Dihapus dari Featured Homepage');
+          filterItems(type);
+        }
+      } catch (err) {
+        showToast('Gagal mengubah status featured', true);
+      }
+    }
+
+    function updateLivePreview(customImgSrc = null) {
+      const title = document.getElementById('item-title').value.trim() || 'Judul Karya Portofolio';
+      const catSelect = document.getElementById('item-category');
+      const cat = catSelect && catSelect.options[catSelect.selectedIndex] ? catSelect.options[catSelect.selectedIndex].text : 'Category';
+      const order = document.getElementById('item-order').value || 1;
+      const desc = document.getElementById('item-desc').value.trim() || 'Deskripsi karya akan otomatis disesuaikan secara dinamis di sini...';
+      const isFeatured = document.getElementById('item-featured').checked;
+      
+      const manualImg = document.getElementById('item-image-path').value.trim();
+      const imgSrc = customImgSrc || (manualImg ? encodeURI(manualImg) : FALLBACK_IMG);
+
+      document.getElementById('live-prev-title').textContent = title;
+      document.getElementById('live-prev-cat').textContent = cat;
+      document.getElementById('live-prev-order').textContent = `Order #${order}`;
+      document.getElementById('live-prev-desc').textContent = desc;
+      document.getElementById('live-prev-img').src = imgSrc;
+      
+      const starBtn = document.getElementById('live-prev-star');
+      if (isFeatured) {
+        starBtn.classList.add('is-active');
+      } else {
+        starBtn.classList.remove('is-active');
+      }
+    }
+
+    function openAddModal(type) {
+      state.activeTab = type;
+      document.getElementById('modal-type').value = type;
+      document.getElementById('modal-action').value = 'create';
+      document.getElementById('modal-slug').value = '';
+      document.getElementById('modal-title').textContent = `Tambah ${type === 'photos' ? 'Foto' : type === 'videos' ? 'Video' : type === 'designs' ? 'Desain' : 'Website'} Baru`;
+
+      document.getElementById('modal-form').reset();
+      clearImagePreview();
+      setupCategoryOptions(type);
+      adjustFormFields(type);
+      updateLivePreview();
+
+      document.getElementById('admin-modal').style.display = 'flex';
+      setTimeout(() => document.getElementById('item-title').focus(), 100);
+    }
+
+    function openEditModal(type, slug) {
+      const list = state.data[type] || [];
+      const item = list.find(i => i.slug === slug);
+      if (!item) return;
+
+      document.getElementById('modal-type').value = type;
+      document.getElementById('modal-action').value = 'update';
+      document.getElementById('modal-slug').value = slug;
+      document.getElementById('modal-title').textContent = `Edit: ${item.title}`;
+
+      setupCategoryOptions(type);
+      adjustFormFields(type);
+
+      document.getElementById('item-title').value = item.title || '';
+      document.getElementById('item-category').value = item.category || '';
+      document.getElementById('item-order').value = item.sortOrder || 1;
+      document.getElementById('item-desc').value = item.description || '';
+      document.getElementById('item-featured').checked = !!(item.featured || item.isFeatured || item.featuredHome);
+
+      const imgSrc = item.image || item.imagePath || item.thumbnail || item.thumbnailPath || '';
+      document.getElementById('item-image-path').value = imgSrc;
+      if (imgSrc) {
+        document.getElementById('image-preview').src = encodeURI(imgSrc);
+        document.getElementById('image-preview-container').style.display = 'block';
+      } else {
+        clearImagePreview();
+      }
+
+      if (type === 'videos') {
+        document.getElementById('item-video-url').value = item.videoUrl || '';
+        document.getElementById('item-video-duration').value = item.duration || '';
+        document.getElementById('item-video-year').value = item.year || '2024';
+      } else if (type === 'websites') {
+        document.getElementById('item-web-url').value = item.liveUrl || item.url || '';
+        document.getElementById('item-web-tech').value = item.techStack || '';
+      } else if (type === 'designs') {
+        document.getElementById('item-design-client').value = item.client || '';
+        document.getElementById('item-layout').value = item.layout || 'regular';
+      } else if (type === 'photos') {
+        document.getElementById('item-layout').value = item.layout || 'landscape';
+      }
+
+      updateLivePreview(imgSrc ? encodeURI(imgSrc) : null);
+      document.getElementById('admin-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('admin-modal').style.display = 'none';
+    }
+
+    function setupCategoryOptions(type) {
+      const select = document.getElementById('item-category');
+      const options = CATEGORY_MAP[type] || [];
+      select.innerHTML = options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('');
+    }
+
+    function adjustFormFields(type) {
+      document.getElementById('group-image').style.display = 'block';
+      document.getElementById('group-video-url').style.display = type === 'videos' ? 'block' : 'none';
+      document.getElementById('group-video-meta').style.display = type === 'videos' ? 'grid' : 'none';
+      document.getElementById('group-web-url').style.display = type === 'websites' ? 'block' : 'none';
+      document.getElementById('group-web-tech').style.display = type === 'websites' ? 'block' : 'none';
+      document.getElementById('group-design-client').style.display = type === 'designs' ? 'block' : 'none';
+      document.getElementById('group-layout').style.display = (type === 'photos' || type === 'designs') ? 'block' : 'none';
+    }
+
+    function previewUploadedImage(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          document.getElementById('image-preview').src = event.target.result;
+          document.getElementById('image-preview-container').style.display = 'block';
+          updateLivePreview(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function previewManualPath(e) {
+      const val = e.target.value.trim();
+      if (val) {
+        document.getElementById('image-preview').src = encodeURI(val);
+        document.getElementById('image-preview-container').style.display = 'block';
+        updateLivePreview(encodeURI(val));
+      } else {
+        clearImagePreview();
+        updateLivePreview(null);
+      }
+    }
+
+    function clearImagePreview() {
+      document.getElementById('item-image-file').value = '';
+      document.getElementById('item-image-path').value = '';
+      document.getElementById('image-preview').src = '';
+      document.getElementById('image-preview-container').style.display = 'none';
+      updateLivePreview(null);
+    }
+
+    async function handleModalSubmit() {
+      const type = document.getElementById('modal-type').value;
+      const action = document.getElementById('modal-action').value;
+      const slug = document.getElementById('modal-slug').value;
+      const saveBtn = document.getElementById('modal-save-btn');
+
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+
+      try {
+        const fileInput = document.getElementById('item-image-file');
+        let finalImagePath = document.getElementById('item-image-path').value.trim();
+
+        if (fileInput.files && fileInput.files[0]) {
+          const formData = new FormData();
+          formData.append('file', fileInput.files[0]);
+          const uploadRes = await fetch('/api/admin/upload', {
+            method: 'POST',
+            body: formData
+          });
+          const uploadJson = await uploadRes.json();
+          if (uploadJson.success) {
+            finalImagePath = uploadJson.url;
+          }
+        }
+
+        const itemData = {
+          title: document.getElementById('item-title').value.trim(),
+          category: document.getElementById('item-category').value,
+          sortOrder: parseInt(document.getElementById('item-order').value) || 1,
+          description: document.getElementById('item-desc').value.trim(),
+          featured: document.getElementById('item-featured').checked,
+        };
+
+        if (type === 'photos') {
+          itemData.imagePath = finalImagePath;
+          itemData.image = finalImagePath;
+          itemData.layout = document.getElementById('item-layout').value;
+        } else if (type === 'videos') {
+          itemData.videoUrl = document.getElementById('item-video-url').value.trim();
+          itemData.duration = document.getElementById('item-video-duration').value.trim();
+          itemData.year = document.getElementById('item-video-year').value.trim() || '2024';
+          itemData.thumbnailPath = finalImagePath;
+          itemData.thumbnail = finalImagePath;
+          itemData.isFeatured = itemData.featured;
+        } else if (type === 'designs') {
+          itemData.imagePath = finalImagePath;
+          itemData.image = finalImagePath;
+          itemData.client = document.getElementById('item-design-client').value.trim();
+          itemData.layout = document.getElementById('item-layout').value;
+        } else if (type === 'websites') {
+          itemData.liveUrl = document.getElementById('item-web-url').value.trim();
+          itemData.url = itemData.liveUrl;
+          itemData.techStack = document.getElementById('item-web-tech').value.trim();
+          itemData.thumbnailPath = finalImagePath;
+          itemData.thumbnail = finalImagePath;
+        }
+
+        const res = await fetch('/api/admin/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type, action, slug, data: itemData })
+        });
+        const json = await res.json();
+
+        if (json.success) {
+          showToast(json.message || 'Berhasil disimpan!');
+          closeModal();
+          await fetchData();
+        } else {
+          showToast(json.error || 'Gagal menyimpan data', true);
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Terjadi kesalahan saat menyimpan', true);
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="fas fa-save"></i> Simpan Data';
+      }
+    }
+
+    async function deleteItem(type, slug) {
+      if (!confirm('Apakah Anda yakin ingin menghapus item ini?')) return;
+
+      try {
+        const res = await fetch('/api/admin/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type, action: 'delete', slug })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Item berhasil dihapus');
+          await fetchData();
+        } else {
+          showToast(json.error || 'Gagal menghapus', true);
+        }
+      } catch (err) {
+        showToast('Error koneksi server', true);
+      }
+    }
+
+    function exportDataBackup() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state.data, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `for-portfolio-backup-${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Backup data portofolio berhasil didownload!');
+    }
+  </script>
+</body>
+</html>

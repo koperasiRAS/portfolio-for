@@ -1,0 +1,11 @@
+{
+  "slug": "poster-edukasi",
+  "title": "Poster Edukasi",
+  "category": "poster",
+  "imagePath": "/assets/design/social/poster edukasi.png",
+  "description": "Desain infografis poster edukatif yang informatif dan eye-catching.",
+  "client": "Komunitas Edukasi",
+  "layout": "regular",
+  "featuredHome": false,
+  "sortOrder": 2
+}

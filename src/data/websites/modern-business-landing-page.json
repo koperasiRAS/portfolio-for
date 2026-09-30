@@ -1,0 +1,11 @@
+{
+  "slug": "modern-business-landing-page",
+  "title": "Modern Business Landing Page",
+  "category": "landing",
+  "liveUrl": "https://flowfor.vercel.app",
+  "thumbnailPath": "/assets/thumbnails/thumbnail_landing_page.png",
+  "description": "High-conversion landing page design with responsive typography and optimized CTA flow.",
+  "techStack": "Astro, Tailwind, React",
+  "featuredHome": true,
+  "sortOrder": 2
+}

@@ -2,8 +2,7 @@
  * WhatsApp Auto-Message Helper
  * Semua pesan WhatsApp terpusat di sini untuk mudah diupdate
  */
-
-export const WA_NUMBER = '6287779560264'
+import { getProfile } from './content.js';
 
 export const WA_MESSAGES = {
 
@@ -61,7 +60,7 @@ export const WA_MESSAGES = {
 
   // ── COLLAB / CTA ─────────────────────────────────────────
   collab: `Halo Rangga! Saya tertarik untuk berkolaborasi dengan Frame Of Rangga. Boleh kita diskusikan lebih lanjut?`,
-}
+};
 
 /**
  * Generate WhatsApp URL with encoded message
@@ -69,6 +68,8 @@ export const WA_MESSAGES = {
  * @returns {string} - full WhatsApp URL
  */
 export function waLink(messageKey = 'general') {
-  const message = WA_MESSAGES[messageKey] || WA_MESSAGES.general
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
+  const profile = getProfile();
+  const waNum = profile.whatsapp || '6287779560264';
+  const message = WA_MESSAGES[messageKey] || WA_MESSAGES.general;
+  return `https://wa.me/${waNum}?text=${encodeURIComponent(message)}`;
 }

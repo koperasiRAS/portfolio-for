@@ -2,20 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { Image } from "astro:assets";
-import imgAsset1 from "../assets/foto/wedding/ultah raden 2 landscape.JPG";
-import imgAsset2 from "../assets/foto/yearbook/yearbook-3.jpg";
-import imgAsset3 from "../assets/foto/wedding/anggie 4 landscape.jpg";
-import imgAsset4 from "../assets/foto/yearbook/yearbook-4.jpg";
-import imgAsset5 from "../assets/foto/graduation/sampel-wisuda-1.jpg";
-import imgAsset6 from "../assets/foto/fotografi/style.jpeg";
-import imgAsset7 from "../assets/foto/graduation/sampel-wisuda-3.jpg";
-import imgAsset8 from "../assets/foto/fotografer/fotografi gojek.jpg";
-import imgAsset9 from "../assets/foto/wedding/wedding_nikita_1.jpeg";
-import imgAsset10 from "../assets/foto/fotografi/foto_ala_ala_strobis_fotografi_1.jpeg";
-import imgAsset11 from "../assets/foto/fotografi/fotografi_1.jpeg";
-import imgAsset12 from "../assets/foto/wedding/wedding_nikita_2.jpeg";
-import imgAsset13 from "../assets/foto/lifestyle/fotografi_kenzo.jpeg";
+import { getPhotos } from "../utils/content.js";
+
+const photos = getPhotos();
 ---
 
 <BaseLayout
@@ -63,285 +52,39 @@ import imgAsset13 from "../assets/foto/lifestyle/fotografi_kenzo.jpeg";
 
     <!-- Bento Grid Gallery Stitch asymmetric layout -->
     <div class="stitch-bento-grid fade-up">
-      <!-- Birthday Party 1 Featured Large (col-span-8) -->
-      <a
-        class="stitch-card stitch-card-featured glightbox"
-        href={imgAsset1.src}
-        data-gallery="portfolio-gallery"
-        data-title="Birthday Party: Ultah Rangen"
-        data-category="birthday"
-      >
-        <div class="stitch-card-img-wrap">
-          <Image             src={imgAsset1}
-            alt="Birthday Photography"
-            loading="lazy"
-            width="960"
-            height="600"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Birthday</span>
-          <h3 class="stitch-card-title">Birthday Party</h3>
-          <p class="stitch-card-desc">
-            Momen perayaan yang diabadikan dengan cahaya natural dan komposisi
-            sinematik.
-          </p>
-        </div>
-      </a>
+      {photos.map((item) => {
+        const isFeatured = item.layout === 'featured';
+        const imgWrapClass = 
+          item.layout === 'square' ? 'stitch-card-img-square' :
+          item.layout === 'portrait' ? 'stitch-card-img-portrait' :
+          item.layout === 'auto' ? 'stitch-card-img-auto' : '';
+        const imgSrc = item.image || item.imagePath;
 
-      <!-- Yearbook Square -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset2.src}
-        data-gallery="portfolio-gallery"
-        data-title="YearBook: Foto Buku Tahunan"
-        data-category="yearbook"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-square">
-          <Image             src={imgAsset2}
-            alt="Yearbook Photography"
-            loading="lazy"
-            width="480"
-            height="480"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Yearbook</span>
-          <h3 class="stitch-card-title">YearBook: Foto Buku Tahunan</h3>
-        </div>
-      </a>
-
-      <!-- Lifestyle Portrait -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset3.src}
-        data-gallery="portfolio-gallery"
-        data-title="Lifestyle: Anggie Editorial"
-        data-category="lifestyle"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <Image             src={imgAsset3}
-            alt="Editorial Photography"
-            loading="lazy"
-            width="480"
-            height="600"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Lifestyle</span>
-          <h3 class="stitch-card-title">Lifestyle: Anggie Editorial</h3>
-        </div>
-      </a>
-
-      <!-- Yearbook Portrait -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset4.src}
-        data-gallery="portfolio-gallery"
-        data-title="YearBook: Foto Buku Tahunan"
-        data-category="yearbook"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <Image             src={imgAsset4}
-            alt="Yearbook Photography"
-            loading="lazy"
-            width="480"
-            height="600"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Yearbook</span>
-          <h3 class="stitch-card-title">YearBook: Foto Buku Tahunan</h3>
-        </div>
-      </a>
-
-      <!-- Graduation (col-span-4) -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset5.src}
-        data-gallery="portfolio-gallery"
-        data-title="Graduation: Wisuda"
-        data-category="graduation"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-square">
-          <Image             src={imgAsset5}
-            alt="Graduation Photography"
-            loading="lazy"
-            width="480"
-            height="480"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Graduation</span>
-          <h3 class="stitch-card-title">Graduation: Wisuda</h3>
-        </div>
-      </a>
-
-      <!-- Fotografi Portrait -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset6.src}
-        data-gallery="portfolio-gallery"
-        data-title="Fotografi"
-        data-category="fotografi"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <Image             src={imgAsset6}
-            alt="Fotografi"
-            loading="lazy"
-            width="480"
-            height="600"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Fotografi</span>
-          <h3 class="stitch-card-title">Fotografi</h3>
-        </div>
-      </a>
-
-      <!-- Graduation Yearbook -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset7.src}
-        data-gallery="portfolio-gallery"
-        data-title="Graduation: Wisuda"
-        data-category="graduation"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-square">
-          <Image             src={imgAsset7}
-            alt="Graduation Photography"
-            loading="lazy"
-            width="480"
-            height="480"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Graduation</span>
-          <h3 class="stitch-card-title">Graduation: Wisuda</h3>
-        </div>
-      </a>
-
-      <!-- Fotografi (col-span-4) -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset8.src}
-        data-gallery="portfolio-gallery"
-        data-title="Fotografi: Fotografi Gojek"
-        data-category="fotografi"
-      >
-        <div class="stitch-card-img-wrap stitch-card-img-portrait">
-          <Image             src={imgAsset8}
-            alt="Brand Photography"
-            loading="lazy"
-            width="480"
-            height="600"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Fotografi</span>
-          <h3 class="stitch-card-title">Fotografi: Fotografi Gojek</h3>
-        </div>
-      </a>
-
-      <!-- Wedding Nikita -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset9.src}
-        data-gallery="portfolio-gallery"
-        data-title="Wedding: Nikita"
-        data-category="wedding"
-      >
-        <div class="stitch-card-img-auto">
-          <Image src={imgAsset9}
-            alt="Wedding Nikita"
-            loading="lazy"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Wedding</span>
-          <h3 class="stitch-card-title">Wedding: Nikita</h3>
-        </div>
-      </a>
-
-      <!-- Fotografi Strobis -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset10.src}
-        data-gallery="portfolio-gallery"
-        data-title="Fotografi: Teknik Strobis"
-        data-category="fotografi"
-      >
-        <div class="stitch-card-img-auto">
-          <Image src={imgAsset10}
-            alt="Fotografi Teknik Strobis"
-            loading="lazy"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Fotografi</span>
-          <h3 class="stitch-card-title">Fotografi: Teknik Strobis</h3>
-        </div>
-      </a>
-
-      <!-- Fotografi -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset11.src}
-        data-gallery="portfolio-gallery"
-        data-title="Fotografi"
-        data-category="fotografi"
-      >
-        <div class="stitch-card-img-auto">
-          <Image src={imgAsset11}
-            alt="Fotografi"
-            loading="lazy"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Fotografi</span>
-          <h3 class="stitch-card-title">Fotografi</h3>
-        </div>
-      </a>
-
-      <!-- Wedding Nikita 2 -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset12.src}
-        data-gallery="portfolio-gallery"
-        data-title="Wedding: Nikita 2"
-        data-category="wedding"
-      >
-        <div class="stitch-card-img-auto">
-          <Image src={imgAsset12}
-            alt="Wedding Nikita 2"
-            loading="lazy"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Wedding</span>
-          <h3 class="stitch-card-title">Wedding: Nikita 2</h3>
-        </div>
-      </a>
-
-      <!-- Lifestyle Kenzo -->
-      <a
-        class="stitch-card glightbox"
-        href={imgAsset13.src}
-        data-gallery="portfolio-gallery"
-        data-title="Lifestyle: Kenzo"
-        data-category="lifestyle"
-      >
-        <div class="stitch-card-img-auto">
-          <Image src={imgAsset13}
-            alt="Lifestyle Kenzo"
-            loading="lazy"
-          />
-        </div>
-        <div class="stitch-card-overlay">
-          <span class="stitch-card-cat">Lifestyle</span>
-          <h3 class="stitch-card-title">Lifestyle: Kenzo</h3>
-        </div>
-      </a>
+        return (
+          <a
+            class={`stitch-card ${isFeatured ? 'stitch-card-featured' : ''} glightbox`}
+            href={imgSrc}
+            data-gallery="portfolio-gallery"
+            data-title={item.title}
+            data-category={item.category}
+          >
+            <div class={`stitch-card-img-wrap ${imgWrapClass}`}>
+              <img
+                src={imgSrc}
+                alt={item.title}
+                loading="lazy"
+              />
+            </div>
+            <div class="stitch-card-overlay">
+              <span class="stitch-card-cat">{item.category}</span>
+              <h3 class="stitch-card-title">{item.title}</h3>
+              {item.description && (
+                <p class="stitch-card-desc">{item.description}</p>
+              )}
+            </div>
+          </a>
+        );
+      })}
     </div>
   </section>
 
@@ -439,15 +182,6 @@ import imgAsset13 from "../assets/foto/lifestyle/fotografi_kenzo.jpeg";
     padding: 0 48px;
     max-width: 1280px;
     margin: 0 auto;
-  }
-
-  /* Remove grid-column spans for masonry */
-  .stitch-card-featured {
-    /* No longer grid-column */
-  }
-
-  .stitch-card:not(.stitch-card-featured) {
-    /* No longer grid-column */
   }
 
   /* Stitch Card */
@@ -558,165 +292,39 @@ import imgAsset13 from "../assets/foto/lifestyle/fotografi_kenzo.jpeg";
   .stitch-card-title {
     font-family: "Manrope", sans-serif;
     font-size: clamp(16px, 2vw, 22px);
-    font-weight: 500;
+    font-weight: 700;
     color: var(--text-primary);
+    line-height: 1.25;
     margin-bottom: 6px;
-    line-height: 1.3;
   }
 
   .stitch-card-desc {
-    font-size: 12px;
-    color: rgba(222, 229, 255, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    color: var(--text-secondary);
     line-height: 1.5;
-    max-width: 320px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  /* Responsive iPad (768px) */
-  @media (max-width: 768px) {
-    .stitch-hero {
-      padding: 100px 24px 60px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(40px, 10vw, 72px);
-    }
-
-    .filter-bar,
-    .stitch-bento-grid {
-      padding: 0 20px;
-    }
-
-    /* 2-column masonry gallery */
+  @media (max-width: 900px) {
     .stitch-bento-grid {
       column-count: 2;
-      column-gap: 14px;
-    }
-
-    .stitch-card {
-      margin-bottom: 14px;
-    }
-
-    .stitch-card-featured,
-    .stitch-card:not(.stitch-card-featured) {
-      /* Grid spans removed */
     }
   }
 
-  /* Responsive Mobile (480px) */
   @media (max-width: 600px) {
     .stitch-hero {
-      padding: 88px 20px 48px;
+      padding: 120px 24px 40px;
     }
-
-    .stitch-hero-title {
-      font-size: clamp(36px, 12vw, 56px);
-    }
-
-    .stitch-hero-sub {
-      font-size: 15px;
-    }
-
-    /* Filter: horizontal scroll */
     .filter-bar {
-      gap: 8px;
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      padding: 0 20px 8px;
-      scrollbar-width: none;
-      margin-bottom: 32px;
-      -webkit-overflow-scrolling: touch;
+      padding: 0 24px;
     }
-
-    .filter-bar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-btn {
-      flex-shrink: 0;
-      font-size: 12px;
-      padding: 8px 18px;
-    }
-
-    /* Single column gallery */
     .stitch-bento-grid {
       column-count: 1;
-      padding: 0 20px;
-      column-gap: 16px;
-    }
-
-    .stitch-card {
-      margin-bottom: 16px;
-    }
-
-    .stitch-card-featured,
-    .stitch-card:not(.stitch-card-featured) {
-      /* Grid spans removed */
-    }
-
-    .stitch-card-overlay {
-      opacity: 1;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .stitch-hero {
-      padding: 80px 20px 40px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(32px, 14vw, 48px);
-    }
-
-    .stitch-card-overlay {
-      opacity: 1;
-    }
-
-    .stitch-card-desc {
-      display: none;
+      padding: 0 24px;
     }
   }
 </style>
-
-<script is:inline>
-  /* ---------- GLIGHTBOX ---------- */
-  document.addEventListener("DOMContentLoaded", function initGL() {
-    if (typeof GLightbox === "undefined") {
-      setTimeout(initGL, 100);
-      return;
-    }
-    GLightbox({
-      selector: ".glightbox",
-      touchNavigation: true,
-      loop: true,
-      autoplayVideos: false,
-      zoomable: true,
-    });
-  });
-
-  /* ---------- CATEGORY FILTER ---------- */
-  (function () {
-    const filterBar = document.querySelector(".filter-bar");
-    if (!filterBar) return;
-    const btns = filterBar.querySelectorAll(".filter-btn");
-    const cards = document.querySelectorAll(".stitch-card");
-    if (!cards.length) return;
-
-    btns.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        const filter = btn.dataset.filter;
-        btns.forEach(function (b) {
-          b.classList.remove("active");
-        });
-        btn.classList.add("active");
-        cards.forEach(function (card) {
-          const cat = card.dataset.category || "";
-          if (filter === "all" || cat === filter) {
-            card.style.display = "";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
-  })();
-</script>

@@ -1,0 +1,383 @@
+---
+import { Image } from "astro:assets";
+import webThumbnail from "../assets/thumbnails/web2.png";
+---
+
+<section class="tech-section" id="engineering">
+  <div class="tech-inner">
+    <div class="tech-header fade-up">
+      <span class="tech-badge">CREATIVE ENGINEERING & CODE</span>
+      <h2 class="tech-title">High-Performance Web & Digital Experiences</h2>
+      <p class="tech-subtitle">
+        Bridging the gap between cinematic visual aesthetics and rock-solid software architecture. Fast, responsive, and SEO-optimized.
+      </p>
+    </div>
+
+    <div class="tech-grid">
+      <!-- Left: Interactive Browser Mockup -->
+      <div class="browser-mockup fade-up">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="browser-address">
+            <span class="browser-lock">🔒</span> https://frameofrangga.com
+          </div>
+          <div class="browser-badge">Astro v4.x</div>
+        </div>
+        <div class="browser-screen">
+          <Image 
+            src={webThumbnail} 
+            alt="Web Development Showcase" 
+            class="browser-img" 
+            loading="lazy" 
+          />
+          <div class="browser-overlay">
+            <a href="/website" class="browser-cta">
+              <span>View Full Web Projects</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Engineering Metrics & Tech Stack -->
+      <div class="tech-details fade-up">
+        <!-- Metric Cards -->
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-score">100<span class="metric-unit">%</span></div>
+            <div class="metric-label">Lighthouse Performance</div>
+            <p class="metric-desc">Sub-second TTFB, zero layout shift (CLS), optimized Core Web Vitals.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-score">100<span class="metric-unit">%</span></div>
+            <div class="metric-label">SEO & Accessibility</div>
+            <p class="metric-desc">Semantic HTML5, OpenGraph metadata, structured JSON-LD data.</p>
+          </div>
+        </div>
+
+        <!-- Tech Stack Pill Box -->
+        <div class="stack-box">
+          <h4 class="stack-title">Core Technologies & Stack</h4>
+          <div class="stack-pills">
+            <span class="pill"><i class="fab fa-js"></i> TypeScript / JS</span>
+            <span class="pill"><i class="fas fa-rocket"></i> Astro Islands</span>
+            <span class="pill"><i class="fab fa-react"></i> React / Next.js</span>
+            <span class="pill"><i class="fab fa-css3-alt"></i> Modern CSS / Tokens</span>
+            <span class="pill"><i class="fab fa-node-js"></i> Node.js & APIs</span>
+            <span class="pill"><i class="fab fa-git-alt"></i> Git & CI/CD</span>
+          </div>
+        </div>
+
+        <!-- Architecture Principles -->
+        <div class="principles-box">
+          <div class="principle-item">
+            <span class="principle-icon">⚡</span>
+            <div>
+              <strong>Zero-Slop Architecture:</strong> Lightweight, modular components without bloated libraries.
+            </div>
+          </div>
+          <div class="principle-item">
+            <span class="principle-icon">📱</span>
+            <div>
+              <strong>Fluid Adaptability:</strong> Bespoke responsiveness crafted for mobile, tablet, & desktop.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-section {
+    padding: 6rem 1.5rem;
+    position: relative;
+    background: radial-gradient(circle at 80% 20%, rgba(255, 170, 64, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.04) 0%, transparent 50%);
+  }
+
+  .tech-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tech-header {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .tech-badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 999px;
+    margin-bottom: 0.8rem;
+  }
+
+  .tech-title {
+    font-family: "Outfit", "Manrope", sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .tech-subtitle {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 960px) {
+    .tech-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Browser Mockup */
+  .browser-mockup {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .browser-mockup:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 35px 80px rgba(56, 189, 248, 0.15), 0 25px 60px rgba(0, 0, 0, 0.7);
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.2rem;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #f59e0b; }
+  .dot-green { background: #10b981; }
+
+  .browser-address {
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .browser-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #ffaa40;
+    background: rgba(255, 170, 64, 0.15);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .browser-screen {
+    position: relative;
+    overflow: hidden;
+    height: 380px;
+  }
+
+  .browser-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.5s ease;
+  }
+
+  .browser-mockup:hover .browser-img {
+    transform: scale(1.03);
+  }
+
+  .browser-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .browser-mockup:hover .browser-overlay {
+    opacity: 1;
+  }
+
+  .browser-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.6rem;
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 700;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transform: translateY(10px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+  }
+
+  .browser-mockup:hover .browser-cta {
+    transform: translateY(0);
+  }
+
+  .browser-cta:hover {
+    background: #ffaa40;
+    color: #0f172a;
+  }
+
+  /* Metric Cards */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .metric-card {
+    background: rgba(18, 24, 38, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.25rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .metric-score {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #10b981;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .metric-unit {
+    font-size: 1.2rem;
+    color: #34d399;
+  }
+
+  .metric-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 0.25rem;
+  }
+
+  .metric-desc {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Stack Box */
+  .stack-box {
+    background: rgba(18, 24, 38, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .stack-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin: 0 0 0.8rem 0;
+  }
+
+  .stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pill:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+  }
+
+  /* Principles */
+  .principles-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .principle-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+  }
+
+  .principle-icon {
+    font-size: 1.1rem;
+  }
+</style>

@@ -1,0 +1,11 @@
+{
+  "slug": "point-of-sale-pos-web-app",
+  "title": "Point of Sale (POS) Web App",
+  "category": "sistem",
+  "liveUrl": "#",
+  "thumbnailPath": "/assets/thumbnails/thumbnail_POS.png",
+  "description": "Lightweight and intuitive cashier POS web system with real-time receipt and order management.",
+  "techStack": "React, Node.js, Express, Tailwind",
+  "featuredHome": false,
+  "sortOrder": 3
+}

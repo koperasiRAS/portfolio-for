@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060e20" />
+      <stop offset="100%" stop-color="#141f38" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)" />
+  <rect x="20" y="20" width="920" height="500" fill="none" stroke="rgba(163, 166, 255, 0.15)" stroke-width="2" rx="16" />
+  <text x="480" y="270" font-family="'Manrope', 'Inter', sans-serif" font-size="42" font-weight="800" fill="#dee5ff" text-anchor="middle" alignment-baseline="middle">Sistem POS Point of Sale</text>
+  <text x="480" y="320" font-family="'Inter', sans-serif" font-size="20" font-weight="600" fill="#a3a6ff" text-anchor="middle" alignment-baseline="middle">Web Application</text>
+</svg>

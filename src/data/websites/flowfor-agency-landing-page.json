@@ -1,0 +1,11 @@
+{
+  "slug": "flowfor-agency-landing-page",
+  "title": "FlowFor Agency Landing Page",
+  "category": "company",
+  "liveUrl": "https://flowfor.vercel.app",
+  "thumbnailPath": "/assets/thumbnails/thumbnail_landing_page_flowfor.png",
+  "description": "Creative agency showcase with smooth glassmorphism and modern dark visual hierarchy.",
+  "techStack": "Astro, CSS Grid, GSAP",
+  "featuredHome": false,
+  "sortOrder": 4
+}

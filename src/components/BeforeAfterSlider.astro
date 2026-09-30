@@ -1,0 +1,282 @@
+---
+interface Props {
+  beforeImg: ImageMetadata | string;
+  afterImg: ImageMetadata | string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  metaText?: string;
+  title?: string;
+}
+
+import { Image } from "astro:assets";
+
+const {
+  beforeImg,
+  afterImg,
+  beforeLabel = "S-LOG / RAW",
+  afterLabel = "CINEMATIC GRADE",
+  metaText = "Sony S-Log3 → Rec.709 • Custom Kodak Film LUT • 35mm f/1.8",
+  title = "Color Grading & Post-Processing Precision"
+} = Astro.props;
+---
+
+<div class="ba-slider-container">
+  {title && (
+    <div class="ba-header">
+      <span class="ba-badge">COLOR SCIENCE & RETOUCHING</span>
+      <h3 class="ba-title">{title}</h3>
+      <p class="ba-meta">{metaText}</p>
+    </div>
+  )}
+
+  <div class="ba-frame">
+    <!-- After Image (Full background) -->
+    <div class="ba-img-wrap ba-after">
+      {typeof afterImg === "string" ? (
+        <img src={afterImg} alt="After color grading" class="ba-img" loading="lazy" />
+      ) : (
+        <Image src={afterImg} alt="After color grading" class="ba-img" loading="lazy" />
+      )}
+      <span class="ba-tag ba-tag-after">{afterLabel}</span>
+    </div>
+
+    <!-- Before Image (Clipped with slider width) -->
+    <div class="ba-img-wrap ba-before" id="baBeforeWrap">
+      {typeof beforeImg === "string" ? (
+        <img src={beforeImg} alt="Before color grading" class="ba-img ba-img-before" loading="lazy" />
+      ) : (
+        <Image src={beforeImg} alt="Before color grading" class="ba-img ba-img-before" loading="lazy" />
+      )}
+      <span class="ba-tag ba-tag-before">{beforeLabel}</span>
+    </div>
+
+    <!-- Draggable Divider Line & Handle -->
+    <div class="ba-handle" id="baHandle">
+      <div class="ba-handle-line"></div>
+      <div class="ba-handle-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" transform="rotate(180 12 12)" />
+          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ba-slider-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: rgba(18, 24, 38, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  .ba-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .ba-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffaa40;
+    background: rgba(255, 170, 64, 0.12);
+    border: 1px solid rgba(255, 170, 64, 0.25);
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+  }
+
+  .ba-title {
+    font-family: "Outfit", "Inter", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.4rem 0;
+  }
+
+  .ba-meta {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  .ba-frame {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    border-radius: 14px;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+    cursor: ew-resize;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .ba-frame {
+      height: 320px;
+    }
+  }
+
+  .ba-img-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .ba-before {
+    width: 50%;
+    z-index: 2;
+    border-right: 2px solid #ffaa40;
+    box-shadow: 2px 0 15px rgba(255, 170, 64, 0.3);
+  }
+
+  .ba-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .ba-img-before {
+    /* To keep aspect fixed while container width changes */
+    width: 1000px;
+    max-width: none;
+    filter: saturate(0.4) brightness(0.9) contrast(0.85); /* Emulate Flat/LOG feel */
+  }
+
+  .ba-tag {
+    position: absolute;
+    bottom: 1.2rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+    z-index: 5;
+  }
+
+  .ba-tag-before {
+    left: 1.2rem;
+    background: rgba(15, 23, 42, 0.75);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .ba-tag-after {
+    right: 1.2rem;
+    background: rgba(255, 170, 64, 0.85);
+    color: #0f172a;
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 40px;
+    margin-left: -20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .ba-handle-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: #ffaa40;
+  }
+
+  .ba-handle-btn {
+    width: 36px;
+    height: 36px;
+    background: #ffaa40;
+    color: #0f172a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 170, 64, 0.8), 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ba-frame:hover .ba-handle-btn {
+    transform: scale(1.15);
+  }
+</style>
+
+<script>
+  function setupBeforeAfter() {
+    const frames = document.querySelectorAll('.ba-frame');
+    frames.forEach(frame => {
+      const beforeWrap = frame.querySelector('#baBeforeWrap') as HTMLElement;
+      const handle = frame.querySelector('#baHandle') as HTMLElement;
+      const beforeImg = frame.querySelector('.ba-img-before') as HTMLElement;
+
+      if (!beforeWrap || !handle) return;
+
+      const updateWidth = () => {
+        if (beforeImg) {
+          beforeImg.style.width = `${frame.clientWidth}px`;
+        }
+      };
+
+      window.addEventListener('resize', updateWidth);
+      updateWidth();
+
+      let isDragging = false;
+
+      const setPosition = (x: number) => {
+        const rect = frame.getBoundingClientRect();
+        let offsetX = x - rect.left;
+        if (offsetX < 0) offsetX = 0;
+        if (offsetX > rect.width) offsetX = rect.width;
+
+        const percentage = (offsetX / rect.width) * 100;
+        beforeWrap.style.width = `${percentage}%`;
+        handle.style.left = `${percentage}%`;
+      };
+
+      frame.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        setPosition(e.clientX);
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        setPosition(e.clientX);
+      });
+
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupBeforeAfter);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupBeforeAfter);
+  } else {
+    setupBeforeAfter();
+  }
+</script>

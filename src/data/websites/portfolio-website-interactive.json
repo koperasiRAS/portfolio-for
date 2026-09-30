@@ -1,0 +1,11 @@
+{
+  "slug": "portfolio-website-interactive",
+  "title": "Portfolio Website Interactive",
+  "category": "portfolio",
+  "liveUrl": "https://for-portfolio-mu.vercel.app",
+  "thumbnailPath": "/assets/thumbnails/thumbnail_portfolio.png",
+  "description": "Bespoke personal portfolio website with interactive motion, Bento Grid, and dynamic CMS.",
+  "techStack": "Astro, CSS3, JavaScript, Keystatic CMS",
+  "featuredHome": true,
+  "sortOrder": 1
+}

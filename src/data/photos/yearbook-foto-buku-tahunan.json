@@ -1,0 +1,10 @@
+{
+  "slug": "yearbook-foto-buku-tahunan",
+  "title": "YearBook: Foto Buku Tahunan",
+  "category": "yearbook",
+  "imagePath": "/assets/foto/yearbook/yearbook-3.jpg",
+  "description": "Dokumentasi buku tahunan sekolah dengan konsep visual yang fun dan memorable.",
+  "layout": "square",
+  "featuredHome": false,
+  "sortOrder": 2
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "social-media-carousel",
+  "title": "Social Media Carousel",
+  "category": "social",
+  "imagePath": "/assets/design/social/carousels 1.png",
+  "description": "Carousel edukasi & engagement content untuk media sosial.",
+  "client": "Creative Agency",
+  "layout": "regular",
+  "featuredHome": false,
+  "sortOrder": 5
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "wedding-video",
+  "title": "Wedding Video",
+  "category": "wedding",
+  "videoUrl": "https://drive.google.com/file/d/1_DVJqrqzKQTcVfcmptCpcYdK5kB0Zvgr/preview",
+  "duration": "00:20",
+  "year": "2024",
+  "thumbnailPath": "/assets/thumbnails/thumbnail_wedding.png",
+  "description": "Cinematic wedding highlights yang merangkum momen sakral dalam alunan visual elegan.",
+  "isFeatured": false,
+  "sortOrder": 2
+}
