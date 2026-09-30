@@ -47,19 +47,20 @@ const websites = getWebsites();
     {websites.map((item, index) => {
       const isInverse = index % 2 !== 0;
       const imgSrc = item.thumbnail || item.thumbnailPath;
+      const cat = item.category ? item.category.toLowerCase() : 'all';
       const badgeColor = 
-        item.category === 'portfolio' ? 'purple' :
-        item.category === 'landing' ? 'blue' :
-        item.category === 'sistem' ? 'green' : 'amber';
+        cat.includes('portfolio') ? 'purple' :
+        cat.includes('landing') ? 'blue' :
+        cat.includes('sistem') ? 'green' : 'amber';
       const badgeLabel = 
-        item.category === 'portfolio' ? 'Portfolio Website' :
-        item.category === 'landing' ? 'Landing Page' :
-        item.category === 'sistem' ? 'Sistem Sederhana' : 'Company Profile';
+        cat.includes('portfolio') ? 'Portfolio Website' :
+        cat.includes('landing') ? 'Landing Page' :
+        cat.includes('sistem') ? 'Sistem Sederhana' : 'Company Profile';
       
       const domainDisplay = item.liveUrl ? item.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'preview.local';
 
       return (
-        <div class={`web-project-row ${isInverse ? 'web-project-row-inverse' : 'web-project-row-normal'}`} data-category={item.category}>
+        <div class={`web-project-row ${isInverse ? 'web-project-row-inverse' : 'web-project-row-normal'}`} data-category={cat}>
           {!isInverse && (
             <div class="web-project-browser-wrap">
               <div class="web-project-browser-frame">
@@ -131,7 +132,6 @@ const websites = getWebsites();
 <style>
   /* =============================================
      STITCH WEB PAGE Scoped styles
-     Matches: stitch/web_development/code.html
      ============================================= */
 
   .web-stitch-hero {
@@ -228,6 +228,7 @@ const websites = getWebsites();
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: center;
+    transition: opacity 0.3s ease;
   }
 
   .web-project-info {
@@ -414,7 +415,65 @@ const websites = getWebsites();
       gap: 60px;
     }
     .filter-bar {
-      padding: 0 24px;
+      padding: 0 20px;
+      gap: 8px;
     }
   }
 </style>
+
+<script is:inline>
+  // ---------- GLIGHTBOX INITIALIZATION ----------
+  function initWebLightbox() {
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+      });
+    } else {
+      setTimeout(initWebLightbox, 100);
+    }
+  }
+
+  // ---------- WEB PROJECTS FILTER ----------
+  function initWebFilter() {
+    const filterBar = document.querySelector('.filter-bar');
+    if (!filterBar) return;
+
+    const btns = filterBar.querySelectorAll('.filter-btn');
+    const rows = document.querySelectorAll('.web-project-row');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedFilter = btn.getAttribute('data-filter') ? btn.getAttribute('data-filter').toLowerCase() : 'all';
+
+        // Update active button
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter project rows
+        rows.forEach(row => {
+          const cat = row.getAttribute('data-category') ? row.getAttribute('data-category').toLowerCase() : '';
+          if (selectedFilter === 'all' || cat.includes(selectedFilter) || selectedFilter.includes(cat)) {
+            row.style.display = 'grid';
+            row.style.opacity = '1';
+          } else {
+            row.style.display = 'none';
+            row.style.opacity = '0';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initWebLightbox();
+    initWebFilter();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initWebLightbox();
+    initWebFilter();
+  });
+</script>

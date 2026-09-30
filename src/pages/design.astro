@@ -9,7 +9,7 @@ const designs = getDesigns();
 
 <BaseLayout
   title="Brand Design Portfolio | Frame Of Rangga"
-  description="Portofolio brand design Rangga Danuarta brand identity, social media content, poster, dan visual branding yang memorable dan estadounid."
+  description="Portofolio brand design Rangga Danuarta brand identity, social media content, poster, dan visual branding yang memorable dan elegan."
   ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-design.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/design"
   hasGlightbox={true}
@@ -25,7 +25,7 @@ const designs = getDesigns();
         &amp; Brand Narrative
       </h1>
       <p class="stitch-hero-desc">
-        Curated collection of identity systems, editorial layouts, and digital experiences defined by structural precision and creative intentionality.
+        Curated collection of identity systems, editorial layouts, poster design, and digital experiences defined by structural precision and creative intentionality.
       </p>
     </div>
   </section>
@@ -46,17 +46,19 @@ const designs = getDesigns();
     <div class="stitch-design-grid fade-up">
       {designs.map((item) => {
         const imgSrc = item.image || item.imagePath;
+        const cat = item.category ? item.category.toLowerCase() : 'all';
         const badgeLabel = 
-          item.category === 'brand' ? 'Branding' :
-          item.category === 'social' ? 'Social' :
-          item.category === 'poster' ? 'Poster' : 'Advertising';
+          cat.includes('brand') ? 'Branding' :
+          cat.includes('social') ? 'Social Media' :
+          cat.includes('poster') ? 'Poster' : 'Advertising';
 
         return (
           <a class="stitch-design-card glightbox"
              href={imgSrc}
              data-gallery="design-gallery"
              data-title={item.title}
-             data-category={item.category}>
+             data-description={item.description || ''}
+             data-category={cat}>
             <div class="stitch-design-img-wrap">
               <img
                 src={imgSrc}
@@ -66,7 +68,7 @@ const designs = getDesigns();
             </div>
             <div class="stitch-design-card-overlay">
               <div class="stitch-design-card-badges">
-                <span class={`stitch-badge-pill stitch-badge-${item.category}`}>{badgeLabel}</span>
+                <span class={`stitch-badge-pill stitch-badge-${cat}`}>{badgeLabel}</span>
                 <span class="stitch-badge-pill">2024</span>
               </div>
               <h3 class="stitch-design-card-title">{item.title}</h3>
@@ -87,7 +89,6 @@ const designs = getDesigns();
 <style>
   /* =============================================
      STITCH DESIGN PAGE Scoped styles
-     Matches: stitch/design_showcase_redesign/code.html
      ============================================= */
 
   /* Hero Centered single column */
@@ -130,6 +131,10 @@ const designs = getDesigns();
   .filter-bar {
     padding: 0 48px;
     margin-bottom: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .filter-btn {
@@ -166,10 +171,6 @@ const designs = getDesigns();
     margin: 0 auto;
   }
 
-  /* =============================================
-     EDITORIAL BENTO GRID
-     12-column, variable row heights
-     ============================================= */
   .stitch-design-grid {
     column-count: 3;
     column-gap: 24px;
@@ -189,13 +190,14 @@ const designs = getDesigns();
     break-inside: avoid;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
                 box-shadow 0.3s ease,
-                border-color 0.3s ease;
+                border-color 0.3s ease,
+                opacity 0.3s ease;
   }
 
   .stitch-design-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(163, 166, 255, 0.18);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+    border-color: rgba(163, 166, 255, 0.25);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
   }
 
   /* Image */
@@ -272,10 +274,16 @@ const designs = getDesigns();
     border-color: rgba(255, 128, 200, 0.3);
   }
 
-  .stitch-badge-digital {
+  .stitch-badge-poster {
     background: rgba(128, 255, 200, 0.15);
     color: #80ffc8;
     border-color: rgba(128, 255, 200, 0.3);
+  }
+
+  .stitch-badge-advertising {
+    background: rgba(255, 200, 100, 0.15);
+    color: #ffc864;
+    border-color: rgba(255, 200, 100, 0.3);
   }
 
   /* Title & Desc */
@@ -310,11 +318,69 @@ const designs = getDesigns();
       padding: 120px 24px 40px;
     }
     .filter-bar {
-      padding: 0 24px;
+      padding: 0 20px;
+      gap: 8px;
     }
     .stitch-design-grid {
       column-count: 1;
-      padding: 0 24px;
+      padding: 0 20px;
     }
   }
 </style>
+
+<script is:inline>
+  // ---------- GLIGHTBOX INITIALIZATION ----------
+  function initDesignLightbox() {
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+      });
+    } else {
+      setTimeout(initDesignLightbox, 100);
+    }
+  }
+
+  // ---------- DESIGN CATEGORY FILTER ----------
+  function initDesignFilter() {
+    const filterBar = document.querySelector('.filter-bar');
+    if (!filterBar) return;
+
+    const btns = filterBar.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.stitch-design-card');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedFilter = btn.getAttribute('data-filter') ? btn.getAttribute('data-filter').toLowerCase() : 'all';
+
+        // Update active button
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter design cards
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+          if (selectedFilter === 'all' || cat.includes(selectedFilter) || selectedFilter.includes(cat)) {
+            card.style.display = 'inline-block';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initDesignLightbox();
+    initDesignFilter();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initDesignLightbox();
+    initDesignFilter();
+  });
+</script>

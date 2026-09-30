@@ -1538,7 +1538,8 @@
               <!-- VIDEOS FIELDS -->
               <div class="form-group" id="group-video-url" style="display: none;">
                 <label for="item-video-url">URL Video (YouTube / Google Drive) <span class="req">*</span></label>
-                <input type="text" id="item-video-url" placeholder="https://www.youtube.com/watch?v=..." />
+                <input type="text" id="item-video-url" placeholder="https://www.youtube.com/watch?v=... atau https://drive.google.com/file/d/.../view" oninput="handleVideoUrlInput(event)" />
+                <small class="form-hint"><i class="fab fa-youtube" style="color: #ff0000;"></i> <strong>YouTube:</strong> Auto-generate thumbnail & player embed. <br/><i class="fab fa-google-drive" style="color: #4285F4;"></i> <strong>Google Drive:</strong> Didukung penuh (player iframe internal).</small>
               </div>
 
               <div class="form-grid-2" id="group-video-meta" style="display: none;">
@@ -2198,6 +2199,26 @@
       }
     }
 
+    function handleVideoUrlInput(e) {
+      const val = e.target.value.trim();
+      const curImg = document.getElementById('item-image-path').value.trim();
+      const fileInput = document.getElementById('item-image-file');
+
+      // If YouTube URL and no custom image uploaded/typed yet, auto-preview YouTube thumbnail
+      if ((val.includes('youtube.com') || val.includes('youtu.be')) && !curImg && (!fileInput.files || !fileInput.files.length)) {
+        let ytId = '';
+        if (val.includes('youtu.be/')) {
+          ytId = val.split('youtu.be/')[1]?.split('?')[0];
+        } else if (val.includes('v=')) {
+          ytId = val.split('v=')[1]?.split('&')[0];
+        }
+        if (ytId) {
+          const ytThumb = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+          updateLivePreview(ytThumb);
+        }
+      }
+    }
+
     function previewManualPath(e) {
       const val = e.target.value.trim();
       if (val) {
@@ -2257,7 +2278,30 @@
           itemData.image = finalImagePath;
           itemData.layout = document.getElementById('item-layout').value;
         } else if (type === 'videos') {
-          itemData.videoUrl = document.getElementById('item-video-url').value.trim();
+          let vUrl = document.getElementById('item-video-url').value.trim();
+          
+          // Auto-format Google Drive link to /preview
+          if (vUrl.includes('drive.google.com')) {
+            const match = vUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || vUrl.match(/id=([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+              vUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+            }
+          }
+
+          // Auto-generate YouTube thumbnail if empty
+          if (!finalImagePath && (vUrl.includes('youtube.com') || vUrl.includes('youtu.be'))) {
+            let ytId = '';
+            if (vUrl.includes('youtu.be/')) {
+              ytId = vUrl.split('youtu.be/')[1]?.split('?')[0];
+            } else if (vUrl.includes('v=')) {
+              ytId = vUrl.split('v=')[1]?.split('&')[0];
+            }
+            if (ytId) {
+              finalImagePath = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+            }
+          }
+
+          itemData.videoUrl = vUrl;
           itemData.duration = document.getElementById('item-video-duration').value.trim();
           itemData.year = document.getElementById('item-video-year').value.trim() || '2024';
           itemData.thumbnailPath = finalImagePath;

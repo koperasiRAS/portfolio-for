@@ -9,7 +9,7 @@ const photos = getPhotos();
 
 <BaseLayout
   title="Photography Portfolio | Frame Of Rangga"
-  description="Portofolio fotografi Rangga Danuarta birthday, event, komersial, wisuda, lifestyle, dan brand photography dengan pendekatan visual storytelling."
+  description="Portofolio fotografi Rangga Danuarta wedding, birthday party, event, komersial, wisuda, lifestyle, dan brand photography dengan pendekatan visual storytelling."
   ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-foto.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/foto"
   hasGlightbox={true}
@@ -50,14 +50,14 @@ const photos = getPhotos();
       <button class="filter-btn" data-filter="fotografi">Fotografi</button>
     </div>
 
-    <!-- Bento Grid Gallery Stitch asymmetric layout -->
+    <!-- Bento Grid Gallery Masonry layout -->
     <div class="stitch-bento-grid fade-up">
       {photos.map((item) => {
         const isFeatured = item.layout === 'featured';
         const imgWrapClass = 
           item.layout === 'square' ? 'stitch-card-img-square' :
           item.layout === 'portrait' ? 'stitch-card-img-portrait' :
-          item.layout === 'auto' ? 'stitch-card-img-auto' : '';
+          item.layout === 'landscape' ? 'stitch-card-img-landscape' : 'stitch-card-img-natural';
         const imgSrc = item.image || item.imagePath;
 
         return (
@@ -66,7 +66,8 @@ const photos = getPhotos();
             href={imgSrc}
             data-gallery="portfolio-gallery"
             data-title={item.title}
-            data-category={item.category}
+            data-description={item.description || ''}
+            data-category={item.category ? item.category.toLowerCase() : 'all'}
           >
             <div class={`stitch-card-img-wrap ${imgWrapClass}`}>
               <img
@@ -94,7 +95,6 @@ const photos = getPhotos();
 <style>
   /* =============================================
      STITCH FOTO PAGE Scoped styles
-     Matches: stitch/photography_showcase/code.html
      ============================================= */
 
   /* Hero Stitch style */
@@ -146,6 +146,10 @@ const photos = getPhotos();
   .filter-bar {
     padding: 0 48px;
     margin-bottom: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .filter-btn {
@@ -175,10 +179,10 @@ const photos = getPhotos();
     color: #e9cdff;
   }
 
-  /* Bento Grid Masonry layout to prevent empty gaps */
+  /* Bento Grid Masonry layout to prevent empty gaps & cropping */
   .stitch-bento-grid {
     column-count: 3;
-    column-gap: 20px;
+    column-gap: 24px;
     padding: 0 48px;
     max-width: 1280px;
     margin: 0 auto;
@@ -188,59 +192,37 @@ const photos = getPhotos();
   .stitch-card {
     position: relative;
     border-radius: 16px;
+    overflow: hidden;
     background: var(--surface-container);
     border: 1px solid rgba(163, 166, 255, 0.06);
     cursor: pointer;
     display: block;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
-    transition:
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                opacity 0.3s ease;
   }
 
   .stitch-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(163, 166, 255, 0.18);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+    border-color: rgba(163, 166, 255, 0.25);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
   }
 
-  /* Image containers */
+  /* Image containers - Uncropped & Natural */
   .stitch-card-img-wrap {
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
-  }
-
-  .stitch-card-img-square {
-    aspect-ratio: 1 / 1;
-  }
-
-  .stitch-card-img-portrait {
-    aspect-ratio: 4 / 5;
-  }
-
-  .stitch-card-img-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    transition: transform 0.7s ease;
-  }
-
-  .stitch-card:hover .stitch-card-img-wrap img {
-    transform: scale(1.06);
-  }
-
-  /* Auto height image container to prevent cropping */
-  .stitch-card-img-auto {
     overflow: hidden;
+    display: block;
+    position: relative;
   }
 
-  .stitch-card-img-auto img {
+  .stitch-card-img-natural img {
     width: 100%;
     height: auto;
     object-fit: contain;
@@ -248,8 +230,41 @@ const photos = getPhotos();
     transition: transform 0.7s ease;
   }
 
-  .stitch-card:hover .stitch-card-img-auto img {
-    transform: scale(1.06);
+  .stitch-card-img-square {
+    aspect-ratio: 1 / 1;
+  }
+  .stitch-card-img-square img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .stitch-card-img-portrait {
+    aspect-ratio: 4 / 5;
+  }
+  .stitch-card-img-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .stitch-card-img-landscape {
+    aspect-ratio: 16 / 10;
+  }
+  .stitch-card-img-landscape img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .stitch-card:hover .stitch-card-img-wrap img {
+    transform: scale(1.05);
   }
 
   /* Overlay Stitch style, bottom gradient + text */
@@ -258,8 +273,8 @@ const photos = getPhotos();
     inset: 0;
     background: linear-gradient(
       to top,
-      rgba(6, 14, 32, 0.92) 0%,
-      rgba(6, 14, 32, 0.3) 40%,
+      rgba(6, 14, 32, 0.95) 0%,
+      rgba(6, 14, 32, 0.4) 40%,
       transparent 100%
     );
     display: flex;
@@ -267,7 +282,8 @@ const photos = getPhotos();
     justify-content: flex-end;
     padding: 24px;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.35s ease;
+    z-index: 2;
   }
 
   .stitch-card:hover .stitch-card-overlay {
@@ -276,17 +292,17 @@ const photos = getPhotos();
 
   .stitch-card-cat {
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    background: rgba(163, 166, 255, 0.15);
+    background: rgba(163, 166, 255, 0.2);
     color: var(--accent-primary);
     padding: 4px 10px;
     border-radius: 4px;
     display: inline-block;
     width: fit-content;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .stitch-card-title {
@@ -312,6 +328,7 @@ const photos = getPhotos();
   @media (max-width: 900px) {
     .stitch-bento-grid {
       column-count: 2;
+      column-gap: 16px;
     }
   }
 
@@ -320,11 +337,70 @@ const photos = getPhotos();
       padding: 120px 24px 40px;
     }
     .filter-bar {
-      padding: 0 24px;
+      padding: 0 20px;
+      gap: 8px;
     }
     .stitch-bento-grid {
       column-count: 1;
-      padding: 0 24px;
+      padding: 0 20px;
     }
   }
 </style>
+
+<script is:inline>
+  // ---------- GLIGHTBOX INITIALIZATION ----------
+  function initGalleryLightbox() {
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true,
+      });
+    } else {
+      setTimeout(initGalleryLightbox, 100);
+    }
+  }
+
+  // ---------- CATEGORY FILTERING ----------
+  function initPhotoFilter() {
+    const filterBar = document.querySelector('.filter-bar');
+    if (!filterBar) return;
+
+    const filterBtns = filterBar.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.stitch-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedCat = btn.getAttribute('data-filter') ? btn.getAttribute('data-filter').toLowerCase() : 'all';
+
+        // Update active class on buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards with smooth display
+        cards.forEach(card => {
+          const itemCat = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+          if (selectedCat === 'all' || itemCat.includes(selectedCat) || selectedCat.includes(itemCat)) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initGalleryLightbox();
+    initPhotoFilter();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initGalleryLightbox();
+    initPhotoFilter();
+  });
+</script>

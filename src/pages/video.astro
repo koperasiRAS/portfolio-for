@@ -4,8 +4,37 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getVideos } from '../utils/content.js';
 
-const videos = getVideos();
-const featuredVideo = videos.find(v => v.isFeatured) || videos[0];
+const rawVideos = getVideos();
+
+// Format videos with hybrid YouTube & Google Drive detection
+const videos = rawVideos.map(v => {
+  const url = v.videoUrl || '';
+  const isYouTube = url.includes('youtu.be') || url.includes('youtube.com');
+  const isGDrive = url.includes('drive.google.com');
+  
+  let playableUrl = url;
+  let glightboxType = isYouTube ? 'video' : isGDrive ? 'iframe' : 'external';
+  let glightboxSource = isYouTube ? 'youtube' : undefined;
+
+  if (isGDrive) {
+    // Convert view link to preview embed
+    const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      playableUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+    }
+  }
+
+  return {
+    ...v,
+    playableUrl,
+    glightboxType,
+    glightboxSource,
+    isYouTube,
+    isGDrive
+  };
+});
+
+const featuredVideo = videos.find(v => v.isFeatured || v.featured) || videos[0];
 const regularVideos = videos.filter(v => v !== featuredVideo);
 ---
 
@@ -18,7 +47,7 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
 >
   <Navbar slot="navbar" activePage="video" />
 
-  <!-- PAGE HERO Stitch Reference -->
+  <!-- PAGE HERO -->
   <section class="page-hero stitch-hero" transition:animate="fade">
     <div class="page-hero-bg-glow" aria-hidden="true"></div>
     <div class="page-hero-inner stitch-hero-inner">
@@ -26,15 +55,15 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
         Cinematic <span class="stitch-hero-accent">Work.</span>
       </h1>
       <p class="stitch-hero-sub">
-        Exploring stories through motion and light. A curated collection of brand narratives, documentaries, and creative experiments.
+        Exploring stories through motion and light. A curated collection of brand narratives, documentaries, wedding highlights, and creative experiments.
       </p>
     </div>
   </section>
 
-  <!-- VIDEO GALLERY Stitch Layout -->
+  <!-- VIDEO GALLERY -->
   <section class="video-section" transition:animate="fade">
 
-    <!-- Filter Bar Stitch pill style -->
+    <!-- Filter Bar -->
     <div class="filter-bar fade-up" aria-label="Filter by category">
       <button class="filter-btn active" data-filter="all">Semua</button>
       <button class="filter-btn" data-filter="wedding">Wedding</button>
@@ -48,13 +77,13 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
     <div class="stitch-video-grid fade-up">
 
       {featuredVideo && (
-        <!-- FEATURED VIDEO CARD Full width featured -->
+        <!-- FEATURED VIDEO CARD -->
         <a class="stitch-video-card stitch-video-card-featured glightbox"
-           href={featuredVideo.videoUrl}
-           data-type={featuredVideo.videoUrl.includes('youtu') ? 'video' : 'external'}
-           data-source={featuredVideo.videoUrl.includes('youtu') ? 'youtube' : undefined}
+           href={featuredVideo.playableUrl}
+           data-type={featuredVideo.glightboxType}
+           data-source={featuredVideo.glightboxSource}
            data-gallery="videos"
-           data-category={featuredVideo.category}>
+           data-category={featuredVideo.category ? featuredVideo.category.toLowerCase() : 'all'}>
 
           <div class="stitch-video-thumb-wrap">
             <img
@@ -80,27 +109,26 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
                   <span class="stitch-duration-value">{featuredVideo.duration}</span>
                 </div>
               )}
-              <button class="stitch-play-btn stitch-play-btn-lg" aria-label="Play video">
+              <div class="stitch-play-btn stitch-play-btn-lg" aria-label="Play video">
                 <i class="fas fa-play"></i>
-              </button>
+              </div>
             </div>
           </div>
         </a>
       )}
 
-      <!-- Regular Video Cards 2 column grid -->
+      <!-- Regular Video Cards (2 Columns) -->
       <div class="stitch-video-grid-regular">
         {regularVideos.map((video) => {
-          const isYouTube = video.videoUrl.includes('youtu');
           const thumbSrc = video.thumbnail || video.thumbnailPath;
           
           return (
             <a class="stitch-video-card stitch-video-card-regular glightbox"
-               href={video.videoUrl}
-               data-type={isYouTube ? 'video' : 'external'}
-               data-source={isYouTube ? 'youtube' : undefined}
+               href={video.playableUrl}
+               data-type={video.glightboxType}
+               data-source={video.glightboxSource}
                data-gallery="videos"
-               data-category={video.category}>
+               data-category={video.category ? video.category.toLowerCase() : 'all'}>
               <div class="stitch-video-thumb-wrap">
                 <img
                   src={thumbSrc}
@@ -119,7 +147,7 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
               <div class="stitch-video-card-footer">
                 <div class="stitch-video-card-info">
                   <h3 class="stitch-video-card-title">{video.title}</h3>
-                  <p class="stitch-video-card-meta">{video.category.toUpperCase()} &bull; {video.year || '2024'}</p>
+                  <p class="stitch-video-card-meta">{video.category ? video.category.toUpperCase() : 'VIDEO'} &bull; {video.year || '2024'}</p>
                 </div>
               </div>
             </a>
@@ -136,7 +164,6 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
 <style>
   /* =============================================
      STITCH VIDEO PAGE Scoped styles
-     Matches: stitch/video_portfolio_redesign/code.html
      ============================================= */
 
   /* Hero */
@@ -180,6 +207,10 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
   .filter-bar {
     padding: 0 48px;
     margin-bottom: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .filter-btn {
@@ -353,7 +384,7 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
     height: 48px;
     border-radius: 50%;
     background: var(--accent-primary);
-    color: var(--surface-base);
+    color: #0f00a4;
     border: none;
     display: flex;
     align-items: center;
@@ -391,7 +422,7 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
     background: var(--surface-container);
     border: 1px solid rgba(163, 166, 255, 0.08);
     cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   }
 
   .stitch-video-card-regular:hover {
@@ -472,10 +503,82 @@ const regularVideos = videos.filter(v => v !== featuredVideo);
       padding: 120px 24px 40px;
     }
     .filter-bar {
-      padding: 0 24px;
+      padding: 0 20px;
+      gap: 8px;
     }
     .video-section {
-      padding: 0 24px 60px;
+      padding: 0 20px 60px;
     }
   }
 </style>
+
+<script is:inline>
+  // ---------- GLIGHTBOX (YouTube & Google Drive embed) ----------
+  function initVideoLightbox() {
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: false,
+        autoplayVideos: true,
+      });
+    } else {
+      setTimeout(initVideoLightbox, 100);
+    }
+  }
+
+  // ---------- VIDEO CATEGORY FILTER ----------
+  function initVideoFilter() {
+    const filterBar = document.querySelector('.filter-bar');
+    if (!filterBar) return;
+
+    const btns = filterBar.querySelectorAll('.filter-btn');
+    const featuredCard = document.querySelector('.stitch-video-card-featured');
+    const regularCards = document.querySelectorAll('.stitch-video-card-regular');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedFilter = btn.getAttribute('data-filter') ? btn.getAttribute('data-filter').toLowerCase() : 'all';
+
+        // Update active button
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter regular cards
+        regularCards.forEach(card => {
+          const cat = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+          if (selectedFilter === 'all' || cat.includes(selectedFilter) || selectedFilter.includes(cat)) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+          }
+        });
+
+        // Filter featured card
+        if (featuredCard) {
+          const featCat = featuredCard.getAttribute('data-category') ? featuredCard.getAttribute('data-category').toLowerCase() : '';
+          if (selectedFilter === 'all' || featCat.includes(selectedFilter) || selectedFilter.includes(featCat)) {
+            featuredCard.style.display = 'block';
+            featuredCard.style.opacity = '1';
+          } else {
+            featuredCard.style.display = 'none';
+            featuredCard.style.opacity = '0';
+          }
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initVideoLightbox();
+    initVideoFilter();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initVideoLightbox();
+    initVideoFilter();
+  });
+</script>

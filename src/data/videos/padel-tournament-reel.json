@@ -1,12 +1,13 @@
 {
-  "slug": "padel-tournament-reel",
-  "title": "Padel Tournament Reel",
-  "category": "sosmed",
-  "videoUrl": "https://youtu.be/Wq3g_8kLkzo",
-  "duration": "00:45",
+  "title": "Dokumentasi Padel",
+  "category": "dokumentasi",
+  "sortOrder": 6,
+  "description": "Dokumentasi pertandingan padel tournament dengan sinematografi dinamis dan color grading punchy.",
+  "featured": false,
+  "isFeatured": false,
+  "videoUrl": "https://drive.google.com/file/d/1auyWgTuE50Q3sOUaJoaGqbYi4pqSbiSc/preview",
+  "duration": "01:53",
   "year": "2024",
   "thumbnailPath": "/assets/thumbnails/thumbnail_padel.jpg",
-  "description": "Short-form video tournament olahraga Padel dengan dynamic speed ramps.",
-  "isFeatured": false,
-  "sortOrder": 8
+  "thumbnail": "/assets/thumbnails/thumbnail_padel.jpg"
 }
