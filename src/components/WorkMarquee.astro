@@ -1,0 +1,79 @@
+---
+// Disney-Plus style thumbnail marquee: two infinite-scrolling rows of work
+// thumbnails built from local assets. Each row's set of cards is duplicated
+// so the translateX(-50%) loop is seamless.
+import { Image } from "astro:assets";
+
+import thumbWedding from "../assets/thumbnails/thumbnail_wedding.png";
+import thumbVideo from "../assets/thumbnails/thumbnail-video.png";
+import thumbDesign from "../assets/thumbnails/thumbnail-design.png";
+import thumbUltah from "../assets/thumbnails/thumbnail_ultah.png";
+import thumbPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
+import web1 from "../assets/thumbnails/web1.png";
+import thumbLanding from "../assets/thumbnails/thumbnail_landing_page.png";
+import thumbPromo from "../assets/thumbnails/thumbnail_promosi_idecraft.png";
+
+const rowA = [
+  { src: thumbWedding, alt: "Wedding photography oleh Frame Of Rangga" },
+  { src: thumbVideo, alt: "Videography portfolio oleh Frame Of Rangga" },
+  { src: thumbDesign, alt: "Design brand oleh Frame Of Rangga" },
+  { src: web1, alt: "Web development oleh Frame Of Rangga" },
+  { src: thumbUltah, alt: "Birthday event photography oleh Frame Of Rangga" },
+  { src: thumbLanding, alt: "Landing page design oleh Frame Of Rangga" },
+  { src: thumbPromo, alt: "Promosi oleh Frame Of Rangga" },
+  { src: thumbPortfolio, alt: "Portfolio website oleh Frame Of Rangga" },
+];
+
+const rowB = [
+  { src: thumbDesign, alt: "Social media design oleh Frame Of Rangga" },
+  { src: thumbPortfolio, alt: "Website portofolio oleh Frame Of Rangga" },
+  { src: thumbPromo, alt: "Desain promosi oleh Frame Of Rangga" },
+  { src: thumbWedding, alt: "Konten wedding oleh Frame Of Rangga" },
+  { src: thumbVideo, alt: "Konten video oleh Frame Of Rangga" },
+  { src: web1, alt: "Web app oleh Frame Of Rangga" },
+  { src: thumbLanding, alt: "Landing page oleh Frame Of Rangga" },
+  { src: thumbUltah, alt: "Event photography oleh Frame Of Rangga" },
+];
+
+// Duplicate the list so the -50% loop has two identical halves.
+const setA = [...rowA, ...rowA];
+const setB = [...rowB, ...rowB];
+---
+
+<section class="work-marquee" aria-label="Karya terpilih">
+  <div class="work-marquee-head">
+    <div>
+      <h2 class="work-marquee-title">Karya Terbaru</h2>
+      <p class="work-marquee-sub">
+        Kurasi foto, video, dan desain yang sudah kami kerjakan
+      </p>
+    </div>
+  </div>
+
+  <div class="work-marquee-viewport">
+    <!-- Row A: scroll left -->
+    <div class="work-marquee-row">
+      <div class="work-marquee-track" aria-label="Karya foto dan video">
+        {setA.map((item) => (
+          <div class="work-marquee-item">
+            <Image src={item.src} alt={item.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Row B: scroll right -->
+    <div class="work-marquee-row">
+      <div
+        class="work-marquee-track is-reverse"
+        aria-label="Karya desain dan web"
+      >
+        {setB.map((item) => (
+          <div class="work-marquee-item">
+            <Image src={item.src} alt={item.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

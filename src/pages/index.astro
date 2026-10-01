@@ -4,10 +4,12 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import TechShowcase from "../components/TechShowcase.astro";
+import HeroSection from "../components/HeroSection.astro";
+import WorkMarquee from "../components/WorkMarquee.astro";
 import { waLink } from "../utils/whatsapp.js";
 import { Image } from "astro:assets";
-import imgAsset1 from "../assets/design/social/carousels 1.png";
-import imgAsset2 from "../assets/foto/foto cover halaman utama.jpg";
 import imgAsset3 from "../assets/foto/wedding/ultah raden 2 landscape.JPG";
 import imgAsset4 from "../assets/thumbnails/thumbnail-video.png";
 import imgAsset5 from "../assets/thumbnails/web2.png";
@@ -31,66 +33,11 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Navbar slot -->
   <Navbar slot="navbar" activePage="home" />
 
-  <!-- HERO Stitch Nocturnal Design -->
-  <header class="stitch-hero" id="hero" transition:animate="fade">
-    <!-- Background glow blobs (desktop) -->
-    <div class="stitch-hero-glow-r" aria-hidden="true"></div>
-    <div class="stitch-hero-glow-l" aria-hidden="true"></div>
+  <!-- HERO — Framer Motion island (SEO markup preserved via client:load) -->
+  <HeroSection />
 
-    <!-- Background image -->
-    <div class="stitch-hero-bg" aria-hidden="true">
-      <Image         src={imgAsset1}
-        alt="Hero background Frame Of Rangga portfolio showcase"
-        class="stitch-hero-bg-img"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="stitch-hero-bg-overlay"></div>
-    </div>
-
-    <!-- Hero grid: text left, portrait right -->
-    <div class="stitch-hero-grid">
-      <!-- Text Content -->
-      <div class="stitch-hero-content">
-        <!-- Badge -->
-        <span class="stitch-badge"> Visual Storyteller </span>
-        <!-- H1 -->
-        <h1 class="stitch-hero-title">
-          Frame of<br />
-          <span class="stitch-hero-title-accent">Rangga</span>
-        </h1>
-        <!-- Description -->
-        <p class="stitch-hero-desc">
-          Crafting visual narratives through the lens of cinematic precision and
-          editorial depth. Creative Direction for the digital age.
-        </p>
-      </div>
-
-      <!-- Portrait -->
-      <div class="stitch-hero-portrait">
-        <div class="stitch-hero-portrait-inner">
-          <Image             src={imgAsset2}
-            alt="Rangga Danuarta Frame Of Rangga"
-            class="stitch-hero-portrait-img"
-            loading="eager"
-            fetchpriority="high"
-          />
-          <!-- Floating badge -->
-          <div class="stitch-hero-float-badge">
-            <div class="stitch-float-badge-icon">
-              <span class="material-symbols-outlined stitch-icon-filled"
-                >verified</span
-              >
-            </div>
-            <div>
-              <p class="stitch-float-badge-sub">Visual Storyteller</p>
-              <p class="stitch-float-badge-name">Rangga Danuarta</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <!-- WORK MARQUEE — Disney-Plus style thumbnail stripe -->
+  <WorkMarquee />
 
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
@@ -158,53 +105,66 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- ABOUT -->
+  <!-- COLOR GRADING & RETOUCHING INTERACTIVE SLIDER -->
+  <section class="slider-section" id="color-science" transition:animate="fade">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+      <BeforeAfterSlider
+        beforeImg={imgAsset3}
+        afterImg={imgAsset3}
+        beforeLabel="S-LOG3 / RAW"
+        afterLabel="FINAL COLOR GRADE"
+        metaText="Sony Alpha 7 Series • 35mm f/1.8 • 10-bit 4:2:2 Color Space • Custom Film LUT"
+        title="Cinematic Color Grading & Retouching"
+      />
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="section-divider" aria-hidden="true"></di  <!-- ABOUT (Screenshot 2) -->
   <section class="about" id="about" transition:animate="fade">
     <div class="about-inner">
       <div class="about-photo fade-up">
         <div class="about-photo-wrap">
-          <Image             src={imgAsset7}
-            alt="Rangga Danuarta"
+          <Image
+            src={imgAsset7}
+            alt="Rangga Danuarta Visual Storyteller"
             loading="lazy"
             onerror="this.style.display='none'"
           />
         </div>
       </div>
       <div class="about-text fade-up">
-        <span class="section-label gradient-label">TENTANG FOR</span>
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title" style="margin-bottom: 8px;">Tentang</h2>
         <p class="about-bio">
-          Saya Rangga Danuarta, videografer, fotografer, dan developer yang berbasis di Depok. Selama lebih dari 3 tahun, saya membantu berbagai brand dan bisnis menghadirkan konten visual dan digital yang tidak hanya enak dipandang, tetapi juga memberikan dampak nyata bagi tujuan pemasaran mereka, mulai dari foto dan video, desain, hingga pengembangan website.
+          Aku Rangga Danuarta, videografer, fotografer, dan developer di Depok. Lebih dari 3 tahun aku membantu brand dan bisnis membuat konten visual dan digital yang enak dilihat sekaligus mendukung tujuan pemasaran mereka.
         </p>
         <p class="about-bio">
-          Kombinasi ini bukan sebuah kebetulan. Saya percaya bahwa proses kreatif yang baik tidak berhenti pada satu bidang saja. Konten yang kuat membutuhkan visual yang tepat, sekaligus platform yang mendukungnya. Oleh karena itu, saya membangun setiap project mulai dari riset kebutuhan klien, eksekusi teknis, hingga hasil akhir yang siap digunakan, baik berupa video, desain, maupun website.
+          Kombinasi ini bukan kebetulan. Konten yang kuat butuh visual yang tepat dan platform yang mendukungnya, jadi tiap proyek aku kerjakan dari riset kebutuhan klien, eksekusi teknis, sampai hasil akhir yang siap dipakai.
         </p>
+        <div class="about-skills-wrap">
+          <span class="about-skill-pill">Videografi</span>
+          <span class="about-skill-pill">Brand design</span>
+          <span class="about-skill-pill">Fotografi</span>
+          <span class="about-skill-pill">Editing</span>
+          <span class="about-skill-pill">Astro</span>
+          <span class="about-skill-pill">React</span>
+          <span class="about-skill-pill">Node.js</span>
+          <span class="about-skill-pill">PostgreSQL</span>
+        </div>
         <div class="about-stats">
           <div class="stat-card">
-            <span class="stat-number" data-target="3">0</span>
-            <span class="stat-label">Years</span>
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Tahun pengalaman</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number" data-target="50">0</span>
-            <span class="stat-label">Projects</span>
+            <span class="stat-number">4</span>
+            <span class="stat-label">Layanan</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number" data-target="4">0</span>
-            <span class="stat-label">Services</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number" data-target="10">0</span>
-            <span class="stat-label">Brand Partners</span>
+            <span class="stat-number">6</span>
+            <span class="stat-label">Brand partner</span>
           </div>
         </div>
-        <a
-          href={waLink("collab")}
-          target="_blank"
-          rel="noopener"
-          class="btn btn-ghost"
-        >
-          <i class="fab fa-whatsapp"></i> Chat via WhatsApp
-        </a>
       </div>
     </div>
   </section>
@@ -218,40 +178,22 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
       <p class="brands-label">Trusted by brands &amp; clients</p>
       <div class="logo-strip">
         <div class="logo-item">
-          <Image             src={imgAsset8}
-            alt="Tokopedia"
-            loading="lazy"
-          />
+          <Image src={imgAsset8} alt="Tokopedia" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset9}
-            alt="KitaBisa"
-            loading="lazy"
-          />
+          <Image src={imgAsset9} alt="KitaBisa" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset10}
-            alt="Shopee"
-            loading="lazy"
-          />
+          <Image src={imgAsset10} alt="Shopee" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset11}
-            alt="Bank Qurban"
-            loading="lazy"
-          />
+          <Image src={imgAsset11} alt="Bank Qurban" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset12}
-            alt="Shinepartner"
-            loading="lazy"
-          />
+          <Image src={imgAsset12} alt="Shinepartner" loading="lazy" />
         </div>
         <div class="logo-item">
-          <Image             src={imgAsset13}
-            alt="Mandiri"
-            loading="lazy"
-          />
+          <Image src={imgAsset13} alt="Mandiri" loading="lazy" />
         </div>
       </div>
     </div>
@@ -260,41 +202,58 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- SERVICES -->
+  <!-- SERVICES (Screenshot 1: Sage Container) -->
   <section class="services" id="services" transition:animate="fade">
     <div class="services-inner">
-      <div class="services-header fade-up">
-        <span class="section-label gradient-label">WHAT I DO</span>
-        <h2 class="section-title">Services</h2>
-        <p class="section-sub" style="text-align: center;">
-          Solusi kreatif lengkap untuk brand dan bisnis Anda
-        </p>
-      </div>
-      <div class="services-grid">
-        <ServiceCard
-          icon="fas fa-camera"
-          title="Photography"
-          description="Foto komersial, birthday & event, editorial, dan automotive dengan pendekatan storytelling yang kuat dan estetik yang tajam."
-          whatsappKey="foto_general"
-        />
-        <ServiceCard
-          icon="fas fa-video"
-          title="Videography"
-          description="Produksi video mulai dari konsep hingga final cut. Cocok untuk konten brand, dokumentasi acara, dan video promosi."
-          whatsappKey="video_general"
-        />
-        <ServiceCard
-          icon="fas fa-palette"
-          title="Brand Design"
-          description="Identitas visual, desain sosial media, poster, dan materi iklan yang membangun karakter brand secara konsisten."
-          whatsappKey="design_general"
-        />
-        <ServiceCard
-          icon="fas fa-code"
-          title="Web Development"
-          description="Website portofolio, landing page, dan undangan digital yang responsif, cepat, dan berorientasi pada pengalaman pengguna."
-          whatsappKey="web_general"
-        />
+      <div class="services-sage-box fade-up">
+        <div class="services-header">
+          <h2 class="services-title">Yang bisa aku kerjakan</h2>
+        </div>
+        <div class="services-grid">
+          <!-- Photography -->
+          <div class="svc-item">
+            <h3 class="svc-title">Photography</h3>
+            <p class="svc-desc">
+              Foto komersial, birthday dan event, editorial, dan automotive dengan pendekatan storytelling yang kuat.
+            </p>
+            <a href={waLink("foto_general")} target="_blank" rel="noopener noreferrer" class="svc-link">
+              Tanya via WhatsApp
+            </a>
+          </div>
+
+          <!-- Videography -->
+          <div class="svc-item">
+            <h3 class="svc-title">Videography</h3>
+            <p class="svc-desc">
+              Produksi video dari konsep sampai final cut. Cocok untuk konten brand, dokumentasi acara, dan video promosi.
+            </p>
+            <a href={waLink("video_general")} target="_blank" rel="noopener noreferrer" class="svc-link">
+              Tanya via WhatsApp
+            </a>
+          </div>
+
+          <!-- Brand Design -->
+          <div class="svc-item">
+            <h3 class="svc-title">Brand Design</h3>
+            <p class="svc-desc">
+              Identitas visual, desain sosial media, poster, dan materi iklan yang membangun karakter brand secara konsisten.
+            </p>
+            <a href={waLink("design_general")} target="_blank" rel="noopener noreferrer" class="svc-link">
+              Tanya via WhatsApp
+            </a>
+          </div>
+
+          <!-- Web Development -->
+          <div class="svc-item">
+            <h3 class="svc-title">Web Development</h3>
+            <p class="svc-desc">
+              Website portofolio, landing page, dan undangan digital yang responsif, cepat, dan mengutamakan pengalaman pengguna.
+            </p>
+            <a href={waLink("web_general")} target="_blank" rel="noopener noreferrer" class="svc-link">
+              Tanya via WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -302,19 +261,20 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
+  <!-- CREATIVE ENGINEERING & TECH SHOWCASE -->
+  <TechShowcase />
 
+  <!-- Divider -->
+  <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- =============================================
-       WORKFLOW SECTION
-       ============================================= -->
+  <!-- WORKFLOW SECTION -->
   <section class="workflow-section" id="workflow" transition:animate="fade">
     <div class="workflow-inner">
       <div class="workflow-header fade-up">
-        <span class="section-label gradient-label">CARA KERJA</span>
+        <span class="section-label">CARA KERJA</span>
         <h2 class="section-title">Alur Kerja Dari Brief sampai Delivery</h2>
         <p class="section-sub">
-          Proses yang transparan dan terstruktur, supaya kamu tahu apa yang
-          diharapkan di setiap tahap.
+          Proses yang transparan dan terstruktur, supaya kamu tahu apa yang diharapkan di setiap tahap.
         </p>
       </div>
       <div class="workflow-steps fade-up">
@@ -323,8 +283,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-comments"></i></div>
           <h3 class="workflow-step-title">Brief &amp; Konsultasi</h3>
           <p class="workflow-step-desc">
-            Ceritakan kebutuhan kamu topik, target audiens, dan goal. Diskusi
-            gratis via WhatsApp. Saya bantu clarifikasi ide kamu.
+            Ceritakan kebutuhan kamu topik, target audiens, dan goal. Diskusi gratis via WhatsApp. Saya bantu klarifikasi ide kamu.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -335,8 +294,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-lightbulb"></i></div>
           <h3 class="workflow-step-title">Konsep &amp; Pitch</h3>
           <p class="workflow-step-desc">
-            Saya kembangkan konsep visual sesuai brief. Moodboard, storyboard,
-            atau wireframe dikasih untuk alignment sebelum eksekusi.
+            Saya kembangkan konsep visual sesuai brief. Moodboard, storyboard, atau wireframe dikasih untuk alignment sebelum eksekusi.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -347,8 +305,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-cogs"></i></div>
           <h3 class="workflow-step-title">Eksekusi &amp; Produksi</h3>
           <p class="workflow-step-desc">
-            Proses shooting, editing, atau development dengan update berkala.
-            Kamu bisa monitor progress dan kasih feedback mid way.
+            Proses shooting, editing, atau development dengan update berkala. Kamu bisa monitor progress dan kasih feedback mid-way.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -359,8 +316,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-sync-alt"></i></div>
           <h3 class="workflow-step-title">Revisi &amp; Fine-tuning</h3>
           <p class="workflow-step-desc">
-            Feedback loop revisi hingga hasil sesuai ekspektasi. Revisi minor
-            biasanya free, revisi major dihitung terpisah.
+            Feedback loop revisi hingga hasil sesuai ekspektasi. Revisi minor biasanya free, revisi major dihitung terpisah.
           </p>
         </div>
         <div class="workflow-connector" aria-hidden="true">
@@ -371,8 +327,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
           <div class="workflow-step-icon"><i class="fas fa-download"></i></div>
           <h3 class="workflow-step-title">Delivery Final</h3>
           <p class="workflow-step-desc">
-            File final dikirim dalam format yang disepakati. Untuk web: deployed
-            dan ready. Untuk desain: print ready atau digital optimized.
+            File final dikirim dalam format yang disepakati. Untuk web: deployed dan ready. Untuk desain: print ready atau digital optimized.
           </p>
         </div>
       </div>
@@ -382,87 +337,65 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- =============================================
-       FAQ SECTION
-       ============================================= -->
+  <!-- FAQ SECTION (Screenshot 3) -->
   <section class="faq-section" id="faq" transition:animate="fade">
     <div class="faq-inner">
       <div class="faq-header fade-up">
-        <span class="section-label gradient-label">FAQ</span>
-        <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+        <h2 class="section-title">Pertanyaan yang sering muncul</h2>
       </div>
       <div class="faq-list fade-up">
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text"
-              >Berapa lama pengerjaan setiap project?</span
-            >
-            <i class="fas fa-chevron-down faq-chevron"></i>
+            <span class="faq-q-text">Berapa lama pengerjaan setiap project?</span>
+            <span class="faq-plus-icon">+</span>
           </summary>
           <div class="faq-answer">
-            Tergantung scope dan kompleksitas. Foto single session: 1-3 hari.
-            Video: 3-7 hari. Desain brand: 1-2 minggu. Website: 2-4 minggu.
-            Timeline exact akan dikasih setelah brief.
+            Tergantung scope dan kompleksitas. Foto single session: 1-3 hari. Video: 3-7 hari. Desain brand: 1-2 minggu. Website: 2-4 minggu. Timeline exact akan dikasih setelah brief.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
             <span class="faq-q-text">Apakah bisa revisi?</span>
-            <i class="fas fa-chevron-down faq-chevron"></i>
+            <span class="faq-plus-icon">+</span>
           </summary>
           <div class="faq-answer">
-            Ya! Setiap project include revisi. Photography: revisi edit 1x.
-            Video: revisi 2x. Design: revisi 2x. Website: revisi minor included.
-            Revisi major dihitung terpisah tapi biasanya masih reasonable.
+            Ya! Setiap project include revisi. Photography: revisi edit 1x. Video: revisi 2x. Design: revisi 2x. Website: revisi minor included. Revisi major dihitung terpisah tapi biasanya masih reasonable.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text"
-              >Apakah melayani luar Depok atau Jakarta?</span
-            >
-            <i class="fas fa-chevron-down faq-chevron"></i>
+            <span class="faq-q-text">Apakah melayani luar Depok atau Jakarta?</span>
+            <span class="faq-plus-icon">+</span>
           </summary>
           <div class="faq-answer">
-            Untuk photography & videography lokasi, saya bisa ke Jabodetabek.
-            Untuk luar area, bisa arrange shoot dengan partner atau via remote
-            editing. Web & desain: anywhere, 100% remote.
+            Untuk photography &amp; videography lokasi, saya bisa ke Jabodetabek. Untuk luar area, bisa arrange shoot dengan partner atau via remote editing. Web &amp; desain: anywhere, 100% remote.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text">Bagaimana cara pembayaran?</span>
-            <i class="fas fa-chevron-down faq-chevron"></i>
+            <span class="faq-q-text">Bagaimana cara pembayarannya?</span>
+            <span class="faq-plus-icon">+</span>
           </summary>
           <div class="faq-answer">
-            Pembayaran via transfer bank (BCA, Mandiri, BSI). Skema: 50% DP saat
-            konfirmasi, 50% sisanya saat final delivery. Untuk project kecil
-            biasanya full payment di awal.
+            Pembayaran via transfer bank (BCA, Mandiri, BSI). Skema: 50% DP saat konfirmasi, 50% sisanya saat final delivery. Untuk project kecil biasanya full payment di awal.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text"
-              >Apakah bisa konsultasi dulu sebelum deal?</span
-            >
-            <i class="fas fa-chevron-down faq-chevron"></i>
+            <span class="faq-q-text">Bisa konsultasi dulu sebelum deal?</span>
+            <span class="faq-plus-icon">+</span>
           </summary>
           <div class="faq-answer">
-            Absolutely! Konsultasi awal via WhatsApp itu gratis dan tidak
-            mengikat. Ceritakan ide kamu, kita diskusi bareng kalau memang
-            cocok, lanjut. Kalau tidak, ya tidak apa apa.
+            Absolutely! Konsultasi awal via WhatsApp itu gratis dan tidak mengikat. Ceritakan ide kamu, kita diskusi bareng kalau memang cocok, lanjut. Kalau tidak, ya tidak apa apa.
           </div>
         </details>
         <details class="faq-item">
           <summary class="faq-question">
-            <span class="faq-q-text">File apa saja yang di-deliver?</span>
-            <i class="fas fa-chevron-down faq-chevron"></i>
+            <span class="faq-q-text">File apa saja yang dikirim?</span>
+            <span class="faq-plus-icon">+</span>
           </summary>
           <div class="faq-answer">
-            Foto: JPEG high-res + web-optimized. Video: MP4 (1080p atau sesuai
-            request). Desain: PNG/JPG + source file (AI/PSD/Figma). Website:
-            deployed + source code. Semua dalam Google Drive atau sesuai
-            preference kamu.
+            Foto: JPEG high-res + web-optimized. Video: MP4 (1080p atau 4K). Desain: PNG/JPG + source file (AI/PSD/Figma). Website: deployed + source code. Semua dalam Google Drive yang aman.
           </div>
         </details>
       </div>
@@ -472,32 +405,63 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS (Screenshot 2: Kata klien) -->
   <section class="testimonials" id="testimonials" transition:animate="fade">
     <div class="testimonials-inner">
       <div class="testimonials-header fade-up">
-        <span class="section-label">Reviews</span>
-        <h2 class="section-title">Kata Mereka</h2>
+        <h2 class="section-title">Kata klien</h2>
       </div>
-      <div class="testimonials-scroll">
-        <TestimonialCard
-          quote="Rangga berhasil menangkap esensi brand kami dengan sangat baik. Hasil fotonya melebihi ekspektasi dan proses kerjanya sangat profesional."
-          name="Tim Kreatif Tokopedia"
-          role="Brand Team"
-          initials="TK"
-        />
-        <TestimonialCard
-          quote="Video campaign yang dibuat Rangga berhasil meningkatkan engagement kami secara signifikan. Storytelling-nya autentik dan emosional."
-          name="KitaBisa.com"
-          role="Marketing Division"
-          initials="KB"
-        />
-        <TestimonialCard
-          quote="Desain brand identity dari Rangga sangat on-point. Beliau memahami kebutuhan bisnis dan menterjemahkannya ke visual yang powerful."
-          name="Shinepartner"
-          role="Brand Owner"
-          initials="SP"
-        />
+      <div class="testimonials-grid fade-up">
+        <!-- Card 1: White -->
+        <div class="testimonial-card">
+          <div>
+            <span class="testimonial-quote-mark">&#8220;</span>
+            <p class="testimonial-text">
+              Rangga berhasil menangkap esensi brand kami dengan sangat baik. Hasil fotonya melebihi ekspektasi dan proses kerjanya sangat profesional.
+            </p>
+          </div>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar">TK</div>
+            <div class="testimonial-meta">
+              <p class="testimonial-name">Tim Kreatif Tokopedia</p>
+              <p class="testimonial-role">Brand Team</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Warm Sun Accent -->
+        <div class="testimonial-card testimonial-card-sun">
+          <div>
+            <span class="testimonial-quote-mark">&#8220;</span>
+            <p class="testimonial-text">
+              Video campaign yang dibuat Rangga berhasil meningkatkan engagement kami secara signifikan. Storytelling-nya autentik dan emosional.
+            </p>
+          </div>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar" style="background: #12161C; color: #FFFFFF;">KB</div>
+            <div class="testimonial-meta">
+              <p class="testimonial-name">KitaBisa.com</p>
+              <p class="testimonial-role">Marketing Division</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: White -->
+        <div class="testimonial-card">
+          <div>
+            <span class="testimonial-quote-mark">&#8220;</span>
+            <p class="testimonial-text">
+              Desain brand identity dari Rangga sangat on-point. Beliau memahami kebutuhan bisnis dan menterjemahkannya ke visual yang powerful.
+            </p>
+          </div>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar">SP</div>
+            <div class="testimonial-meta">
+              <p class="testimonial-name">Shinepartner</p>
+              <p class="testimonial-role">Brand Owner</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -505,29 +469,48 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   <!-- Divider -->
   <div class="section-divider" aria-hidden="true"></div>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (Screenshot 3: Dark Box Container) -->
   <section class="contact" id="contact" transition:animate="fade">
-    <div class="contact-inner fade-up">
-      <div class="contact-header">
-        <span class="section-label gradient-label">GET IN TOUCH</span>
-        <h2 class="section-title">Let's Create Together</h2>
-        <p class="section-sub">
-          Hubungi saya untuk kolaborasi dan proyek kreatif berikutnya.
-        </p>
-      </div>
+    <div class="services-inner fade-up">
+      <div class="contact-dark-box">
+        <!-- Left info -->
+        <div class="contact-left">
+          <h2 class="contact-title">Punya proyek?</h2>
+          <p class="contact-sub">
+            Ceritakan singkat, aku balas secepatnya lewat WhatsApp atau email.
+          </p>
 
-      <!-- Contact Form -->
-      <form id="contact-form" class="contact-form stitch-form" novalidate>
-        <!-- Honeypot bot-only, hidden from humans -->
-        <input
-          type="text"
-          name="_gotcha"
-          tabindex="-1"
-          autocomplete="off"
-          style="position:absolute;left:-9999px;opacity:0;"
-        />
+          <div class="availability-beacon">
+            <span class="beacon-dot"></span>
+            Tersedia untuk project baru
+          </div>
 
-        <div class="form-row">
+          <div class="contact-direct-links">
+            <a href={waLink("contact")} target="_blank" rel="noopener noreferrer" class="contact-link-item">
+              WhatsApp
+            </a>
+            <a href="mailto:frameofrangga@gmail.com" class="contact-link-item">
+              frameofrangga@gmail.com
+            </a>
+            <a href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+              Instagram @rggadnrt
+            </a>
+            <a href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+              Portofolio desain @frameofrangga
+            </a>
+          </div>
+        </div>
+
+        <!-- Right form -->
+        <form id="contact-form" class="contact-dark-form" novalidate>
+          <input
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            style="position:absolute;left:-9999px;opacity:0;"
+          />
+
           <div class="form-group">
             <label for="name">Nama</label>
             <input
@@ -539,398 +522,55 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
             />
             <span class="form-error" id="name-error"></span>
           </div>
+
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="project">Jenis proyek</label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="email@contoh.com"
-              autocomplete="email"
+              type="text"
+              id="project"
+              name="project"
+              placeholder="Video, foto, website..."
             />
-            <span class="form-error" id="email-error"></span>
+            <span class="form-error" id="project-error"></span>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="project">Jenis Project</label>
-          <select id="project" name="project">
-            <option value="" disabled selected>Pilih jenis project</option>
-            <option value="Photography">Photography</option>
-            <option value="Videography">Videography</option>
-            <option value="Brand Design">Brand Design</option>
-            <option value="Web Development">Web Development</option>
-            <option value="Lainnya">Lainnya</option>
-          </select>
-          <span class="form-error" id="project-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="message">Pesan</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            placeholder="Ceritakan project yang ingin dibuat..."></textarea>
-          <span class="form-error" id="message-error"></span>
-        </div>
 
-        <!-- Status messages -->
-        <div
-          id="form-success"
-          class="form-message form-success"
-          style="display:none;"
-        >
-          <i class="fas fa-check-circle"></i> Pesan terkirim! Saya akan menghubungi
-          Anda dalam 1x24 jam.
-        </div>
-        <div
-          id="form-error-msg"
-          class="form-message form-error-msg"
-          style="display:none;"
-        >
-          <i class="fas fa-exclamation-circle"></i> Gagal mengirim. Silakan hubungi
-          via WhatsApp.
-        </div>
+          <div class="form-group">
+            <label for="message">Cerita singkat</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Ceritakan gambaran proyek atau kebutuhan Anda..."></textarea>
+            <span class="form-error" id="message-error"></span>
+          </div>
 
-        <div class="form-submit">
-          <button type="submit" id="submit-btn" class="btn btn-primary">
-            <i class="fas fa-paper-plane"></i> Kirim Pesan
+          <div id="form-success" class="form-message form-success" style="display:none;">
+            <i class="fas fa-check-circle"></i> Pesan terkirim! Saya akan membalas secepatnya.
+          </div>
+          <div id="form-error-msg" class="form-message form-error-msg" style="display:none;">
+            <i class="fas fa-exclamation-circle"></i> Gagal mengirim. Silakan hubungi via WhatsApp.
+          </div>
+
+          <button type="submit" id="submit-btn" class="contact-dark-submit">
+            Kirim Pesan
           </button>
-        </div>
-      </form>
-
-      <div class="contact-divider">
-        <span>atau hubungi langsung</span>
-      </div>
-      <div class="contact-buttons">
-        <a
-          href={waLink("contact")}
-          target="_blank"
-          rel="noopener"
-          class="btn btn-ghost"
-        >
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a
-          href="https://instagram.com/rggadnrt"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-ghost"
-        >
-          <i class="fab fa-instagram"></i> Instagram
-        </a>
-        <a
-          href="https://www.tiktok.com/@madebyrangga"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-ghost"
-        >
-          <i class="fab fa-tiktok"></i> TikTok
-        </a>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- Footer slot -->
-  <Footer slot="footer" variant="full" />
-</BaseLayout>
+  <!-- Floating WhatsApp Action Button -->
+  <a
+    href={waLink("general")}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="floating-wa-btn"
+    aria-label="Chat WhatsApp"
+  >
+    <i class="fab fa-whatsapp"></i> Chat WhatsApp
+  </a>
 
 <style>
-  /* =============================================
-     STITCH HERO Mobile-first responsive
-     ============================================= */
-
-  /* ---- BASE (MOBILE DEFAULT) ---- */
-  .stitch-hero {
-    position: relative;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 80px 24px 48px;
-  }
-
-  /* Background glow blobs */
-  .stitch-hero-glow-r {
-    position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(
-      circle,
-      rgba(193, 128, 255, 0.12) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .stitch-hero-glow-l {
-    position: absolute;
-    bottom: -5%;
-    left: -5%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(
-      circle,
-      rgba(163, 166, 255, 0.1) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Background image */
-  .stitch-hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .stitch-hero-bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5;
-    filter: grayscale(60%);
-  }
-
-  .stitch-hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      125deg,
-      rgba(6, 14, 32, 0.92) 0%,
-      rgba(6, 14, 32, 0.75) 40%,
-      rgba(10, 8, 28, 0.65) 100%
-    );
-  }
-
-  /* Hero grid: single column on mobile */
-  .stitch-hero-grid {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-
-  /* Content */
-  .stitch-hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  /* Badge pill */
-  .stitch-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 16px;
-    border-radius: 9999px;
-    background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.12);
-    color: var(--secondary);
-    font-family: "Manrope", sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    width: fit-content;
-  }
-
-  /* H1 */
-  .stitch-hero-title {
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(52px, 14vw, 96px);
-    font-weight: 800;
-    line-height: 0.92;
-    letter-spacing: -2px;
-    color: var(--on-surface);
-  }
-
-  .stitch-hero-title-accent {
-    color: var(--accent-primary);
-    font-style: italic;
-  }
-
-  /* Desc */
-  .stitch-hero-desc {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--on-surface-variant);
-    max-width: 520px;
-  }
-
-  /* Portrait */
-  .stitch-hero-portrait {
-    display: flex;
-    justify-content: center;
-  }
-
-  .stitch-hero-portrait-inner {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-  }
-
-  .stitch-hero-portrait-img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    display: block;
-    filter: grayscale(30%);
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-  }
-
-  /* Floating badge */
-  .stitch-hero-float-badge {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(25, 37, 64, 0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(64, 72, 93, 0.3);
-    border-radius: 16px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .stitch-float-badge-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(163, 166, 255, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .stitch-icon-filled {
-    font-variation-settings:
-      "FILL" 1,
-      "wght" 400,
-      "GRAD" 0,
-      "opsz" 24;
-    color: var(--accent-primary);
-    font-size: 20px;
-  }
-
-  .stitch-float-badge-sub {
-    font-family: "Inter", sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--on-surface-variant);
-    margin-bottom: 2px;
-  }
-
-  .stitch-float-badge-name {
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--on-surface);
-  }
-
-  /* ---- Material Symbols shared ---- */
-  .material-symbols-outlined {
-    font-variation-settings:
-      "FILL" 0,
-      "wght" 400,
-      "GRAD" 0,
-      "opsz" 24;
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-  }
-
-  /* ---- MEDIA QUERY: TABLET (768px+) ---- */
-  @media (min-width: 768px) {
-    .stitch-hero {
-      padding: 100px 48px 64px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(72px, 12vw, 120px);
-    }
-
-    .stitch-hero-desc {
-      font-size: 16px;
-    }
-
-    .stitch-hero-portrait-inner {
-      max-width: 400px;
-    }
-
-    .stitch-hero-float-badge {
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-    }
-  }
-
-  /* ---- MEDIA QUERY: DESKTOP (1024px+) ---- */
-  @media (min-width: 1024px) {
-    .stitch-hero {
-      padding: 120px 64px 80px;
-      min-height: 100vh;
-    }
-
-    /* Two-column grid */
-    .stitch-hero-grid {
-      grid-template-columns: 7fr 5fr;
-      gap: 64px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(80px, 8vw, 128px);
-      letter-spacing: -3px;
-    }
-
-    .stitch-hero-desc {
-      max-width: 520px;
-      font-size: 16px;
-    }
-
-    .stitch-hero-portrait {
-      justify-content: flex-end;
-    }
-
-    .stitch-hero-portrait-inner {
-      max-width: 100%;
-    }
-
-    .stitch-hero-float-badge {
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-    }
-
-    /* Glow positions for large screens */
-    .stitch-hero-glow-r {
-      width: 600px;
-      height: 600px;
-    }
-  }
-
   /* ---- EXISTING PAGE RESPONSIVE ---- */
   @media (max-width: 768px) {
     .about-inner {
@@ -965,13 +605,13 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   /* ---- CATEGORIES SECTION ---- */
   .cat-section {
     padding: 80px 0;
-    background: var(--surface-container);
+    background: transparent;
   }
 
   .cat-inner {
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 32px;
   }
 
   .cat-header {
@@ -982,7 +622,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     font-family: "Manrope", sans-serif;
     font-size: 36px;
     font-weight: 800;
-    color: var(--on-surface);
+    color: var(--color-ink);
     letter-spacing: -0.5px;
     margin-bottom: 16px;
   }
@@ -991,23 +631,24 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     width: 80px;
     height: 4px;
     border-radius: 2px;
-    background: var(--secondary);
+    background: var(--color-ultramarine);
   }
 
   .cat-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 20px;
   }
 
   .cat-card {
     display: block;
     position: relative;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     overflow: hidden;
     text-decoration: none;
     aspect-ratio: 4 / 3;
-    border: 1px solid rgba(163, 166, 255, 0.06);
+    border: 1px solid var(--color-line);
+    box-shadow: 0 4px 16px rgba(18, 22, 28, 0.04);
     transition:
       transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
       box-shadow 0.3s ease,
@@ -1016,24 +657,21 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
   }
 
   .cat-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
-    border-color: rgba(163, 166, 255, 0.15);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 48px rgba(18, 22, 28, 0.1);
+    border-color: var(--color-ultramarine);
   }
 
   .cat-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(50%);
     transition:
-      transform 0.7s ease,
-      filter 0.4s ease;
+      transform 0.7s ease;
   }
 
   .cat-card:hover img {
-    transform: scale(1.08);
-    filter: grayscale(0%);
+    transform: scale(1.06);
   }
 
   .cat-card-overlay {
@@ -1041,8 +679,8 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     inset: 0;
     background: linear-gradient(
       to top,
-      rgba(15, 25, 48, 0.95) 0%,
-      rgba(15, 25, 48, 0.3) 50%,
+      rgba(18, 22, 28, 0.88) 0%,
+      rgba(18, 22, 28, 0.3) 50%,
       transparent 100%
     );
     z-index: 1;
@@ -1064,23 +702,16 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--secondary);
+    color: var(--color-sun);
   }
 
   .cat-card-title {
     font-family: "Manrope", sans-serif;
     font-size: 28px;
     font-weight: 800;
-    color: var(--on-surface);
+    color: #FFFFFF;
     letter-spacing: -0.5px;
     line-height: 1;
-  }
-
-  .cat-card-desc {
-    font-size: 12px;
-    color: var(--on-surface-variant);
-    max-width: 240px;
-    line-height: 1.5;
   }
 
   .cat-card-arrow {
@@ -1091,10 +722,10 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(163, 166, 255, 0.12);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(163, 166, 255, 0.2);
+    border: 1px solid var(--color-line);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1112,7 +743,7 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 
   .cat-card-arrow .material-symbols-outlined {
     font-size: 18px;
-    color: var(--accent-primary);
+    color: var(--color-ink);
   }
 
   /* Tablet */
@@ -1131,9 +762,6 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
     }
     .cat-card-title {
       font-size: 32px;
-    }
-    .cat-card-desc {
-      font-size: 13px;
     }
   }
 
@@ -1980,3 +1608,5 @@ import imgAsset13 from "../assets/logos/ptnr-mandiri.png";
 
   document.addEventListener('DOMContentLoaded', initMagneticButton);
 </script>
+
+</BaseLayout>
