@@ -242,12 +242,14 @@ export default function HeroSection() {
         </motion.div>
 
         {/* CTA cluster */}
-        <motion.div className="stitch-hero-cta" variants={contentItem}>
-          <a href="#contact" className="stitch-hero-cta-primary">
-            Mulai Project
+        <motion.div className="fx-layer stitch-hero-cta" variants={contentItem}>
+          <a href="#contact" className="stitch-hero-cta fx-btn fx-glass fx-accent">
+            <span className="fx-label">Mulai Project</span>
+            <span className="fx-icon"><i className="fas fa-arrow-right" aria-hidden="true" /></span>
           </a>
-          <a href="#categories" className="stitch-hero-cta-ghost">
-            Lihat Karya
+          <a href="#categories" className="stitch-hero-cta fx-btn fx-glass">
+            <span className="fx-label">Lihat Karya</span>
+            <span className="fx-icon"><i className="fas fa-external-link-alt" aria-hidden="true" /></span>
           </a>
         </motion.div>
       </motion.div>

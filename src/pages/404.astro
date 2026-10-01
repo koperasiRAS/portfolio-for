@@ -21,11 +21,13 @@ import { waLink } from '../utils/whatsapp.js';
         Sepertinya halaman yang Anda cari sudah dipindahkan, dihapus, atau belum dibuat.
       </p>
       <div class="not-found-actions">
-        <a href="/" class="btn btn-primary">
-          <i class="fas fa-home"></i> Kembali ke Home
+        <a href="/" class="fx-layer fx-btn fx-glass fx-accent">
+          <span class="fx-label">Kembali ke Home</span>
+          <span class="fx-icon"><i class="fas fa-home" aria-hidden="true"></i></span>
         </a>
-        <a href={waLink('general')} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-          <i class="fab fa-whatsapp"></i> Hubungi Kami
+        <a href={waLink('general')} target="_blank" rel="noopener noreferrer" class="fx-layer fx-btn fx-glass">
+          <span class="fx-label">Hubungi Kami</span>
+          <span class="fx-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
         </a>
       </div>
     </div>
