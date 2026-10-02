@@ -8,8 +8,6 @@ export default defineConfig({
   site: 'https://for-portfolio-mu.vercel.app',
   integrations: [
     sitemap(),
-    react({
-      client: 'react',
-    }),
+    react(),
   ],
 });

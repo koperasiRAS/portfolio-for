@@ -7,125 +7,84 @@ import {
   useScroll,
   useMotionTemplate,
 } from "framer-motion";
+
 import imgAsset1 from "../assets/design/social/carousels 1.png";
-import thumbWedding from "../assets/thumbnails/thumbnail_wedding.png";
-import thumbVideo from "../assets/thumbnails/thumbnail-video.png";
 import thumbDesign from "../assets/thumbnails/thumbnail-design.png";
+import thumbVideo from "../assets/thumbnails/thumbnail-video.png";
+import thumbWedding from "../assets/thumbnails/thumbnail_wedding.png";
+import thumbWeb from "../assets/thumbnails/web1.png";
+import thumbWedding2 from "../assets/thumbnails/thumbnail_wedding.png";
+import thumbEvent from "../assets/thumbnails/event-seminar.png";
 
 const heroEase = [0.16, 1, 0.3, 1];
 
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.15 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
   },
 };
 
-const contentItem = {
-  hidden: { opacity: 0, y: 32 },
+const item = {
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: heroEase },
+    transition: { duration: 0.75, ease: heroEase },
   },
 };
 
-// Word-by-word reveal for the headline.
-const wordContainer = {
+const gridStagger = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.25 },
+    transition: { staggerChildren: 0.06, delayChildren: 0.5 },
   },
 };
 
-const wordItem = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+const gridItem = {
+  hidden: { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: heroEase },
+    transition: { duration: 0.55, ease: heroEase },
   },
 };
 
-// Subtle Ken-Burns breathing on the background image.
 const kenBurns = {
-  scale: [1, 1.06, 1],
-  transition: { duration: 18, ease: "easeInOut", repeat: Infinity },
+  scale: [1, 1.04, 1],
+  transition: { duration: 16, ease: "easeInOut", repeat: Infinity },
 };
-
-const lineReveal = {
-  hidden: { scaleX: 0, originX: 0 },
-  show: {
-    scaleX: 1,
-    originX: 0,
-    transition: { duration: 1.1, ease: heroEase, delay: 0.6 },
-  },
-};
-
-// Floating work cards enter staggered.
-const cardItem = {
-  hidden: { opacity: 0, y: 40, rotate: 0 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    rotate: i === 0 ? -6 : i === 1 ? 4 : -3,
-    transition: { duration: 0.9, ease: heroEase, delay: 0.55 + i * 0.12 },
-  }),
-};
-
-// Idle float for the work cards (runs in parallel with the staggered reveal).
-// The first keyframe of each property is the rest state; the `delay` on each
-// keyframe is absolute from the start of the animation, so the reveal
-// (0.55s + i*0.12) and the float (first keyframe at rest state) can run
-// simultaneously without conflicting.
-const CARD_ROT = [ -6, 4, -3 ];
-const cardFloat = (i, depth) => ({
-  opacity: [0, 0, 1, 1],
-  y: [40, 0, -10 * depth, 0],
-  rotate: [0, 0, CARD_ROT[i], CARD_ROT[i]],
-  transition: {
-    delay: 0.55 + i * 0.12,
-    duration: [0.9, 0.9, 4 + depth, 4 + depth],
-    repeat: [0, 0, Infinity, Infinity],
-    ease: heroEase,
-  },
-});
 
 const TitleWords = () => (
-  <motion.div variants={wordContainer} initial="hidden" animate="show" className="stitch-hero-title-wrap">
-    <motion.span variants={wordItem} className="stitch-hero-title-word">Frame</motion.span>
-    <motion.span variants={wordItem} className="stitch-hero-title-word">of</motion.span>
-    <motion.span variants={wordItem} className="stitch-hero-title-word stitch-hero-title-accent">
-      Rangga
-    </motion.span>
+  <motion.div className="hero-title-wrap" variants={container} initial="hidden" animate="show">
+    <motion.span variants={item} className="hero-title-word">Frame</motion.span>
+    <motion.span variants={item} className="hero-title-word hero-title-accent">of Rangga</motion.span>
   </motion.div>
 );
 
 export default function HeroSection() {
   const sectionRef = useRef(null);
 
-  // 3D tilt from mouse.
+  // 3D tilt
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const springX = useSpring(rotateX, { stiffness: 50, damping: 20, mass: 0.5 });
   const springY = useSpring(rotateY, { stiffness: 50, damping: 20, mass: 0.5 });
 
-  // Glow follows mouse (spring for lag).
+  // Glow follows mouse
   const glowX = useSpring(useMotionValue(50), { stiffness: 120, damping: 18 });
   const glowY = useSpring(useMotionValue(50), { stiffness: 120, damping: 18 });
-  const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX}% ${glowY}%, rgba(36, 56, 240, 0.10), transparent 55%)`;
+  const glowBg = useMotionTemplate`radial-gradient(700px circle at ${glowX}% ${glowY}%, rgba(36, 56, 240, 0.08), transparent 55%)`;
 
-  // Scroll parallax.
+  // Scroll parallax
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "70%"]);
-  const cardsScale = useTransform(scrollYProgress, [0, 0.4, 1], [1, 0.94, 0.82]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 1, 0.25]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.2]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
 
   function onHeroMouseMove(e) {
     const r = e.currentTarget.getBoundingClientRect();
@@ -133,8 +92,8 @@ export default function HeroSection() {
     const cy = e.clientY - r.top;
     const nx = cx / r.width - 0.5;
     const ny = cy / r.height - 0.5;
-    rotateY.set(nx * 10);
-    rotateX.set(-ny * 10);
+    rotateY.set(nx * 8);
+    rotateX.set(-ny * 8);
     glowX.set((cx / r.width) * 100);
     glowY.set((cy / r.height) * 100);
   }
@@ -146,113 +105,126 @@ export default function HeroSection() {
     glowY.set(50);
   }
 
+  const gridWorks = [
+    { src: thumbDesign, alt: "Design work" },
+    { src: thumbVideo, alt: "Video work" },
+    { src: thumbWedding, alt: "Wedding photography" },
+    { src: thumbWeb, alt: "Web project" },
+    { src: thumbEvent, alt: "Event seminar" },
+    { src: thumbWedding2, alt: "Wedding photo" },
+  ];
+
   return (
     <motion.div
       ref={sectionRef}
-      className="stitch-hero"
+      className="hero-wrap"
       id="hero"
-      initial="hidden"
-      animate="show"
-      variants={container}
       onMouseMove={onHeroMouseMove}
       onMouseLeave={onHeroMouseLeave}
     >
+      {/* Mouse glow */}
       <motion.div
-        className="stitch-hero-glow-r"
+        className="hero-glow"
         style={{ background: glowBg }}
         aria-hidden="true"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.6, ease: heroEase }}
-      />
-      <motion.div
-        className="stitch-hero-glow-l"
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.8, ease: heroEase, delay: 0.2 }}
+        transition={{ duration: 1.4, ease: heroEase }}
       />
 
-      {/* Cinematic parallax background */}
-      <motion.div className="stitch-hero-bg" aria-hidden="true" style={{ y: bgY }}>
-        <motion.img
-          src={imgAsset1}
-          alt=""
-          className="stitch-hero-bg-img"
-          loading="eager"
-          fetchPriority="high"
-          animate={kenBurns}
-        />
-        <div className="stitch-hero-bg-overlay" />
-        <div className="stitch-hero-grain" />
-      </motion.div>
-
-      {/* 3D tilted floating work stack */}
+      {/* Main container */}
       <motion.div
-        className="stitch-hero-workstack"
-        style={{ y: cardsY, scale: cardsScale, rotateX: springX, rotateY: springY }}
-        aria-hidden="true"
+        className="hero-inner"
+        style={{ y: contentY, opacity: contentOpacity }}
+        initial="hidden"
+        animate="show"
+        variants={container}
       >
-        <motion.div
-          className="stitch-hero-workcard is-back"
-          initial={cardItem.hidden}
-          animate={cardFloat(0, 1.6)}
-        >
-          <img src={thumbDesign} alt="" loading="lazy" />
-          <span className="stitch-hero-workcard-label">Brand Design</span>
-        </motion.div>
-        <motion.div
-          className="stitch-hero-workcard is-mid"
-          initial={cardItem.hidden}
-          animate={cardFloat(1, 1.2)}
-        >
-          <img src={thumbVideo} alt="" loading="lazy" />
-          <span className="stitch-hero-workcard-label">Videography</span>
-        </motion.div>
-        <motion.div
-          className="stitch-hero-workcard is-front"
-          initial={cardItem.hidden}
-          animate={cardFloat(2, 0.8)}
-        >
-          <img src={thumbWedding} alt="" loading="lazy" />
-          <span className="stitch-hero-workcard-label">Wedding</span>
-        </motion.div>
-      </motion.div>
+        {/* ===== TEXT ROW (top) ===== */}
+        <motion.div className="hero-text-row" variants={container}>
+          {/* Left: title + subtitle */}
+          <div className="hero-text-left">
+            <motion.span className="hero-eyebrow" variants={item}>
+              <i className="fas fa-user" aria-hidden="true" />
+              Frame Of Rangga
+            </motion.span>
 
-      <motion.div className="stitch-hero-content-root" style={{ y: contentY, opacity: contentOpacity }}>
-        <motion.span className="stitch-badge" variants={contentItem}>
-          Visual Storyteller
-        </motion.span>
+            <h1 className="hero-title">
+              <TitleWords />
+            </h1>
 
-        <motion.div className="stitch-hero-content" variants={contentItem}>
-          <h1 className="stitch-hero-title">
-            <TitleWords />
-          </h1>
+            <motion.div className="hero-rule" variants={item} aria-hidden="true" />
 
+            <motion.p className="hero-desc" variants={item}>
+              A creative studio crafting visual stories through photography,
+              videography, brand design, and web experiences.
+            </motion.p>
+
+            <motion.div className="hero-cta-row" variants={item}>
+              <a href="#contact" className="hero-btn-primary">
+                <span>Explore</span>
+                <i className="fas fa-arrow-right" aria-hidden="true" />
+              </a>
+              <a href="#projects" className="hero-btn-pill">
+                Open Studio
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right: main photo montage */}
           <motion.div
-            className="stitch-hero-rule"
-            variants={lineReveal}
-            aria-hidden="true"
-          />
-
-          <motion.p className="stitch-hero-desc" variants={contentItem}>
-            Crafting visual narratives through the lens of cinematic precision and
-            editorial depth. Creative Direction for the digital age.
-          </motion.p>
+            className="hero-media"
+            style={{ rotateX: springX, rotateY: springY }}
+            initial={{ opacity: 0, scale: 0.92, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: heroEase, delay: 0.3 }}
+          >
+            <div className="hero-media-frame">
+              <motion.img
+                src={imgAsset1}
+                alt="Frame of Rangga creative work"
+                className="hero-media-img"
+                loading="eager"
+                fetchPriority="high"
+                animate={kenBurns}
+              />
+              <div className="hero-media-overlay" />
+              <div className="hero-media-grain" />
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* CTA cluster */}
-        <motion.div className="fx-layer stitch-hero-cta" variants={contentItem}>
-          <a href="#contact" className="stitch-hero-cta fx-btn fx-glass fx-accent">
-            <span className="fx-label">Mulai Project</span>
-            <span className="fx-icon"><i className="fas fa-arrow-right" aria-hidden="true" /></span>
-          </a>
-          <a href="#categories" className="stitch-hero-cta fx-btn fx-glass">
-            <span className="fx-label">Lihat Karya</span>
-            <span className="fx-icon"><i className="fas fa-external-link-alt" aria-hidden="true" /></span>
-          </a>
+        {/* ===== WORK GRID ROW (bottom) ===== */}
+        <motion.div
+          className="hero-grid-row"
+          variants={gridStagger}
+          initial="hidden"
+          animate="show"
+          style={{ y: gridY }}
+        >
+          {gridWorks.map((w, i) => (
+            <motion.a
+              key={i}
+              href="#projects"
+              className="hero-grid-card"
+              variants={gridItem}
+              initial="hidden"
+              animate="show"
+            >
+              <img src={w.src} alt={w.alt} loading="lazy" />
+              <span className="hero-grid-label">{w.alt}</span>
+            </motion.a>
+          ))}
         </motion.div>
       </motion.div>
+
+      {/* Dot nav — right side */}
+      <div className="hero-dot-nav" aria-label="Section navigation">
+        <a href="#hero" className="hero-dot active" aria-label="Home" />
+        <a href="#projects" className="hero-dot" aria-label="Projects" />
+        <a href="#about" className="hero-dot" aria-label="About" />
+        <a href="#contact" className="hero-dot" aria-label="Contact" />
+      </div>
     </motion.div>
   );
 }

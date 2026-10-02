@@ -3353,21 +3353,18 @@ body.glightbox-open { overflow: hidden; }
 }
 
 /* =============================================
-   STITCH HERO (Framer Motion island styles)
+   HERO — Reference layout: text top, photo montage, 3×2 grid
    ============================================= */
-.stitch-hero {
+.hero-wrap {
   position: relative;
   min-height: 100dvh;
-  display: flex;
-  align-items: center;
   overflow: hidden;
-  padding: 110px 24px 64px;
   background: var(--color-paper);
   perspective: 1200px;
 }
 
-/* Mouse-follow cinematic glow (set inline from Framer Motion) */
-.stitch-hero-glow-r {
+/* Mouse glow */
+.hero-glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -3375,313 +3372,316 @@ body.glightbox-open { overflow: hidden; }
   opacity: 0.9;
 }
 
-/* Static warm accent glow (bottom-left) */
-.stitch-hero-glow-l {
-  position: absolute;
-  bottom: -8%;
-  left: -8%;
-  width: 440px;
-  height: 440px;
-  border-radius: 50%;
-  filter: blur(70px);
-  pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(
-    circle,
-    rgba(244, 197, 66, 0.20) 0%,
-    transparent 70%
-  );
-}
-
-.stitch-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  will-change: transform;
-}
-
-.stitch-hero-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.22;
-  filter: saturate(0.85) contrast(1.1);
-  will-change: transform;
-}
-
-.stitch-hero-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(241, 243, 245, 0.94) 0%,
-    rgba(241, 243, 245, 0.82) 45%,
-    rgba(241, 243, 245, 0.55) 100%
-  );
-}
-
-/* 3D floating work stack (right-side) */
-.stitch-hero-workstack {
-  position: absolute;
-  right: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 380px;
-  height: 380px;
-  z-index: 1;
-  pointer-events: none;
-  transform-style: preserve-3d;
-}
-
-.stitch-hero-workcard {
-  position: absolute;
-  width: 220px;
-  height: 140px;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid var(--color-line);
-  background: var(--color-white);
-  box-shadow: 0 18px 44px rgba(18, 22, 28, 0.14);
-  transition: box-shadow 0.4s ease;
-  pointer-events: auto;
-}
-
-.stitch-hero-workcard img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.stitch-hero-workcard-label {
-  position: absolute;
-  bottom: 8px;
-  left: 10px;
-  font-family: "Manrope", sans-serif;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  background: rgba(18, 22, 28, 0.55);
-  padding: 3px 9px;
-  border-radius: 9999px;
-  backdrop-filter: blur(4px);
-}
-
-/* Back card — deepest layer, smallest, leftmost */
-.stitch-hero-workcard.is-back {
-  top: 40px;
-  left: 0;
-  z-index: 1;
-  opacity: 0.75;
-  transform: rotateX(8deg) rotateZ(-10deg) translateZ(-60px) scale(0.88);
-  filter: blur(1px);
-}
-
-/* Mid card */
-.stitch-hero-workcard.is-mid {
-  top: 110px;
-  left: 80px;
-  z-index: 2;
-  opacity: 0.9;
-  transform: rotateX(-6deg) rotateZ(6deg) translateZ(-20px);
-}
-
-/* Front card — closest, largest, rightmost */
-.stitch-hero-workcard.is-front {
-  top: 190px;
-  left: 140px;
-  z-index: 3;
-  transform: rotateX(3deg) rotateZ(-4deg) translateZ(20px);
-}
-
-.stitch-hero-workcard:hover {
-  box-shadow: 0 26px 60px rgba(18, 22, 28, 0.22);
-  z-index: 5;
-}
-
-/* Hide work stack on narrow screens */
-@media (max-width: 1024px) {
-  .stitch-hero-workstack {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* Fine film-grain texture overlay for a cinematic feel */
-.stitch-hero-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-
-.stitch-hero-content-root {
+/* Main inner container */
+.hero-inner {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
+  padding: 96px 32px 64px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 48px;
 }
 
-.stitch-hero-content {
+/* ===== TEXT ROW: left text + right montage ===== */
+.hero-text-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+/* Left column: title, subtitle, CTA */
+.hero-text-left {
+  flex: 0 1 460px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 20px;
 }
 
-.stitch-badge {
+.hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 18px;
+  padding: 6px 16px;
   border-radius: 9999px;
   background: var(--color-white);
   border: 1px solid var(--color-line);
   color: var(--color-ultramarine);
   font-family: "Manrope", sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   width: fit-content;
-  box-shadow: 0 2px 10px rgba(18, 22, 28, 0.05);
+  box-shadow: 0 2px 8px rgba(18, 22, 28, 0.05);
 }
 
-/* Word-by-word headline */
-.stitch-hero-title {
+.hero-eyebrow i { font-size: 11px; }
+
+/* Headline */
+.hero-title {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  line-height: 0.94;
-  letter-spacing: -2px;
+  line-height: 1.02;
+  letter-spacing: -2.5px;
   color: var(--color-ink);
+  font-size: clamp(56px, 8vw, 100px);
+  margin: 0;
 }
 
-.stitch-hero-title-wrap {
+.hero-title-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.24em;
+  gap: 0.2em;
 }
 
-.stitch-hero-title-word {
-  font-size: clamp(56px, 15vw, 110px);
+.hero-title-word {
   display: inline-block;
 }
 
-.stitch-hero-title-accent {
+.hero-title-accent {
   color: var(--color-ultramarine);
   font-style: italic;
 }
 
-/* Decorative reveal rule between title and description */
-.stitch-hero-rule {
-  width: 96px;
-  height: 4px;
+/* Rule */
+.hero-rule {
+  width: 80px;
+  height: 3px;
   border-radius: 2px;
   background: var(--color-ultramarine);
-  transform-origin: left center;
 }
 
-.stitch-hero-desc {
-  font-size: 16px;
-  line-height: 1.75;
+.hero-desc {
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--color-mute);
-  max-width: 540px;
+  max-width: 400px;
 }
 
-/* CTA cluster */
-.stitch-hero-cta {
+/* CTA row */
+.hero-cta-row {
   display: flex;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
-  gap: 14px;
+  margin-top: 4px;
 }
 
-.stitch-hero-cta-primary {
+/* Primary CTA — dark pill */
+.hero-btn-primary {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 13px 28px;
   border-radius: 9999px;
-  background: var(--color-ultramarine);
-  color: #ffffff;
+  background: var(--color-ink);
+  color: #fff;
   font-family: "Manrope", sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 10px 28px rgba(36, 56, 240, 0.28);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stitch-hero-cta-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(36, 56, 240, 0.36);
-}
-
-.stitch-hero-cta-ghost {
-  display: inline-flex;
-  align-items: center;
-  padding: 13px 28px;
-  border-radius: 9999px;
-  border: 1px solid var(--color-line);
-  color: var(--color-ink);
-  font-family: "Manrope", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.6);
-  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 8px 24px rgba(18, 22, 28, 0.28);
+  transition: all 0.25s ease;
 }
 
-.stitch-hero-cta-ghost:hover {
+.hero-btn-primary i { font-size: 12px; }
+
+.hero-btn-primary:hover {
+  background: var(--color-ultramarine);
   transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(36, 56, 240, 0.35);
+}
+
+/* Secondary pill — outline */
+.hero-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 24px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
   background: var(--color-white);
+  color: var(--color-ink);
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
-/* ---- Hero responsive ---- */
-@media (min-width: 768px) {
-  .stitch-hero {
-    padding: 130px 48px 80px;
-  }
-  .stitch-hero-title-word {
-    font-size: clamp(72px, 12vw, 130px);
-  }
+.hero-btn-pill:hover {
+  border-color: var(--color-ultramarine);
+  color: var(--color-ultramarine);
+  transform: translateY(-2px);
 }
 
-@media (min-width: 1024px) {
-  .stitch-hero {
-    padding: 150px 64px 96px;
-    min-height: 100vh;
+/* ===== RIGHT: Main photo montage ===== */
+.hero-media {
+  flex: 0 1 420px;
+  transform-style: preserve-3d;
+}
+
+.hero-media-frame {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  box-shadow: 0 24px 60px rgba(18, 22, 28, 0.14);
+}
+
+.hero-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Gradient wash to match the reference's slightly desaturated look */
+.hero-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(241, 243, 245, 0.15) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+/* Grain texture */
+.hero-media-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ===== BOTTOM: 3×2 WORK GRID ===== */
+.hero-grid-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.hero-grid-card {
+  position: relative;
+  display: block;
+  height: 120px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  box-shadow: 0 8px 24px rgba(18, 22, 28, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.hero-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(18, 22, 28, 0.16);
+}
+
+.hero-grid-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-grid-label {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-family: "Manrope", sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(18, 22, 28, 0.6);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.hero-grid-card:hover .hero-grid-label {
+  opacity: 1;
+}
+
+/* ===== DOT NAV (right side) ===== */
+.hero-dot-nav {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-mute);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.hero-dot:hover,
+.hero-dot.active {
+  background: var(--color-ultramarine);
+  border-color: var(--color-ultramarine);
+  box-shadow: 0 0 8px rgba(36, 56, 240, 0.4);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .hero-text-row {
+    flex-direction: column-reverse;
   }
-  .stitch-hero-title-word {
-    font-size: clamp(84px, 9vw, 148px);
+
+  .hero-media {
+    width: 100%;
+    height: 260px;
   }
-  .stitch-hero-content-root {
-    max-width: 900px;
+
+  .hero-grid-row {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .stitch-hero-workstack {
-    width: 440px;
-    height: 440px;
-    right: 8%;
+
+  .hero-grid-card { height: 100px; }
+}
+
+@media (max-width: 640px) {
+  .hero-inner {
+    padding: 80px 20px 48px;
+    gap: 32px;
   }
-  .stitch-hero-workcard {
-    width: 260px;
-    height: 165px;
+
+  .hero-title {
+    font-size: clamp(44px, 12vw, 64px);
   }
-  .stitch-hero-workcard.is-back {
-    top: 60px;
-    left: 0;
+
+  .hero-grid-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
-  .stitch-hero-workcard.is-mid {
-    top: 140px;
-    left: 100px;
-  }
-  .stitch-hero-workcard.is-front {
-    top: 240px;
-    left: 180px;
+
+  .hero-grid-card { height: 80px; }
+
+  .hero-dot-nav {
+    display: none;
   }
 }
 
