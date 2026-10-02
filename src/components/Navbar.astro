@@ -8,100 +8,181 @@ const { activePage = 'home' } = Astro.props;
 const navLinks = [
   { href: '/', label: 'Home', page: 'home' },
   { href: '/about', label: 'About', page: 'about' },
-  { href: '/foto', label: 'Foto', page: 'foto' },
+  { href: '/foto', label: 'Photo', page: 'foto' },
   { href: '/video', label: 'Video', page: 'video' },
   { href: '/design', label: 'Design', page: 'design' },
-  { href: '/website', label: 'Website', page: 'website' },
+  { href: '/website', label: 'Web', page: 'website' },
 ];
 ---
 
-<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
-  <a href="/" class="nav-logo">FOR</a>
-  <ul class="nav-links" id="navLinks">
-    {navLinks.map(link => (
-      <li>
+<header class="fixed top-0 inset-x-0 z-50 flex items-center justify-center pointer-events-none px-4 md:px-12 pt-4 md:pt-6">
+  <div class="h-16 w-full max-w-7xl mx-auto flex items-center justify-between pointer-events-auto px-4 md:px-6 rounded-full bg-[surface-container-lowest]/75 backdrop-blur-xl shadow-2xl border border-[outline-variant]/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+    
+    <!-- Brand Logo -->
+    <div class="flex items-center gap-2">
+      <a class="flex items-center gap-2.5 group" href="/">
+        <span class="w-2 h-2 rounded-full bg-[primary] animate-pulse"></span>
+        <span class="font-['Hanken_Grotesk'] text-sm md:text-base font-semibold uppercase tracking-wider text-[on-surface] group-hover:text-[primary] transition-colors">
+          FRAME OF RANGGA
+        </span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation Capsule -->
+    <nav class="hidden lg:flex items-center gap-1 p-1 rounded-full bg-[surface-container-low]/60 border border-[outline-variant]/20">
+      {navLinks.map((link) => {
+        const isActive = activePage === link.page;
+        return (
+          <a
+            href={link.href}
+            class={`px-4 py-1.5 rounded-full font-['Inter'] text-xs transition-all duration-200 ${
+              isActive
+                ? 'bg-[surface-container-highest] text-white font-semibold shadow-inner'
+                : 'text-[on-surface-variant] hover:text-white hover:bg-[surface-container-high]'
+            }`}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Right Controls: Contact & Admin Person Icon -->
+    <div class="flex items-center gap-2.5">
+      <a
+        href="/#contact-cta"
+        class="hidden sm:inline-flex items-center px-4 py-1.5 rounded-full font-['Inter'] text-xs font-medium text-[on-surface] bg-[surface-container-high]/70 hover:bg-[surface-container-highest] hover:text-[primary] transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] border border-[outline-variant]/30"
+      >
+        Contact
+      </a>
+
+      <!-- Studio Person Avatar Link to Admin Login -->
+      <a
+        href="/admin/login"
+        class="w-8 h-8 rounded-full bg-[primary] hover:brightness-110 flex items-center justify-center shrink-0 transition-transform active:scale-95 shadow-md"
+        title="Studio Portal / Admin"
+        aria-label="Studio Admin Portal"
+      >
+        <span class="material-symbols-outlined text-[on-primary] text-[18px]">person</span>
+      </a>
+      
+      <!-- Mobile Hamburger Button -->
+      <button
+        type="button"
+        id="navToggle"
+        class="lg:hidden w-8 h-8 rounded-full bg-[surface-container-low] border border-[outline-variant]/30 flex flex-col items-center justify-center gap-1 text-[on-surface] focus:outline-none cursor-pointer"
+        aria-label="Toggle Navigation Menu"
+        aria-expanded="false"
+      >
+        <span class="w-3.5 h-0.5 bg-[on-surface] transition-transform duration-200" id="bar1"></span>
+        <span class="w-3.5 h-0.5 bg-[on-surface] transition-opacity duration-200" id="bar2"></span>
+        <span class="w-3.5 h-0.5 bg-[on-surface] transition-transform duration-200" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div
+  id="mobileNavDrawer"
+  class="fixed inset-0 z-40 bg-[surface-container-lowest]/95 backdrop-blur-2xl transition-all duration-300 pointer-events-none opacity-0 flex flex-col justify-center items-center px-6"
+  aria-hidden="true"
+>
+  <div class="w-full max-w-sm flex flex-col gap-3 text-center">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-[tertiary] animate-pulse"></span>
+      <span class="font-['JetBrains_Mono'] text-[11px] text-[tertiary] uppercase tracking-widest">INDEX DIRECTORY</span>
+    </div>
+    {navLinks.map((link) => {
+      const isActive = activePage === link.page;
+      return (
         <a
           href={link.href}
-          class={activePage === link.page ? 'active' : ''}
+          class={`mobile-nav-link text-lg font-['Hanken_Grotesk'] py-2.5 px-4 rounded-full transition-colors ${
+            isActive
+              ? 'bg-[primary-container]/20 text-[primary] font-semibold border border-[primary-container]/40'
+              : 'text-[on-surface] hover:bg-[surface-container-low]'
+          }`}
         >
           {link.label}
         </a>
-      </li>
-    ))}
-  </ul>
-  <!-- Contact CTA desktop only, outside nav-links -->
-  <a href="/#contact" class="btn-nav-cta desktop-cta fx-layer fx-btn fx-glass fx-accent fx-btn--sm">
-    <span class="fx-label">Contact</span>
-    <span class="fx-icon"><i class="fas fa-arrow-right"></i></span>
-  </a>
-  <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
-
-<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+      );
+    })}
+    <div class="pt-4 mt-2 border-t border-[outline-variant]/20 flex flex-col gap-2">
+      <a
+        href="/#contact-cta"
+        class="mobile-nav-link w-full py-3 rounded-full font-['Hanken_Grotesk'] font-medium text-sm bg-[primary-container] text-[on-primary-container] shadow-lg hover:brightness-110 transition-all"
+      >
+        Get in Touch
+      </a>
+      <a
+        href="/admin/login"
+        class="mobile-nav-link w-full py-2.5 rounded-full font-['JetBrains_Mono'] text-xs text-[outline] hover:text-[on-surface] transition-colors"
+      >
+        Studio Portal (Admin)
+      </a>
+    </div>
+  </div>
+</div>
 
 <script is:inline>
-  function setupMobileNav() {
+  function initStitchNav() {
     const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    let backdrop = document.getElementById('navBackdrop');
+    const drawer = document.getElementById('mobileNavDrawer');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    const links = document.querySelectorAll('.mobile-nav-link');
 
-    if (!backdrop) {
-      backdrop = document.createElement('div');
-      backdrop.id = 'navBackdrop';
-      backdrop.className = 'nav-backdrop';
-      backdrop.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(backdrop);
+    if (!toggle || !drawer) return;
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      toggle.setAttribute('aria-expanded', 'true');
+      drawer.classList.remove('opacity-0', 'pointer-events-none');
+      drawer.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = 'hidden';
+      if (bar1 && bar2 && bar3) {
+        bar1.style.transform = 'translateY(4.5px) rotate(45deg)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'translateY(-4.5px) rotate(-45deg)';
+      }
     }
 
-    if (!toggle || !links) return;
-
-    const newToggle = toggle.cloneNode(true);
-    if (toggle.parentNode) toggle.parentNode.replaceChild(newToggle, toggle);
-
-    const openNav = () => {
-      links.classList.add('open');
-      newToggle.classList.add('active');
-      newToggle.setAttribute('aria-expanded', 'true');
-      backdrop.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    };
-
-    const closeNav = () => {
-      links.classList.remove('open');
-      newToggle.classList.remove('active');
-      newToggle.setAttribute('aria-expanded', 'false');
-      backdrop.classList.remove('active');
+    function closeMenu() {
+      isOpen = false;
+      toggle.setAttribute('aria-expanded', 'false');
+      drawer.classList.add('opacity-0', 'pointer-events-none');
+      drawer.classList.remove('opacity-100', 'pointer-events-auto');
       document.body.style.overflow = '';
-    };
+      if (bar1 && bar2 && bar3) {
+        bar1.style.transform = 'none';
+        bar2.style.opacity = '1';
+        bar3.style.transform = 'none';
+      }
+    }
 
-    newToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      links.classList.contains('open') ? closeNav() : openNav();
+    toggle.addEventListener('click', () => {
+      isOpen ? closeMenu() : openMenu();
     });
 
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', closeNav);
+    links.forEach((link) => {
+      link.addEventListener('click', closeMenu);
     });
-
-    backdrop.addEventListener('click', closeNav);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && links.classList.contains('open')) {
-        closeNav();
-        newToggle.focus();
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
       }
     });
   }
 
-  document.addEventListener('astro:page-load', setupMobileNav);
+  document.addEventListener('astro:page-load', initStitchNav);
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupMobileNav);
+    document.addEventListener('DOMContentLoaded', initStitchNav);
   } else {
-    setupMobileNav();
+    initStitchNav();
   }
 </script>

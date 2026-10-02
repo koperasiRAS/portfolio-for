@@ -2,97 +2,75 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { waLink } from '../utils/whatsapp.js';
 ---
 
 <BaseLayout
-  title="Halaman Tidak Ditemukan | Frame Of Rangga"
-  description="Halaman yang Anda cari tidak ada. Kembali ke Frame Of Rangga."
-  ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-default.jpg"
+  title="404 — Frame Not Found | Frame Of Rangga"
+  description="The requested archival frame or coordinate does not exist. Return to Frame Of Rangga studio index."
+  ogImage="/assets/og/og-default.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/404"
 >
   <Navbar slot="navbar" activePage="404" />
 
-  <section class="not-found-section">
-    <div class="not-found-inner fade-up">
-      <div class="not-found-number">404</div>
-      <h1 class="not-found-title">Halaman tidak ditemukan</h1>
-      <p class="not-found-message">
-        Sepertinya halaman yang Anda cari sudah dipindahkan, dihapus, atau belum dibuat.
+  <main class="min-h-screen pt-32 pb-24 px-4 sm:px-6 lg:px-12 flex items-center justify-center relative overflow-hidden bg-[background]">
+    <!-- Ambient glowing backdrop -->
+    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+      <div class="w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[130px] -translate-y-12"></div>
+      <div class="w-[300px] h-[300px] rounded-full bg-cyan-500/10 blur-[100px] translate-x-24 translate-y-16"></div>
+      <!-- Subtle Grid Matrix -->
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-xl w-full text-center flex flex-col items-center">
+      <!-- Status Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[surface-container]/80 backdrop-blur-md border border-[outline-variant]/40 mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+        <span class="font-['JetBrains_Mono'] text-[11px] uppercase tracking-widest text-[on-surface-variant]">Err // 404 Archival Missing</span>
+      </div>
+
+      <!-- Large Glitch / Numeric Header -->
+      <div class="font-['Hanken_Grotesk'] text-[96px] sm:text-[140px] font-bold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-[on-surface] via-[outline] to-transparent select-none mb-2">
+        404
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-['Hanken_Grotesk'] text-2xl sm:text-3xl font-semibold text-[on-surface] tracking-tight uppercase mb-4">
+        Frame Coordinate Lost
+      </h1>
+
+      <!-- Subtitle / Narrative -->
+      <p class="font-['Inter'] text-sm sm:text-base text-[on-surface-variant] leading-relaxed max-w-md mb-8">
+        The photographic frame, project record, or timeline sequence you are seeking has been archived, relocated, or does not exist in the studio catalog.
       </p>
-      <div class="not-found-actions">
-        <a href="/" class="fx-layer fx-btn fx-glass fx-accent">
-          <span class="fx-label">Kembali ke Home</span>
-          <span class="fx-icon"><i class="fas fa-home" aria-hidden="true"></i></span>
+
+      <!-- Technical Metadata Pill -->
+      <div class="inline-flex items-center gap-4 px-4 py-2 rounded-lg bg-[surface-container-low]/80 border border-[surface-container-highest] font-['JetBrains_Mono'] text-xs text-[outline] mb-8">
+        <span>STATUS: UNRESOLVED</span>
+        <span>•</span>
+        <span>LATENCY: 0.00ms</span>
+        <span>•</span>
+        <span>NODE: JAKARTA_HQ</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 w-full sm:w-auto">
+        <a 
+          href="/" 
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[on-surface] text-[background] font-['Hanken_Grotesk'] text-sm font-semibold hover:bg-white transition-all shadow-[0_4px_20px_rgba(255,255,255,0.12)] active:scale-95"
+        >
+          <span class="material-symbols-outlined text-[18px]">home</span>
+          <span>Return to Studio Index</span>
         </a>
-        <a href={waLink('general')} target="_blank" rel="noopener noreferrer" class="fx-layer fx-btn fx-glass">
-          <span class="fx-label">Hubungi Kami</span>
-          <span class="fx-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
+        <a 
+          href="/foto" 
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[surface-container] hover:bg-[surface-container-high] text-[on-surface] border border-[outline-variant]/50 font-['Hanken_Grotesk'] text-sm font-medium transition-all active:scale-95"
+        >
+          <span class="material-symbols-outlined text-[18px]">photo_library</span>
+          <span>Explore Photo Vault</span>
         </a>
       </div>
     </div>
-  </section>
+  </main>
 
   <Footer slot="footer" variant="minimal" />
 </BaseLayout>
-
-<style>
-  .not-found-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 24px 80px;
-  }
-
-  .not-found-inner {
-    text-align: center;
-    max-width: 520px;
-  }
-
-  .not-found-number {
-    font-size: clamp(100px, 20vw, 180px);
-    font-weight: 900;
-    line-height: 1;
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
-    animation: floatUp 1s ease-out both;
-  }
-
-  .not-found-title {
-    font-size: clamp(20px, 4vw, 30px);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    animation: fadeUp 0.8s ease-out 0.15s both;
-  }
-
-  .not-found-message {
-    font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 36px;
-    animation: fadeUp 0.8s ease-out 0.3s both;
-  }
-
-  .not-found-actions {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeUp 0.8s ease-out 0.45s both;
-  }
-
-  @keyframes floatUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>

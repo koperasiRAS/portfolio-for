@@ -1,862 +1,706 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import { Image } from "astro:assets";
-import imgAsset1 from "../assets/thumbnails/web1.png";
-import imgAsset2 from "../assets/thumbnails/web2.png";
-import imgQurban from "../assets/thumbnails/thumbnail_qurban.png";
-import imgWedding from "../assets/thumbnails/thumbnail_wedding.png";
-import imgUltah from "../assets/thumbnails/thumbnail_ultah.png";
-import imgUltahArdheen from "../assets/thumbnails/thumbnail_ultah_ardheen.png";
-import imgPromosiIdecraft from "../assets/thumbnails/thumbnail_promosi_idecraft.png";
-import imgPadel from "../assets/thumbnails/thumbnail_padel.jpg";
-import imgVlog from "../assets/thumbnails/thumbnail_vlog.png";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import { waLink } from "../utils/whatsapp.js";
 ---
 
 <BaseLayout
-  title="Video Portfolio | Frame Of Rangga"
-  description="Portofolio videografi Rangga Danuarta brand video, dokumentasi event, konten sosial media, dan video promosi dengan pendekatan cinematic storytelling."
-  ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-video.jpg"
+  title="Video & Film Direction | FRAME OF RANGGA"
+  description="Cinematic film direction, documentaries, brand films, and motion reels directed by Rangga Danuarta."
+  ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-default.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/video"
-  hasGlightbox={true}
+  bodyClass="bg-[background] text-[on-surface] selection:bg-[primary-container] selection:text-[on-primary-container] antialiased"
 >
   <Navbar slot="navbar" activePage="video" />
 
-  <!-- PAGE HERO Stitch Reference -->
-  <section class="page-hero stitch-hero" transition:animate="fade">
-    <div class="page-hero-bg-glow" aria-hidden="true"></div>
-    <div class="page-hero-inner stitch-hero-inner">
-      <h1 class="stitch-hero-title">
-        Cinematic <span class="stitch-hero-accent">Work.</span>
-      </h1>
-      <p class="stitch-hero-sub">
-        Exploring stories through motion and light. A curated collection of brand narratives, documentaries, and creative experiments.
-      </p>
-    </div>
-  </section>
+  <main class="w-full pt-16 min-h-screen">
+    <div class="flex flex-col w-full">
+      
+      <!-- Top Atmospheric Gradient Scrim -->
+      <div class="relative w-full overflow-hidden">
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[360px] bg-[primary-container]/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-20 right-10 w-[400px] h-[300px] bg-[tertiary]/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-  <!-- VIDEO GALLERY Stitch Layout -->
-  <section class="video-section" transition:animate="fade">
-
-    <!-- Filter Bar Stitch pill style -->
-    <div class="filter-bar fx-layer fade-up" aria-label="Filter by category">
-      <button class="filter-btn fx-chip active" data-filter="all">Semua</button>
-      <button class="filter-btn fx-chip" data-filter="wedding">Wedding</button>
-      <button class="filter-btn fx-chip" data-filter="dokumentasi">Dokumentasi</button>
-      <button class="filter-btn fx-chip" data-filter="vlog">Vlog</button>
-      <button class="filter-btn fx-chip" data-filter="sosmed">Konten Sosmed</button>
-      <button class="filter-btn fx-chip" data-filter="promosi">Promosi</button>
-    </div>
-
-    <!-- Video Grid -->
-    <div class="stitch-video-grid fade-up">
-
-      <!-- FEATURED VIDEO CARD Full width featured -->
-      <a class="stitch-video-card stitch-video-card-featured glightbox"
-         href="https://www.youtube.com/watch?v=iVcwjQdDL74"
-         data-type="video"
-         data-source="youtube"
-         data-gallery="videos"
-         data-category="dokumentasi">
-
-        <div class="stitch-video-thumb-wrap">
-          <Image             src="https://img.youtube.com/vi/iVcwjQdDL74/maxresdefault.jpg"
-            alt="The Coastal Escape Featured Project"
-            loading="lazy"
-            width="1280"
-            height="549"
-          />
-          <div class="stitch-video-thumb-overlay"></div>
-        </div>
-
-        <div class="stitch-video-card-featured-body">
-          <div class="stitch-video-card-featured-left">
-            <span class="stitch-featured-badge">Featured Project</span>
-            <h2 class="stitch-video-card-featured-title">The Coastal Escape</h2>
-            <p class="stitch-video-card-featured-desc">Rekap visual dari footage alam dan pantai dengan pendekatan cinematic editing yang mendalam.</p>
+        <!-- ============================================================
+             01. EDITORIAL HEADER SECTION
+             ============================================================ -->
+        <section class="relative w-full max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-16 pb-6 flex flex-col gap-4">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[tertiary] animate-ping"></span>
+            <span class="font-['JetBrains_Mono'] text-xs uppercase tracking-widest text-[primary]">Film Direction Archive — 04</span>
+            <span class="text-[outline-variant]">/</span>
+            <span class="font-['JetBrains_Mono'] text-xs text-[outline]">2024—2026 Reel</span>
           </div>
-          <div class="stitch-video-card-featured-right">
-            <div class="stitch-duration-block">
-              <span class="stitch-duration-label">Duration</span>
-              <span class="stitch-duration-value">02:30</span>
+
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h1 class="font-display-xl text-display-xl tracking-tight text-on-surface">Video.</h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mt-1">
+                Short films, documentaries, visual stories, and cinematic motion. Atmospheric narratives captured across 35mm and anamorphic cinema formats.
+              </p>
             </div>
-            <button class="stitch-play-btn stitch-play-btn-lg" aria-label="Play video">
-              <i class="fas fa-play"></i>
+            <div class="flex items-center gap-4 pb-1">
+              <div class="flex flex-col items-start md:items-end">
+                <span class="font-label-md text-label-md text-on-surface">18 Curated Cuts</span>
+                <span class="font-label-sm text-label-sm text-outline">DCI 4K • 2.39:1 Scope</span>
+              </div>
+              <div class="hidden sm:flex items-center gap-1.5 p-1 rounded-full bg-surface-container-high/60">
+                <button type="button" class="p-1.5 rounded-full bg-surface-container-highest text-primary transition-colors" title="Cinematic View">
+                  <span class="material-symbols-outlined text-[18px]">movie</span>
+                </button>
+                <button type="button" class="p-1.5 rounded-full text-outline hover:text-on-surface transition-colors" title="Grid View">
+                  <span class="material-symbols-outlined text-[18px]">grid_view</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-2 pt-3" id="video-filter-bar">
+            <button class="video-filter-btn active px-4 py-1.5 rounded-full font-label-md text-label-md transition-all flex items-center gap-1.5 bg-primary-container text-on-primary-container shadow-md border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] cursor-pointer" data-filter="all">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary-fixed"></span>
+              <span>ALL</span>
+            </button>
+            <button class="video-filter-btn px-4 py-1.5 rounded-full font-label-md text-label-md transition-all text-secondary hover:text-on-surface bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/20 hover:border-outline-variant/30 hover:bg-surface-container-high cursor-pointer" data-filter="short-film">
+              <span>SHORT FILM</span>
+            </button>
+            <button class="video-filter-btn px-4 py-1.5 rounded-full font-label-md text-label-md transition-all text-secondary hover:text-on-surface bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/20 hover:border-outline-variant/30 hover:bg-surface-container-high cursor-pointer" data-filter="documentary">
+              <span>DOCUMENTARY</span>
+            </button>
+            <button class="video-filter-btn px-4 py-1.5 rounded-full font-label-md text-label-md transition-all text-secondary hover:text-on-surface bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/20 hover:border-outline-variant/30 hover:bg-surface-container-high cursor-pointer" data-filter="behind-the-scenes">
+              <span>BEHIND THE SCENES</span>
+            </button>
+            <button class="video-filter-btn px-4 py-1.5 rounded-full font-label-md text-label-md transition-all text-secondary hover:text-on-surface bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/20 hover:border-outline-variant/30 hover:bg-surface-container-high cursor-pointer" data-filter="commercial">
+              <span>COMMERCIAL</span>
+            </button>
+            <button class="video-filter-btn px-4 py-1.5 rounded-full font-label-md text-label-md transition-all text-secondary hover:text-on-surface bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/20 hover:border-outline-variant/30 hover:bg-surface-container-high cursor-pointer" data-filter="travel">
+              <span>TRAVEL</span>
             </button>
           </div>
-        </div>
-      </a>
+        </section>
 
-      <!-- Regular Video Cards 2 column grid -->
-      <div class="stitch-video-grid-regular">
 
-        <!-- Card 1: Wedding Video -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1_DVJqrqzKQTcVfcmptCpcYdK5kB0Zvgr/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="wedding">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgWedding}
-              alt="Wedding Video"
-              loading="lazy"
-              width="640"
-              height="360"
+        <!-- ============================================================
+             02. FEATURED MASTERWORK HERO: THE LAST LIGHT
+             ============================================================ -->
+        <section class="w-full max-w-7xl mx-auto px-4 md:px-8 pt-2 pb-14">
+          <div class="group relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-[surface-container-lowest] shadow-2xl transition-all duration-700 border border-[outline-variant]/25">
+            <!-- Cinema Film Image -->
+            <img
+              class="w-full h-full object-cover scale-[1.01] group-hover:scale-105 transition-transform duration-1000 ease-out"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzaFNm6IGga_n7wqM5NahcRZEtts_AQw6Bhb67l-OG4GtEoCrGc_Cj9JkT7YjkU5d15qUZRl1xcPKvhNEvZhRjW1ASbj7eu67CaD7q9We-xEF7U1eDzYkkQr_5UU8TsbfRhKL7GyrGwEvQEKXpqvDWpBCc4ferzgn3PO0eppchgOAg25L-2DzHl155A-wKh2lJodF-GvFREWivRfoXOXeyiWV3zAtggam79qXqp5P5U_9ytl7pyfr-"
+              alt="Cinematic widescreen film still with solitary figure at sunset"
             />
-            <div class="stitch-duration-badge">00:20</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-[surface-container-lowest] via-[surface-container-lowest]/40 to-transparent opacity-90 group-hover:opacity-75 transition-opacity"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[surface-container-lowest]/80 via-transparent to-[surface-container-lowest]/50"></div>
+
+            <!-- Cinema Status Top Badges -->
+            <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+              <div class="flex items-center gap-2 bg-surface-container-lowest/70 backdrop-blur-md px-4 py-1 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                <span class="font-label-sm text-label-sm tracking-wider uppercase text-on-surface">PREMIERE RELEASE • 2026</span>
+              </div>
+              <div class="hidden sm:flex items-center gap-2 bg-surface-container-lowest/70 backdrop-blur-md px-4 py-1 rounded-full font-label-sm text-label-sm text-secondary">
+                <span>ARRI ALEXA 35</span>
+                <span class="text-outline-variant">•</span>
+                <span>COOKE ANAMORPHIC /i</span>
+                <span class="text-outline-variant">•</span>
+                <span class="text-primary">4K MASTER</span>
+              </div>
+            </div>
+
+            <!-- Central Play Trigger -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <button
+                type="button"
+                aria-label="Play The Last Light Short Film"
+                class="video-play-trigger group/btn relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-[surface-container-lowest]/70 backdrop-blur-xl border border-[outline-variant]/30 shadow-2xl hover:bg-[primary-container] transition-all duration-300 transform group-hover:scale-110 cursor-pointer"
+                data-title="The Last Light"
+                data-desc="A poetic exploration of isolation, memory, and vanishing skylines across the remote archipelago of Nusa Penida. Directed and graded by Rangga."
+                data-runtime="08:42"
+                data-role="Director, Cinematographer &amp; Colorist"
+                data-format="DCI 4K Scope • 2.39:1"
+              >
+                <div class="absolute -inset-2 rounded-full bg-[primary-container]/20 blur-md group-hover/btn:bg-[primary-container]/40 transition-all"></div>
+                <span class="material-symbols-outlined text-[on-surface] group-hover/btn:text-white text-[36px] md:text-[44px] translate-x-0.5 transition-colors">
+                  play_arrow
+                </span>
+              </button>
+            </div>
+
+            <!-- Bottom Metadata Plate -->
+            <div class="absolute bottom-0 inset-x-0 p-6 md:p-10 flex flex-col md:flex-row md:items-end justify-between gap-4 pointer-events-auto">
+              <div class="flex flex-col gap-1.5 max-w-2xl">
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-[primary-container] text-[on-primary-container] font-['JetBrains_Mono'] text-[10px] tracking-wider uppercase">Short Film</span>
+                  <span class="font-['JetBrains_Mono'] text-xs text-[outline]">Official Selection • Festival Cut</span>
+                </div>
+                <h2 class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl md:text-5xl text-[on-surface] font-semibold tracking-tight">
+                  The Last Light
+                </h2>
+                <p class="font-['Inter'] text-xs sm:text-sm text-[on-surface-variant] line-clamp-2 md:line-clamp-none">
+                  A poetic exploration of isolation, memory, and vanishing skylines across the remote archipelago of Nusa Penida. Directed and graded by Rangga.
+                </p>
+              </div>
+              <div class="flex items-center gap-4 shrink-0">
+                <div class="flex flex-col font-['JetBrains_Mono'] text-xs text-[secondary] bg-[surface-container-low]/85 backdrop-blur-md px-4 py-2.5 rounded-xl border border-[outline-variant]/20 gap-1">
+                  <div class="flex items-center justify-between gap-6">
+                    <span class="text-[outline]">RUNTIME</span>
+                    <span class="text-[on-surface] font-medium">08:42</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-6">
+                    <span class="text-[outline]">DIRECTION</span>
+                    <span class="text-[on-surface]">Rangga</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-6">
+                    <span class="text-[outline]">AUDIO</span>
+                    <span class="text-[tertiary]">Dolby 5.1 Surround</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Wedding Video</h3>
-              <p class="stitch-video-card-meta">Wedding &bull; 2024</p>
+        </section>
+
+
+        <!-- ============================================================
+             03. MAIN VIDEO CATALOG GRID
+             ============================================================ -->
+        <section class="w-full max-w-7xl mx-auto px-4 md:px-8 pb-20 flex flex-col gap-8">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+            <div>
+              <span class="font-['JetBrains_Mono'] text-xs uppercase tracking-wider text-[outline]">Selected Catalog</span>
+              <h3 class="font-['Hanken_Grotesk'] text-2xl sm:text-3xl font-semibold text-[on-surface]">Cinematic Works &amp; Motion</h3>
+            </div>
+            <div class="flex items-center gap-3 font-['JetBrains_Mono'] text-xs text-[outline]">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[tertiary]"></span> 4 Works Available</span>
             </div>
           </div>
-        </a>
 
-        <!-- Card 1.5: Qurban Video (Google Drive) -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/18pG0trX9PeHOtLr_0KBJa2FyB3DbC1R4/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgQurban}
-              alt="Dokumentasi Qurban"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">05:05</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
+          <!-- Video Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" id="video-collection-grid">
+            
+            <!-- Project 1: Beneath The Surface -->
+            <article class="video-grid-item group flex flex-col bg-[surface-container-low] rounded-2xl overflow-hidden border border-[outline-variant]/20 transition-all duration-500 hover:-translate-y-1 hover:border-[primary]/40 shadow-xl" data-category="documentary">
+              <div class="relative aspect-video w-full overflow-hidden bg-[surface-container-lowest]">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmUtK7xsfeAgaNR7qdYRy8WzxN9vLyI6Qp5D77Ac2EeblCc7f3-Ie-DcBR2xKeM_S-Gdq7ESl9RcznkuDhZ3AM2dAgZmcRp6ysgzmHt_c9QTqngxYOvnatfsKvJewvrWSKwOiMpz_ULHeiaDpZXR26e-g7pFm0pvgr6QV6Wz7-OqF1iMHjqLFd-talpvNjtMQ9eZtiCx-1sQmuAzMKFEvpxZxP54D81u7wzcrCZVliQPGxjZDpCJh0"
+                  alt="Underwater documentary film still"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[surface-container-low] via-transparent to-[surface-container-lowest]/30"></div>
+                <div class="absolute top-3 left-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-xs text-[on-surface] flex items-center gap-1.5 border border-[outline-variant]/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[tertiary]"></span>
+                  <span>14:20</span>
+                </div>
+                <div class="absolute top-3 right-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-[10px] text-[outline] uppercase border border-[outline-variant]/20">
+                  DOCUMENTARY
+                </div>
+                <button
+                  type="button"
+                  class="video-play-trigger absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                  data-title="Beneath The Surface"
+                  data-desc="An intimate environmental documentary tracking coral restoration pioneers off the shores of Raja Ampat."
+                  data-runtime="14:20"
+                  data-role="Director &amp; Underwater DP"
+                  data-format="RED V-Raptor 8K VV"
+                >
+                  <div class="w-14 h-14 rounded-full bg-[primary-container] flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">play_arrow</span>
+                  </div>
+                </button>
+              </div>
+              <div class="p-6 flex flex-col gap-2 flex-1 justify-between">
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-['Hanken_Grotesk'] text-xl font-medium text-[on-surface] group-hover:text-[primary] transition-colors">Beneath The Surface</h4>
+                    <span class="font-['JetBrains_Mono'] text-xs text-[outline]">2025</span>
+                  </div>
+                  <p class="font-['Inter'] text-xs sm:text-sm text-[on-surface-variant] line-clamp-2">
+                    An intimate environmental documentary tracking coral restoration pioneers off the shores of Raja Ampat.
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-[outline-variant]/15 flex items-center justify-between font-['JetBrains_Mono'] text-xs text-[secondary]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-[primary]">videocam</span>
+                    Director &amp; Cinematographer
+                  </span>
+                  <span class="text-[outline]">RED V-Raptor 8K</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: Jakarta in Motion -->
+            <article class="video-grid-item group flex flex-col bg-[surface-container-low] rounded-2xl overflow-hidden border border-[outline-variant]/20 transition-all duration-500 hover:-translate-y-1 hover:border-[primary]/40 shadow-xl" data-category="travel">
+              <div class="relative aspect-video w-full overflow-hidden bg-[surface-container-lowest]">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkj5QQmQf3y44qapoDWx0B-2HqW_XSZ8ONPdtChRtiSWbvNuEvxcidtBVxfhXhCzoKiuLEZ-RSexgq8c8105FaZumjXgyiuNuVMYXFQxUWCILaCt3mDGKPu9HRZ5oA1Af2HGRNpSjngBXRF63rFa2xHcVyy_rvEBit9yYNUGr-dLAtDaevmqGFYs9xTgGipgI9TSJljtI1MkwTP0hRYrY9RAVpTQ6uDyzYMbzYH7FmCoqO2_MePuwl"
+                  alt="Nighttime Jakarta skyline light trails"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[surface-container-low] via-transparent to-[surface-container-lowest]/30"></div>
+                <div class="absolute top-3 left-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-xs text-[on-surface] flex items-center gap-1.5 border border-[outline-variant]/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[tertiary]"></span>
+                  <span>04:15</span>
+                </div>
+                <div class="absolute top-3 right-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-[10px] text-[outline] uppercase border border-[outline-variant]/20">
+                  CITY SYMPHONY
+                </div>
+                <button
+                  type="button"
+                  class="video-play-trigger absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                  data-title="Jakarta in Motion"
+                  data-desc="A non-stop kinetic exploration of Southeast Asia's dense metropolis through hyperlapse and ambient field audio."
+                  data-runtime="04:15"
+                  data-role="Director &amp; Hyperlapse DP"
+                  data-format="Sony FX6 Cinema Line"
+                >
+                  <div class="w-14 h-14 rounded-full bg-[primary-container] flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">play_arrow</span>
+                  </div>
+                </button>
+              </div>
+              <div class="p-6 flex flex-col gap-2 flex-1 justify-between">
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-['Hanken_Grotesk'] text-xl font-medium text-[on-surface] group-hover:text-[primary] transition-colors">Jakarta in Motion</h4>
+                    <span class="font-['JetBrains_Mono'] text-xs text-[outline]">2024</span>
+                  </div>
+                  <p class="font-['Inter'] text-xs sm:text-sm text-[on-surface-variant] line-clamp-2">
+                    A kinetic exploration of Southeast Asia's metropolis through hyperlapse, high-speed shutter, and ambient field audio.
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-[outline-variant]/15 flex items-center justify-between font-['JetBrains_Mono'] text-xs text-[secondary]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-[primary]">motion_photos_on</span>
+                    Direction &amp; Motion
+                  </span>
+                  <span class="text-[outline]">Sony FX6 Cinema</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: Lumen Brand Story -->
+            <article class="video-grid-item group flex flex-col bg-[surface-container-low] rounded-2xl overflow-hidden border border-[outline-variant]/20 transition-all duration-500 hover:-translate-y-1 hover:border-[primary]/40 shadow-xl" data-category="commercial">
+              <div class="relative aspect-video w-full overflow-hidden bg-[surface-container-lowest]">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEa_r8wc1e9nhryDFo50iA_tiO5fl035ckW9tBk4vc4_SsrvL29abzgmqFsib03DVaLA8mQauhVVTPoxgi3TaIUr5T1Q5t9E1rs-dYGXPkAF77N1QqPYC43wmc6XtvMZZea0ADSuFdXYqs-E1YGGTDqWDlB8OWOu3-0N993PGXCkUV1TY2TzSFn9mQUn40Hex-WxL-xlQGnGlHqjcb7n8cOL2whKLjDM_3At0-2gUNkPj3UEJZSc2v"
+                  alt="Industrial brand design lighting commercial"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[surface-container-low] via-transparent to-[surface-container-lowest]/30"></div>
+                <div class="absolute top-3 left-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-xs text-[on-surface] flex items-center gap-1.5 border border-[outline-variant]/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[tertiary]"></span>
+                  <span>02:30</span>
+                </div>
+                <div class="absolute top-3 right-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-[10px] text-[outline] uppercase border border-[outline-variant]/20">
+                  COMMERCIAL
+                </div>
+                <button
+                  type="button"
+                  class="video-play-trigger absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                  data-title="Lumen Brand Film"
+                  data-desc="Brand narrative film celebrating tactile craftsmanship, modular materials, and silent design language."
+                  data-runtime="02:30"
+                  data-role="Commercial Director &amp; Colorist"
+                  data-format="Master Prime 50mm"
+                >
+                  <div class="w-14 h-14 rounded-full bg-[primary-container] flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">play_arrow</span>
+                  </div>
+                </button>
+              </div>
+              <div class="p-6 flex flex-col gap-2 flex-1 justify-between">
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-['Hanken_Grotesk'] text-xl font-medium text-[on-surface] group-hover:text-[primary] transition-colors">Lumen Brand Story</h4>
+                    <span class="font-['JetBrains_Mono'] text-xs text-[outline]">2025</span>
+                  </div>
+                  <p class="font-['Inter'] text-xs sm:text-sm text-[on-surface-variant] line-clamp-2">
+                    Brand narrative film celebrating tactile craftsmanship, modular materials, and silent form factors.
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-[outline-variant]/15 flex items-center justify-between font-['JetBrains_Mono'] text-xs text-[secondary]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-[primary]">palette</span>
+                    Commercial Director &amp; Grade
+                  </span>
+                  <span class="text-[outline]">Master Prime 50mm</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4: Silent Horizon -->
+            <article class="video-grid-item group flex flex-col bg-[surface-container-low] rounded-2xl overflow-hidden border border-[outline-variant]/20 transition-all duration-500 hover:-translate-y-1 hover:border-[primary]/40 shadow-xl" data-category="short-film">
+              <div class="relative aspect-video w-full overflow-hidden bg-[surface-container-lowest]">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4vj4XcVASFEtzzAX6IYpJcpmO_MM5xkxMqqq9vPIz5UMCuk331l3NZ45rVguvXmK4anCnUww9pw748ha_KCRLQy9rS8l7d5HTQYsguWq_ZJweiCLAKI7jkC7GsAJyMjYt0uw63GwCyQDSa4JFs8B_aQxgzONzuZMLD7vNK8Ni-lo5GZEglR9K24zs5ll3VpAqBaOQMgUQZX80NjfMEYlk4jo7BEyYApWWUaVrUdYPsuqwxMk2g-UW"
+                  alt="Mountain ridge visual poem"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[surface-container-low] via-transparent to-[surface-container-lowest]/30"></div>
+                <div class="absolute top-3 left-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-xs text-[on-surface] flex items-center gap-1.5 border border-[outline-variant]/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[tertiary]"></span>
+                  <span>06:18</span>
+                </div>
+                <div class="absolute top-3 right-3 bg-[surface-container-lowest]/80 backdrop-blur-md px-2.5 py-0.5 rounded-full font-['JetBrains_Mono'] text-[10px] text-[outline] uppercase border border-[outline-variant]/20">
+                  SHORT FILM
+                </div>
+                <button
+                  type="button"
+                  class="video-play-trigger absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                  data-title="Silent Horizon"
+                  data-desc="A visual meditation filmed along the alpine crater rim of Mount Rinjani, examining stillness and geological time."
+                  data-runtime="06:18"
+                  data-role="Director &amp; Solo Cinematographer"
+                  data-format="Blackmagic 12K Anamorphic"
+                >
+                  <div class="w-14 h-14 rounded-full bg-[primary-container] flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">play_arrow</span>
+                  </div>
+                </button>
+              </div>
+              <div class="p-6 flex flex-col gap-2 flex-1 justify-between">
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-['Hanken_Grotesk'] text-xl font-medium text-[on-surface] group-hover:text-[primary] transition-colors">Silent Horizon</h4>
+                    <span class="font-['JetBrains_Mono'] text-xs text-[outline]">2024</span>
+                  </div>
+                  <p class="font-['Inter'] text-xs sm:text-sm text-[on-surface-variant] line-clamp-2">
+                    A visual meditation filmed along the alpine crater rim of Mount Rinjani, examining stillness and geological time.
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-[outline-variant]/15 flex items-center justify-between font-['JetBrains_Mono'] text-xs text-[secondary]">
+                  <span class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-[primary]">landscape</span>
+                    Director &amp; DP
+                  </span>
+                  <span class="text-[outline]">12K Anamorphic</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+
+        <!-- ============================================================
+             04. TECHNICAL RIG & PRODUCTION MONOGRAPH
+             ============================================================ -->
+        <section class="w-full max-w-7xl mx-auto px-4 md:px-8 pb-20">
+          <div class="bg-[surface-container-low] rounded-3xl p-8 md:p-14 border border-[outline-variant]/25 flex flex-col gap-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div class="flex flex-col gap-2">
+                <span class="font-['JetBrains_Mono'] text-xs uppercase tracking-widest text-[primary]">Production Monograph</span>
+                <h3 class="font-['Hanken_Grotesk'] text-2xl sm:text-3xl font-semibold text-[on-surface]">Behind The Lens</h3>
+                <p class="font-['Inter'] text-xs sm:text-sm text-[on-surface-variant] max-w-xl">
+                  Restrained cinematography: organic lighting setups, natural acoustic capturing, and custom DaVinci Resolve color grading tailored to realistic skin tones.
+                </p>
+              </div>
+              <div class="flex items-center gap-2 font-['JetBrains_Mono'] text-xs text-[secondary]">
+                <span class="p-2 rounded-full bg-[surface-container] border border-[outline-variant]/20">
+                  <span class="material-symbols-outlined text-[18px] text-[primary]">tune</span>
+                </span>
+                <span>Technical Specifications</span>
+              </div>
+            </div>
+
+            <!-- 3-Column Production Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="flex flex-col gap-1.5 bg-surface-container p-4 rounded">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-[20px]">camera_roll</span>
+                  <h5 class="font-headline-sm text-headline-sm text-on-surface">Cinema Sensors</h5>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  High dynamic range cine platforms paired with vintage glass to soften digital edge artifacts and preserve deep shadow roll-off.
+                </p>
+                <div class="pt-1 font-label-sm text-label-sm text-outline flex flex-col gap-1">
+                  <span>• ARRI Alexa Mini LF (Large Format)</span>
+                  <span>• RED V-Raptor 8K VV Cine</span>
+                  <span>• Cooke Anamorphic /i Prime Package</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1.5 bg-surface-container p-4 rounded">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-[20px]">blur_on</span>
+                  <h5 class="font-headline-sm text-headline-sm text-on-surface">Color Grading Room</h5>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  In-house grading suites utilizing calibrated Sony BVM monitoring, bespoke LUT profiles, and archival print film emulations.
+                </p>
+                <div class="pt-1 font-label-sm text-label-sm text-outline flex flex-col gap-1">
+                  <span>• DaVinci Resolve Studio Advanced</span>
+                  <span>• Custom 2383 Kodak Print Profiles</span>
+                  <span>• ACEScc Color Managed Pipeline</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1.5 bg-surface-container p-4 rounded">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-[20px]">graphic_eq</span>
+                  <h5 class="font-headline-sm text-headline-sm text-on-surface">Acoustic Soundscapes</h5>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Sound design treated as equal partner to the visual frame. Custom field captures layered with minimalist ambient compositions.
+                </p>
+                <div class="pt-1 font-label-sm text-label-sm text-outline flex flex-col gap-1">
+                  <span>• Sound Devices 833 Ambisonics</span>
+                  <span>• Sennheiser MKH 416 Directional Mic</span>
+                  <span>• Spatial Audio Mixing &amp; Mastering</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metric Stat Strip -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-outline-variant/20">
+              <div class="flex flex-col">
+                <span class="font-display-lg text-display-lg text-primary font-bold">14+</span>
+                <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Films Directed</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display-lg text-display-lg text-on-surface font-bold">08</span>
+                <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Festival Laurels</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display-lg text-display-lg text-on-surface font-bold">4K/8K</span>
+                <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Master Deliverables</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display-lg text-display-lg text-secondary font-bold">100%</span>
+                <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Bespoke Production</span>
               </div>
             </div>
           </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Qurban</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
+        </section>
 
-        <!-- Card 2: Dokumentasi -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-          href="https://youtu.be/34ju_IWZc34"
-           data-type="video"
-           data-source="youtube"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image               src="https://img.youtube.com/vi/34ju_IWZc34/maxresdefault.jpg"
-              alt="Dokumentasi Event"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">3:40</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Event</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
 
-        <!-- Card 3: Ultah Raden -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1t6vxuhS_dEVlTHuDCfMXCTKimzecRkWT/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgUltah}
-              alt="Dokumentasi Ultah Raden"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">03:03</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
+        <!-- ============================================================
+             05. CTA SECTION
+             ============================================================ -->
+        <section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-margin pb-space-2xl">
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-surface-container to-surface-container-high p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="flex flex-col gap-1.5 max-w-xl relative z-10">
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Directorial Inquiries</span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold">
+                Have a narrative film, documentary, or commercial project in mind?
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                Available for director bookings, commercial treatments, and director of photography engagements worldwide. Based in Jakarta, traveling globally.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto relative z-10">
+              <a
+                class="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm hover:scale-105 hover:bg-primary-fixed-dim transition-all shadow-xl"
+                href={waLink('video')}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Start a Conversation</span>
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+              </a>
+              <a
+                class="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-surface-container-highest text-on-surface font-body-md text-body-md hover:bg-surface-bright transition-colors"
+                href="/about"
+              >
+                <span class="material-symbols-outlined text-[18px]">download</span>
+                <span>Treatment Deck</span>
+              </a>
             </div>
           </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Ultah Raden</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 3.5: Ultah Ardheen -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/177A_AuA9K0VJSyIHp0WAqeu7hPgxVc4U/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgUltahArdheen}
-              alt="Dokumentasi Ultah Ardheen"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">03:02</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Ultah Ardheen</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 4: Vlog -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1GwEOsxdmDSVyvGkr14-KGSNvw5sp4tC6/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="vlog">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgVlog}
-              alt="Video Vlog"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">11:00</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Vlog Pribadi</h3>
-              <p class="stitch-video-card-meta">Vlog &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 5: Promosi Idecraft -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/13HhJOFKogrR_UWqVuX1Dc12odTSGzpv2/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="promosi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgPromosiIdecraft}
-              alt="Video Promosi Idecraft"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">00:45</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Video Promosi Idecraft</h3>
-              <p class="stitch-video-card-meta">Promosi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 6: Dokumentasi Padel -->
-        <a class="stitch-video-card stitch-video-card-regular glightbox"
-           href="https://drive.google.com/file/d/1auyWgTuE50Q3sOUaJoaGqbYi4pqSbiSc/preview"
-           data-type="external"
-           data-gallery="videos"
-           data-category="dokumentasi">
-          <div class="stitch-video-thumb-wrap">
-            <Image src={imgPadel}
-              alt="Dokumentasi Padel"
-              loading="lazy"
-              width="640"
-              height="360"
-            />
-            <div class="stitch-duration-badge">01:53</div>
-            <div class="stitch-video-play-overlay">
-              <div class="stitch-play-btn">
-                <i class="fas fa-play"></i>
-              </div>
-            </div>
-          </div>
-          <div class="stitch-video-card-footer">
-            <div class="stitch-video-card-info">
-              <h3 class="stitch-video-card-title">Dokumentasi Padel</h3>
-              <p class="stitch-video-card-meta">Dokumentasi &bull; 2024</p>
-            </div>
-          </div>
-        </a>
+        </section>
 
       </div>
     </div>
 
-  </section>
-
-  <Footer slot="footer" variant="minimal" />
-</BaseLayout>
-
-<style>
-  /* =============================================
-     STITCH VIDEO PAGE Scoped styles
-     Matches: stitch/video_portfolio_redesign/code.html
-     ============================================= */
-
-  /* Hero */
-  .stitch-hero {
-    padding: 140px 48px 80px;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .stitch-hero-inner {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .stitch-hero-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: clamp(48px, 7vw, 96px);
-    font-weight: 800;
-    letter-spacing: -2px;
-    line-height: 1.05;
-    color: var(--text-primary);
-    margin-bottom: 20px;
-  }
-
-  .stitch-hero-accent {
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .stitch-hero-sub {
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* Filter Bar */
-  .filter-bar {
-    padding: 0 48px;
-    margin-bottom: 48px;
-  }
-
-  .filter-btn {
-    background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 9px 22px;
-    border-radius: 9999px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-  }
-
-  .filter-btn:hover {
-    background: var(--surface-bright);
-    color: var(--accent-primary);
-    border-color: rgba(163, 166, 255, 0.15);
-    transform: translateY(-2px);
-  }
-
-  .filter-btn.active {
-    background: var(--accent-secondary-container);
-    border-color: rgba(193, 128, 255, 0.3);
-    color: #e9cdff;
-  }
-
-  /* Video Section */
-  .video-section {
-    padding: 0 48px 80px;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  /* Bento-style grid: featured + 2-col grid */
-  .stitch-video-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  /* Featured Card */
-  .stitch-video-card-featured {
-    display: block;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--surface-container);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    cursor: pointer;
-    aspect-ratio: 21 / 9;
-    transition: transform 0.4s ease, box-shadow 0.3s ease;
-  }
-
-  .stitch-video-card-featured:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
-  }
-
-  .stitch-video-thumb-wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .stitch-video-card-featured .stitch-video-thumb-wrap {
-    position: absolute;
-    inset: 0;
-  }
-
-  .stitch-video-thumb-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
-  }
-
-  .stitch-video-card-featured:hover .stitch-video-thumb-wrap img {
-    transform: scale(1.04);
-  }
-
-  .stitch-video-thumb-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(6, 14, 32, 0.95) 0%,
-      rgba(6, 14, 32, 0.4) 50%,
-      transparent 100%
-    );
-  }
-
-  /* Featured body: text left, controls right */
-  .stitch-video-card-featured-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 40px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 24px;
-  }
-
-  .stitch-featured-badge {
-    display: inline-block;
-    padding: 5px 14px;
-    border-radius: 9999px;
-    background: rgba(163, 166, 255, 0.15);
-    border: 1px solid rgba(163, 166, 255, 0.25);
-    color: var(--accent-primary);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    backdrop-filter: blur(8px);
-  }
-
-  .stitch-video-card-featured-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: clamp(24px, 3vw, 44px);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-    line-height: 1.1;
-  }
-
-  .stitch-video-card-featured-desc {
-    font-size: 14px;
-    color: var(--text-secondary);
-    max-width: 500px;
-    line-height: 1.5;
-  }
-
-  .stitch-video-card-featured-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-shrink: 0;
-  }
-
-  .stitch-duration-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 2px;
-  }
-
-  .stitch-duration-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-  }
-
-  .stitch-duration-value {
-    font-family: 'Manrope', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  /* Play Button */
-  .stitch-play-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--accent-primary);
-    color: #0f00a4;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .stitch-play-btn i {
-    display: flex;
-  }
-
-  .stitch-play-btn-lg {
-    width: 64px;
-    height: 64px;
-    font-size: 22px;
-    box-shadow: 0 0 30px rgba(163, 166, 255, 0.35);
-  }
-
-  .stitch-video-card-featured:hover .stitch-play-btn-lg {
-    transform: scale(1.1);
-    box-shadow: 0 0 40px rgba(163, 166, 255, 0.5);
-  }
-
-  /* Regular Grid */
-  .stitch-video-grid-regular {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  /* Regular Card */
-  .stitch-video-card-regular {
-    display: block;
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--surface-container-high);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
-  }
-
-  .stitch-video-card-regular:hover {
-    transform: translateY(-6px);
-    border-color: rgba(163, 166, 255, 0.18);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
-  }
-
-  .stitch-video-card-regular .stitch-video-thumb-wrap {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-
-  .stitch-video-card-regular:hover .stitch-video-thumb-wrap img {
-    transform: scale(1.05);
-  }
-
-  /* Duration badge top right */
-  .stitch-duration-badge {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    padding: 4px 10px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    z-index: 2;
-  }
-
-  /* Play overlay on hover */
-  .stitch-video-play-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.25);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-  }
-
-  .stitch-video-card-regular:hover .stitch-video-play-overlay {
-    opacity: 1;
-  }
-
-  .stitch-play-btn:not(.stitch-play-btn-lg) {
-    width: 52px;
-    height: 52px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #fff;
-  }
-
-  .stitch-video-card-regular:hover .stitch-play-btn:not(.stitch-play-btn-lg) {
-    transform: scale(1.1);
-  }
-
-  /* Card footer */
-  .stitch-video-card-footer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 18px 20px;
-    gap: 12px;
-  }
-
-  .stitch-video-card-info {
-    flex: 1;
-  }
-
-  .stitch-video-card-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 5px;
-    line-height: 1.2;
-  }
-
-  .stitch-video-card-meta {
-    font-size: 12px;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .stitch-more-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 4px;
-    font-size: 14px;
-    transition: color 0.2s ease;
-    flex-shrink: 0;
-    margin-top: 3px;
-  }
-
-  .stitch-more-btn:hover {
-    color: var(--accent-primary);
-  }
-
-  /* Responsive iPad (768px) */
-  @media (max-width: 768px) {
-    .stitch-hero {
-      padding: 100px 24px 48px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(36px, 9vw, 60px);
-    }
-
-    .filter-bar,
-    .video-section {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .filter-bar {
-      gap: 8px;
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      margin-bottom: 32px;
-    }
-
-    .filter-bar::-webkit-scrollbar { display: none; }
-
-    .stitch-video-card-featured {
-      aspect-ratio: 16 / 9;
-    }
-
-    .stitch-video-grid-regular {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .stitch-video-card-featured-body {
-      padding: 20px 24px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .stitch-duration-block {
-      display: none;
-    }
-  }
-
-  /* Responsive Mobile (480px) */
-  @media (max-width: 600px) {
-    .stitch-hero {
-      padding: 88px 20px 40px;
-    }
-
-    .stitch-hero-title {
-      font-size: clamp(32px, 11vw, 48px);
-    }
-
-    .stitch-hero-sub {
-      font-size: 15px;
-    }
-
-    .filter-bar {
-      padding: 0 20px 8px;
-      margin-bottom: 24px;
-    }
-
-    .filter-btn {
-      flex-shrink: 0;
-      font-size: 12px;
-      padding: 8px 16px;
-    }
-
-    .stitch-video-card-featured {
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
-    }
-
-    .stitch-video-grid-regular {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .stitch-video-card-featured-body {
-      padding: 16px 20px;
-    }
-
-    .stitch-video-card-featured-title {
-      font-size: clamp(18px, 5vw, 24px);
-    }
-
-    .stitch-video-card-regular {
-      border-radius: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .stitch-hero {
-      padding: 80px 20px 36px;
-    }
-
-    .stitch-video-card-featured-body {
-      padding: 14px 16px;
-    }
-
-    .stitch-play-btn-lg {
-      width: 44px;
-      height: 44px;
-      font-size: 14px;
-    }
-  }
-</style>
-
-<script is:inline>
-  /* ---------- GLIGHTBOX (YouTube embed) ---------- */
-  document.addEventListener('DOMContentLoaded', function initGL() {
-    if (typeof GLightbox === 'undefined') {
-      setTimeout(initGL, 100);
-      return;
-    }
-    GLightbox({
-      selector: '.glightbox',
-      touchNavigation: true,
-      loop: false,
-      autoplayVideos: true,
-    });
-  });
-
-  /* ---------- VIDEO FILTER ---------- */
-  (function() {
-    const filterBar = document.querySelector('.filter-bar');
-    if (!filterBar) return;
-
-    const btns = filterBar.querySelectorAll('.filter-btn');
-    const featuredCard = document.querySelector('.stitch-video-card-featured');
-    const regularGrid = document.querySelector('.stitch-video-grid-regular');
-    if (!regularGrid) return;
-
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const filter = btn.dataset.filter;
-
-        // Update active button
-        btns.forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-
-        // Filter regular cards
-        const cards = regularGrid.querySelectorAll('.stitch-video-card-regular');
-        cards.forEach(function(card) {
-          const cat = card.dataset.category || '';
-          if (filter === 'all' || cat === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
+    <!-- CINEMA VIDEO PLAYER MODAL -->
+    <div
+      id="video-player-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-[surface-container-lowest]/95 backdrop-blur-3xl opacity-0 pointer-events-none transition-opacity duration-300"
+      aria-hidden="true"
+    >
+      <div class="relative w-full max-w-5xl rounded-2xl bg-[surface-container-low] border border-[outline-variant]/30 p-4 md:p-6 shadow-2xl flex flex-col gap-4 max-h-[94vh] overflow-y-auto">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            <span class="font-['JetBrains_Mono'] text-xs uppercase tracking-wider text-[primary]" id="player-modal-title"></span>
+          </div>
+          <button
+            type="button"
+            id="close-video-player-btn"
+            class="w-9 h-9 rounded-full bg-[surface-container-high] flex items-center justify-center text-[on-surface] hover:bg-[surface-container-highest] transition-colors cursor-pointer border border-[outline-variant]/30"
+          >
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+
+        <!-- Cinema Viewport Player Simulation -->
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-[surface-container-lowest] border border-[outline-variant]/30 flex items-center justify-center">
+          <div class="flex flex-col items-center gap-3 text-center p-6">
+            <div class="w-16 h-16 rounded-full bg-[primary-container]/20 border border-[primary-container]/40 flex items-center justify-center text-[primary]">
+              <span class="material-symbols-outlined text-[36px]">movie</span>
+            </div>
+            <p class="font-['Hanken_Grotesk'] text-lg text-[on-surface]" id="player-film-name"></p>
+            <span class="font-['JetBrains_Mono'] text-xs text-[tertiary]" id="player-film-spec"></span>
+            <p class="font-['Inter'] text-xs text-[outline] max-w-md" id="player-film-desc"></p>
+          </div>
+          <div class="absolute bottom-3 inset-x-3 flex items-center justify-between p-3 rounded-lg bg-[surface-container-lowest]/80 backdrop-blur-md border border-[outline-variant]/20 font-['JetBrains_Mono'] text-xs text-[outline]">
+            <span id="player-film-role"></span>
+            <span id="player-film-runtime"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Filter & Player Script -->
+    <script is:inline>
+      function initVideoPage() {
+        const filterBtns = document.querySelectorAll('.video-filter-btn');
+        const videoCards = document.querySelectorAll('.video-grid-item');
+        const playTriggers = document.querySelectorAll('.video-play-trigger');
+        const modal = document.getElementById('video-player-modal');
+        const closeBtn = document.getElementById('close-video-player-btn');
+        const modalTitle = document.getElementById('player-modal-title');
+        const filmName = document.getElementById('player-film-name');
+        const filmSpec = document.getElementById('player-film-spec');
+        const filmDesc = document.getElementById('player-film-desc');
+        const filmRole = document.getElementById('player-film-role');
+        const filmRuntime = document.getElementById('player-film-runtime');
+
+        // Filter buttons
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterBtns.forEach(b => {
+              b.classList.remove('active', 'bg-primary-container', 'text-on-primary-container', 'shadow-md');
+              b.classList.add('bg-surface-container-low', 'text-secondary');
+              const dot = b.querySelector('.w-1\\.5');
+              if (dot && !b.contains(dot)) b.insertBefore(dot, b.firstChild);
+            });
+
+            btn.classList.add('active', 'bg-primary-container', 'text-on-primary-container', 'shadow-md');
+            btn.classList.remove('bg-surface-container-low', 'text-secondary');
+
+            const cat = btn.getAttribute('data-filter');
+            videoCards.forEach(card => {
+              const cardCat = card.getAttribute('data-category') || '';
+              if (cat === 'all' || cardCat.includes(cat)) {
+                card.style.display = 'flex';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
         });
 
-        // Also filter featured card
-        if (featuredCard) {
-          const featCat = featuredCard.dataset.category || '';
-          featuredCard.style.display =
-            (filter === 'all' || featCat === filter) ? '' : 'none';
+        function openPlayer(title, desc, runtime, role, format) {
+          if (!modal) return;
+          modalTitle.textContent = title || 'CINEMA REEL';
+          filmName.textContent = title || '';
+          filmDesc.textContent = desc || '';
+          filmSpec.textContent = format || '4K DCI';
+          filmRole.textContent = role || 'Direction by Rangga';
+          filmRuntime.textContent = runtime ? 'RUNTIME: ' + runtime : '';
+
+          modal.classList.remove('opacity-0', 'pointer-events-none');
+          modal.classList.add('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = 'hidden';
         }
-      });
-    });
-  })();
-</script>
+
+        function closePlayer() {
+          if (!modal) return;
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          modal.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+        }
+
+        playTriggers.forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            const title = trigger.getAttribute('data-title');
+            const desc = trigger.getAttribute('data-desc');
+            const runtime = trigger.getAttribute('data-runtime');
+            const role = trigger.getAttribute('data-role');
+            const format = trigger.getAttribute('data-format');
+            openPlayer(title, desc, runtime, role, format);
+          });
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', closePlayer);
+        if (modal) {
+          modal.addEventListener('click', (e) => {
+            if (e.target.id === 'video-player-modal') closePlayer();
+          });
+        }
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closePlayer();
+        });
+      }
+
+      document.addEventListener('astro:page-load', initVideoPage);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initVideoPage);
+      } else {
+        initVideoPage();
+      }
+    </script>
+  </main>
+
+  <!-- Monolithic Footer -->
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20 pt-24 pb-10 mt-16">
+    <div class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto flex flex-col gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="md:col-span-5 flex flex-col gap-4">
+          <span class="font-headline-md text-headline-md uppercase tracking-tight text-on-surface">FRAME OF RANGGA</span>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Multi-disciplinary visual storyteller &amp; director operating across photography, cinematic direction, graphic systems, and spatial web experiences.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-3 py-1 rounded-full">Photography</span>
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-3 py-1 rounded-full">Film Direction</span>
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-3 py-1 rounded-full">Visual Identity</span>
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-3 py-1 rounded-full">Web Experiences</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 md:col-start-7 flex flex-col gap-3">
+          <span class="font-label-md text-label-md uppercase tracking-wider text-outline">Index</span>
+          <div class="flex flex-col gap-2 font-body-md text-body-md text-on-surface-variant">
+            <a class="hover:text-on-surface transition-colors" href="/">Home</a>
+            <a class="hover:text-on-surface transition-colors" href="/about">About Monograph</a>
+            <a class="hover:text-on-surface transition-colors" href="/foto">Photo Archive</a>
+            <a class="hover:text-on-surface transition-colors" href="/video">Video &amp; Film Reel</a>
+            <a class="hover:text-on-surface transition-colors" href="/design">Design Identities</a>
+            <a class="hover:text-on-surface transition-colors" href="/website">Interactive Web</a>
+            <a class="hover:text-on-surface transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">Inquiries &amp; Booking</a>
+          </div>
+        </div>
+        <div class="md:col-span-3 flex flex-col gap-3">
+          <span class="font-label-md text-label-md uppercase tracking-wider text-outline">Dispatches</span>
+          <div class="flex flex-col gap-2 font-body-md text-body-md text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer">Instagram (@rggadnrt)</a>
+            <a class="hover:text-primary transition-colors" href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer">Portfolio (@frameofrangga)</a>
+            <a class="hover:text-primary transition-colors" href="https://tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer">TikTok (@madebyrangga)</a>
+            <a class="hover:text-primary transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
+            <a class="hover:text-primary transition-colors" href="mailto:frameofrangga@gmail.com">frameofrangga@gmail.com</a>
+          </div>
+          <div class="mt-4 p-4 rounded bg-surface-container-low/70 border border-outline-variant/20">
+            <p class="font-headline-sm text-headline-sm text-primary">Create. Capture. Inspire.</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Curated cinematic showcase edition 2026</p>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-outline-variant/10 flex flex-col md:flex-row items-center justify-between gap-4 font-label-sm text-label-sm text-outline">
+        <span>© {new Date().getFullYear()} FRAME OF RANGGA. All rights reserved.</span>
+        <div class="flex items-center gap-6">
+          <span>Jakarta &amp; Depok, Indonesia (WIB GMT+7)</span>
+          <span class="hidden sm:inline">Cinematic Darkroom Specification</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>

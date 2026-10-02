@@ -1,386 +1,587 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import { getDesigns } from '../utils/content.js';
-
-const designs = getDesigns();
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import { waLink } from "../utils/whatsapp.js";
 ---
 
 <BaseLayout
-  title="Brand Design Portfolio | Frame Of Rangga"
-  description="Portofolio brand design Rangga Danuarta brand identity, social media content, poster, dan visual branding yang memorable dan elegan."
-  ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-design.jpg"
+  title="Design & Brand Identity | FRAME OF RANGGA"
+  description="Visual identity systems, typography, luxury packaging, and brand design portfolios curated by Rangga Danuarta."
+  ogImage="https://for-portfolio-mu.vercel.app/assets/og/og-default.jpg"
   ogUrl="https://for-portfolio-mu.vercel.app/design"
-  hasGlightbox={true}
 >
   <Navbar slot="navbar" activePage="design" />
 
-  <!-- PAGE HERO Centered -->
-  <section class="page-hero stitch-hero" transition:animate="fade">
-    <div class="page-hero-bg-glow" aria-hidden="true"></div>
-    <div class="stitch-hero-centered">
-      <h1 class="stitch-hero-title">
-        Visual <span class="stitch-hero-accent">Synthesis</span><br />
-        &amp; Brand Narrative
-      </h1>
-      <p class="stitch-hero-desc">
-        Curated collection of identity systems, editorial layouts, poster design, and digital experiences defined by structural precision and creative intentionality.
-      </p>
-    </div>
-  </section>
+  <style is:global>
+    .design-filter-btn {
+      cursor: pointer;
+      user-select: none;
+    }
+    .design-filter-btn.filter-btn {
+      transition: all 0.2s ease;
+    }
+    .design-filter-active {
+      @apply bg-primary-container text-on-primary-container shadow-md;
+    }
+    .design-card {
+      transition: all 0.3s ease;
+    }
+  </style>
 
-  <!-- DESIGN GALLERY Stitch Editorial Bento Grid -->
-  <section class="gallery-section" transition:animate="fade">
+  <main class="w-full pt-16 min-h-screen">
+    <div class="flex flex-col w-full">
 
-    <!-- Filter Bar -->
-    <div class="filter-bar fx-layer fade-up" aria-label="Filter by category">
-      <button class="filter-btn fx-chip active" data-filter="all">Semua</button>
-      <button class="filter-btn fx-chip" data-filter="brand">Brand Identity</button>
-      <button class="filter-btn fx-chip" data-filter="social">Social Media</button>
-      <button class="filter-btn fx-chip" data-filter="poster">Poster</button>
-      <button class="filter-btn fx-chip" data-filter="advertising">Advertising</button>
-    </div>
+      <!-- ============================================================
+           01. HERO SECTION
+           ============================================================ -->
+      <section class="relative w-full overflow-hidden px-margin-mobile md:px-margin pt-space-2xl md:pt-space-3xl pb-space-2xl">
+        <div class="absolute -top-24 -left-20 w-96 h-96 bg-primary-container/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-24 w-80 h-80 bg-tertiary-container/15 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <!-- Bento Grid 12-col, editorial layout -->
-    <div class="stitch-design-grid fade-up">
-      {designs.map((item) => {
-        const imgSrc = item.image || item.imagePath;
-        const cat = item.category ? item.category.toLowerCase() : 'all';
-        const badgeLabel = 
-          cat.includes('brand') ? 'Branding' :
-          cat.includes('social') ? 'Social Media' :
-          cat.includes('poster') ? 'Poster' : 'Advertising';
-
-        return (
-          <a class="stitch-design-card glightbox"
-             href={imgSrc}
-             data-gallery="design-gallery"
-             data-title={item.title}
-             data-description={item.description || ''}
-             data-category={cat}>
-            <div class="stitch-design-img-wrap">
-              <img
-                src={imgSrc}
-                alt={item.title}
-                loading="lazy"
-              />
+        <div class="max-w-7xl mx-auto w-full flex flex-col gap-space-xl">
+          <!-- Discipline Tag & Index -->
+          <div class="flex flex-wrap items-center justify-between gap-space-sm">
+            <div class="flex items-center gap-space-sm bg-surface-container-low/80 backdrop-blur-md px-space-md py-space-xs rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+              <span class="font-label-md text-label-md text-primary tracking-wider uppercase">05 / 06 • Brand Identity &amp; Design Systems</span>
             </div>
-            <div class="stitch-design-card-overlay">
-              <div class="stitch-design-card-badges">
-                <span class={`stitch-badge-pill stitch-badge-${cat}`}>{badgeLabel}</span>
-                <span class="stitch-badge-pill">2024</span>
+            <div class="flex items-center gap-space-sm">
+              <span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">DISPATCH NO. 04-D</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              <span class="font-label-sm text-label-sm text-secondary-fixed">ARCHIVE 2021—2024</span>
+            </div>
+          </div>
+
+          <!-- Main Heading & Monograph Introduction -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+            <div class="lg:col-span-8 flex flex-col gap-space-sm">
+              <h1 class="font-display-xl text-display-xl tracking-tight text-on-surface">Design.</h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                Visual identity, branding, art direction, and meaningful digital experiences. Crafted through rigorous modernist typography, sculptural physical collateral, and high-fidelity design systems.
+              </p>
+            </div>
+            <!-- Metrics Bar Capsule -->
+            <div class="lg:col-span-4 w-full">
+              <div class="bg-surface-container-lowest/80 backdrop-blur-xl p-space-md rounded-lg flex flex-col gap-space-md shadow-2xl">
+                <div class="grid grid-cols-3 divide-x divide-transparent gap-space-sm text-center">
+                  <div class="flex flex-col items-center">
+                    <span class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">24<span class="text-primary">+</span></span>
+                    <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Identities</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">08</span>
+                    <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Awards</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <span class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">11</span>
+                    <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Cities</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between pt-space-xs text-on-surface-variant/70">
+                  <span class="font-label-sm text-label-sm">INDEX CRITERIA: LUXURY &amp; ARCHITECTURE</span>
+                  <span class="material-symbols-outlined text-sm">verified</span>
+                </div>
               </div>
-              <h3 class="stitch-design-card-title">{item.title}</h3>
-              {item.description && (
-                <p class="stitch-design-card-desc">{item.description}</p>
-              )}
             </div>
-          </a>
-        );
-      })}
+          </div>
+
+          <!-- Interactive Filter Capsule Row -->
+          <div class="flex flex-wrap items-center gap-space-xs pt-space-sm">
+            <button class="design-filter-btn filter-btn active px-space-md py-space-xs rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center gap-space-xs shadow-md border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all" type="button" data-filter="all">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              <span>All (06)</span>
+            </button>
+            <button class="design-filter-btn filter-btn px-space-md py-space-xs rounded-full bg-surface-container-low/70 hover:bg-surface-container-high/60 text-on-surface-variant hover:text-on-surface font-label-md text-label-md border border-outline-variant/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all" type="button" data-filter="branding">
+              <span>Branding</span>
+            </button>
+            <button class="design-filter-btn filter-btn px-space-md py-space-xs rounded-full bg-surface-container-low/70 hover:bg-surface-container-high/60 text-on-surface-variant hover:text-on-surface font-label-md text-label-md border border-outline-variant/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all" type="button" data-filter="uiux">
+              <span>UI/UX</span>
+            </button>
+            <button class="design-filter-btn filter-btn px-space-md py-space-xs rounded-full bg-surface-container-low/70 hover:bg-surface-container-high/60 text-on-surface-variant hover:text-on-surface font-label-md text-label-md border border-outline-variant/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all" type="button" data-filter="print">
+              <span>Print</span>
+            </button>
+            <button class="design-filter-btn filter-btn px-space-md py-space-xs rounded-full bg-surface-container-low/70 hover:bg-surface-container-high/60 text-on-surface-variant hover:text-on-surface font-label-md text-label-md border border-outline-variant/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all" type="button" data-filter="artdirection">
+              <span>Art Direction</span>
+            </button>
+            <button class="design-filter-btn filter-btn px-space-md py-space-xs rounded-full bg-surface-container-low/70 hover:bg-surface-container-high/60 text-on-surface-variant hover:text-on-surface font-label-md text-label-md border border-outline-variant/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all" type="button" data-filter="digital">
+              <span>Digital</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           02. LEAD SHOWCASE — LUMEN LABS
+           ============================================================ -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-xl">
+        <div class="max-w-7xl mx-auto w-full">
+          <div class="relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-2xl flex flex-col lg:flex-row group">
+            <!-- Visual Column -->
+            <div class="w-full lg:w-7/12 relative aspect-[16/10] lg:aspect-auto min-h-[420px] overflow-hidden">
+              <img
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXIJ1JqS2ROtzlb1tJT1nnG0SExWpNVuvhekPm0GEU9Bb_j3Twkq5pULya9TlhiMtXFcEgYWzDgMD-x2IX8Nl9Z4EYK0Xaa7OKFs63lv8-hXyrWKxErLys2HQ6QA67qsUyMI4Zvgcre6_pYw6AEhDeo09FRRRPQNpphGdsDACLyAWsz8xSIm-Ty7f6amQiYJqyTTNfii1gAI-rQKcJFXKzt5CQMfqTxs-ZSzIQmZf7q1Lmr9scp45W"
+                alt="High-end luxury packaging set on dark architectural granite"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-surface-container-lowest"></div>
+              <div class="absolute top-space-md left-space-md flex items-center gap-space-xs bg-surface-container-lowest/70 backdrop-blur-md px-space-md py-space-xs rounded-full">
+                <span class="font-label-sm text-label-sm text-primary uppercase">CASE NO. 01</span>
+                <span class="text-outline">/</span>
+                <span class="font-label-sm text-label-sm text-on-surface">LEAD SHOWCASE</span>
+              </div>
+              <div class="absolute bottom-space-md left-space-md hidden sm:flex items-center gap-space-sm bg-surface-container-low/80 backdrop-blur-md px-space-md py-space-xs rounded-DEFAULT">
+                <span class="font-label-sm text-label-sm text-secondary-fixed">DEBOSSED FOIL + COTTON 640GSM</span>
+              </div>
+            </div>
+            <!-- Content Column -->
+            <div class="w-full lg:w-5/12 p-space-lg md:p-space-2xl flex flex-col justify-between bg-surface-container-lowest">
+              <div class="flex flex-col gap-space-md">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Tokyo &amp; Zurich / 2024</span>
+                  <span class="font-label-sm text-label-sm text-outline">ROLE: HEAD OF BRAND SYSTEM</span>
+                </div>
+                <div class="flex flex-col gap-space-xs">
+                  <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">LUMEN Labs</span>
+                  <h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold leading-tight">
+                    Holistic Brand Identity &amp; Luxury Packaging System
+                  </h2>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Engineered a multi-sensory brand universe for an advanced optical sensor research lab. The identity transitions effortlessly between scientific laboratory rigor and bespoke editorial tactile packaging featuring bespoke debossed black foil boxes, micro-perforated stationery, and an omni-channel physical-digital design token ecosystem.
+                </p>
+                <!-- Metrics Mini-Grid -->
+                <div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+                  <div class="bg-surface-container p-space-sm rounded-DEFAULT">
+                    <span class="font-label-sm text-label-sm text-outline uppercase block">Deliverables</span>
+                    <span class="font-body-sm text-body-sm text-on-surface font-medium">18 Collateral SKUs</span>
+                  </div>
+                  <div class="bg-surface-container p-space-sm rounded-DEFAULT">
+                    <span class="font-label-sm text-label-sm text-outline uppercase block">Recognition</span>
+                    <span class="font-body-sm text-body-sm text-on-surface font-medium">TDC Tokyo Annual '24</span>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-space-lg flex items-center justify-between">
+                <a
+                  class="inline-flex items-center gap-space-xs px-space-lg py-space-sm bg-primary text-on-primary font-headline-sm text-headline-sm rounded-full shadow-lg border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-primary-fixed transition-all group-hover:translate-x-1"
+                  href={waLink('design')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Explore Case Study</span>
+                  <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
+                <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+                  <span class="material-symbols-outlined text-lg">open_in_new</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           03. CURATED IDENTITY ARCHIVES (BENTO GRID)
+           ============================================================ -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-2xl">
+        <div class="max-w-7xl mx-auto w-full flex flex-col gap-space-2xl">
+          <!-- Section Header -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-md">
+            <div>
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest block mb-2">CURATED MONOGRAPHS</span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface">Curated Identity Archives</h2>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+              Archived physical, spatial, and dynamic digital works selected for structural restraint and typographic depth.
+            </p>
+          </div>
+
+          <!-- Grid Composition: Bento-influenced asymmetric layout -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg" id="design-grid">
+
+            <!-- Project 01: Aura Studio Singapore (Col 7) -->
+            <article class="md:col-span-7 design-card stitch-design-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl flex flex-col group" data-category="branding artdirection">
+              <div class="relative aspect-[16/10] overflow-hidden bg-surface-container">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPw3GR96YKAYEmvx8S-eDx_AWltjXi-QZ6NMjhf0XN_UbTLdxS7sBagAdsOq2chobi_R558IpvI0t54L3xZRF4rhE85chYlehQJRsTZbbABBUaGvTxwA7CVXcps6k0yhTatmTOinWiDqCScazJPw4QVlSxN9E1vOqx4f_BqYysE5XNwQh3EtG8SSjZAN_8wGD6JLdlW6jmfA-yWfbha8zth7jFciJUYzrMGG-S82cVVIrw7j9et65J"
+                  alt="Architectural monograph and visual identity for Aura Studio Singapore"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-md py-space-xs rounded-full">
+                  <span class="font-label-sm text-label-sm text-secondary uppercase">SPATIAL / ARCHITECTURE</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
+                <div class="flex flex-col gap-space-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-outline">SINGAPORE • 2024</span>
+                    <span class="font-label-sm text-label-sm text-primary">MONOGRAPH &amp; SIGNAGE</span>
+                  </div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface font-semibold group-hover:text-primary transition-colors">
+                    Aura Studio Singapore
+                  </h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                    Architectural visual identity &amp; spatial lighting monograph. A quiet Swiss typographic framework grounded by raw concrete textures and custom laser-engraved wayfinding plates.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-space-xs">
+                  <span class="font-label-sm text-label-sm text-outline uppercase">Custom Typeface: Aura Grotesk Display</span>
+                  <a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-all" href="#" aria-label="View project">
+                    <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 02: Nusantara Coffee Co. (Col 5) -->
+            <article class="md:col-span-5 design-card stitch-design-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl flex flex-col group" data-category="branding packaging">
+              <div class="relative aspect-[4/5] overflow-hidden bg-surface-container">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBfvxlhxt6SImynGgs7lQgP9UWmX6cKveGt-En8P84HmhhHh4MgqW_KLY4bySSnCWdUgyDzNvLxIgt8kt0ipHlvMzPg-qBCQyk4WoUbix_co-mwFwN_T1QJ8nKaIvo84hTtS4KivXvoIETI1ein5WBC6hTkELFus0nIve08HorQxYBrn2LrbeyIN5hw3e-32Mgr6kS7KT4v36nHmgg8yVSUBmmtmwQD-5NXLz71K9Vq2oqnXGi-g4U"
+                  alt="Eco-luxe coffee packaging for Nusantara Coffee Co."
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-md py-space-xs rounded-full">
+                  <span class="font-label-sm text-label-sm text-secondary uppercase">SUSTAINABLE PACKAGING</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
+                <div class="flex flex-col gap-space-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-outline">JAKARTA • 2023</span>
+                    <span class="font-label-sm text-label-sm text-primary">REBRANDING</span>
+                  </div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface font-semibold group-hover:text-primary transition-colors">
+                    Nusantara Coffee Co.
+                  </h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                    Sustainable compostable packaging &amp; embossed copper heritage seals. Merging raw agrarian narratives with modernist Scandinavian packaging restraint.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-space-xs">
+                  <span class="font-label-sm text-label-sm text-outline uppercase">Plant-based Inks &amp; Hemp Fiber</span>
+                  <a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-all" href="#" aria-label="View project">
+                    <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 03: The Silent Observer (Col 5) -->
+            <article class="md:col-span-5 design-card stitch-design-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl flex flex-col group" data-category="print artdirection">
+              <div class="relative aspect-[4/5] overflow-hidden bg-surface-container">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiIPOeLrjLT7M8kqvvhxuyk2S3uQv76x0sfuVjEwJdlmxWA52HIbuohQsPxsEVaIooaezkMOWtP2NmBRVxVF5BWyuanvrxYQAmVWCBe8EtwR0zXR0GK8kDVKMpFWY2jpyuVn25LRCIb15QKU9xSKbojhpIgCp7hhi1ci_dZnGzF9bznPVWW9FZClB3Irw--UFz6SzuPxAfYC4fJJpwc7n7twfcIm8VWyx3ri6D2U6zPJiGAM_3wi5t"
+                  alt="High-fashion photographic monograph book"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-md py-space-xs rounded-full">
+                  <span class="font-label-sm text-label-sm text-secondary uppercase">EDITORIAL BOOK DESIGN</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
+                <div class="flex flex-col gap-space-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-outline">BERLIN • 2023</span>
+                    <span class="font-label-sm text-label-sm text-primary">PRINT EDITION</span>
+                  </div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface font-semibold group-hover:text-primary transition-colors">
+                    The Silent Observer
+                  </h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                    280-page photographic collection &amp; Swiss modernist typography. Bound in custom charcoal bookcloth with hand-applied foil title lettering.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-space-xs">
+                  <span class="font-label-sm text-label-sm text-outline uppercase">Limited Edition: 500 Copies</span>
+                  <a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-all" href="#" aria-label="View project">
+                    <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 04: Kinetic Design System (Col 7) -->
+            <article class="md:col-span-7 design-card stitch-design-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl flex flex-col group" data-category="uiux digital">
+              <div class="relative aspect-[16/10] overflow-hidden bg-surface-container">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8oAb3B1MbhRW-qYYrqxL_chjd-i023LTKa0NQlI4BtuH1z__-ZBZPi792dNkaFVH6FfRona_SeDZ887xpLu1HYycL6n-yGlay4KE0smemYcQf65PJEpUZboFk1DtqN-H4fH0xj5hsxCmXLioK80r5ugHFoEu8C075HfIshmA2UzE05RvYsbayQLMeZwj-wJ9pdy95Fp0uiUQvzdqxvvSSJ8AtcwiJJ4BSbhP_gEPDmcKU1w4XHaby"
+                  alt="Dynamic dark mode kinetic design system on screen"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80"></div>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-md py-space-xs rounded-full">
+                  <span class="font-label-sm text-label-sm text-secondary uppercase">DESIGN SYSTEM &amp; TOKENS</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
+                <div class="flex flex-col gap-space-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-outline">SAN FRANCISCO • 2024</span>
+                    <span class="font-label-sm text-label-sm text-primary">MULTI-CHANNEL</span>
+                  </div>
+                  <h3 class="font-headline-md text-headline-md text-on-surface font-semibold group-hover:text-primary transition-colors">
+                    Kinetic Design System
+                  </h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                    Responsive motion modules &amp; multi-channel tokens built for enterprise fintech application. Scaled across iOS, visionOS, and responsive web environments.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-space-xs">
+                  <span class="font-label-sm text-label-sm text-outline uppercase">Figma Tokens + React Components</span>
+                  <a class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-all" href="#" aria-label="View project">
+                    <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 05: Verve Fragrance (Col 12 - Full Editorial Span) -->
+            <article class="md:col-span-12 design-card stitch-design-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl flex flex-col lg:flex-row group" data-category="branding packaging artdirection">
+              <div class="w-full lg:w-7/12 relative aspect-[16/9] lg:aspect-auto min-h-[380px] overflow-hidden bg-surface-container">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHyCBDfJSErxJijBbvsXwlhihax3QHiR6Qf0Dwp30FTSgovqGBd5i9L1GpDY_x3p22rbW7HkaySWO8MZzPy7jHNHumd-WNE2Rb_FLjjM7x1jph-uDDhB8keF4RJ1Klgh9zgc2lORlDGyM6Ug9f09mMcgGGfvCm0ybeQtZmKpL7PGFuhnhivl6s95koLVu-W9UnvQp_U0dq5h3xjQ6KssIXV1k2WpqG_ApxmBguwdyzATegPJ5wJgcZ"
+                  alt="Sculptural smoky fluted glass perfume bottle with industrial aluminum cap"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-surface-container-lowest"></div>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-md py-space-xs rounded-full">
+                  <span class="font-label-sm text-label-sm text-secondary uppercase">LUXURY INDUSTRIAL &amp; BRAND</span>
+                </div>
+              </div>
+              <div class="w-full lg:w-5/12 p-space-lg md:p-space-xl flex flex-col justify-between bg-surface-container-lowest">
+                <div class="flex flex-col gap-space-md">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-outline">MILAN &amp; PARIS • 2024</span>
+                    <span class="font-label-sm text-label-sm text-primary">PERFUMERY COLLATERAL</span>
+                  </div>
+                  <div class="flex flex-col gap-space-xs">
+                    <h3 class="font-headline-lg text-headline-lg text-on-surface font-semibold group-hover:text-primary transition-colors">
+                      Verve Fragrance
+                    </h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      Tactile glass bottle architecture &amp; milled aluminum packaging. Redefining modern haute perfumery through brutalist architectural silhouettes, heavy fluted lead-free glass, and bespoke laser typography.
+                    </p>
+                  </div>
+                  <div class="flex flex-wrap gap-space-xs pt-space-xs">
+                    <span class="font-label-sm text-label-sm bg-surface-container px-space-sm py-space-xs rounded-full text-secondary">Custom Mold Casting</span>
+                    <span class="font-label-sm text-label-sm bg-surface-container px-space-sm py-space-xs rounded-full text-secondary">Laser Anodized Cap</span>
+                    <span class="font-label-sm text-label-sm bg-surface-container px-space-sm py-space-xs rounded-full text-secondary">Uncoated FSC Outer Box</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between pt-space-md">
+                  <a class="font-headline-sm text-headline-sm text-primary hover:text-on-surface flex items-center gap-space-xs transition-colors" href="#">
+                    <span>View Packaging Studies</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                  </a>
+                  <span class="font-label-sm text-label-sm text-outline">PROJECT REF: 2024-VRV</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           04. DESIGN ARCHITECTURE (METHODOLOGY) — 3 PILLARS
+           ============================================================ -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-3xl bg-surface-container-low/40">
+        <div class="max-w-7xl mx-auto w-full flex flex-col gap-space-2xl">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+            <div>
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest block mb-2">METHODOLOGY</span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface">Design Architecture</h2>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+              A disciplined philosophy bridging physical tactile craft with fluid digital modularity.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+            <!-- Pillar 01 -->
+            <div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-lg flex flex-col justify-between gap-space-xl relative overflow-hidden group hover:bg-surface-container transition-colors">
+              <div class="flex flex-col gap-space-md">
+                <span class="font-display-lg text-display-lg text-primary/40 font-semibold tracking-tighter">01</span>
+                <h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Concept Clarity</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Every system originates from a singular, unshakeable conceptual nucleus. We strip decorative noise until only essential intent remains, elevating brands above ephemeral trends.
+                </p>
+              </div>
+              <div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-sm">hub</span>
+                <span class="uppercase tracking-wider">Semantic Foundation</span>
+              </div>
+            </div>
+            <!-- Pillar 02 -->
+            <div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-lg flex flex-col justify-between gap-space-xl relative overflow-hidden group hover:bg-surface-container transition-colors">
+              <div class="flex flex-col gap-space-md">
+                <span class="font-display-lg text-display-lg text-primary/40 font-semibold tracking-tighter">02</span>
+                <h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Typographic Rigor</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Rooted in modernist Swiss proportions, optical spacing, and micro-hierarchy. Type is treated as the primary structural material that dictates atmosphere and pacing.
+                </p>
+              </div>
+              <div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-sm">format_size</span>
+                <span class="uppercase tracking-wider">Modernist Grids</span>
+              </div>
+            </div>
+            <!-- Pillar 03 -->
+            <div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-lg flex flex-col justify-between gap-space-xl relative overflow-hidden group hover:bg-surface-container transition-colors">
+              <div class="flex flex-col gap-space-md">
+                <span class="font-display-lg text-display-lg text-primary/40 font-semibold tracking-tighter">03</span>
+                <h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Emotional Resonance</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Sensory balance achieved through tactile material selection, deliberate weight, debossed textures, and cinematic digital transitions that leave a memorable somatic impression.
+                </p>
+              </div>
+              <div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-sm">auto_awesome</span>
+                <span class="uppercase tracking-wider">Tactile Presence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           05. COLLABORATION CTA
+           ============================================================ -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-3xl">
+        <div class="max-w-7xl mx-auto w-full">
+          <div class="relative bg-surface-container-lowest p-space-xl md:p-space-3xl rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-space-2xl">
+            <div class="absolute -top-32 -right-32 w-80 h-80 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="flex flex-col gap-space-sm max-w-xl">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">START A PROJECT</span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold leading-tight">
+                Looking for brand identity or visual direction?
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                Available for select brand commissions, packaging architecture, and design system direction worldwide for Q3/Q4.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-space-md w-full md:w-auto shrink-0">
+              <a
+                class="w-full sm:w-auto text-center px-space-xl py-space-sm bg-primary text-on-primary font-headline-sm text-headline-sm rounded-full shadow-lg border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:bg-primary-fixed hover:scale-105 transition-all"
+                href={waLink('design')}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Let's Talk &rarr;
+              </a>
+              <a
+                class="w-full sm:w-auto text-center px-space-lg py-space-sm bg-surface-container hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm rounded-full border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all flex items-center justify-center gap-space-xs"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-sm">download</span>
+                <span>Download PDF Deck</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
 
-  </section>
+    <!-- Filter Script -->
+    <script is:inline>
+      function initDesignFilters() {
+        const filterBtns = document.querySelectorAll('.design-filter-btn');
+        const designCards = document.querySelectorAll('.design-card');
 
-  <Footer slot="footer" variant="minimal" />
-</BaseLayout>
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterBtns.forEach(b => {
+              b.classList.remove('filter-btn-active');
+              b.classList.add('bg-surface-container-low/70', 'text-on-surface-variant');
+            });
+            btn.classList.add('filter-btn-active');
+            btn.classList.remove('bg-surface-container-low/70', 'text-on-surface-variant');
 
-<style>
-  /* =============================================
-     STITCH DESIGN PAGE Scoped styles
-     ============================================= */
-
-  /* Hero Centered single column */
-  .stitch-hero {
-    padding: 140px 48px 80px;
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .stitch-hero-centered {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .stitch-hero-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 800;
-    letter-spacing: -2px;
-    line-height: 1.05;
-    color: var(--text-primary);
-    text-shadow: 0 0 30px rgba(163, 166, 255, 0.2);
-    margin-bottom: 20px;
-  }
-
-  .stitch-hero-accent {
-    color: var(--accent-primary);
-  }
-
-  .stitch-hero-desc {
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    max-width: 560px;
-    margin: 0 auto;
-  }
-
-  /* Filter Bar */
-  .filter-bar {
-    padding: 0 48px;
-    margin-bottom: 48px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .filter-btn {
-    background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.08);
-    color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 9px 22px;
-    border-radius: 9999px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-  }
-
-  .filter-btn:hover {
-    background: var(--surface-bright);
-    color: var(--accent-primary);
-    border-color: rgba(163, 166, 255, 0.15);
-    transform: translateY(-2px);
-  }
-
-  .filter-btn.active {
-    background: var(--accent-secondary-container);
-    border-color: rgba(193, 128, 255, 0.3);
-    color: #e9cdff;
-  }
-
-  /* Gallery Section */
-  .gallery-section {
-    padding: 0 48px 80px;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .stitch-design-grid {
-    column-count: 3;
-    column-gap: 24px;
-  }
-
-  /* Card base */
-  .stitch-design-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--surface-container-highest);
-    border: 1px solid rgba(163, 166, 255, 0.06);
-    cursor: pointer;
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 24px;
-    break-inside: avoid;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease,
-                opacity 0.3s ease;
-  }
-
-  .stitch-design-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(163, 166, 255, 0.25);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Image */
-  .stitch-design-img-wrap {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .stitch-design-img-wrap img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    transition: transform 0.7s ease;
-  }
-
-  .stitch-design-card:hover .stitch-design-img-wrap img {
-    transform: scale(1.04);
-  }
-
-  /* Overlay */
-  .stitch-design-card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(6, 14, 32, 0.95) 0%,
-      rgba(6, 14, 32, 0.6) 40%,
-      rgba(6, 14, 32, 0.1) 70%,
-      transparent 100%
-    );
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 24px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .stitch-design-card:hover .stitch-design-card-overlay {
-    opacity: 1;
-  }
-
-  /* Badges */
-  .stitch-design-card-badges {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .stitch-badge-pill {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  .stitch-badge-brand {
-    background: rgba(163, 166, 255, 0.15);
-    color: var(--accent-primary);
-    border-color: rgba(163, 166, 255, 0.3);
-  }
-
-  .stitch-badge-social {
-    background: rgba(255, 128, 200, 0.15);
-    color: #ff80c8;
-    border-color: rgba(255, 128, 200, 0.3);
-  }
-
-  .stitch-badge-poster {
-    background: rgba(128, 255, 200, 0.15);
-    color: #80ffc8;
-    border-color: rgba(128, 255, 200, 0.3);
-  }
-
-  .stitch-badge-advertising {
-    background: rgba(255, 200, 100, 0.15);
-    color: #ffc864;
-    border-color: rgba(255, 200, 100, 0.3);
-  }
-
-  /* Title & Desc */
-  .stitch-design-card-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: clamp(16px, 2vw, 22px);
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.25;
-    margin-bottom: 6px;
-  }
-
-  .stitch-design-card-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  @media (max-width: 900px) {
-    .stitch-design-grid {
-      column-count: 2;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .stitch-hero {
-      padding: 120px 24px 40px;
-    }
-    .filter-bar {
-      padding: 0 20px;
-      gap: 8px;
-    }
-    .stitch-design-grid {
-      column-count: 1;
-      padding: 0 20px;
-    }
-  }
-</style>
-
-<script is:inline>
-  // ---------- GLIGHTBOX INITIALIZATION ----------
-  function initDesignLightbox() {
-    if (typeof GLightbox !== 'undefined') {
-      GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: true,
-      });
-    } else {
-      setTimeout(initDesignLightbox, 100);
-    }
-  }
-
-  // ---------- DESIGN CATEGORY FILTER ----------
-  function initDesignFilter() {
-    const filterBar = document.querySelector('.filter-bar');
-    if (!filterBar) return;
-
-    const btns = filterBar.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.stitch-design-card');
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const selectedFilter = btn.getAttribute('data-filter') ? btn.getAttribute('data-filter').toLowerCase() : 'all';
-
-        // Update active button
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // Filter design cards
-        cards.forEach(card => {
-          const cat = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
-          if (selectedFilter === 'all' || cat.includes(selectedFilter) || selectedFilter.includes(cat)) {
-            card.style.display = 'inline-block';
-            card.style.opacity = '1';
-          } else {
-            card.style.display = 'none';
-            card.style.opacity = '0';
-          }
+            const cat = btn.getAttribute('data-filter');
+            designCards.forEach(card => {
+              const cardCat = card.getAttribute('data-category') || '';
+              if (cat === 'all' || cardCat.includes(cat)) {
+                card.style.display = 'flex';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
         });
-      });
-    });
-  }
+      }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initDesignLightbox();
-    initDesignFilter();
-  });
+      document.addEventListener('astro:page-load', initDesignFilters);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDesignFilters);
+      } else {
+        initDesignFilters();
+      }
+    </script>
+  </main>
 
-  document.addEventListener('astro:page-load', () => {
-    initDesignLightbox();
-    initDesignFilter();
-  });
-</script>
+  <!-- Monolithic Footer -->
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20 pt-space-3xl pb-space-2xl mt-space-3xl">
+    <div class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto flex flex-col gap-space-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl">
+        <div class="md:col-span-5 flex flex-col gap-space-md">
+          <span class="font-headline-md text-headline-md uppercase tracking-tight text-on-surface">FRAME OF RANGGA</span>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Multi-disciplinary visual storyteller &amp; director operating across photography, cinematic direction, graphic systems, and spatial web experiences.
+          </p>
+          <div class="flex flex-wrap gap-space-xs pt-space-xs">
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-sm py-space-xs rounded-full">Photography</span>
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-sm py-space-xs rounded-full">Film Direction</span>
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-sm py-space-xs rounded-full">Visual Identity</span>
+            <span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-sm py-space-xs rounded-full">Web Experiences</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 md:col-start-7 flex flex-col gap-space-sm">
+          <span class="font-label-md text-label-md uppercase tracking-wider text-outline">Index</span>
+          <div class="flex flex-col gap-space-xs">
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/">Home</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/about">About Monograph</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/foto">Photo Archive</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/video">Video &amp; Film Reel</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/design">Design Identities</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="/website">Interactive Web</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">Inquiries &amp; Booking</a>
+          </div>
+        </div>
+        <div class="md:col-span-3 flex flex-col gap-space-sm">
+          <span class="font-label-md text-label-md uppercase tracking-wider text-outline">Dispatches</span>
+          <div class="flex flex-col gap-space-xs">
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer">Instagram (@rggadnrt)</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer">Portfolio (@frameofrangga)</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="https://tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer">TikTok (@madebyrangga)</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="mailto:frameofrangga@gmail.com">frameofrangga@gmail.com</a>
+          </div>
+          <div class="mt-space-md p-space-md rounded bg-surface-container-low/70 border border-outline-variant/20">
+            <p class="font-headline-sm text-headline-sm text-primary">Create. Capture. Inspire.</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Curated cinematic showcase edition 2024.3</p>
+          </div>
+        </div>
+      </div>
+      <div class="pt-space-lg border-t border-outline-variant/10 flex flex-col md:flex-row items-center justify-between gap-space-md">
+        <span class="font-label-sm text-label-sm text-outline">&copy; {new Date().getFullYear()} FRAME OF RANGGA. All rights reserved.</span>
+        <div class="flex items-center gap-space-lg font-label-sm text-label-sm text-outline">
+          <span>Jakarta, Indonesia (WIB GMT+7)</span>
+          <span>Cinematic Darkroom Specification</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>

@@ -32,7 +32,7 @@ const isHome = pathname === '/';
 ---
 
 <!DOCTYPE html>
-<html lang="id" data-theme>
+<html class="dark" lang="id" style="background-color: #131315; color: #e5e1e4;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -103,11 +103,121 @@ const isHome = pathname === '/';
   })} />
   )}
 
-  <!-- Fonts Stitch Design System: Manrope + Inter -->
+  <!-- Fonts Stitch Design System: Hanken Grotesk + Inter + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- Tailwind CSS & Stitch Design System Config -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  <script is:inline id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-fixed-dim": "#b4c5ff",
+            "secondary-fixed": "#d4e4fa",
+            "on-secondary-fixed": "#0d1c2d",
+            "surface-dim": "#131315",
+            "on-primary-container": "#eeefff",
+            "secondary-fixed-dim": "#b9c8de",
+            "tertiary": "#7bd0ff",
+            "inverse-on-surface": "#313032",
+            "outline-variant": "#434655",
+            "primary": "#b4c5ff",
+            "tertiary-fixed": "#c4e7ff",
+            "on-tertiary-fixed": "#001e2c",
+            "on-error-container": "#ffdad6",
+            "inverse-primary": "#0053db",
+            "on-primary-fixed-variant": "#003ea8",
+            "secondary-container": "#39485a",
+            "surface-bright": "#39393b",
+            "surface-container-high": "#2a2a2c",
+            "error": "#ffb4ab",
+            "on-secondary": "#233143",
+            "on-secondary-container": "#a7b6cc",
+            "primary-fixed": "#dbe1ff",
+            "surface-container-low": "#1c1b1d",
+            "surface-container-lowest": "#0e0e10",
+            "outline": "#8d90a0",
+            "on-tertiary": "#00354a",
+            "on-error": "#690005",
+            "surface": "#131315",
+            "inverse-surface": "#e5e1e4",
+            "on-surface": "#e5e1e4",
+            "on-tertiary-fixed-variant": "#004c69",
+            "on-primary": "#002a78",
+            "on-secondary-fixed-variant": "#39485a",
+            "tertiary-container": "#00759f",
+            "background": "#131315",
+            "on-background": "#e5e1e4",
+            "on-surface-variant": "#c3c6d7",
+            "secondary": "#b9c8de",
+            "surface-tint": "#b4c5ff",
+            "on-primary-fixed": "#00174b",
+            "surface-container-highest": "#353437",
+            "surface-variant": "#353437",
+            "tertiary-fixed-dim": "#7bd0ff",
+            "error-container": "#93000a",
+            "on-tertiary-container": "#e1f2ff",
+            "primary-container": "#2563eb",
+            "surface-container": "#201f21"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter-mobile": "0.75rem",
+            "space-sm": "0.5rem",
+            "space-3xl": "6rem",
+            "margin-mobile": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-2xl": "4rem",
+            "space-lg": "1.5rem",
+            "margin": "3rem",
+            "space-xl": "2.5rem"
+          },
+          fontFamily: {
+            "headline-lg-mobile": ["Hanken Grotesk", "sans-serif"],
+            "display-lg-mobile": ["Hanken Grotesk", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "headline-md": ["Hanken Grotesk", "sans-serif"],
+            "display-xl-mobile": ["Hanken Grotesk", "sans-serif"],
+            "headline-sm": ["Hanken Grotesk", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-lg": ["Hanken Grotesk", "sans-serif"],
+            "display-lg": ["Hanken Grotesk", "sans-serif"],
+            "display-xl": ["Hanken Grotesk", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "headline-lg-mobile": ["26px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "500" }],
+            "display-lg-mobile": ["32px", { lineHeight: "36px", letterSpacing: "-0.025em", fontWeight: "600" }],
+            "body-lg": ["17px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0", fontWeight: "400" }],
+            "headline-md": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "500" }],
+            "display-xl-mobile": ["40px", { lineHeight: "44px", letterSpacing: "-0.03em", fontWeight: "600" }],
+            "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "-0.015em", fontWeight: "500" }],
+            "body-md": ["15px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }],
+            "label-sm": ["10px", { lineHeight: "14px", letterSpacing: "0.08em", fontWeight: "500" }],
+            "headline-lg": ["36px", { lineHeight: "42px", letterSpacing: "-0.025em", fontWeight: "500" }],
+            "display-lg": ["56px", { lineHeight: "60px", letterSpacing: "-0.035em", fontWeight: "600" }],
+            "display-xl": ["72px", { lineHeight: "76px", letterSpacing: "-0.04em", fontWeight: "600" }],
+            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.06em", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -128,12 +238,12 @@ const isHome = pathname === '/';
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
 </head>
-<body class={bodyClass}>
+<body class={`bg-[#131315] font-body-md text-[#e5e1e4] antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen ${bodyClass}`} style="background-color: #131315; color: #e5e1e4;">
 
   <!-- Scroll Progress -->
   <div id="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Background -->
+  <!-- Ambient Dark Canvas Background -->
   <div class="bg-canvas" aria-hidden="true">
     <div class="bg-gradient"></div>
   </div>
