@@ -1,4 +1,6 @@
 ---
+import LanguageToggle from './LanguageToggle.astro';
+
 export interface Props {
   activePage?: string;
 }
@@ -6,12 +8,12 @@ export interface Props {
 const { activePage = 'home' } = Astro.props;
 
 const navLinks = [
-  { href: '/', label: 'Home', page: 'home' },
-  { href: '/about', label: 'About', page: 'about' },
-  { href: '/foto', label: 'Photo', page: 'foto' },
-  { href: '/video', label: 'Video', page: 'video' },
-  { href: '/design', label: 'Design', page: 'design' },
-  { href: '/website', label: 'Web', page: 'website' },
+  { href: '/', label: 'Home', labelKey: 'nav.home', page: 'home' },
+  { href: '/about', label: 'About', labelKey: 'nav.about', page: 'about' },
+  { href: '/foto', label: 'Photo', labelKey: 'nav.photo', page: 'foto' },
+  { href: '/video', label: 'Video', labelKey: 'nav.video', page: 'video' },
+  { href: '/design', label: 'Design', labelKey: 'nav.design', page: 'design' },
+  { href: '/website', label: 'Web', labelKey: 'nav.web', page: 'website' },
 ];
 ---
 
@@ -31,6 +33,7 @@ const navLinks = [
           <a
             href={link.href}
             aria-current={isActive ? 'page' : undefined}
+            data-i18n={link.labelKey}
             class={
               isActive
                 ? 'px-space-md py-space-xs rounded-full transition-colors bg-surface-container-highest text-on-surface font-medium font-body-sm text-body-sm'
@@ -44,9 +47,11 @@ const navLinks = [
     </nav>
 
     <div class="flex items-center gap-space-sm">
+      <LanguageToggle />
       <a
         href="/#contact-cta"
         class="hidden sm:inline-flex px-space-md py-space-xs rounded-full font-body-sm text-body-sm text-on-surface bg-surface-container-high/60 hover:bg-surface-container-highest hover:text-primary transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] border border-outline-variant/30"
+        data-i18n="nav.contact"
       >
         Contact
       </a>
@@ -151,6 +156,12 @@ const navLinks = [
       if (e.key === 'Escape' && isOpen) closeMenu();
     });
   }
+  // i18n: update text for all data-i18n elements when language changes
+  const i18nScript = document.createElement('script');
+  i18nScript.src = '/js/i18n.js';
+  i18nScript.async = true;
+  document.head.appendChild(i18nScript);
+
   document.addEventListener('astro:page-load', initStitchNav);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initStitchNav);

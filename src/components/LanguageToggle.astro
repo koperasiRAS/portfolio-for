@@ -1,0 +1,36 @@
+---
+---
+
+<button
+  type="button"
+  id="langToggleBtn"
+  class="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-surface-container-low/60 border border-outline-variant/30 text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer text-xs font-medium"
+  title="Toggle Language"
+  aria-label="Toggle Language"
+>
+  <span class="material-symbols-outlined text-[14px]">translate</span>
+  <span id="langLabel">ID</span>
+</button>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById('langToggleBtn');
+    const label = document.getElementById('langLabel');
+    if (!btn || !label) return;
+
+    function updateLabel() {
+      const lang = localStorage.getItem('for_lang') || 'en';
+      label.textContent = lang === 'id' ? 'EN' : 'ID';
+    }
+    updateLabel();
+
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('for_lang') || 'en';
+      const next = current === 'id' ? 'en' : 'id';
+      localStorage.setItem('for_lang', next);
+      document.documentElement.lang = next;
+      document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: next } }));
+      updateLabel();
+    });
+  })();
+</script>

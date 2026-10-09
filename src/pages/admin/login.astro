@@ -96,9 +96,9 @@
             id="identity-input"
             type="text"
             required
-            value="rangga@frameofrangga.com"
+            value="frameofrangga@gmail.com"
             class="w-full bg-[#0d0d0f] border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono shadow-inner"
-            placeholder="Identity / Email"
+            placeholder="frameofrangga@gmail.com"
           />
         </div>
       </div>
@@ -237,7 +237,7 @@
         if (data.success) {
           localStorage.setItem('for_studio_token', data.token);
           localStorage.setItem('for_studio_token_time', Date.now().toString());
-          localStorage.setItem('for_studio_user', 'Rangga Permadi');
+          localStorage.setItem('for_studio_user', 'Rangga Danuarta');
           localStorage.setItem('for_studio_role', 'Principal Admin');
 
           submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-emerald-600">check_circle</span><span>Authenticated</span>';
@@ -246,11 +246,11 @@
           }, 400);
         } else {
           // If fail against remote API, allow offline fallback for development passkey 'rangga123'
-          if (passkey === 'rangga123' || passkey === 'master') {
+          if (passkey === 'Ranggaakunportofolio1' || passkey === 'master') {
             const fallbackToken = btoa('rangga:' + Date.now() + ':for-fallback');
             localStorage.setItem('for_studio_token', fallbackToken);
             localStorage.setItem('for_studio_token_time', Date.now().toString());
-            localStorage.setItem('for_studio_user', 'Rangga Permadi');
+            localStorage.setItem('for_studio_user', 'Rangga Danuarta');
             localStorage.setItem('for_studio_role', 'Principal Admin');
             window.location.href = '/admin/cms';
             return;
@@ -267,7 +267,7 @@
           const fallbackToken = btoa('rangga:' + Date.now() + ':for-fallback');
           localStorage.setItem('for_studio_token', fallbackToken);
           localStorage.setItem('for_studio_token_time', Date.now().toString());
-          localStorage.setItem('for_studio_user', 'Rangga Permadi');
+          localStorage.setItem('for_studio_user', 'Rangga Danuarta');
           localStorage.setItem('for_studio_role', 'Principal Admin');
           window.location.href = '/admin/cms';
           return;
@@ -282,12 +282,12 @@
 
     function requestMasterToken() {
       const passInput = document.getElementById('passkey-input');
-      passInput.value = 'rangga123';
+      passInput.value = 'Ranggaakunportofolio1';
       const feedback = document.getElementById('login-feedback');
       const feedbackText = document.getElementById('login-feedback-text');
       feedback.classList.remove('hidden');
       feedback.className = 'p-3 rounded-xl bg-blue-950/40 border border-blue-500/30 text-blue-200 text-xs font-mono flex items-center gap-2';
-      feedbackText.textContent = 'Development Master Token pre-filled: rangga123';
+      feedbackText.textContent = 'Studio passkey pre-filled. Click "Enter Studio Workspace" to authenticate.';
     }
 
     function triggerWebAuthn() {
@@ -300,7 +300,7 @@
       setTimeout(() => {
         localStorage.setItem('for_studio_token', btoa('webauthn-hardware-key-' + Date.now()));
         localStorage.setItem('for_studio_token_time', Date.now().toString());
-        localStorage.setItem('for_studio_user', 'Rangga Permadi');
+        localStorage.setItem('for_studio_user', 'Rangga Danuarta');
         localStorage.setItem('for_studio_role', 'Principal Admin');
         window.location.href = '/admin/cms';
       }, 700);

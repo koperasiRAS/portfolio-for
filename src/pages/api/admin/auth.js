@@ -13,8 +13,8 @@ function getAuthConfig() {
     }
   }
   return {
-    username: 'admin',
-    password: 'rangga123',
+    username: 'frameofrangga',
+    password: 'Ranggaakunportofolio1',
   };
 }
 
@@ -47,7 +47,7 @@ export async function POST({ request }) {
     }
 
     // Standard Login
-    const validUser = (username === currentAuth.username || username === 'rangga');
+    const validUser = (username === currentAuth.username || username === 'rangga' || username === 'frameofrangga');
     const validPass = (password === currentAuth.password);
 
     if (validUser && validPass) {

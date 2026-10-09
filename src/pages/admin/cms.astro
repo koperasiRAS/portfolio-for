@@ -242,7 +242,7 @@
             RP
           </div>
           <div class="flex flex-col">
-            <span class="text-xs font-semibold text-white">Rangga Permadi</span>
+            <span class="text-xs font-semibold text-white">Rangga Danuarta</span>
             <span class="font-mono text-[10px] text-gray-500">Principal Admin</span>
           </div>
         </div>
@@ -687,6 +687,85 @@
     <div class="px-4 py-2.5 rounded-full bg-[#18181c] border border-blue-500/30 shadow-2xl text-white text-xs font-mono flex items-center gap-2">
       <span class="material-symbols-outlined text-[16px] text-blue-400">check_circle</span>
       <span id="toast-message">Record synchronized to edge node</span>
+    </div>
+  </div>
+
+  <!-- Studio Preferences Panel (modal overlay) -->
+  <div id="studio-prefs-panel" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeStudioPreferences()"></div>
+    <div class="relative z-10 w-full max-w-md bg-[#141417] border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-5">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-blue-400">tune</span>
+          <h3 class="font-mono text-sm font-bold text-white uppercase tracking-wider">Studio Preferences</h3>
+        </div>
+        <button type="button" onclick="closeStudioPreferences()" class="text-gray-400 hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-4">
+
+        <!-- Display Profile -->
+        <div class="flex flex-col gap-2">
+          <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Display Calibration</span>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-3 rounded-xl bg-[#0d0d0f] border border-white/5">
+              <p class="text-xs text-gray-400 mb-1">Color Space</p>
+              <p class="text-sm font-mono text-blue-400">DCI-P3 6500K</p>
+            </div>
+            <div class="p-3 rounded-xl bg-[#0d0d0f] border border-white/5">
+              <p class="text-xs text-gray-400 mb-1">Node</p>
+              <p class="text-sm font-mono text-emerald-400">Tokyo Ed. 01</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edge Cache Status -->
+        <div class="flex flex-col gap-2">
+          <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Edge Cache</span>
+          <div class="flex items-center justify-between p-3 rounded-xl bg-[#0d0d0f] border border-white/5">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-sm text-gray-300">Healthy</span>
+            </div>
+            <span class="font-mono text-xs text-gray-500">99.98%</span>
+          </div>
+        </div>
+
+        <!-- Asset Vault -->
+        <div class="flex flex-col gap-2">
+          <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Storage</span>
+          <div class="p-3 rounded-xl bg-[#0d0d0f] border border-white/5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400">Cloudflare R2 / S3 Archival</span>
+              <span class="font-mono text-xs text-blue-400">14.8 / 100 GB</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden">
+              <div class="h-full w-[15%] rounded-full bg-blue-500"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Language -->
+        <div class="flex flex-col gap-2">
+          <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Default Language</span>
+          <div class="flex gap-2">
+            <button type="button" class="flex-1 px-4 py-2.5 rounded-xl text-xs font-mono font-semibold bg-blue-600/20 border border-blue-500/40 text-blue-300 hover:bg-blue-600/30 transition-colors cursor-pointer">EN — English</button>
+            <button type="button" class="flex-1 px-4 py-2.5 rounded-xl text-xs font-mono font-semibold bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10 transition-colors cursor-pointer">ID — Indonesia</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="pt-2 border-t border-white/5 flex items-center justify-between font-mono text-[10px] text-gray-500">
+        <span>FRR CMS V2.4</span>
+        <span class="text-gray-600">Jakarta • Tokyo • Zurich</span>
+      </div>
+
     </div>
   </div>
 
@@ -1173,7 +1252,17 @@
     }
 
     function showStudioPreferences() {
-      alert('Studio Preferences: Tokyo Ed. Node 01 • DCI-P3 6500K Calibration • Edge Cache: 99.98% Healthy');
+      const panel = document.getElementById('studio-prefs-panel');
+      if (!panel) return;
+      panel.classList.remove('hidden');
+      panel.classList.add('flex');
+    }
+
+    function closeStudioPreferences() {
+      const panel = document.getElementById('studio-prefs-panel');
+      if (!panel) return;
+      panel.classList.add('hidden');
+      panel.classList.remove('flex');
     }
 
     function handleLogout() {
