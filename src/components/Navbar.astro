@@ -1,5 +1,6 @@
 ---
 import LanguageToggle from './LanguageToggle.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 export interface Props {
   activePage?: string;
@@ -48,6 +49,7 @@ const navLinks = [
 
     <div class="flex items-center gap-space-sm">
       <LanguageToggle />
+      <ThemeToggle />
       <a
         href="/#contact-cta"
         class="hidden sm:inline-flex px-space-md py-space-xs rounded-full font-body-sm text-body-sm text-on-surface bg-surface-container-high/60 hover:bg-surface-container-highest hover:text-primary transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] border border-outline-variant/30"

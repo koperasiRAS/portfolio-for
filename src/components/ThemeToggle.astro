@@ -1,0 +1,44 @@
+---
+---
+
+<button
+  type="button"
+  id="themeToggleBtn"
+  class="w-8 h-8 rounded-full bg-surface-container-low/60 border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
+  title="Toggle Theme"
+  aria-label="Toggle Dark/Light Theme"
+>
+  <span id="themeIcon" class="material-symbols-outlined text-[18px]">light_mode</span>
+</button>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById('themeToggleBtn');
+    const icon = document.getElementById('themeIcon');
+    if (!btn || !icon) return;
+
+    function getTheme() {
+      return localStorage.getItem('for_theme') || 'dark';
+    }
+
+    function applyIcon() {
+      const theme = getTheme();
+      icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+      icon.title = theme === 'dark' ? 'Switch to Light' : 'Switch to Dark';
+    }
+
+    applyIcon();
+
+    btn.addEventListener('click', function () {
+      const current = getTheme();
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('for_theme', next);
+      document.documentElement.setAttribute('data-theme', next);
+      applyIcon();
+      document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
+    });
+
+    // Listen for theme changes dispatched elsewhere
+    document.addEventListener('themechange', applyIcon);
+  })();
+</script>

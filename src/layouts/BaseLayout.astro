@@ -37,6 +37,20 @@ const isHome = pathname === '/';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Theme Init — runs before CSS to prevent flash -->
+  <script is:inline>
+    (function () {
+      var theme = localStorage.getItem('for_theme') || 'dark';
+      var lang  = localStorage.getItem('for_lang')  || 'en';
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.lang = lang;
+      if (theme === 'light') {
+        document.documentElement.style.backgroundColor = '#fafafa';
+        document.documentElement.style.color = '#131315';
+      }
+    })();
+  </script>
+
   <!-- Primary Meta -->
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
