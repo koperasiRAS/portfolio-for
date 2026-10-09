@@ -781,111 +781,120 @@
       window.location.href = '/admin/login';
     }
 
-    // Default High-Fidelity Showcase Dataset (Matches Mockup)
-    let catalogItems = [
-      {
-        id: 'the-ocean-series',
-        badge: 'RAW',
-        discipline: 'photo',
-        disciplineLabel: 'PHOTO • Editorial & 35mm Analog',
-        title: 'The Ocean Series',
-        subtext: 'Self-Initiated Exhibition • Leica M6 / Summilux 35mm • 2026',
-        client: 'Self-Initiated Ex',
-        year: '2026',
-        status: 'published',
-        views: '14.2k views',
-        asset: 'ocean_series_master_01.raw',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLUmgq8ihNYNNLzO10X4Fi1Ng3GBBBovXTJ7Bsd6tIsPtyUVmZB5LfEFaZ7AZwga9UKqnvmCPyxy2qnxnNFmyqQZPpaH4fnhYAK3gCutU8eZr2DGUFiyA4nAf7ImlPqH1FlnQi7OjcCbZDwVMCithWVdMYOYB9OzMz_U1ubX3s_ysCGddStb91qOU3x5bGPAlK_2BqrCVoJf8LvqDIRy6HxjLztTwnmbYUZk5of-XF0rZIylsIbeun',
-        statement: 'A meditative exploration of nocturnal coastal tides. Captured across 14 consecutive nights using vintage medium format emulsions.',
-        tags: ['Leica M6', '35mm Film', 'Analog Grade']
-      },
-      {
-        id: 'the-last-light',
-        badge: '16MM',
-        discipline: 'video',
-        disciplineLabel: "VIDEO • Cinematic 16mm • Director's Cut",
-        title: 'The Last Light',
-        subtext: 'Festival Official Selection • Arri 416 • Kodak Vision3 • 2026',
-        client: 'Festival Official Selection',
-        year: '2026',
-        status: 'published',
-        views: '28.5k views',
-        asset: 'the_last_light_4k_prores.mov',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCVsrViwITXH4R3FyJjPU_RTHfLWOsIA9fiCVGhoJDqwZXZh9FNerV8bC35aNMDdmtWTtiJTZ78Vy7Lf8NGu8T92Ui60TGIpAVpwYYPZ2kywgPRlgviK84b6Z3rD3dJuxruD0THx7k77JklMn3WxaxukoXurkwtYiOG-uqc8YsICDnN69oBGAihQ0ahK7DOaJ8eade_slnpW2ufg-r4vHvefPe7YU5Nn-8wKRGrS5jB4LNfRbIxuhbK',
-        statement: 'Narrative short exploring isolation on alpine terrain. Directed on 16mm film stock with natural golden hour illumination.',
-        tags: ['Arri 416', 'Kodak Vision3', 'DaVinci Resolve']
-      },
-      {
-        id: 'lumen-brand-identity',
-        badge: 'ID',
-        discipline: 'design',
-        disciplineLabel: 'DESIGN • Brand Identity & Luxury Packaging',
-        title: 'LUMEN — Holistic Brand Ident',
-        subtext: 'Lumen Labs Inc. • Custom Typeface & Foil Craft • 2025',
-        client: 'Lumen Labs Inc.',
-        year: '2025',
-        status: 'published',
-        views: '39.1k views',
-        asset: 'lumen_identity_guidelines_v2.pdf',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbLNPRpGguviIR-bsQ2D2YKhwtK0ow5u0T_bwjr4Qc8E6j-J_eQ9E2fRKRSrWbO4k18vV4Le-yXya7X_lSL0vjZiLg-aTXqMqQLqpgeJEXbm_FXH8UR_TDMiLg3Zz83CWCmi9sDZUkJ7IB-k2lgMP9DC0EdkY0KU5bJpGtAAnYtjPOS9S35dZQQKX1m-rZzIi12E4PmVhw650CzHd_vxHhJghyjY6ncGyu71lHTkiChLCl2pKzBhJ6',
-        statement: 'Complete spatial and tactile identity design system engineered for an avant-garde architectural lighting atelier.',
-        tags: ['Custom Type', 'Foil Craft', 'Packaging']
-      },
-      {
-        id: 'aura-architecture',
-        badge: 'WEBGL',
-        discipline: 'web',
-        disciplineLabel: 'WEB • Interactive WebGL & Digital Experience',
-        title: 'Aura Architecture Flagship',
-        subtext: 'Aura Arkitekter Oslo • Three.js / GLSL / Next.js 15 • 2025',
-        client: 'Aura Arkitekter Oslo',
-        year: '2025',
-        status: 'published',
-        views: '41.8k views',
-        asset: 'aura_webgl_bundle.wasm',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO6BDLECnJXG_N7pL-pOVMtc27seTbmE5t8qZjZEaGcIcd4iUz_T9o6eRjphwdQfZwrN0cOpAcejk7mBFTiXKFK28OIN3VrL4ySepUSRcPwuP6kX6y5JSFf-LaZMzDEwpXBtsZnpypr9Hp1t8TE_AB_lDtKIeVjsPqzHSaGHLF1oZpWsAtnnDt1CMmKi8Y-xw67vUWoY6iiHnx6vbW3DawyPwISxo2xCGzClt2En0QBYU_UGVDT7xN',
-        statement: 'Zero-latency spatial flagship built with raw GLSL refraction shaders and fluid layout transitions.',
-        tags: ['Three.js', 'Next.js 15', 'GLSL']
-      },
-      {
-        id: 'nusantara-coffee-co',
-        badge: 'PKG',
-        discipline: 'design',
-        disciplineLabel: 'DESIGN • Sustainable Packaging & Monograph',
-        title: 'Nusantara Coffee Co.',
-        subtext: 'Nusantara Roasters • FSC Recycled Stock / Blind Deboss • 2024',
-        client: 'Nusantara Roasters',
-        year: '2024',
-        status: 'published',
-        views: '19.4k views',
-        asset: 'nusantara_roasters_packaging.dng',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLUmgq8ihNYNNLzO10X4Fi1Ng3GBBBovXTJ7Bsd6tIsPtyUVmZB5LfEFaZ7AZwga9UKqnvmCPyxy2qnxnNFmyqQZPpaH4fnhYAK3gCutU8eZr2DGUFiyA4nAf7ImlPqH1FlnQi7OjcCbZDwVMCithWVdMYOYB9OzMz_U1ubX3s_ysCGddStb91qOU3x5bGPAlK_2BqrCVoJf8LvqDIRy6HxjLztTwnmbYUZk5of-XF0rZIylsIbeun',
-        statement: 'Tactile blind-debossed kraft monograph packaging celebrating high-elevation Indonesian single-origin coffees.',
-        tags: ['Blind Deboss', 'FSC Stock', 'Branding']
-      },
-      {
-        id: 'kinesis-pavilion',
-        badge: 'DRAFT',
-        discipline: 'web',
-        disciplineLabel: 'WEB / SOUND • 3D Spatial Sound Sculpture',
-        title: 'Kinesis Pavilion Real-time WebG',
-        subtext: 'Venice Biennale Exhibition • Web Audio API / WebGPU • 2024',
-        client: 'Venice Biennale Exhibition',
-        year: '2024',
-        status: 'draft',
-        views: '—',
-        asset: 'kinesis_webgpu_scene.glb',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO6BDLECnJXG_N7pL-pOVMtc27seTbmE5t8qZjZEaGcIcd4iUz_T9o6eRjphwdQfZwrN0cOpAcejk7mBFTiXKFK28OIN3VrL4ySepUSRcPwuP6kX6y5JSFf-LaZMzDEwpXBtsZnpypr9Hp1t8TE_AB_lDtKIeVjsPqzHSaGHLF1oZpWsAtnnDt1CMmKi8Y-xw67vUWoY6iiHnx6vbW3DawyPwISxo2xCGzClt2En0QBYU_UGVDT7xN',
-        statement: 'A generative acoustic interface visualizing structural vibrations recorded across the Venetian lagoon.',
-        tags: ['WebGPU', 'Web Audio API', 'Spatial UI']
+    // --- API-backed catalog ---
+    let catalogItems = [];
+    let profileData = {};
+    let activeTab = 'all'; // 'all' | 'photos' | 'videos' | 'designs' | 'websites' | 'profile'
+
+    const disciplineMap = { photo: 'photos', video: 'videos', design: 'designs', web: 'websites' };
+    const badgeMap = {
+      photos: 'RAW', videos: '16MM', designs: 'ID', websites: 'WEBGL',
+      photo: 'RAW', video: '16MM', design: 'ID', web: 'WEBGL'
+    };
+
+    function mapApiItem(item, discipline, index) {
+      const dKey = disciplineMap[discipline] || discipline;
+      return {
+        id: item.slug || (discipline + '_' + index),
+        badge: badgeMap[discipline] || (discipline || '').toUpperCase().slice(0,4),
+        discipline: discipline,
+        disciplineLabel: discipline.toUpperCase() + ' • Studio Entry',
+        title: item.title || item.name || '(untitled)',
+        subtext: item.client || item.category ? `${item.client || item.category} • ${item.year || new Date().getFullYear()}` : String(item.year || ''),
+        client: item.client || '',
+        year: String(item.year || new Date().getFullYear()),
+        status: item.isFeatured || item.featuredHome ? 'published' : 'draft',
+        views: item.views || '—',
+        asset: item.slug ? item.slug + '.json' : '',
+        image: item.imagePath || item.thumbnailPath || '',
+        statement: item.description || '',
+        tags: (item.tags || []).slice(0, 3),
+        _raw: item  // keep full original data for saving back
+      };
+    }
+
+    async function loadCatalog() {
+      try {
+        const res = await fetch('/api/admin/data');
+        const json = await res.json();
+        if (!json.success) throw new Error(json.error);
+        const { photos, videos, designs, websites, profile } = json.data;
+        profileData = profile;
+        catalogItems = [];
+        (photos || []).forEach((item, i) => catalogItems.push(mapApiItem(item, 'photo', i)));
+        (videos || []).forEach((item, i) => catalogItems.push(mapApiItem(item, 'video', i)));
+        (designs || []).forEach((item, i) => catalogItems.push(mapApiItem(item, 'design', i)));
+        (websites || []).forEach((item, i) => catalogItems.push(mapApiItem(item, 'web', i)));
+      } catch (e) {
+        console.warn('API fetch failed, using empty catalog', e);
       }
-    ];
+      updateMetrics();
+    }
+
+    async function saveToApi(item) {
+      const discipline = item.discipline || 'photo';
+      const type = disciplineMap[discipline] || discipline;
+      const payload = {
+        type: type,
+        action: item._isNew ? 'create' : 'update',
+        slug: item.id,
+        data: {
+          ...item._raw,
+          title: item.title,
+          description: item.statement,
+          client: item.client,
+          year: item.year,
+          isFeatured: item.status === 'published',
+        }
+      };
+      const res = await fetch('/api/admin/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      return res.json();
+    }
+
+    async function deleteFromApi(item) {
+      const discipline = item.discipline || 'photo';
+      const type = disciplineMap[discipline] || discipline;
+      const res = await fetch('/api/admin/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, action: 'delete', slug: item.id, data: {} })
+      });
+      return res.json();
+    }
+
+    function updateMetrics() {
+      const el = document.getElementById('metrics-live');
+      if (!el) return;
+      const byDiscipline = (d) => catalogItems.filter(i => i.discipline === d).length;
+      el.innerHTML =
+        `<div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#0d0d0f] border border-white/5 flex-1 min-w-0">` +
+          `<span class="material-symbols-outlined text-[18px] text-blue-400 shrink-0">photo_camera</span>` +
+          `<div class="flex flex-col"><span class="text-sm font-mono font-bold text-white">${byDiscipline('photo')}</span><span class="text-[9px] text-gray-500 uppercase tracking-wider">Photos</span></div>` +
+        `</div>` +
+        `<div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#0d0d0f] border border-white/5 flex-1 min-w-0">` +
+          `<span class="material-symbols-outlined text-[18px] text-emerald-400 shrink-0">movie</span>` +
+          `<div class="flex flex-col"><span class="text-sm font-mono font-bold text-white">${byDiscipline('video')}</span><span class="text-[9px] text-gray-500 uppercase tracking-wider">Videos</span></div>` +
+        `</div>` +
+        `<div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#0d0d0f] border border-white/5 flex-1 min-w-0">` +
+          `<span class="material-symbols-outlined text-[18px] text-amber-400 shrink-0">palette</span>` +
+          `<div class="flex flex-col"><span class="text-sm font-mono font-bold text-white">${byDiscipline('design')}</span><span class="text-[9px] text-gray-500 uppercase tracking-wider">Design</span></div>` +
+        `</div>` +
+        `<div class="flex items-center gap-2 p-2.5 rounded-lg bg-[#0d0d0f] border border-white/5 flex-1 min-w-0">` +
+          `<span class="material-symbols-outlined text-[18px] text-cyan-400 shrink-0">web</span>` +
+          `<div class="flex flex-col"><span class="text-sm font-mono font-bold text-white">${byDiscipline('web')}</span><span class="text-[9px] text-gray-500 uppercase tracking-wider">Web</span></div>` +
+        `</div>`;
+    }
 
     let currentFilter = 'all';
     let searchQuery = '';
 
     // Initialize View
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadCatalog();
       renderWorksList();
     });
 
@@ -1159,12 +1168,22 @@
           item.year = year;
           item.statement = statement;
           item.status = isVisible ? 'published' : 'draft';
+          // Save to API
+          saveToApi(item).then(res => {
+            if (res.success) {
+              showToast(`'${title}' tersimpan ke database`);
+            } else {
+              showToast('Gagal menyimpan: ' + (res.error || 'error'));
+            }
+          }).catch(() => showToast('Gagal terhubung ke server'));
         }
       } else {
         const newId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-        catalogItems.unshift({
+        const newItem = {
           id: newId,
-          badge: discipline.toUpperCase(),
+          _isNew: true,
+          _raw: { title, description: statement, client, year, isFeatured: isVisible },
+          badge: (disciplineMap[discipline] || discipline).toUpperCase().slice(0, 4),
           discipline: discipline,
           disciplineLabel: `${discipline.toUpperCase()} • Curated Entry`,
           title: title,
@@ -1173,14 +1192,21 @@
           year: year,
           status: isVisible ? 'published' : 'draft',
           views: '0 views',
-          asset: 'master_upload.raw',
-          image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLUmgq8ihNYNNLzO10X4Fi1Ng3GBBBovXTJ7Bsd6tIsPtyUVmZB5LfEFaZ7AZwga9UKqnvmCPyxy2qnxnNFmyqQZPpaH4fnhYAK3gCutU8eZr2DGUFiyA4nAf7ImlPqH1FlnQi7OjcCbZDwVMCithWVdMYOYB9OzMz_U1ubX3s_ysCGddStb91qOU3x5bGPAlK_2BqrCVoJf8LvqDIRy6HxjLztTwnmbYUZk5of-XF0rZIylsIbeun',
+          asset: '',
+          image: '',
           statement: statement,
-          tags: ['Studio', discipline]
-        });
+          tags: [discipline]
+        };
+        catalogItems.unshift(newItem);
+        saveToApi(newItem).then(res => {
+          if (res.success) {
+            showToast(`'${title}' ditambahkan ke database`);
+          } else {
+            showToast('Gagal menambah: ' + (res.error || 'error'));
+          }
+        }).catch(() => showToast('Gagal terhubung ke server'));
       }
 
-      showToast(`'${title}' berhasil disinkronkan ke Tokyo Ed. Node 01`);
       closeInspectorDrawer();
       renderWorksList();
     }
@@ -1193,11 +1219,18 @@
     function deleteArchivalRecord() {
       const id = document.getElementById('edit-id').value;
       if (!id) return;
-      if (confirm('Hapus permanen arsip karya ini dari cloud vault?')) {
-        catalogItems = catalogItems.filter(i => i.id !== id);
-        closeInspectorDrawer();
-        renderWorksList();
-        showToast('Arsip karya dihapus dari sistem');
+      const item = catalogItems.find(i => i.id === id);
+      if (confirm(`Hapus '${item ? item.title : id}' dari arsip?`)) {
+        deleteFromApi(item || { id, discipline: 'photo', _raw: {} }).then(res => {
+          if (res.success) {
+            catalogItems = catalogItems.filter(i => i.id !== id);
+            showToast(`Arsip dihapus`);
+          } else {
+            showToast('Gagal hapus: ' + (res.error || 'error'));
+          }
+          closeInspectorDrawer();
+          renderWorksList();
+        }).catch(() => showToast('Gagal terhubung ke server'));
       }
     }
 
@@ -1205,18 +1238,30 @@
       const item = catalogItems.find(i => i.id === id);
       if (item) {
         item.status = 'published';
+        saveToApi(item).then(res => {
+          showToast(res.success ? `'${item.title}' kini live` : 'Gagal publish');
+        }).catch(() => showToast('Gagal terhubung'));
         renderWorksList();
-        showToast(`'${item.title}' kini live di pameran global`);
       }
     }
 
     function duplicateWorkItem(id) {
       const item = catalogItems.find(i => i.id === id);
       if (!item) return;
-      const copy = { ...item, id: item.id + '-copy', title: item.title + ' (Copy)', status: 'draft' };
+      const newSlug = item.id + '-copy-' + Math.random().toString(36).slice(2, 5);
+      const copy = {
+        ...item,
+        _raw: { ...item._raw, title: item.title + ' (Copy)', isFeatured: false },
+        _isNew: true,
+        id: newSlug,
+        title: item.title + ' (Copy)',
+        status: 'draft'
+      };
       catalogItems.unshift(copy);
+      saveToApi(copy).then(res => {
+        showToast(res.success ? `Duplikasi berhasil` : 'Gagal duplikasi');
+      }).catch(() => showToast('Gagal terhubung'));
       renderWorksList();
-      showToast(`Duplikasi karya berhasil dibuat`);
     }
 
     function previewWorkItem(discipline) {
@@ -1230,10 +1275,17 @@
     }
 
     function deleteWorkItem(id) {
-      if (confirm('Hapus arsip ini?')) {
-        catalogItems = catalogItems.filter(i => i.id !== id);
-        renderWorksList();
-        showToast('Karya dihapus dari katalog');
+      const item = catalogItems.find(i => i.id === id);
+      if (confirm(`Hapus '${item ? item.title : id}'?`)) {
+        deleteFromApi(item || { id, discipline: 'photo', _raw: {} }).then(res => {
+          if (res.success) {
+            catalogItems = catalogItems.filter(i => i.id !== id);
+            showToast('Karya dihapus dari katalog');
+          } else {
+            showToast('Gagal hapus');
+          }
+          renderWorksList();
+        }).catch(() => showToast('Gagal terhubung ke server'));
       }
     }
 
