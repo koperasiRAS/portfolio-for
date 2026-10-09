@@ -1,8 +1,12 @@
 export const prerender = false;
 
 import { getPhotos, getVideos, getDesigns, getWebsites, getProfile } from '../../../utils/content.js';
+import { requireAuth, unauthorized } from '../../../utils/auth-guard.js';
 
 export async function GET({ request }) {
+  const auth = requireAuth(request);
+  if (!auth) return unauthorized();
+
   try {
     const photos = getPhotos();
     const videos = getVideos();

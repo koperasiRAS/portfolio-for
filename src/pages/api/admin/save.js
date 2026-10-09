@@ -2,6 +2,7 @@ export const prerender = false;
 
 import fs from 'fs';
 import path from 'path';
+import { requireAuth, unauthorized } from '../../../utils/auth-guard.js';
 
 function slugify(text) {
   return text
@@ -14,6 +15,9 @@ function slugify(text) {
 }
 
 export async function POST({ request }) {
+  const auth = requireAuth(request);
+  if (!auth) return unauthorized();
+
   try {
     const body = await request.json();
     const { type, action, slug, data } = body;

@@ -626,7 +626,7 @@ header.fixed.top-0.inset-x-0 {
 header.fixed.top-0.inset-x-0 > div {
   height: 64px;
   width: 100%;
-  max-width: 80rem; /* max-w-7xl */
+  max-width: 80rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -635,12 +635,11 @@ header.fixed.top-0.inset-x-0 > div {
   padding: 12px 20px;
   border-radius: 9999px;
   background: color-mix(in srgb, var(--surface-container-lowest) 70%, transparent);
-  background: rgba(14, 14, 16, 0.70);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(67, 70, 85, 0.30);
+  border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
   box-shadow:
-    0 25px 50px -12px rgba(0,0,0,0.55),
+    0 25px 50px -12px color-mix(in srgb, var(--surface-container-lowest) 55%, transparent),
     inset 0 1px 0 rgba(255,255,255,0.08);
 }
 @media (min-width: 768px) {
@@ -658,7 +657,7 @@ header.fixed.top-0.inset-x-0 nav.hidden {
     gap: 4px;
     padding: 4px;
     border-radius: 9999px;
-    background: rgba(28, 27, 29, 0.40);
+    background: color-mix(in srgb, var(--surface-container) 40%, transparent);
   }
 }
 
@@ -675,7 +674,7 @@ header.fixed.top-0.inset-x-0 nav a {
 }
 header.fixed.top-0.inset-x-0 nav a:hover {
   color: var(--on-surface, #e5e1e4);
-  background: rgba(42, 42, 44, 0.70);
+  background: color-mix(in srgb, var(--surface-container-high) 70%, transparent);
 }
 header.fixed.top-0.inset-x-0 nav a[aria-current="page"] {
   background: var(--surface-container-highest, #353437);
@@ -712,14 +711,14 @@ header.fixed.top-0.inset-x-0 .hidden.sm\:inline-flex {
     font-family: 'Inter', sans-serif;
     font-size: 0.8125rem;
     color: var(--on-surface, #e5e1e4);
-    background: rgba(42, 42, 44, 0.60);
-    border: 1px solid rgba(67, 70, 85, 0.30);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    background: color-mix(in srgb, var(--surface-container-high) 60%, transparent);
+    border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--on-surface) 8%, transparent);
     transition: background 0.2s, color 0.2s;
     cursor: pointer;
   }
   header.fixed.top-0.inset-x-0 a.hidden.inline-flex:hover {
-    background: rgba(53, 52, 55, 0.90);
+    background: color-mix(in srgb, var(--surface-container-highest) 90%, transparent);
     color: var(--accent-primary, #2563eb);
   }
 }
@@ -750,8 +749,8 @@ header.fixed.top-0.inset-x-0 button#navToggle {
   width: 32px;
   height: 32px;
   border-radius: 9999px;
-  background: rgba(28, 27, 29, 0.80);
-  border: 1px solid rgba(67, 70, 85, 0.30);
+  background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -780,7 +779,7 @@ header.fixed.top-0.inset-x-0 button#navToggle span {
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgba(14, 14, 16, 0.95);
+  background: color-mix(in srgb, var(--surface-container-lowest) 95%, transparent);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   transition: opacity 0.3s ease, pointer-events 0s;
@@ -813,13 +812,13 @@ header.fixed.top-0.inset-x-0 button#navToggle span {
   text-decoration: none;
 }
 #mobileNavDrawer .mobile-nav-link:hover {
-  background: rgba(28, 27, 29, 0.80);
+  background: color-mix(in srgb, var(--surface-container-high) 80%, transparent);
 }
 #mobileNavDrawer .mobile-nav-link[aria-current="page"] {
-  background: rgba(37, 99, 235, 0.20);
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
   color: var(--accent-primary, #2563eb);
   font-weight: 600;
-  border: 1px solid rgba(180, 197, 255, 0.40);
+  border: 1px solid color-mix(in srgb, var(--primary-container) 40%, transparent);
 }
 #mobileNavDrawer a.mobile-nav-link.bg-primary-container,
 #mobileNavDrawer a.mobile-nav-link[class*="bg-primary"] {
@@ -829,9 +828,9 @@ header.fixed.top-0.inset-x-0 button#navToggle span {
   font-family: 'Manrope', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
-  background: rgba(180, 197, 255, 0.20);
+  background: color-mix(in srgb, var(--primary-container) 20%, transparent);
   color: var(--on-primary-container, #eeefff);
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.20);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--primary) 20%, transparent);
   transition: filter 0.2s;
   text-decoration: none;
   display: block;
@@ -841,7 +840,7 @@ header.fixed.top-0.inset-x-0 button#navToggle span {
 #mobileNavDrawer .pt-4.mt-2.border-t {
   padding-top: 16px;
   margin-top: 8px;
-  border-top: 1px solid rgba(67, 70, 85, 0.20);
+  border-top: 1px solid color-mix(in srgb, var(--outline-variant) 20%, transparent);
   display: flex;
   flex-direction: column;
   gap: 8px;

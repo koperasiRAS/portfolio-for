@@ -2,13 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import { waLink } from "../utils/whatsapp.js";
-import { Image } from "astro:assets";
+import { getWebsites } from "../utils/content.js";
 
-import web1 from "../assets/thumbnails/web1.png";
-import web2 from "../assets/thumbnails/web2.png";
-import web3 from "../assets/thumbnails/web3.png";
-import thumbnailLandingPage from "../assets/thumbnails/thumbnail_landing_page.png";
-import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
+const websites = getWebsites();
+const categories = [...new Set(websites.map(w => w.category).filter(Boolean))];
+const totalWebsites = websites.length;
+
+const heroFeature = websites.find(w => w.featuredHome) || websites[0];
+const heroSrc = heroFeature?.thumbnailPath || '/assets/thumbnails/thumbnail_portfolio.png';
 ---
 
 <BaseLayout
@@ -32,49 +33,40 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
             <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">DISCIPLINE 06 / 06 • DIGITAL PRODUCTS &amp; ARCHITECTURE</span>
           </div>
           <div class="flex items-baseline gap-space-md">
-            <h1 class="font-display-xl text-display-xl text-on-surface tracking-tighter">Web.</h1>
-            <span class="font-label-md text-label-md text-outline font-normal">[ INDEX 2024–2025 ]</span>
+            <h1 class="font-display-xl text-display-xl text-on-surface tracking-tighter" data-i18n="web.title">Web.</h1>
+            <span class="font-label-md text-label-md text-outline font-normal">[ {totalWebsites} BUILDS CATALOGUED ]</span>
           </div>
-          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed" data-i18n="web.heroSub">
             Interactive websites, digital experiences, and bespoke web architecture engineered for tactile visual impact. Merging physical darkroom rigor with low-latency WebGL orchestration.
           </p>
         </div>
 
-        <!-- Glass Filter Capsule -->
+        <!-- Glass Filter Capsule (dynamic from CMS) -->
+        {totalWebsites > 0 && (
         <div class="mt-space-xl flex flex-wrap items-center gap-space-xs p-space-xs rounded-full bg-surface-container-low/60 backdrop-blur-xl shadow-lg border border-outline-variant/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] w-fit" id="web-filter-bar">
           <button class="filter-btn active flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all bg-primary-container text-on-primary-container shadow-md border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] cursor-pointer" data-filter="all">
             <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
             <span>ALL BUILDS</span>
           </button>
-          <button class="filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 border border-transparent hover:border-outline-variant/20 cursor-pointer" data-filter="website">
-            <span>WEBSITE</span>
-          </button>
-          <button class="filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 border border-transparent hover:border-outline-variant/20 cursor-pointer" data-filter="landing">
-            <span>LANDING PAGE</span>
-          </button>
-          <button class="filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 border border-transparent hover:border-outline-variant/20 cursor-pointer" data-filter="webapp">
-            <span>WEB APP</span>
-          </button>
-          <button class="filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 border border-transparent hover:border-outline-variant/20 cursor-pointer" data-filter="uiux">
-            <span>UI/UX</span>
-          </button>
-          <button class="filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 border border-transparent hover:border-outline-variant/20 cursor-pointer" data-filter="creative-dev">
-            <span>CREATIVE DEV</span>
-          </button>
+          {categories.map(cat => (
+            <button class="filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 border border-transparent hover:border-outline-variant/20 cursor-pointer" data-filter={cat.toLowerCase()}>
+              <span class="uppercase">{cat}</span>
+            </button>
+          ))}
         </div>
+        )}
       </section>
 
 
       <!-- ============================================================
-           SECTION 2: FEATURED DIGITAL FLAGSHIP STUDY
+           SECTION 2: FEATURED DIGITAL FLAGSHIP (from CMS)
            ============================================================ -->
+      {heroFeature ? (
       <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto my-space-xl">
         <div class="relative rounded-lg bg-surface-container-lowest p-space-lg md:p-space-2xl overflow-hidden shadow-2xl">
-          <!-- Glow ambient background -->
           <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/10 blur-[120px] pointer-events-none"></div>
           <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-tertiary/10 blur-[140px] pointer-events-none"></div>
 
-          <!-- Live vitals bar -->
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-space-lg gap-space-sm">
             <div class="flex items-center gap-space-sm">
               <span class="flex h-2.5 w-2.5 relative">
@@ -83,32 +75,12 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
               </span>
               <span class="font-label-md text-label-md uppercase tracking-wider text-on-surface">LIVE PRODUCTION REEL</span>
             </div>
-
-            <div class="flex flex-wrap items-center gap-space-sm bg-surface-container-high/60 px-space-md py-space-xs rounded-full backdrop-blur-md">
-              <div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary">
-                <span class="material-symbols-outlined text-[14px] text-primary">speed</span>
-                <span>CORE WEB VITALS:</span>
-                <span class="text-primary font-bold">99/100</span>
-              </div>
-              <span class="text-outline/40">•</span>
-              <div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary">
-                <span class="material-symbols-outlined text-[14px] text-tertiary">motion_mode</span>
-                <span>60 FPS RENDER</span>
-              </div>
-              <span class="text-outline/40">•</span>
-              <div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary">
-                <span class="material-symbols-outlined text-[14px] text-tertiary">timer</span>
-                <span>0.42s LCP</span>
-              </div>
-            </div>
           </div>
 
-          <!-- Responsive Mockup Showcase Grid -->
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center pt-space-md">
             <!-- Desktop Screen Mockup Frame -->
             <div class="lg:col-span-8 relative group">
               <div class="rounded bg-surface-container-high/70 p-space-xs shadow-2xl backdrop-blur-sm transition-transform duration-500 hover:scale-[1.005]">
-                <!-- Browser Header -->
                 <div class="flex items-center justify-between px-space-sm py-space-xs bg-surface-container-lowest/80 rounded-t-sm">
                   <div class="flex items-center gap-1.5">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80"></span>
@@ -118,148 +90,109 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
                   <div class="bg-surface-container-high/40 px-space-lg py-0.5 rounded-full text-center">
                     <span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
                       <span class="material-symbols-outlined text-[11px] text-primary">lock</span>
-                      frameofrangga.com/architecture
+                      {heroFeature.liveUrl?.replace(/^https?:\/\//, '') || 'frameofrangga.com'}
                     </span>
                   </div>
                   <div class="flex items-center gap-space-xs text-outline">
                     <span class="material-symbols-outlined text-[14px]">tune</span>
                   </div>
                 </div>
-                <!-- Screen Canvas -->
                 <div class="relative aspect-[16/10] overflow-hidden rounded-b-sm bg-surface-container-lowest">
-                  <Image
+                  <img
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    src={thumbnailPortfolio}
-                    alt="A modern bespoke digital portfolio website running on a dark cinematic interface with typographic grids and deep-blue ambient gradients."
+                    src={heroSrc}
+                    alt={heroFeature.title}
                     loading="lazy"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
-                  <div class="absolute bottom-space-md left-space-md right-space-md flex items-center justify-between pointer-events-none">
-                    <span class="font-label-sm text-label-sm text-on-surface bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-1 rounded">STATE: SYNCHRONIZED</span>
-                    <span class="font-label-sm text-label-sm text-primary bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-1 rounded">HTTP/3 QUIC STREAMING</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Overlapping Mobile Phone Mockup -->
-              <div class="hidden sm:block absolute -bottom-8 -right-4 w-48 rounded-2xl bg-surface-container-high p-space-xs shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-lg transition-transform duration-500 hover:-translate-y-2">
-                <div class="w-full aspect-[9/19] rounded-xl overflow-hidden bg-surface-container-lowest relative">
-                  <img
-                    class="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKGiuiXqHL0NbXe3-YOWCHZPss19eAAD1zhA-GWtPu8rfAzHhJdMRqP1pdf0B6D2u4JZIhb1bfrsJPW-tnwlU4mqUcBHx3CXmoSyv3-f0JjWC_EC0oU3RyqpZj8f5aq0uwDcS-6si8g_PE_W6WTGhaz2OnOXLxbHS_7mwZNidn5ZzAcffwNA3MteuCjVBCr9H2RQ115yp_IDXlXNXFC6nkwbBlNtVjI1y5yHuzL5EFVrAXfsEHHo7L"
-                    alt="Mobile responsive user experience of an ultra-luxurious dark mode architecture monograph on a phone screen."
-                    loading="lazy"
-                  />
-                  <div class="absolute top-2 inset-x-0 mx-auto w-12 h-3 bg-surface-container-lowest rounded-full"></div>
                 </div>
               </div>
             </div>
 
             <!-- Meta Specification Column -->
-            <div class="lg:col-span-4 flex flex-col justify-between h-full space-y-space-md">
+            <div class="lg:col-span-4 flex flex-col justify-between h-full gap-space-md">
               <div class="space-y-space-sm">
                 <span class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest font-semibold">Flagship Implementation</span>
-                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Studio Website &amp; Digital Flagship</h2>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">{heroFeature.title}</h2>
                 <p class="font-body-md text-body-md text-on-surface-variant">
-                  The flagship presence for FRAME OF RANGGA. Constructed with a raw zero-bundle custom micro-framework, bespoke WebGL canvas shaders for responsive lens blur effects, and frictionless client-side transition physics.
+                  {heroFeature.description}
                 </p>
               </div>
 
-              <!-- Stack Tags -->
+              {heroFeature.techStack && (
               <div class="space-y-space-xs">
                 <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Technology Architecture</span>
                 <div class="flex flex-wrap gap-1.5">
-                  <span class="font-label-sm text-label-sm px-space-sm py-1 rounded bg-surface-container-high text-secondary">HTML5 Semantic</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-1 rounded bg-surface-container-high text-secondary">Tailwind CSS</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-1 rounded bg-surface-container-high text-secondary">Three.js</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-1 rounded bg-surface-container-high text-secondary">Motion Orchestration</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-1 rounded bg-surface-container-high text-secondary">Edge CDN Cache</span>
+                  {heroFeature.techStack.split(',').map(t => (
+                    <span class="font-label-sm text-label-sm px-space-sm py-1 rounded bg-surface-container-high text-secondary">{t.trim()}</span>
+                  ))}
                 </div>
               </div>
+              )}
 
-              <!-- Technical Metrics Micro-Dashboard -->
-              <div class="grid grid-cols-2 gap-space-xs p-space-sm rounded bg-surface-container-low">
-                <div class="flex flex-col">
-                  <span class="font-label-sm text-label-sm text-outline">Bundle Payload</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface">18.4 kB <span class="font-label-sm text-label-sm text-primary">Gzipped</span></span>
-                </div>
-                <div class="flex flex-col">
-                  <span class="font-label-sm text-label-sm text-outline">Accessibility</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface">100% <span class="font-label-sm text-label-sm text-tertiary">AA Compliant</span></span>
-                </div>
-              </div>
-
-              <!-- Action buttons -->
               <div class="flex items-center gap-space-sm pt-space-xs">
                 <a
                   class="px-space-lg py-space-sm rounded-full bg-primary text-on-primary font-headline-sm text-[14px] font-semibold transition-all hover:scale-105 hover:shadow-[0_0_24px_rgba(180,197,255,0.4)] flex items-center gap-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] border border-outline-variant/30"
-                  href={waLink('web')}
+                  href={heroFeature.liveUrl || waLink('web')}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span>Explore Live</span>
                   <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
                 </a>
-                <button
-                  class="px-space-md py-space-sm rounded-full bg-surface-container-high/80 text-on-surface font-body-sm text-body-sm hover:bg-surface-container-highest transition-colors flex items-center gap-1 border border-outline-variant/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] cursor-pointer"
-                  id="toggleSpecsBtn"
-                  type="button"
-                >
-                  <span class="material-symbols-outlined text-[16px]">terminal</span>
-                  <span>Audit Log</span>
-                </button>
-              </div>
-
-              <!-- Expandable Technical Audit Panel -->
-              <div class="hidden p-space-sm rounded bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm space-y-1" id="specsPanel">
-                <div class="flex justify-between"><span>TTFB:</span><span class="text-primary font-mono">18ms (Cloudflare Edge)</span></div>
-                <div class="flex justify-between"><span>Cumulative Layout Shift:</span><span class="text-on-surface font-mono">0.000</span></div>
-                <div class="flex justify-between"><span>Shader Compile:</span><span class="text-on-surface font-mono">2.1ms on GPU</span></div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      ) : null}
 
 
       <!-- ============================================================
-           SECTION 3: RECENT BUILDS INDEX (2x2 BESPOKE GRID)
+           SECTION 3: RECENT BUILDS INDEX (dynamic from CMS)
            ============================================================ -->
       <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto my-space-2xl">
+        {totalWebsites > 1 && (
         <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-space-xl gap-space-sm">
           <div class="space-y-space-xs">
             <span class="font-label-md text-label-md uppercase tracking-wider text-outline">Selected Commissions &amp; Works</span>
-            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Interactive Index 2024–2025</h2>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Interactive Index</h2>
           </div>
           <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
             <span class="material-symbols-outlined text-[16px] text-primary">data_object</span>
-            <span>4 PRODUCTION EXPERIENCES CATALOGUED</span>
+            <span>{totalWebsites} PRODUCTION EXPERIENCES CATALOGUED</span>
           </div>
         </div>
+        )}
 
-        <!-- 2x2 Bento Mosaic Grid -->
+        {totalWebsites === 0 ? (
+        <div class="w-full p-space-xl rounded-lg bg-surface-container-low/60 text-center">
+          <p class="font-body-md text-on-surface-variant">No websites published yet. Manage your builds in the CMS portal.</p>
+        </div>
+        ) : (
         <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg" id="web-projects-grid">
-
-          <!-- CARD 1: Aura Architecture -->
-          <article class="project-card group relative rounded-lg bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col justify-between" data-category="website uiux">
+          {websites.map((item) => (
+          <article class="project-card group relative rounded-lg bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col justify-between" data-category={item.category?.toLowerCase() || ''}>
             <div class="relative aspect-[16/10] overflow-hidden bg-surface-container-lowest">
-              <Image
+              <img
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                src={web1}
-                alt="Monochrome minimalist Scandinavian architecture website layout with generous whitespace and bold typography."
+                src={item.thumbnailPath || '/assets/thumbnails/thumbnail_landing_page.png'}
+                alt={item.title}
                 loading="lazy"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
               <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface backdrop-blur-md">2025</span>
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-primary/20 text-primary backdrop-blur-md">Spatial Studio</span>
+                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface backdrop-blur-md">{item.year || ''}</span>
+                {item.category && (
+                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-primary/20 text-primary backdrop-blur-md uppercase">{item.category}</span>
+                )}
               </div>
               <a
                 class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/80 text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md hover:bg-primary hover:text-on-primary"
-                href={waLink('web')}
+                href={item.liveUrl || waLink('web')}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Discuss the Aura Architecture build"
+                aria-label={`Discuss the ${item.title} build`}
               >
                 <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
               </a>
@@ -267,275 +200,41 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
             <div class="p-space-lg space-y-space-md flex-1 flex flex-col justify-between">
               <div class="space-y-space-xs">
                 <div class="flex items-center justify-between">
-                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Aura Architecture</h3>
-                  <span class="font-label-sm text-label-sm text-outline">Nordic Monograph</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">{item.title}</h3>
                 </div>
                 <p class="font-body-md text-body-md text-on-surface-variant">
-                  Full-viewport architectural monograph showcasing built works across Scandinavia. Features GLSL water refractions and an integrated micro-CMS for seasonal project dispatches.
+                  {item.description}
                 </p>
               </div>
+              {item.techStack && (
               <div class="space-y-space-sm pt-space-xs">
                 <div class="flex flex-wrap gap-1.5">
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Vue.js</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">GLSL Shaders</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Micro-CMS</span>
-                </div>
-                <div class="flex items-center justify-between pt-space-xs text-outline font-label-sm text-label-sm">
-                  <span>Client: Aura Arkitekter Oslo</span>
-                  <span class="text-tertiary">Live System</span>
+                  {item.techStack.split(',').map(t => (
+                    <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">{t.trim()}</span>
+                  ))}
                 </div>
               </div>
+              )}
             </div>
           </article>
-
-          <!-- CARD 2: Noir Atelier -->
-          <article class="project-card group relative rounded-lg bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col justify-between" data-category="website landing">
-            <div class="relative aspect-[16/10] overflow-hidden bg-surface-container-lowest">
-              <Image
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                src={web2}
-                alt="Dark aesthetic luxury fashion and industrial design e-commerce interface with deep black fabrics and brushed titanium watches."
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
-              <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface backdrop-blur-md">2025</span>
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-primary/20 text-primary backdrop-blur-md">E-Commerce Flagship</span>
-              </div>
-              <a
-                class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/80 text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md hover:bg-primary hover:text-on-primary"
-                href={waLink('web')}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discuss the Noir Atelier build"
-              >
-                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-              </a>
-            </div>
-            <div class="p-space-lg space-y-space-md flex-1 flex flex-col justify-between">
-              <div class="space-y-space-xs">
-                <div class="flex items-center justify-between">
-                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Noir Atelier</h3>
-                  <span class="font-label-sm text-label-sm text-outline">Haute Couture</span>
-                </div>
-                <p class="font-body-md text-body-md text-on-surface-variant">
-                  Fluid multi-currency commerce system with instant search indexing and seamless client-side page loads. Engineered to handle high-traffic global limited-edition drops.
-                </p>
-              </div>
-              <div class="space-y-space-sm pt-space-xs">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Next.js</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Shopify Storefront API</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Tailwind CSS</span>
-                </div>
-                <div class="flex items-center justify-between pt-space-xs text-outline font-label-sm text-label-sm">
-                  <span>Client: Noir Haute Joaillerie Paris</span>
-                  <span class="text-tertiary">Active Storefront</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- CARD 3: Synapse FinTech -->
-          <article class="project-card group relative rounded-lg bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col justify-between" data-category="webapp uiux">
-            <div class="relative aspect-[16/10] overflow-hidden bg-surface-container-lowest">
-              <Image
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                src={web3}
-                alt="High throughput institutional financial analytics terminal UI with glowing cyan telemetry sparklines and monospaced typography tables."
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
-              <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface backdrop-blur-md">2024</span>
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-primary/20 text-primary backdrop-blur-md">Realtime Matrix</span>
-              </div>
-              <a
-                class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/80 text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md hover:bg-primary hover:text-on-primary"
-                href={waLink('web')}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discuss the Synapse FinTech build"
-              >
-                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-              </a>
-            </div>
-            <div class="p-space-lg space-y-space-md flex-1 flex flex-col justify-between">
-              <div class="space-y-space-xs">
-                <div class="flex items-center justify-between">
-                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Synapse FinTech</h3>
-                  <span class="font-label-sm text-label-sm text-outline">Trading Portal</span>
-                </div>
-                <p class="font-body-md text-body-md text-on-surface-variant">
-                  High-throughput data telemetry portal providing institutional investors with sub-second portfolio liquidity metrics, algorithmic execution matrices, and customizable darkroom viewports.
-                </p>
-              </div>
-              <div class="space-y-space-sm pt-space-xs">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">TypeScript</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">WebSockets</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">D3.js</span>
-                </div>
-                <div class="flex items-center justify-between pt-space-xs text-outline font-label-sm text-label-sm">
-                  <span>Client: Synapse Capital London</span>
-                  <span class="text-tertiary">Institutional SaaS</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- CARD 4: Kinesis Pavilion -->
-          <article class="project-card group relative rounded-lg bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col justify-between" data-category="creative-dev webapp">
-            <div class="relative aspect-[16/10] overflow-hidden bg-surface-container-lowest">
-              <Image
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                src={thumbnailLandingPage}
-                alt="Experimental WebGL 3D sound visualizer sculpture suspended in an endless dark void with iridescent chrome ribbons."
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
-              <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface backdrop-blur-md">2024</span>
-                <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-primary/20 text-primary backdrop-blur-md">Sound Sculpture</span>
-              </div>
-              <a
-                class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/80 text-on-surface flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md hover:bg-primary hover:text-on-primary"
-                href={waLink('web')}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discuss the Kinesis Pavilion build"
-              >
-                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-              </a>
-            </div>
-            <div class="p-space-lg space-y-space-md flex-1 flex flex-col justify-between">
-              <div class="space-y-space-xs">
-                <div class="flex items-center justify-between">
-                  <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Kinesis Pavilion</h3>
-                  <span class="font-label-sm text-label-sm text-outline">Interactive Biennial</span>
-                </div>
-                <p class="font-body-md text-body-md text-on-surface-variant">
-                  Experimental audio-reactive WebGL narrative created for an international biennial art pavilion. Computes live Fourier frequency data to morph volumetric geometries in real time.
-                </p>
-              </div>
-              <div class="space-y-space-sm pt-space-xs">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Three.js</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">Web Audio API</span>
-                  <span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container text-secondary">GLSL Compute</span>
-                </div>
-                <div class="flex items-center justify-between pt-space-xs text-outline font-label-sm text-label-sm">
-                  <span>Client: Venice Biennale Digital Arts</span>
-                  <span class="text-tertiary">Exhibition Archive</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
+          ))}
         </div>
+        )}
       </section>
 
 
       <!-- ============================================================
-           SECTION 4: SYSTEM METHODOLOGY & ENGINEERING STANDARDS
-           ============================================================ -->
-      <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto my-space-3xl">
-        <div class="rounded-lg bg-surface-container-low p-space-lg md:p-space-2xl">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-            <!-- Left: Workspace Visual -->
-            <div class="lg:col-span-5 relative">
-              <div class="rounded overflow-hidden shadow-2xl bg-surface-container-lowest aspect-[4/5] relative">
-                <img
-                  class="w-full h-full object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9NIutJSinRiFlw7xxyez5D9augszrhCZUOp2GfTCa0L72mn6b8Gmh5L5KA6r5sr3KtOXpiDLWJc3dtkx168wKqIblZUyvn09PL2hUN9sU210LwjWx-SWoNYEE40-s90gbXjiK7wIJ29iiaQjGOek4AWIenkG37H-xpp8NPtUKRaFEi3-nwn3ZBY8XdLjoF2C4y0s1WkodlVv6UXJC0bxBMFe5Wf0dnRtd3NYrMFndQKs3_Fn6kM94"
-                  alt="A clean multi-monitor industrial designer desk workspace in a dimly lit editing suite with code terminals and real-time wireframe renders."
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
-                <div class="absolute bottom-space-md left-space-md right-space-md p-space-md rounded bg-surface-container-lowest/80 backdrop-blur-md">
-                  <div class="flex items-center justify-between">
-                    <span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-mono">FRAME LAB // SUITE 01</span>
-                    <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-                  </div>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Jakarta Studio Development &amp; High-Bandwidth Testing Rig</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: The 4-Stage Digital Blueprint -->
-            <div class="lg:col-span-7 space-y-space-xl">
-              <div class="space-y-space-xs">
-                <div class="flex items-center gap-space-xs">
-                  <span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">RIGOR &amp; REASONING</span>
-                </div>
-                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">The Digital Blueprint</h2>
-                <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
-                  Every web build undergoes a rigid four-stage development cycle balancing aesthetic poetry with uncompromising technical execution.
-                </p>
-              </div>
-
-              <!-- Phase Timeline -->
-              <div class="space-y-space-lg">
-                <!-- Phase 01 -->
-                <div class="flex gap-space-md items-start">
-                  <span class="font-label-md text-label-md text-primary font-mono bg-surface-container px-2.5 py-1 rounded shrink-0">01</span>
-                  <div class="space-y-1">
-                    <h4 class="font-headline-sm text-headline-sm text-on-surface">Problem Space &amp; Motion Physics</h4>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">
-                      Eliminating the friction between motion and performance. We calibrate cubic-bezier transitions, layout stability, and ensure 0.4s LCP targets with zero unnecessary runtime framework overhead.
-                    </p>
-                  </div>
-                </div>
-                <!-- Phase 02 -->
-                <div class="flex gap-space-md items-start">
-                  <span class="font-label-md text-label-md text-tertiary font-mono bg-surface-container px-2.5 py-1 rounded shrink-0">02</span>
-                  <div class="space-y-1">
-                    <h4 class="font-headline-sm text-headline-sm text-on-surface">Spatial Layout &amp; Typographic Tension</h4>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">
-                      Architecture informed by print monographs. Asymmetric 12-column dynamic grids give photography breathing space while strict typographic baselines keep complex technical data digestible.
-                    </p>
-                  </div>
-                </div>
-                <!-- Phase 03 -->
-                <div class="flex gap-space-md items-start">
-                  <span class="font-label-md text-label-md text-secondary font-mono bg-surface-container px-2.5 py-1 rounded shrink-0">03</span>
-                  <div class="space-y-1">
-                    <h4 class="font-headline-sm text-headline-sm text-on-surface">Tactile WebGL &amp; Edge Delivery</h4>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">
-                      WebGL shaders crafted directly in GLSL to simulate darkroom optic refractions without dropping below 60fps, distributed through a globally distributed geo-replicated edge matrix.
-                    </p>
-                  </div>
-                </div>
-                <!-- Phase 04 -->
-                <div class="flex gap-space-md items-start">
-                  <span class="font-label-md text-label-md text-outline font-mono bg-surface-container px-2.5 py-1 rounded shrink-0">04</span>
-                  <div class="space-y-1">
-                    <h4 class="font-headline-sm text-headline-sm text-on-surface">Lighthouse AA Polish &amp; Sound Design</h4>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">
-                      Audit runs for contrast, screen-reader parity, and sub-perceptual ambient sound loops, ensuring an emotional resonance that stays with the visitor.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ============================================================
-           SECTION 5: CALL TO ACTION BANNER
+           SECTION 4: CALL TO ACTION BANNER
            ============================================================ -->
       <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto mb-space-2xl">
         <div class="relative rounded-lg bg-surface-container-high/60 backdrop-blur-xl p-space-xl md:p-space-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-space-xl">
-          <!-- Glow ambient circle -->
           <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-primary/20 blur-[100px] pointer-events-none"></div>
           <div class="space-y-space-sm max-w-xl z-10">
-            <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-mono">NEW COMMISSIONS 2025</span>
-            <h3 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-mono" data-i18n="web.ctaLabel">NEW COMMISSIONS</span>
+            <h3 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" data-i18n="web.ctaTitle">
               Ready to build a bespoke digital experience?
             </h3>
-            <p class="font-body-md text-body-md text-on-surface-variant">
+            <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="web.ctaSub">
               Available for international design systems, custom WebGL narrative productions, and high-performance interactive flagships.
             </p>
           </div>
@@ -560,7 +259,7 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
 
     </div>
 
-    <!-- Filter + Audit Log Script -->
+    <!-- Filter Script -->
     <script is:inline>
       function initWebFilters() {
         if (window.__webFiltersInit) return;
@@ -585,15 +284,6 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
             });
           });
         });
-
-        // Toggle audit terminal
-        const specsBtn = document.getElementById('toggleSpecsBtn');
-        const specsPanel = document.getElementById('specsPanel');
-        if (specsBtn && specsPanel) {
-          specsBtn.addEventListener('click', () => {
-            specsPanel.classList.toggle('hidden');
-          });
-        }
       }
 
       document.addEventListener('astro:page-load', initWebFilters);
@@ -637,14 +327,13 @@ import thumbnailPortfolio from "../assets/thumbnails/thumbnail_portfolio.png";
           <span class="font-label-md text-label-md uppercase tracking-wider text-outline">Dispatches</span>
           <div class="flex flex-col gap-space-xs">
             <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer">Instagram (@rggadnrt)</a>
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer">Portfolio (@frameofrangga)</a>
             <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="https://tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer">TikTok (@madebyrangga)</a>
             <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
             <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="mailto:frameofrangga@gmail.com">frameofrangga@gmail.com</a>
           </div>
           <div class="mt-space-md p-space-md rounded bg-surface-container-low/70 border border-outline-variant/20">
             <p class="font-headline-sm text-headline-sm text-primary">Create. Capture. Inspire.</p>
-            <p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Curated cinematic showcase edition 2024.3</p>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Curated cinematic showcase edition 2026</p>
           </div>
         </div>
       </div>

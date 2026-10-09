@@ -2,13 +2,26 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import { waLink } from "../utils/whatsapp.js";
+import { getPhotos } from "../utils/content.js";
 
-// Local images from the Vercel asset store (for-portfolio-mu.vercel.app/assets/foto/).
-// These are plain public-path strings so they type-check in both <img src> and data-*
-// attributes — the existing pages already reference the same /assets/foto/ paths.
-const heroFeature = 'https://for-portfolio-mu.vercel.app/assets/foto/cover-hero.png';
-const fotoAutomotive = 'https://for-portfolio-mu.vercel.app/assets/foto/fotografer/fotografi mobil.jpg';
-const fotoPortrait = 'https://for-portfolio-mu.vercel.app/assets/foto/fashion/foto baju coklat.jpg';
+const photos = getPhotos();
+const categories = [...new Set(photos.map(p => p.category).filter(Boolean))];
+const totalPhotos = photos.length;
+
+const heroFeature = photos.find(p => p.featuredHome) || photos[0];
+const heroSrc = heroFeature?.imagePath || '/assets/foto/cover-hero.png';
+
+function layoutClass(item) {
+  if (item.layout === 'portrait') return 'aspect-[4/5]';
+  if (item.layout === 'wide') return 'aspect-[16/9]';
+  return 'aspect-square';
+}
+
+function colSpan(item, index) {
+  if (item.layout === 'portrait') return 'md:col-span-5';
+  if (item.layout === 'wide') return 'md:col-span-8';
+  return 'md:col-span-4';
+}
 ---
 
 <BaseLayout
@@ -40,9 +53,9 @@ const fotoPortrait = 'https://for-portfolio-mu.vercel.app/assets/foto/fashion/fo
                 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
                 <span>Archive 03 • Curated Works</span>
               </div>
-              <h1 class="font-display-xl text-display-xl tracking-tight text-on-surface">Photo.</h1>
-              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                Moments, people, and places seen from different perspectives — documented through 35mm film, medium format analog, and cinema sensors.
+              <h1 class="font-display-xl text-display-xl tracking-tight text-on-surface" data-i18n="photo.title">Photo.</h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl" data-i18n="photo.heroSub">
+                Curation of documentary and editorial frames across portraiture, landscape, and visual study.
               </p>
             </div>
 
@@ -57,46 +70,41 @@ const fotoPortrait = 'https://for-portfolio-mu.vercel.app/assets/foto/fashion/fo
             </div>
           </div>
 
-          <!-- 02. FEATURED HERO COMPOSITION: The Ocean Series -->
+          <!-- 02. FEATURED HERO COMPOSITION -->
+          {heroFeature ? (
           <div class="relative w-full rounded-lg overflow-hidden group bg-surface-container-lowest">
             <div class="aspect-[16/9] md:aspect-[21/9] w-full relative overflow-hidden">
               <img
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                src={heroFeature}
-                alt="Cinematic coastal photography on Bali cliffs at sunset"
+                src={heroSrc}
+                alt={heroFeature.title}
                 id="hero-feature-img"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/40 to-transparent"></div>
               <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/80 via-transparent to-transparent"></div>
 
-              <!-- Feature Overlay Content -->
               <div class="absolute inset-x-0 bottom-0 p-space-md md:p-space-xl flex flex-col md:flex-row md:items-end justify-between gap-space-md">
                 <div class="flex flex-col gap-space-xs max-w-xl">
                   <div class="flex items-center gap-space-xs">
-                    <span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase">Selected Monograph</span>
-                    <span class="font-label-sm text-label-sm text-secondary-fixed">01 — 06 • 2026 Edition</span>
+                    <span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase">{heroFeature.category || 'Featured'}</span>
+                    <span class="font-label-sm text-label-sm text-secondary-fixed">{heroFeature.year ? String(heroFeature.year) : ''}</span>
                   </div>
-                  <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">The Ocean Series</h2>
+                  <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">{heroFeature.title}</h2>
                   <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 md:line-clamp-none">
-                    Coastal solitude along the southern Indonesian shoreline. An introspective investigation into the weight of tides, twilight haze, and human presence on the rim of the Indian Ocean.
+                    {heroFeature.description}
                   </p>
                 </div>
 
-                <!-- Interactive Action Pill & Spec -->
                 <div class="flex items-center gap-space-sm shrink-0">
-                  <div class="hidden sm:flex flex-col text-right font-label-sm text-label-sm text-outline">
-                    <span>LOC: ULUWATU &amp; SUMBA</span>
-                    <span class="text-on-surface">50MM • F/1.4 • 1/250S</span>
-                  </div>
                   <button
                     type="button"
                     class="lightbox-trigger flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-surface-container-lowest/70 backdrop-blur-xl border border-outline-variant/30 text-on-surface font-headline-sm text-headline-sm hover:scale-[1.03] hover:bg-surface-container-high transition-all shadow-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] cursor-pointer"
-                    data-title="The Ocean Series"
-                    data-desc="Coastal serenity and human introspection on volcanic sea cliffs. Shot on Kodak Portra 400 across Uluwatu and Sumba."
-                    data-cat="Landscape / Monograph"
-                    data-year="2026"
-                    data-gear="Summilux 50mm f/1.4"
-                    data-img={heroFeature}
+                    data-title={heroFeature.title}
+                    data-desc={heroFeature.description || ''}
+                    data-cat={heroFeature.category || ''}
+                    data-year={heroFeature.year ? String(heroFeature.year) : ''}
+                    data-gear={heroFeature.client || ''}
+                    data-img={heroSrc}
                   >
                     <span>View Study</span>
                     <span class="material-symbols-outlined text-[18px]">north_east</span>
@@ -105,266 +113,91 @@ const fotoPortrait = 'https://for-portfolio-mu.vercel.app/assets/foto/fashion/fo
               </div>
             </div>
           </div>
+          ) : (
+          <div class="relative w-full rounded-lg overflow-hidden bg-surface-container-lowest flex items-center justify-center">
+            <div class="aspect-[16/9] md:aspect-[21/9] w-full flex items-center justify-center">
+              <p class="font-body-md text-on-surface-variant">Gallery empty. Publish photos from the CMS portal.</p>
+            </div>
+          </div>
+          )}
         </section>
 
 
         <!-- ============================================================
-             03. CATEGORY FILTERS (Floating Capsule Style)
+             03. CATEGORY FILTERS (dynamic from CMS)
              ============================================================ -->
+        {totalPhotos > 0 && (
         <section class="sticky top-20 z-40 w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-xs">
           <div class="w-full flex items-center justify-between gap-space-sm p-space-xs rounded-full bg-surface-container-lowest/70 backdrop-blur-xl border border-outline-variant/20 shadow-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] overflow-x-auto no-scrollbar">
             <div class="flex items-center gap-space-xs shrink-0" id="filter-pill-container">
               <button class="photo-filter-btn active flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider bg-surface-container-highest text-on-surface border border-outline-variant/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all cursor-pointer" data-filter="all">
                 <span class="w-1.5 h-1.5 rounded-full bg-on-surface"></span>
-                <span>All Works (7)</span>
+                <span>All Works ({totalPhotos})</span>
               </button>
-              <button class="photo-filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-all cursor-pointer" data-filter="landscape">
-                <span>Landscape</span>
-              </button>
-              <button class="photo-filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-all cursor-pointer" data-filter="portrait">
-                <span>Portrait</span>
-              </button>
-              <button class="photo-filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-all cursor-pointer" data-filter="street">
-                <span>Street</span>
-              </button>
-              <button class="photo-filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-all cursor-pointer" data-filter="travel">
-                <span>Travel</span>
-              </button>
-              <button class="photo-filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-all cursor-pointer" data-filter="nature">
-                <span>Nature</span>
-              </button>
+              {categories.map(cat => (
+                <button class="photo-filter-btn flex items-center gap-space-xs px-space-md py-space-xs rounded-full font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-all cursor-pointer" data-filter={cat.toLowerCase()}>
+                  <span>{cat}</span>
+                </button>
+              ))}
             </div>
             <div class="hidden md:flex items-center gap-space-sm pr-space-md text-outline font-label-sm text-label-sm">
               <span class="material-symbols-outlined text-[16px]">tune</span>
-              <span id="gallery-count-badge">Showing 7 Selected Frames</span>
+              <span id="gallery-count-badge">Showing {totalPhotos} Selected Frames</span>
             </div>
           </div>
         </section>
+        )}
 
 
         <!-- ============================================================
              04. CURATED MASONRY / ASYMMETRIC GALLERY GRID
              ============================================================ -->
         <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-xl">
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter" id="photo-grid">
-
-            <!-- Item 1: Silent Peaks (Landscape 16:10 - 7 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-7 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="landscape nature"
-              data-title="Silent Peaks"
-              data-desc="Volcanic mist rising above the Bromo-Tengger caldera during civil dawn. An exploration of negative air space and atmospheric layering."
-              data-cat="Landscape • East Java"
-              data-year="2025"
-              data-gear="Carl Zeiss 85mm f/1.4"
-              data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCBhHva70-wS5Y6JleRc_EgsXgKQlMW8DbfAJqPCW15aESkt_U_-OJ4Dj1s9cSmdteZ7KciPWxJ3yG2ZYFCkF-0TvBMEAGZ_DX-yHkrz8in7eD_g1uSo03E9cifZsEzDYz4JarzAvIlhSe9sKPwflWaexnkEHQo_4wKch8x5XVCA2tRzVMnTqgWXfkiT4QwPhVjRAeRJFrSj3e6VwvyYT8yEMcHuo8cQC0NlGLJvejih_iDyYH9SCUJ"
-            >
-              <div class="relative w-full aspect-[16/10] rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBhHva70-wS5Y6JleRc_EgsXgKQlMW8DbfAJqPCW15aESkt_U_-OJ4Dj1s9cSmdteZ7KciPWxJ3yG2ZYFCkF-0TvBMEAGZ_DX-yHkrz8in7eD_g1uSo03E9cifZsEzDYz4JarzAvIlhSe9sKPwflWaexnkEHQo_4wKch8x5XVCA2tRzVMnTqgWXfkiT4QwPhVjRAeRJFrSj3e6VwvyYT8yEMcHuo8cQC0NlGLJvejih_iDyYH9SCUJ"
-                  alt="Ethereal landscape of volcanic mist at dawn"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Landscape • East Java</span>
-                  <h3 class="font-headline-md text-headline-md text-on-surface">Silent Peaks</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Caldera mist at 05:14 AM • Medium Format</p>
-                </div>
-                <div class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/70 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                  <span class="material-symbols-outlined text-[18px] text-on-surface">fullscreen</span>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">Silent Peaks — East Java</span>
-                <span class="text-outline">2025 • 85mm</span>
-              </div>
-            </article>
-
-            <!-- Item 2: Urban Solitude (Portrait 4:5 - 5 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-5 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="portrait street"
-              data-title="Urban Solitude"
-              data-desc="A quiet, contemplative portrait captured under the neon-lit overpasses of downtown Jakarta. High-contrast monochromatic grading emphasizing emotional texture."
-              data-cat="Portrait • Monograph"
-              data-year="2025"
-              data-gear="Leica 35mm f/1.4"
-              data-img={fotoPortrait}
-            >
-              <div class="relative w-full aspect-[4/5] rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src={fotoPortrait}
-                  alt="High contrast black and white portrait"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Portrait • Monograph</span>
-                  <h3 class="font-headline-md text-headline-md text-on-surface">Urban Solitude</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Metro underpass study • Tri-X 400</p>
-                </div>
-                <div class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/70 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                  <span class="material-symbols-outlined text-[18px] text-on-surface">fullscreen</span>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">Urban Solitude — Jakarta</span>
-                <span class="text-outline">2025 • 35mm Tri-X</span>
-              </div>
-            </article>
-
-            <!-- Item 3: Banyuwangi Twilight (Square 1:1 - 4 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-4 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="travel nature"
-              data-title="Banyuwangi Twilight"
-              data-desc="Sulfur smoke and ambient moonlight mixing on the rim of Mount Ijen at the edge of blue hour."
-              data-cat="Nature • Geothermal"
-              data-year="2024"
-              data-gear="Voigtländer 28mm f/2"
-              data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB88C5PhBePgzmLrUFRpt6IQEZdzFbarcdoJkIp4V44nC8LndViq-YUqDei1TOPs00f9KfO-YowC58CP73UiOBBBclwLcyBboQ5oLaoYIa52h9Cs3ZXSjGeJcdAF6IXRx5TCsmuBsvfJ92u29z2S1MaQQ_EvjJvhRwXSRnApv0zR-aBR3SFHk-C95Qxs3Ndazds_FylsonraSvyDaDCbVWsUG6ZHuYSWAtkwqYrNx1owYYl2y3PIfbv"
-            >
-              <div class="relative w-full aspect-square rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB88C5PhBePgzmLrUFRpt6IQEZdzFbarcdoJkIp4V44nC8LndViq-YUqDei1TOPs00f9KfO-YowC58CP73UiOBBBclwLcyBboQ5oLaoYIa52h9Cs3ZXSjGeJcdAF6IXRx5TCsmuBsvfJ92u29z2S1MaQQ_EvjJvhRwXSRnApv0zR-aBR3SFHk-C95Qxs3Ndazds_FylsonraSvyDaDCbVWsUG6ZHuYSWAtkwqYrNx1owYYl2y3PIfbv"
-                  alt="Geothermal crater lake with sulfur smoke"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Nature • Geothermal</span>
-                  <h3 class="font-headline-sm text-headline-sm text-on-surface">Banyuwangi Twilight</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Mount Ijen crater ridge • 28mm</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">Banyuwangi Twilight</span>
-                <span class="text-outline">2024 • 28mm</span>
-              </div>
-            </article>
-
-            <!-- Item 4: Forest Solitude (Square 1:1 - 4 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-4 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="nature landscape"
-              data-title="Forest Solitude"
-              data-desc="Dappled emerald rain drops sliding across elephant ear flora in the highland cloud forests of West Java."
-              data-cat="Nature • Macro"
-              data-year="2025"
-              data-gear="Micro-Nikkor 55mm f/2.8"
-              data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuBVPQ0SxnZHz4KMlzOr5iLBcOnZdcYv5Iz8nIUchHUhkvmFi4Gb94sfeeODaTdJnVlUmp1aBL18XufKluo8s-SXjhNC9frpwMN4VaKNap6rEapB4D8EFfaCJoD2rw9qiVc9KNs--Pu_Ms3n1K7aSESCh-uMBXMDw9SVxml7MXTtSviNNq_DO8XOkStQXPC7_WglZ3jMLW09gSHASZuHyftrg5oKgIjPdJoEabFFeBCbIETep3Zk_UKF"
-            >
-              <div class="relative w-full aspect-square rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVPQ0SxnZHz4KMlzOr5iLBcOnZdcYv5Iz8nIUchHUhkvmFi4Gb94sfeeODaTdJnVlUmp1aBL18XufKluo8s-SXjhNC9frpwMN4VaKNap6rEapB4D8EFfaCJoD2rw9qiVc9KNs--Pu_Ms3n1K7aSESCh-uMBXMDw9SVxml7MXTtSviNNq_DO8XOkStQXPC7_WglZ3jMLW09gSHASZuHyftrg5oKgIjPdJoEabFFeBCbIETep3Zk_UKF"
-                  alt="Emerald macro rain forest foliage"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Nature • Macro</span>
-                  <h3 class="font-headline-sm text-headline-sm text-on-surface">Forest Solitude</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Mount Gede highlands • 55mm Macro</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">Forest Solitude</span>
-                <span class="text-outline">2025 • 55mm</span>
-              </div>
-            </article>
-
-            <!-- Item 5: Morning Mist (Square 1:1 - 4 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-4 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="landscape travel"
-              data-title="Morning Mist"
-              data-desc="Layers of pine forest canopy draped in cold mountain haze along the ridge of Dieng Plateau."
-              data-cat="Landscape • Dieng"
-              data-year="2024"
-              data-gear="Sonnar 90mm f/2.8"
-              data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCTPCBdYw_A4AePoNN9FxqpkY_WgW7PdTQ3sESRTgwcJPVQ2IJCTXKpyxqeAsefHGPBQNCea5LV5Ie8TwYGaD9d2KUpfRwVY-RbKkruJ0pBanK5e-eJL5t6PGauB5jzo7t2Nh7sdn2t8CKM3Hs8uG0IATclswJrSxLjD5JamcKnhIlqMaDEdAsczPZ-ZGyFuREia0FyhthLTWU4-Ld2e9hz4MIxaKWYVYdgJnAHchb2-MMQmbyf51cH"
-            >
-              <div class="relative w-full aspect-square rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTPCBdYw_A4AePoNN9FxqpkY_WgW7PdTQ3sESRTgwcJPVQ2IJCTXKpyxqeAsefHGPBQNCea5LV5Ie8TwYGaD9d2KUpfRwVY-RbKkruJ0pBanK5e-eJL5t6PGauB5jzo7t2Nh7sdn2t8CKM3Hs8uG0IATclswJrSxLjD5JamcKnhIlqMaDEdAsczPZ-ZGyFuREia0FyhthLTWU4-Ld2e9hz4MIxaKWYVYdgJnAHchb2-MMQmbyf51cH"
-                  alt="Pine forest canopy in morning fog"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Landscape • Dieng</span>
-                  <h3 class="font-headline-sm text-headline-sm text-on-surface">Morning Mist</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Plateau elevation 2,100m • 90mm</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">Morning Mist — Dieng</span>
-                <span class="text-outline">2024 • 90mm</span>
-              </div>
-            </article>
-
-            <!-- Item 6: The Glass Conservatory (Architectural 16:9 - 8 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-8 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="street travel"
-              data-title="The Glass Conservatory"
-              data-desc="Minimalist modernist botanical architecture interacting with midday tropical sun shafts."
-              data-cat="Architecture • Jakarta"
-              data-year="2025"
-              data-gear="Leica Super-Elmar 21mm f/3.4"
-              data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDzByIIireKhLAqOBi_J4lrwG9MQfdfSmzI4voo14QDmF7ylKgOMIO99kloCkgFNF7LNZi8GQbPPb4kmjDePPRnRK3WVXncHdg3VKWIkNmjoPP75TyWvXrQ6NLVLhCkTUN5qtBvb1pq-EnMyYzSvR4Etm_yNPBnniSmDfN8C0xI3e7si24TP5Kvij-lw82J1qi5pJ9HTYZN5IkzYsTcmVevWqbGbP9jWeBWTDwdxhyY_uD0QXN3mB0I"
-            >
-              <div class="relative w-full aspect-[16/9] rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzByIIireKhLAqOBi_J4lrwG9MQfdfSmzI4voo14QDmF7ylKgOMIO99kloCkgFNF7LNZi8GQbPPb4kmjDePPRnRK3WVXncHdg3VKWIkNmjoPP75TyWvXrQ6NLVLhCkTUN5qtBvb1pq-EnMyYzSvR4Etm_yNPBnniSmDfN8C0xI3e7si24TP5Kvij-lw82J1qi5pJ9HTYZN5IkzYsTcmVevWqbGbP9jWeBWTDwdxhyY_uD0QXN3mB0I"
-                  alt="Architectural greenhouse conservatory with grid shadows"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Architecture • Jakarta</span>
-                  <h3 class="font-headline-md text-headline-md text-on-surface">The Glass Conservatory</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Geometric shadows • 21mm Ultra-wide</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">The Glass Conservatory</span>
-                <span class="text-outline">2025 • 21mm</span>
-              </div>
-            </article>
-
-            <!-- Item 7: Midnight Cruiser (Cinematic 4:3 - 4 Cols) -->
-            <article
-              class="photo-gallery-item md:col-span-4 flex flex-col gap-space-xs group cursor-pointer"
-              data-category="street"
-              data-title="Midnight Cruiser"
-              data-desc="A vintage coupe idling beside an empty coastal highway under solitary streetlamp illumination."
-              data-cat="Street • Night Reel"
-              data-year="2026"
-              data-gear="Summicron 35mm f/2"
-              data-img={fotoAutomotive}
-            >
-              <div class="relative w-full aspect-[4/3] rounded-DEFAULT overflow-hidden bg-surface-container-high">
-                <img
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  src={fotoAutomotive}
-                  alt="Cinematic night street photo of vintage sports car"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
-                  <span class="font-label-sm text-label-sm text-primary uppercase">Street • Night Reel</span>
-                  <h3 class="font-headline-sm text-headline-sm text-on-surface">Midnight Cruiser</h3>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Coastal bypass • 35mm Cine</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
-                <span class="text-on-surface font-medium">Midnight Cruiser</span>
-                <span class="text-outline">2026 • 35mm</span>
-              </div>
-            </article>
-
+          {totalPhotos === 0 ? (
+          <div class="w-full p-space-xl rounded-lg bg-surface-container-low/60 text-center">
+            <p class="font-body-md text-on-surface-variant">No photos published yet. Manage your archive in the CMS portal.</p>
           </div>
+          ) : (
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter" id="photo-grid">
+            {photos.map((item, index) => {
+              const imgSrc = item.imagePath || '/assets/foto/placeholder.jpg';
+              const cats = item.category ? item.category.toLowerCase() : '';
+              return (
+            <article
+              class={`photo-gallery-item ${colSpan(item, index)} flex flex-col gap-space-xs group cursor-pointer`}
+              data-category={cats}
+              data-title={item.title}
+              data-desc={item.description || ''}
+              data-cat={item.category || ''}
+              data-year={item.year ? String(item.year) : ''}
+              data-gear={item.client || ''}
+              data-img={imgSrc}
+            >
+              <div class={`relative w-full ${layoutClass(item)} rounded-DEFAULT overflow-hidden bg-surface-container-high`}>
+                <img
+                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  src={imgSrc}
+                  alt={item.title}
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-space-md flex flex-col justify-end">
+                  <span class="font-label-sm text-label-sm text-primary uppercase">{item.category || ''}</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface">{item.title}</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">{item.description || ''}</p>
+                </div>
+                <div class="absolute top-space-sm right-space-sm w-9 h-9 rounded-full bg-surface-container-lowest/70 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                  <span class="material-symbols-outlined text-[18px] text-on-surface">fullscreen</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm">
+                <span class="text-on-surface font-medium">{item.title}</span>
+                <span class="text-outline">{item.year ? String(item.year) : ''}{item.client ? ' • ' + item.client : ''}</span>
+              </div>
+            </article>
+              );
+            })}
+          </div>
+          )}
         </section>
 
 
@@ -434,11 +267,11 @@ const fotoPortrait = 'https://for-portfolio-mu.vercel.app/assets/foto/fashion/fo
         <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto pt-space-lg pb-space-2xl">
           <div class="w-full p-space-xl md:p-space-3xl rounded-xl bg-gradient-to-b from-surface-container-high/80 to-surface-container-lowest text-center flex flex-col items-center gap-space-md relative overflow-hidden shadow-2xl">
             <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
-            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Limited Editions • Commercial Assignments</span>
-            <h2 class="font-display-lg text-display-lg text-on-surface max-w-2xl tracking-tight">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary" data-i18n="photo.ctaLabel">Limited Editions • Commercial Assignments</span>
+            <h2 class="font-display-lg text-display-lg text-on-surface max-w-2xl tracking-tight" data-i18n="photo.ctaTitle">
               Curate a bespoke photo series with Rangga.
             </h2>
-            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl" data-i18n="photo.ctaSub">
               Available for commercial visual campaigns, editorial commissions, fine art print inquiries, and location expeditions worldwide.
             </p>
             <div class="flex flex-col sm:flex-row items-center gap-space-md pt-space-sm z-10">
@@ -448,7 +281,7 @@ const fotoPortrait = 'https://for-portfolio-mu.vercel.app/assets/foto/fashion/fo
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span>Inquire for Commissions</span>
+                <span data-i18n="photo.ctaButton">Inquire for Commissions</span>
                 <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
               </a>
               <a

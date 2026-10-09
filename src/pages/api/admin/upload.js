@@ -2,8 +2,12 @@ export const prerender = false;
 
 import fs from 'fs';
 import path from 'path';
+import { requireAuth, unauthorized } from '../../../utils/auth-guard.js';
 
 export async function POST({ request }) {
+  const auth = requireAuth(request);
+  if (!auth) return unauthorized();
+
   try {
     const contentType = request.headers.get('content-type') || '';
     const uploadsDir = path.join(process.cwd(), 'public', 'assets', 'uploads');

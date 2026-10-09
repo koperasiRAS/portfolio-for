@@ -96,9 +96,8 @@
             id="identity-input"
             type="text"
             required
-            value="frameofrangga@gmail.com"
             class="w-full bg-[#0d0d0f] border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono shadow-inner"
-            placeholder="frameofrangga@gmail.com"
+            placeholder="Studio identity"
           />
         </div>
       </div>
@@ -139,7 +138,6 @@
           />
           <span class="font-body">Maintain authentication (30 days)</span>
         </label>
-        <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">HARDWARE KEY</span>
       </div>
 
       <!-- Submit Action Button -->
@@ -151,27 +149,6 @@
         >
           <span>Enter Studio Workspace</span>
           <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-        </button>
-      </div>
-
-      <!-- Secondary Hardware Key Options -->
-      <div class="flex items-center justify-center gap-4 pt-2 font-mono text-[10px] text-gray-400">
-        <button
-          type="button"
-          onclick="requestMasterToken()"
-          class="hover:text-white transition-colors flex items-center gap-1.5 uppercase"
-        >
-          <span class="material-symbols-outlined text-[14px]">vpn_key</span>
-          <span>Request Master Token</span>
-        </button>
-        <span class="text-gray-600">•</span>
-        <button
-          type="button"
-          onclick="triggerWebAuthn()"
-          class="hover:text-white transition-colors flex items-center gap-1.5 uppercase text-blue-400"
-        >
-          <span class="material-symbols-outlined text-[14px]">fingerprint</span>
-          <span>WebAuthn FIDO2</span>
         </button>
       </div>
 
@@ -187,14 +164,23 @@
 
   <!-- Client-Side Auth Logic -->
   <script is:inline>
-    // Check if already authenticated
+    // Redirect if session is still valid (validated server-side)
     const existingToken = localStorage.getItem('for_studio_token');
     if (existingToken) {
-      // Optional auto-redirect if token is fresh
-      const tokenTime = localStorage.getItem('for_studio_token_time');
-      if (tokenTime && Date.now() - parseInt(tokenTime) < 30 * 24 * 60 * 60 * 1000) {
-        window.location.href = '/admin/cms';
-      }
+      fetch('/api/admin/auth', { method: 'GET', headers: { 'Authorization': 'Bearer ' + existingToken } })
+        .then(r => r.json())
+        .then(data => {
+          if (data.valid) window.location.href = '/admin/cms';
+          else clearSession();
+        })
+        .catch(() => clearSession());
+    }
+
+    function clearSession() {
+      localStorage.removeItem('for_studio_token');
+      localStorage.removeItem('for_studio_token_time');
+      localStorage.removeItem('for_studio_user');
+      localStorage.removeItem('for_studio_role');
     }
 
     function togglePasskeyVisibility() {
@@ -237,73 +223,20 @@
         if (data.success) {
           localStorage.setItem('for_studio_token', data.token);
           localStorage.setItem('for_studio_token_time', Date.now().toString());
-          localStorage.setItem('for_studio_user', 'Rangga Danuarta');
-          localStorage.setItem('for_studio_role', 'Principal Admin');
-
           submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-emerald-600">check_circle</span><span>Authenticated</span>';
-          setTimeout(() => {
-            window.location.href = '/admin/cms';
-          }, 400);
+          setTimeout(() => { window.location.href = '/admin/cms'; }, 400);
         } else {
-          // If fail against remote API, allow offline fallback for development passkey 'rangga123'
-          if (passkey === 'Ranggaakunportofolio1' || passkey === 'master') {
-            const fallbackToken = btoa('rangga:' + Date.now() + ':for-fallback');
-            localStorage.setItem('for_studio_token', fallbackToken);
-            localStorage.setItem('for_studio_token_time', Date.now().toString());
-            localStorage.setItem('for_studio_user', 'Rangga Danuarta');
-            localStorage.setItem('for_studio_role', 'Principal Admin');
-            window.location.href = '/admin/cms';
-            return;
-          }
-
-          feedbackText.textContent = data.error || 'Passkey atau Master Key tidak cocok dengan database studio.';
+          feedbackText.textContent = data.error || 'Kredensial tidak valid. Silakan coba lagi.';
           feedback.classList.remove('hidden');
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<span>Enter Studio Workspace</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
         }
       } catch (err) {
-        // Fallback for offline or local preview
-        if (passkey === 'rangga123' || passkey === 'master') {
-          const fallbackToken = btoa('rangga:' + Date.now() + ':for-fallback');
-          localStorage.setItem('for_studio_token', fallbackToken);
-          localStorage.setItem('for_studio_token_time', Date.now().toString());
-          localStorage.setItem('for_studio_user', 'Rangga Danuarta');
-          localStorage.setItem('for_studio_role', 'Principal Admin');
-          window.location.href = '/admin/cms';
-          return;
-        }
-
-        feedbackText.textContent = 'Gagal terhubung ke secure node. Silakan periksa koneksi.';
+        feedbackText.textContent = 'Gagal terhubung ke server. Periksa koneksi lalu coba lagi.';
         feedback.classList.remove('hidden');
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<span>Enter Studio Workspace</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
       }
-    }
-
-    function requestMasterToken() {
-      const passInput = document.getElementById('passkey-input');
-      passInput.value = 'Ranggaakunportofolio1';
-      const feedback = document.getElementById('login-feedback');
-      const feedbackText = document.getElementById('login-feedback-text');
-      feedback.classList.remove('hidden');
-      feedback.className = 'p-3 rounded-xl bg-blue-950/40 border border-blue-500/30 text-blue-200 text-xs font-mono flex items-center gap-2';
-      feedbackText.textContent = 'Studio passkey pre-filled. Click "Enter Studio Workspace" to authenticate.';
-    }
-
-    function triggerWebAuthn() {
-      // Provide simulated hardware key recognition
-      const feedback = document.getElementById('login-feedback');
-      const feedbackText = document.getElementById('login-feedback-text');
-      feedback.classList.remove('hidden');
-      feedback.className = 'p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-200 text-xs font-mono flex items-center gap-2';
-      feedbackText.textContent = 'Hardware Token detected via FIDO2 interface. Authenticating...';
-      setTimeout(() => {
-        localStorage.setItem('for_studio_token', btoa('webauthn-hardware-key-' + Date.now()));
-        localStorage.setItem('for_studio_token_time', Date.now().toString());
-        localStorage.setItem('for_studio_user', 'Rangga Danuarta');
-        localStorage.setItem('for_studio_role', 'Principal Admin');
-        window.location.href = '/admin/cms';
-      }, 700);
     }
   </script>
 </body>
