@@ -25,67 +25,67 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
         <!-- ============================================================
              01. HERO SECTION: MONOGRAPH & DIRECTION
              ============================================================ -->
-        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto pt-10 md:pt-16 pb-20 md:pb-28">
+        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto pt-space-xl pb-space-3xl">
           <!-- Breadcrumb / Index Indicator -->
-          <div class="flex items-center justify-between pb-8">
-            <div class="flex items-center gap-2">
-              <span class="font-['JetBrains_Mono'] text-xs text-tertiary uppercase tracking-widest">02 / ABOUT MONOGRAPH</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-tertiary/40"></span>
-              <span class="font-['JetBrains_Mono'] text-xs text-on-surface-variant">EDITION 2026</span>
+          <div class="flex items-center justify-between pb-space-lg">
+            <div class="flex items-center gap-space-xs">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">02 / ABOUT MONOGRAPH</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+              <span class="font-label-sm text-label-sm text-outline">EDITION 2026</span>
             </div>
-            <div class="hidden sm:flex items-center gap-4 font-['JetBrains_Mono'] text-xs text-on-surface-variant">
+            <div class="hidden sm:flex items-center gap-space-sm font-label-sm text-label-sm text-outline">
               <span>LAT: -6.2088° S</span>
               <span>LON: 106.8456° E</span>
             </div>
           </div>
 
           <!-- Hero Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-            <div class="lg:col-span-7 flex flex-col gap-6">
-              <div class="flex flex-col gap-2">
-                <span class="font-['JetBrains_Mono'] text-xs text-secondary tracking-widest uppercase">Monograph &amp; Direction</span>
-                <h1 class="font-['Hanken_Grotesk'] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold uppercase tracking-tighter text-on-surface leading-[0.95]">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-end">
+            <div class="lg:col-span-7 flex flex-col gap-space-lg">
+              <div class="flex flex-col gap-space-xs">
+                <span class="font-label-md text-label-md text-secondary tracking-widest uppercase">Monograph &amp; Direction</span>
+                <h1 class="font-display-xl text-display-xl uppercase tracking-tighter text-on-surface">
                   About<br />Rangga.
                 </h1>
               </div>
-              <p class="font-['Inter'] text-base sm:text-lg md:text-xl text-on-surface-variant font-normal max-w-xl leading-relaxed">
+              <p class="font-headline-md text-headline-md text-on-surface-variant font-normal max-w-xl leading-relaxed">
                 Visual storyteller &amp; director based in Jakarta &amp; Depok, Indonesia. Crafting emotional cinema, raw light photography, and tactile spatial interfaces.
               </p>
 
               <!-- Core Stat Ticker -->
-              <div class="grid grid-cols-3 gap-4 pt-4">
-                <div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container-low border border-outline-variant/20 shadow-sm">
-                  <span class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold text-tertiary leading-none">06<span class="text-tertiary text-xl">+</span></span>
-                  <span class="font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase text-on-surface-variant mt-1">Years in Practice</span>
+              <div class="grid grid-cols-3 gap-space-md pt-space-lg">
+                <div class="flex flex-col gap-space-xs p-space-md rounded-DEFAULT bg-surface-container-low shadow-sm">
+                  <span class="font-display-lg text-display-lg text-primary leading-none">06<span class="text-tertiary text-headline-md">+</span></span>
+                  <span class="font-label-sm text-label-sm uppercase text-outline">Years in Practice</span>
                 </div>
-                <div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container-low border border-outline-variant/20 shadow-sm">
-                  <span class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold text-tertiary leading-none">42<span class="text-tertiary text-xl">+</span></span>
-                  <span class="font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase text-on-surface-variant mt-1">Commissioned Works</span>
+                <div class="flex flex-col gap-space-xs p-space-md rounded-DEFAULT bg-surface-container-low shadow-sm">
+                  <span class="font-display-lg text-display-lg text-primary leading-none">42<span class="text-tertiary text-headline-md">+</span></span>
+                  <span class="font-label-sm text-label-sm uppercase text-outline">Commissioned Works</span>
                 </div>
-                <div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container-low border border-outline-variant/20 shadow-sm">
-                  <span class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold text-tertiary leading-none">04</span>
-                  <span class="font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase text-on-surface-variant mt-1">Core Disciplines</span>
+                <div class="flex flex-col gap-space-xs p-space-md rounded-DEFAULT bg-surface-container-low shadow-sm">
+                  <span class="font-display-lg text-display-lg text-primary leading-none">04</span>
+                  <span class="font-label-sm text-label-sm uppercase text-outline">Core Disciplines</span>
                 </div>
               </div>
             </div>
 
             <!-- Hero Portrait with High-Contrast Editorial Cropping -->
             <div class="lg:col-span-5 relative">
-              <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-surface-container shadow-2xl border border-outline-variant/25">
+              <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container shadow-2xl">
                 <Image
                   src={ranggaPortrait}
                   alt="Monochrome low-key studio portrait of Rangga Danuarta"
-                  class="w-full h-full object-cover contrast-110 grayscale"
+                  class="w-full h-full object-cover grayscale contrast-125"
                   loading="eager"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-80"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80"></div>
                 <!-- Floating Portrait Badges -->
-                <div class="absolute bottom-4 inset-x-4 flex items-center justify-between p-4 rounded-xl bg-background/85 backdrop-blur-md border border-outline-variant/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <div class="absolute bottom-space-md inset-x-space-md flex items-center justify-between p-space-md rounded-DEFAULT bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
                   <div>
-                    <p class="font-['Hanken_Grotesk'] text-sm sm:text-base font-medium text-on-surface">Rangga Danuarta</p>
-                    <p class="font-['JetBrains_Mono'] text-[10px] sm:text-xs text-on-surface-variant uppercase tracking-wider">Founder &amp; Principal Director</p>
+                    <p class="font-headline-sm text-headline-sm text-on-surface">Rangga Danuarta</p>
+                    <p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Founder &amp; Principal Director</p>
                   </div>
-                  <div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
                     <span class="material-symbols-outlined text-[18px]">verified</span>
                   </div>
                 </div>
@@ -98,64 +98,64 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
         <!-- ============================================================
              02. SECTION: 01 — MY STORY & ETHOS
              ============================================================ -->
-        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-20 border-t border-outline-variant/15">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-3xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl">
             <!-- Section Sidebar Index -->
-            <div class="lg:col-span-4 flex flex-col gap-4">
-              <div class="flex items-center gap-2">
-                <span class="font-['JetBrains_Mono'] text-xs text-tertiary uppercase tracking-widest">01 — Context</span>
+            <div class="lg:col-span-4 flex flex-col gap-space-md">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-md text-label-md text-primary uppercase tracking-widest">01 — Context</span>
                 <span class="w-8 h-[1px] bg-outline-variant/40"></span>
               </div>
-              <h2 class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold uppercase tracking-tight text-on-surface">
+              <h2 class="font-headline-lg text-headline-lg uppercase tracking-tight text-on-surface">
                 My Story &amp;<br />Ethos
               </h2>
-              <p class="font-['Inter'] text-sm sm:text-base text-on-surface-variant max-w-sm">
-                From analog street archives across the archipelago to orchestrating commercial films and clean digital identities.
+              <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+                From analog street archives across the archipelago to orchestrating large-scale narrative films and clean digital identities.
               </p>
 
               <!-- Quote Block -->
-              <div class="mt-4 p-5 rounded-xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col gap-2">
-                <span class="material-symbols-outlined text-tertiary text-[28px]">format_quote</span>
-                <p class="font-['Inter'] text-base text-on-surface italic leading-snug">
+              <div class="mt-space-lg p-space-lg rounded-DEFAULT bg-surface-container-low shadow-sm flex flex-col gap-space-sm">
+                <span class="material-symbols-outlined text-primary text-[28px]">format_quote</span>
+                <p class="font-body-lg text-body-lg text-on-surface italic leading-snug">
                   "Every frame carries an emotional gravity. The goal is never sheer aesthetic, but honest human resonance."
                 </p>
-                <span class="font-['JetBrains_Mono'] text-[11px] text-on-surface-variant uppercase mt-2">— Rangga, Studio Diary</span>
+                <span class="font-label-sm text-label-sm text-outline uppercase mt-space-xs">— Rangga, Studio Diary</span>
               </div>
             </div>
 
             <!-- Narrative Content + Candid Photography Bento -->
-            <div class="lg:col-span-8 flex flex-col gap-8">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-['Inter'] text-sm sm:text-base text-on-surface-variant leading-relaxed">
+            <div class="lg:col-span-8 flex flex-col gap-space-xl">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
                 <p>
                   I am a director, photographer, and visual designer navigating the fertile intersection between honest documentary realism and contemporary graphic discipline. My practice began over half a decade ago, capturing the dense, kinetic streetscapes and authentic narratives of Indonesia.
                 </p>
                 <p>
-                  Over time, still observation evolved into motion. Today, under the mantle of <strong class="text-on-surface font-medium">FRAME OF RANGGA</strong>, I direct brand films, construct distinct visual identity architectures, and curate bespoke digital web experiences.
+                  Over time, still observation evolved into motion. Today, under the mantle of <strong class="text-on-surface font-medium">FRAME OF RANGGA</strong>, I direct commercial films, construct distinct brand design languages, and curate immersive digital web interactions for brands worldwide.
                 </p>
               </div>
 
               <!-- Candid Gallery Mosaic -->
-              <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 pt-2">
-                <div class="sm:col-span-7 h-64 sm:h-72 rounded-xl overflow-hidden relative shadow-md group border border-outline-variant/20 bg-surface-container">
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-space-md pt-space-md">
+                <div class="sm:col-span-7 h-72 rounded-DEFAULT overflow-hidden relative shadow-md group">
                   <img
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpGVa7y8Vnwr00h7gKk33RkQUjAl9ulowuBeAL_TpfKgqxqY9VJwoxaVtyTKNFBqBMyp-RbKn4L7jjco32jGEp1uQ8snuLiNDpktzCj1cpzChy1A4SG_P3pt2OKx0C7eXhhpeSSELWUtS9qDv8yJ1GkHDayh4VY4hE5Sllq-3AEaqRE_xaNXyEaQkpZuhFvv49RvoVrSelua3kn5nmvWNDjRTEX_-ffPKvxIaL16ktbAMVFmtIetn4"
                     alt="Cinematographer on set with camera rig"
                     loading="lazy"
                   />
-                  <div class="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1 rounded-full border border-outline-variant/20">
-                    <span class="font-['JetBrains_Mono'] text-[10px] sm:text-xs text-on-surface">SET PRODUCTION // ON LOCATION</span>
+                  <div class="absolute bottom-space-sm left-space-sm bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs rounded-full">
+                    <span class="font-label-sm text-label-sm text-on-surface">LOC: TANGKUBAN PERAHU / DIR. ROLL</span>
                   </div>
                 </div>
-                <div class="sm:col-span-5 h-64 sm:h-72 rounded-xl overflow-hidden relative shadow-md group border border-outline-variant/20 bg-surface-container">
+                <div class="sm:col-span-5 h-72 rounded-DEFAULT overflow-hidden relative shadow-md group">
                   <img
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUVOzdROmMi6S0er-2slMjHD2facCCaaisvUqbnwFHAPiP4F_gmavFbkbOBPKcMFV5BOup1x27nuZyu1sZ7gixY4k3AreTg8kJdtL-x6DlqFJygBkY4b0BJUBTjlasUgHKJ17TzS6CnOcsDxT7e4Ff5Cj1WmeOm19h2c98SZqY1c-LPQ4eimBelrF0cjYD1Du2F2y-FPsSpIHma-1j-G_rVJvdeiV5T1Wp0_DBaT9ixFkrKwA5lf09"
                     alt="Camera lenses and optics setup"
                     loading="lazy"
                   />
-                  <div class="absolute bottom-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1 rounded-full border border-outline-variant/20">
-                    <span class="font-['JetBrains_Mono'] text-[10px] sm:text-xs text-on-surface">OPTICS &amp; WORKSPACE</span>
+                  <div class="absolute bottom-space-sm left-space-sm bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs rounded-full">
+                    <span class="font-label-sm text-label-sm text-on-surface">GEAR: LEICA M10-R ARCHIVE</span>
                   </div>
                 </div>
               </div>
@@ -167,105 +167,105 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
         <!-- ============================================================
              03. SECTION: 02 — DISCIPLINES & FOCUS
              ============================================================ -->
-        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-20 border-t border-outline-variant/15">
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div class="flex flex-col gap-2">
-              <div class="flex items-center gap-2">
-                <span class="font-['JetBrains_Mono'] text-xs text-tertiary uppercase tracking-widest">02 — Expertise</span>
+        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-3xl">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl">
+            <div class="flex flex-col gap-space-xs">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-md text-label-md text-primary uppercase tracking-widest">02 — Expertise</span>
                 <span class="w-8 h-[1px] bg-outline-variant/40"></span>
               </div>
-              <h2 class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold uppercase tracking-tight text-on-surface">
+              <h2 class="font-headline-lg text-headline-lg uppercase tracking-tight text-on-surface">
                 Disciplines &amp; Focus
               </h2>
             </div>
-            <p class="font-['Inter'] text-sm sm:text-base text-on-surface-variant max-w-md">
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
               A four-pillar studio methodology engineered to maintain aesthetic cohesion across physical medium and digital surface.
             </p>
           </div>
 
           <!-- 4 Discipline Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
             <!-- Photography Card -->
-            <div class="flex flex-col justify-between p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:border-tertiary/40 transition-colors shadow-sm gap-6 group">
-              <div class="flex flex-col gap-4">
-                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+            <div class="flex flex-col justify-between p-space-lg rounded-DEFAULT bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm gap-space-xl group">
+              <div class="flex flex-col gap-space-md">
+                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                   <span class="material-symbols-outlined text-[24px]">photo_camera</span>
                 </div>
                 <div>
-                  <span class="font-['JetBrains_Mono'] text-[11px] text-secondary uppercase tracking-wider">Discipline 01</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Photography</h3>
+                  <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Discipline 01</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Photography</h3>
                 </div>
-                <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                  Editorial portraits, commercial campaigns, documentary photo essays, and analog 35mm formats.
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Editorial portraits, evocative commercial campaigns, documentary photo essays, and analog 35mm/120mm medium format.
                 </p>
               </div>
-              <div class="flex flex-wrap gap-1.5 pt-2">
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Portraits</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">35mm</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Lookbooks</span>
+              <div class="flex flex-wrap gap-space-xs pt-space-md">
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Portraits</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">35mm Film</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Lookbooks</span>
               </div>
             </div>
 
             <!-- Filmmaking Card -->
-            <div class="flex flex-col justify-between p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:border-tertiary/40 transition-colors shadow-sm gap-6 group">
-              <div class="flex flex-col gap-4">
-                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+            <div class="flex flex-col justify-between p-space-lg rounded-DEFAULT bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm gap-space-xl group">
+              <div class="flex flex-col gap-space-md">
+                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                   <span class="material-symbols-outlined text-[24px]">movie</span>
                 </div>
                 <div>
-                  <span class="font-['JetBrains_Mono'] text-[11px] text-secondary uppercase tracking-wider">Discipline 02</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Filmmaking</h3>
+                  <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Discipline 02</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Filmmaking</h3>
                 </div>
-                <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                  Cinematic direction, documentary shorts, commercial stories, and DaVinci color grading.
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Cinematic direction, short documentaries, mood films, commercial brand stories, and meticulous DaVinci color grading.
                 </p>
               </div>
-              <div class="flex flex-wrap gap-1.5 pt-2">
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Direction</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Docu</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Grading</span>
+              <div class="flex flex-wrap gap-space-xs pt-space-md">
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Direction</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Docu-Narrative</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Color Grade</span>
               </div>
             </div>
 
             <!-- Design Card -->
-            <div class="flex flex-col justify-between p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:border-tertiary/40 transition-colors shadow-sm gap-6 group">
-              <div class="flex flex-col gap-4">
-                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+            <div class="flex flex-col justify-between p-space-lg rounded-DEFAULT bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm gap-space-xl group">
+              <div class="flex flex-col gap-space-md">
+                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                   <span class="material-symbols-outlined text-[24px]">token</span>
                 </div>
                 <div>
-                  <span class="font-['JetBrains_Mono'] text-[11px] text-secondary uppercase tracking-wider">Discipline 03</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Design</h3>
+                  <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Discipline 03</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Design</h3>
                 </div>
-                <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                  Brand identity systems, typographical hierarchies, packaging, and spatial art direction.
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Comprehensive brand identity systems, typographical hierarchies, bespoke print editions, packaging, and spatial art direction.
                 </p>
               </div>
-              <div class="flex flex-wrap gap-1.5 pt-2">
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Identity</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Systems</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Branding</span>
+              <div class="flex flex-wrap gap-space-xs pt-space-md">
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Identity</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Typography</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Art Direction</span>
               </div>
             </div>
 
             <!-- Web Card -->
-            <div class="flex flex-col justify-between p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:border-tertiary/40 transition-colors shadow-sm gap-6 group">
-              <div class="flex flex-col gap-4">
-                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+            <div class="flex flex-col justify-between p-space-lg rounded-DEFAULT bg-surface-container-low hover:bg-surface-container transition-colors shadow-sm gap-space-xl group">
+              <div class="flex flex-col gap-space-md">
+                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                   <span class="material-symbols-outlined text-[24px]">language</span>
                 </div>
                 <div>
-                  <span class="font-['JetBrains_Mono'] text-[11px] text-secondary uppercase tracking-wider">Discipline 04</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Web</h3>
+                  <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Discipline 04</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Web</h3>
                 </div>
-                <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                  Tactile web experiences, creative frontend architecture, and modern digital portfolios.
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Tactile web experiences, creative frontend architecture, interactive exhibition sites, and digital archive portals.
                 </p>
               </div>
-              <div class="flex flex-wrap gap-1.5 pt-2">
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Astro/React</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">UI / UX</span>
-                <span class="font-['JetBrains_Mono'] text-[10px] text-on-surface-variant bg-background px-2.5 py-1 rounded-full border border-outline-variant/20">Performance</span>
+              <div class="flex flex-wrap gap-space-xs pt-space-md">
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Webflow</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">Creative Dev</span>
+                <span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-space-sm py-space-xs rounded-full">UX / UI</span>
               </div>
             </div>
           </div>
@@ -275,81 +275,81 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
         <!-- ============================================================
              04. SECTION: 03 — JOURNEY / TIMELINE
              ============================================================ -->
-        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-20 border-t border-outline-variant/15">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-            <div class="lg:col-span-4 flex flex-col gap-4">
-              <div class="flex items-center gap-2">
-                <span class="font-['JetBrains_Mono'] text-xs text-tertiary uppercase tracking-widest">03 — Trajectory</span>
+        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-3xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl">
+            <div class="lg:col-span-4 flex flex-col gap-space-md">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-md text-label-md text-primary uppercase tracking-widest">03 — Trajectory</span>
                 <span class="w-8 h-[1px] bg-outline-variant/40"></span>
               </div>
-              <h2 class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold uppercase tracking-tight text-on-surface">
+              <h2 class="font-headline-lg text-headline-lg uppercase tracking-tight text-on-surface">
                 Journey &amp;<br />Milestones
               </h2>
-              <p class="font-['Inter'] text-sm sm:text-base text-on-surface-variant">
-                A chronological timeline documenting continuous exploration, from independent visual diaries to creative commissions.
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                A chronological timeline documenting continuous exploration, from independent visual diaries to global creative commissions.
               </p>
-              <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/20 mt-4 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-primary/20 text-tertiary flex items-center justify-center shrink-0">
+              <div class="p-space-md rounded-DEFAULT bg-surface-container-low mt-space-md flex items-center gap-space-md">
+                <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                   <span class="material-symbols-outlined text-[20px]">timelapse</span>
                 </div>
                 <div>
-                  <p class="font-['JetBrains_Mono'] text-[10px] uppercase text-on-surface-variant">Current Operational State</p>
-                  <p class="font-['Inter'] text-xs text-on-surface font-medium">Accepting Selected Projects 2026</p>
+                  <p class="font-label-sm text-label-sm uppercase text-outline">Current Operational State</p>
+                  <p class="font-body-sm text-body-sm text-on-surface font-medium">Accepting Selected Projects</p>
                 </div>
               </div>
             </div>
 
             <!-- Chronology Steps -->
-            <div class="lg:col-span-8 flex flex-col gap-4">
+            <div class="lg:col-span-8 flex flex-col gap-space-md">
               <!-- Step 2024 - 2026 -->
-              <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-4 group hover:bg-surface-container transition-colors">
-                <div class="flex flex-col gap-1">
-                  <div class="flex items-center gap-2">
-                    <span class="px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-['JetBrains_Mono'] text-[10px] font-medium">Current Phase</span>
-                    <span class="font-['JetBrains_Mono'] text-xs text-secondary">Scale &amp; Mastery</span>
+              <div class="p-space-lg rounded-DEFAULT bg-surface-container-low shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-space-md group hover:bg-surface-container transition-colors">
+                <div class="flex flex-col gap-space-xs">
+                  <div class="flex items-center gap-space-sm">
+                    <span class="px-space-sm py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-medium">Current Phase</span>
+                    <span class="font-label-md text-label-md text-secondary">Global Scale</span>
                   </div>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Consolidating Frame of Rangga</h3>
-                  <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">
-                    Unifying photography, video production, brand design, and modern web engineering into a cohesive studio practice.
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Establishing Frame of Rangga</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    Consolidating photography, film production, and digital design under a single studio umbrella. Directing commercial campaigns across Southeast Asia, Europe, and Japan.
                   </p>
                 </div>
-                <span class="font-['Hanken_Grotesk'] text-4xl text-on-surface-variant/30 font-bold group-hover:text-tertiary transition-colors">24-26</span>
+                <span class="font-display-lg text-display-lg text-outline/30 font-bold group-hover:text-primary transition-colors">24-26</span>
               </div>
 
               <!-- Step 2023 -->
-              <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-4 group hover:bg-surface-container transition-colors">
-                <div class="flex flex-col gap-1">
-                  <span class="font-['JetBrains_Mono'] text-xs text-secondary">Studio Expansion</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Design Systems &amp; Web Development</h3>
-                  <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">
-                    Broadened creative capabilities to encompass high-performance web architecture and brand identity systems for businesses and brands.
+              <div class="p-space-lg rounded-DEFAULT bg-surface-container-low shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-space-md group hover:bg-surface-container transition-colors">
+                <div class="flex flex-col gap-space-xs">
+                  <span class="font-label-md text-label-md text-secondary">Studio Expansion</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Expansions in Design &amp; Web</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    Broadened creative services to encompass high-end interactive websites and brand identity architectures for architecture firms, fashion houses, and tech products.
                   </p>
                 </div>
-                <span class="font-['Hanken_Grotesk'] text-4xl text-on-surface-variant/30 font-bold group-hover:text-tertiary transition-colors">2023</span>
+                <span class="font-display-lg text-display-lg text-outline/30 font-bold group-hover:text-primary transition-colors">2023</span>
               </div>
 
               <!-- Step 2021 -->
-              <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-4 group hover:bg-surface-container transition-colors">
-                <div class="flex flex-col gap-1">
-                  <span class="font-['JetBrains_Mono'] text-xs text-secondary">Independent Practice</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Solo Filmmaking &amp; Documentaries</h3>
-                  <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">
-                    Commissioned for commercial video shoots, event storytelling, wedding monographs, and independent motion projects.
+              <div class="p-space-lg rounded-DEFAULT bg-surface-container-low shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-space-md group hover:bg-surface-container transition-colors">
+                <div class="flex flex-col gap-space-xs">
+                  <span class="font-label-md text-label-md text-secondary">Independent Direction</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Solo Filmmaking &amp; Monograph</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    Commissioned for independent documentary shorts, travel anthologies, and musical artist visuals. Released first curated photography photobook ‘The Silent Current’.
                   </p>
                 </div>
-                <span class="font-['Hanken_Grotesk'] text-4xl text-on-surface-variant/30 font-bold group-hover:text-tertiary transition-colors">2021</span>
+                <span class="font-display-lg text-display-lg text-outline/30 font-bold group-hover:text-primary transition-colors">2021</span>
               </div>
 
               <!-- Step 2020 -->
-              <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-4 group hover:bg-surface-container transition-colors">
-                <div class="flex flex-col gap-1">
-                  <span class="font-['JetBrains_Mono'] text-xs text-secondary">Origins</span>
-                  <h3 class="font-['Hanken_Grotesk'] text-xl font-medium text-on-surface mt-1">Visual Exploration &amp; Photography</h3>
-                  <p class="font-['Inter'] text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">
-                    Deep dive into portrait photography, street documentary storytelling, and foundational video production across Greater Jakarta.
+              <div class="p-space-lg rounded-DEFAULT bg-surface-container-low shadow-sm flex flex-col sm:flex-row sm:items-start justify-between gap-space-md group hover:bg-surface-container transition-colors">
+                <div class="flex flex-col gap-space-xs">
+                  <span class="font-label-md text-label-md text-secondary">Origins</span>
+                  <h3 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Visual Exploration &amp; Analog Roots</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    Deep dive into medium-format analog photography, street documentary storytelling across Java and Bali, and foundational video cinematography.
                   </p>
                 </div>
-                <span class="font-['Hanken_Grotesk'] text-4xl text-on-surface-variant/30 font-bold group-hover:text-tertiary transition-colors">2020</span>
+                <span class="font-display-lg text-display-lg text-outline/30 font-bold group-hover:text-primary transition-colors">2020</span>
               </div>
             </div>
           </div>
@@ -359,19 +359,19 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
         <!-- ============================================================
              05. SECTION: PHILOSOPHY & SPECIFICATIONS
              ============================================================ -->
-        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-20 border-t border-outline-variant/15">
-          <div class="rounded-3xl bg-surface-container-low p-8 sm:p-12 md:p-16 shadow-xl relative overflow-hidden border border-outline-variant/25">
+        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-3xl">
+          <div class="rounded-DEFAULT bg-surface-container-low p-space-xl sm:p-space-3xl md:p-space-4xl shadow-xl relative overflow-hidden">
             <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 relative z-10">
-              <div class="lg:col-span-6 flex flex-col gap-6">
-                <div class="flex items-center gap-2">
-                  <span class="font-['JetBrains_Mono'] text-xs text-tertiary uppercase tracking-widest">Philosophy &amp; Ethos</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl lg:gap-space-3xl relative z-10">
+              <div class="lg:col-span-6 flex flex-col gap-space-lg">
+                <div class="flex items-center gap-space-xs">
+                  <span class="font-label-md text-label-md text-primary uppercase tracking-widest">Philosophy &amp; Ethos</span>
                 </div>
-                <h2 class="font-['Hanken_Grotesk'] text-3xl sm:text-4xl font-semibold uppercase tracking-tight text-on-surface">
+                <h2 class="font-headline-lg text-headline-lg uppercase tracking-tight text-on-surface">
                   The Architecture of<br />Visual Presence.
                 </h2>
-                <div class="flex flex-col gap-4 font-['Inter'] text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                <div class="flex flex-col gap-space-md font-body-lg text-body-lg text-on-surface-variant">
                   <p>
                     In a digital sphere saturated with fleeting stimulation, we believe the most profound frames are those that breathe. Light, shadow, and pacing are active emotional instruments.
                   </p>
@@ -382,36 +382,36 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
               </div>
 
               <!-- Studio Equipment & Specifications -->
-              <div class="lg:col-span-6 flex flex-col justify-between gap-6">
-                <span class="font-['JetBrains_Mono'] text-xs text-on-surface-variant uppercase tracking-wider">Studio Specifications &amp; Arsenal</span>
-                <div class="flex flex-col gap-2.5">
-                  <div class="flex items-center justify-between p-3.5 bg-surface-container rounded-xl border border-outline-variant/20">
-                    <span class="font-['JetBrains_Mono'] text-xs text-secondary">Cameras &amp; Gear</span>
-                    <span class="font-['Inter'] text-xs sm:text-sm text-on-surface font-medium">Cinema Cameras, Full-Frame Mirrorless, Gimbals</span>
+              <div class="lg:col-span-6 flex flex-col justify-between gap-space-lg">
+                <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Studio Specifications &amp; Arsenal</span>
+                <div class="flex flex-col gap-space-sm">
+                  <div class="flex items-center justify-between p-space-sm bg-surface-container rounded-DEFAULT">
+                    <span class="font-label-md text-label-md text-secondary">Cameras &amp; Gear</span>
+                    <span class="font-body-sm text-body-sm text-on-surface font-medium">Cinema Cameras, Full-Frame Mirrorless, Gimbals</span>
                   </div>
-                  <div class="flex items-center justify-between p-3.5 bg-surface-container rounded-xl border border-outline-variant/20">
-                    <span class="font-['JetBrains_Mono'] text-xs text-secondary">Optics</span>
-                    <span class="font-['Inter'] text-xs sm:text-sm text-on-surface font-medium">Prime 24mm, 35mm, 50mm, 85mm f/1.4 - f/1.8</span>
+                  <div class="flex items-center justify-between p-space-sm bg-surface-container rounded-DEFAULT">
+                    <span class="font-label-md text-label-md text-secondary">Optics</span>
+                    <span class="font-body-sm text-body-sm text-on-surface font-medium">Prime 24mm, 35mm, 50mm, 85mm f/1.4 - f/1.8</span>
                   </div>
-                  <div class="flex items-center justify-between p-3.5 bg-surface-container rounded-xl border border-outline-variant/20">
-                    <span class="font-['JetBrains_Mono'] text-xs text-secondary">Post &amp; Dev</span>
-                    <span class="font-['Inter'] text-xs sm:text-sm text-on-surface font-medium">DaVinci Resolve, Premiere Pro, Figma, Astro, React</span>
+                  <div class="flex items-center justify-between p-space-sm bg-surface-container rounded-DEFAULT">
+                    <span class="font-label-md text-label-md text-secondary">Post &amp; Dev</span>
+                    <span class="font-body-sm text-body-sm text-on-surface font-medium">DaVinci Resolve, Premiere Pro, Figma, Astro, React</span>
                   </div>
-                  <div class="flex items-center justify-between p-3.5 bg-surface-container rounded-xl border border-outline-variant/20">
-                    <span class="font-['JetBrains_Mono'] text-xs text-secondary">Base Location</span>
-                    <span class="font-['Inter'] text-xs sm:text-sm text-on-surface font-medium">Jakarta &amp; Depok, Indonesia</span>
+                  <div class="flex items-center justify-between p-space-sm bg-surface-container rounded-DEFAULT">
+                    <span class="font-label-md text-label-md text-secondary">Base Location</span>
+                    <span class="font-body-sm text-body-sm text-on-surface font-medium">Jakarta &amp; Depok, Indonesia</span>
                   </div>
                 </div>
 
                 <!-- Select Collaborators List -->
-                <div class="flex flex-col gap-2 pt-2">
-                  <span class="font-['JetBrains_Mono'] text-xs text-on-surface-variant uppercase">Selected Clients &amp; Partners</span>
-                  <div class="flex flex-wrap gap-2 pt-1">
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-on-surface bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant/25">Tokopedia</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-on-surface bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant/25">Kitabisa</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-on-surface bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant/25">Shopee</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-on-surface bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant/25">Bank Qurban</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-on-surface bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant/25">Mandiri</span>
+                <div class="flex flex-col gap-space-sm pt-space-xs">
+                  <span class="font-label-sm text-label-sm text-outline uppercase">Selected Clients &amp; Partners</span>
+                  <div class="flex flex-wrap gap-space-sm pt-space-xs">
+                    <span class="font-label-sm text-label-sm text-on-surface bg-surface-container-high px-space-sm py-space-xs rounded-full">Tokopedia</span>
+                    <span class="font-label-sm text-label-sm text-on-surface bg-surface-container-high px-space-sm py-space-xs rounded-full">Kitabisa</span>
+                    <span class="font-label-sm text-label-sm text-on-surface bg-surface-container-high px-space-sm py-space-xs rounded-full">Shopee</span>
+                    <span class="font-label-sm text-label-sm text-on-surface bg-surface-container-high px-space-sm py-space-xs rounded-full">Bank Qurban</span>
+                    <span class="font-label-sm text-label-sm text-on-surface bg-surface-container-high px-space-sm py-space-xs rounded-full">Mandiri</span>
                   </div>
                 </div>
               </div>
@@ -423,29 +423,29 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
         <!-- ============================================================
              06. SECTION: SIGNATURE & CONTACT CTA
              ============================================================ -->
-        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-20 border-t border-outline-variant/15">
-          <div class="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
+        <section class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto py-space-3xl">
+          <div class="flex flex-col items-center text-center gap-space-lg max-w-3xl mx-auto">
             <!-- Stylized Signature Element -->
-            <div class="w-48 text-tertiary opacity-90">
+            <div class="w-48 text-primary opacity-90">
               <svg class="w-full h-auto" fill="none" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 55 C25 20, 45 10, 60 25 C75 40, 50 68, 38 65 C26 62, 45 35, 78 30 C110 25, 95 60, 115 50 C135 40, 150 20, 165 45 C180 70, 195 40, 228 35" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
                 <path d="M85 52 L120 50" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
               </svg>
             </div>
 
-            <div class="flex flex-col gap-1">
-              <span class="font-['Hanken_Grotesk'] text-2xl sm:text-3xl font-semibold uppercase text-on-surface tracking-tight">Rangga Danuarta</span>
-              <span class="font-['JetBrains_Mono'] text-xs text-secondary uppercase tracking-widest">Director / Photographer / Visual Designer</span>
+            <div class="flex flex-col gap-space-xs">
+              <span class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight font-semibold">Rangga Danuarta</span>
+              <span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Director / Photographer / Visual Designer</span>
             </div>
 
-            <p class="font-['Inter'] text-sm sm:text-base text-on-surface-variant max-w-xl">
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
               Available for commercial film direction, photography assignments, brand identity consultations, and creative web commissions.
             </p>
 
             <!-- CTAs -->
-            <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div class="flex flex-wrap items-center justify-center gap-space-md pt-space-xs">
               <a
-                class="px-8 py-3.5 rounded-full bg-primary text-on-primary font-['Hanken_Grotesk'] font-medium text-sm sm:text-base hover:bg-primary/90 hover:scale-105 transition-all flex items-center gap-2 shadow-lg shadow-primary/25"
+                class="px-space-2xl py-space-md rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-medium hover:bg-primary/90 hover:scale-105 transition-all flex items-center gap-space-sm shadow-lg shadow-primary/25"
                 href={waLink('general')}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -454,7 +454,7 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
                 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
               </a>
               <a
-                class="px-8 py-3.5 rounded-full bg-surface-container-low text-on-surface font-['Hanken_Grotesk'] font-medium text-sm sm:text-base border border-outline-variant/30 hover:bg-surface-container-high transition-all flex items-center gap-2"
+                class="px-space-2xl py-space-md rounded-full bg-surface-container-low text-on-surface font-label-lg text-label-lg font-medium hover:bg-surface-container-high transition-all flex items-center gap-space-sm"
                 href="/foto"
               >
                 <span>Explore Photo Archive</span>
@@ -469,18 +469,18 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
   </main>
 
   <!-- Monolithic Footer -->
-  <footer class="w-full bg-background border-t border-outline-variant/20 pt-16 pb-12 mt-16">
-    <div class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto flex flex-col gap-12">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
-        <div class="md:col-span-5 flex flex-col gap-4">
-          <span class="font-['Hanken_Grotesk'] text-xl font-bold uppercase tracking-tight text-on-surface">FRAME OF RANGGA</span>
-          <p class="font-['Inter'] text-sm text-on-surface-variant max-w-md leading-relaxed">
+  <footer class="w-full bg-background border-t border-outline-variant/20 pt-space-4xl pb-space-3xl mt-space-3xl">
+    <div class="w-full px-margin-mobile md:px-margin max-w-7xl mx-auto flex flex-col gap-space-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-space-2xl">
+        <div class="md:col-span-5 flex flex-col gap-space-md">
+          <span class="font-headline-md text-headline-md font-bold uppercase tracking-tight text-on-surface">FRAME OF RANGGA</span>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
             Multi-disciplinary visual storyteller &amp; director operating across photography, cinematic direction, graphic systems, and spatial web experiences.
           </p>
         </div>
-        <div class="md:col-span-3 md:col-start-7 flex flex-col gap-3">
-          <span class="font-['JetBrains_Mono'] text-xs uppercase tracking-wider text-on-surface-variant">Index</span>
-          <div class="flex flex-col gap-2 font-['Inter'] text-sm text-on-surface-variant">
+        <div class="md:col-span-3 md:col-start-7 flex flex-col gap-space-sm">
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Index</span>
+          <div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
             <a class="hover:text-on-surface transition-colors" href="/">Home</a>
             <a class="hover:text-on-surface transition-colors" href="/about">About Monograph</a>
             <a class="hover:text-on-surface transition-colors" href="/foto">Photo Archive</a>
@@ -489,18 +489,18 @@ import ranggaPortrait from "../assets/foto/about rangga.jpg";
             <a class="hover:text-on-surface transition-colors" href="/website">Interactive Web</a>
           </div>
         </div>
-        <div class="md:col-span-3 flex flex-col gap-3">
-          <span class="font-['JetBrains_Mono'] text-xs uppercase tracking-wider text-on-surface-variant">Dispatches</span>
-          <div class="flex flex-col gap-2 font-['Inter'] text-sm text-on-surface-variant">
-            <a class="hover:text-tertiary transition-colors" href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer">Instagram (@rggadnrt)</a>
-            <a class="hover:text-tertiary transition-colors" href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer">Portfolio (@frameofrangga)</a>
-            <a class="hover:text-tertiary transition-colors" href="https://tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer">TikTok (@madebyrangga)</a>
-            <a class="hover:text-tertiary transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
-            <a class="hover:text-tertiary transition-colors" href="mailto:frameofrangga@gmail.com">frameofrangga@gmail.com</a>
+        <div class="md:col-span-3 flex flex-col gap-space-sm">
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Dispatches</span>
+          <div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="https://instagram.com/rggadnrt" target="_blank" rel="noopener noreferrer">Instagram (@rggadnrt)</a>
+            <a class="hover:text-primary transition-colors" href="https://instagram.com/frameofrangga" target="_blank" rel="noopener noreferrer">Portfolio (@frameofrangga)</a>
+            <a class="hover:text-primary transition-colors" href="https://tiktok.com/@madebyrangga" target="_blank" rel="noopener noreferrer">TikTok (@madebyrangga)</a>
+            <a class="hover:text-primary transition-colors" href={waLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Direct</a>
+            <a class="hover:text-primary transition-colors" href="mailto:frameofrangga@gmail.com">frameofrangga@gmail.com</a>
           </div>
         </div>
       </div>
-      <div class="pt-8 border-t border-outline-variant/15 flex flex-col md:flex-row items-center justify-between gap-4 font-['JetBrains_Mono'] text-xs text-on-surface-variant">
+      <div class="pt-space-lg border-t border-outline-variant/15 flex flex-col md:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-outline">
         <span>© {new Date().getFullYear()} FRAME OF RANGGA. All rights reserved.</span>
         <span>Jakarta &amp; Depok, Indonesia (WIB GMT+7)</span>
       </div>

@@ -257,15 +257,15 @@ const {
         handle.style.left = `${percentage}%`;
       };
 
-      frame.addEventListener('pointerdown', (e) => {
+      frame.addEventListener('pointerdown', ((e: PointerEvent) => {
         isDragging = true;
         setPosition(e.clientX);
-      });
+      }) as EventListener);
 
-      window.addEventListener('pointermove', (e) => {
+      window.addEventListener('pointermove', ((e: PointerEvent) => {
         if (!isDragging) return;
         setPosition(e.clientX);
-      });
+      }) as EventListener);
 
       window.addEventListener('pointerup', () => {
         isDragging = false;

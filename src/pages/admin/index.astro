@@ -1,0 +1,25 @@
+---
+// Auto-gate for /admin -> checks token and routes to /admin/cms or /admin/login
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <title>Connecting // Frame Of Rangga Studio</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <script is:inline>
+    const token = localStorage.getItem('for_studio_token');
+    if (token) {
+      window.location.replace('/admin/cms');
+    } else {
+      window.location.replace('/admin/login');
+    }
+  </script>
+</head>
+<body style="background-color: #0e0e10; color: #f3f4f6; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+  <p style="font-family: monospace; font-size: 11px; letter-spacing: 0.1em; color: #71717a; text-transform: uppercase;">
+    Connecting to Studio Node...
+  </p>
+</body>
+</html>

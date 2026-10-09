@@ -1,0 +1,1198 @@
+---
+// Studio Curation Engine & Archival Index (/admin/cms)
+// Exact match to PRD 5.2 B and Frame of Rangga - CMS Content Manager.png
+---
+
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Content Manager & Archival Index | Frame Of Rangga</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Modernist Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  <script is:inline>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            obsidian: "#0e0e10",
+            charcoal: "#131315",
+            card: "#19191d",
+            "card-hover": "#212126",
+            "border-subtle": "rgba(255, 255, 255, 0.07)",
+            "border-highlight": "rgba(255, 255, 255, 0.12)",
+            "accent-blue": "#2563eb",
+            "accent-cyan": "#38bdf8",
+          },
+          fontFamily: {
+            display: ["Hanken Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #0e0e10;
+      color: #f3f4f6;
+      font-family: 'Inter', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0e0e10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
+    }
+    .custom-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .custom-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #27272a;
+      transition: .3s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2563eb;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+  </style>
+</head>
+
+<body class="w-full min-h-screen bg-[#0e0e10] text-[#f3f4f6] flex flex-col antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Application Shell (Flex container) -->
+  <div class="flex-grow flex w-full h-screen overflow-hidden">
+
+    <!-- ==============================================================
+         1. LEFT SIDEBAR (Studio Curation Engine Nav)
+         ============================================================== -->
+    <aside class="w-64 bg-[#111114] border-r border-white/5 flex flex-col justify-between shrink-0 h-full select-none z-20">
+      
+      <!-- Top Branding & Navigation -->
+      <div class="p-5 flex flex-col gap-6 overflow-y-auto">
+        
+        <!-- Studio Engine Header -->
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span class="font-display font-bold tracking-tight text-white text-sm uppercase">FRAME OF RANGGA</span>
+          </div>
+          <span class="font-mono text-[9.5px] text-gray-500 tracking-wider uppercase">STUDIO CURATION ENGINE — V4.2</span>
+        </div>
+
+        <!-- + New Entry Action -->
+        <button
+          type="button"
+          onclick="openCreateDrawer()"
+          class="w-full py-2.5 px-4 rounded-full bg-[#f3f4f6] hover:bg-white text-[#0e0e10] font-display font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-md active:scale-95 cursor-pointer"
+        >
+          <span class="material-symbols-outlined text-[16px]">add</span>
+          <span>+ New Entry</span>
+        </button>
+
+        <!-- Catalog Categories -->
+        <div class="flex flex-col gap-5 pt-1">
+          
+          <!-- Works Catalog Group -->
+          <div class="flex flex-col gap-1.5">
+            <span class="font-mono text-[9px] uppercase tracking-widest text-gray-500 px-3">WORKS CATALOG</span>
+            
+            <button
+              type="button"
+              onclick="setCatalogFilter('all')"
+              id="nav-overview"
+              class="sidebar-nav-item active flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-white bg-white/10 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px] text-gray-400">grid_view</span>
+              <span>Overview</span>
+            </button>
+
+            <button
+              type="button"
+              onclick="setCatalogFilter('photo')"
+              id="nav-photo"
+              class="sidebar-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px]">photo_camera</span>
+              <span>Photography</span>
+            </button>
+
+            <button
+              type="button"
+              onclick="setCatalogFilter('video')"
+              id="nav-video"
+              class="sidebar-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px]">videocam</span>
+              <span>Motion &amp; Video</span>
+            </button>
+
+            <button
+              type="button"
+              onclick="setCatalogFilter('design')"
+              id="nav-design"
+              class="sidebar-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+              <span>Art Direction &amp; Design</span>
+            </button>
+
+            <button
+              type="button"
+              onclick="setCatalogFilter('web')"
+              id="nav-web"
+              class="sidebar-nav-item flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px]">web</span>
+              <span>Interactive &amp; Web</span>
+            </button>
+          </div>
+
+          <!-- Archival & Storage Group -->
+          <div class="flex flex-col gap-1.5 pt-2">
+            <span class="font-mono text-[9px] uppercase tracking-widest text-gray-500 px-3">ARCHIVAL &amp; STORAGE</span>
+            
+            <a
+              href="/about"
+              target="_blank"
+              class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px]">menu_book</span>
+              <span>Monograph &amp; Journal</span>
+            </a>
+
+            <button
+              type="button"
+              onclick="showVaultInfo()"
+              class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px]">folder</span>
+              <span>Asset Vault</span>
+            </button>
+          </div>
+
+          <!-- Configuration Group -->
+          <div class="flex flex-col gap-1.5 pt-2">
+            <span class="font-mono text-[9px] uppercase tracking-widest text-gray-500 px-3">CONFIGURATION</span>
+            
+            <button
+              type="button"
+              onclick="showStudioPreferences()"
+              class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors w-full text-left"
+            >
+              <span class="material-symbols-outlined text-[18px]">tune</span>
+              <span>Studio Preferences</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom User Profile & Sign Out -->
+      <div class="p-4 border-t border-white/5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-blue-600/30 border border-blue-500/40 text-blue-400 flex items-center justify-center font-bold text-xs">
+            RP
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-white">Rangga Permadi</span>
+            <span class="font-mono text-[10px] text-gray-500">Principal Admin</span>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onclick="handleLogout()"
+          title="Sign Out of Studio Workspace"
+          class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+        >
+          <span class="material-symbols-outlined text-[18px]">logout</span>
+        </button>
+      </div>
+
+    </aside>
+
+
+    <!-- ==============================================================
+         2. MAIN WORKSPACE VIEWPORT
+         ============================================================== -->
+    <main class="flex-grow flex flex-col h-full overflow-hidden bg-[#0e0e10] relative">
+      
+      <!-- Top Navigation & Edge Status Bar -->
+      <header class="h-14 border-b border-white/5 px-6 flex items-center justify-between bg-[#111114]/50 backdrop-blur-md shrink-0">
+        
+        <!-- Left Breadcrumbs -->
+        <div class="flex items-center gap-6">
+          <a
+            href="/"
+            class="text-xs text-gray-400 hover:text-white transition-colors flex items-center gap-1.5"
+          >
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            <span>View Live Portfolio</span>
+          </a>
+
+          <!-- Tokyo Edge Node Sync Indicator -->
+          <div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/30 border border-emerald-500/20 text-emerald-400 font-mono text-[10px]">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Synchronized • Tokyo Ed. Node 01</span>
+          </div>
+        </div>
+
+        <!-- Right Quick Search & Profile -->
+        <div class="flex items-center gap-3">
+          <div class="relative w-64 hidden sm:block">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-[16px] text-gray-500">search</span>
+            <input
+              type="text"
+              id="top-filter-input"
+              oninput="handleQuickSearch(event)"
+              placeholder="Filter entries, lenses, tags..."
+              class="w-full bg-[#18181c] border border-white/5 rounded-full pl-9 pr-3 py-1.5 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 font-mono"
+            />
+          </div>
+
+          <button class="p-1.5 rounded-full text-gray-400 hover:text-white hover:bg-white/5 transition-colors" title="Filter Options">
+            <span class="material-symbols-outlined text-[18px]">tune</span>
+          </button>
+          
+          <button class="p-1.5 rounded-full text-gray-400 hover:text-white hover:bg-white/5 transition-colors relative" title="Notifications">
+            <span class="material-symbols-outlined text-[18px]">notifications</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 absolute top-1.5 right-1.5"></span>
+          </button>
+
+          <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-[11px] font-bold text-white shadow-sm">
+            RP
+          </div>
+        </div>
+
+      </header>
+
+      <!-- Scrollable Workspace Body -->
+      <div class="flex-grow overflow-y-auto px-6 py-6 flex flex-col gap-6">
+
+        <!-- Title & Subtitle Cluster -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-gray-400">STUDIO CURATION SYSTEM — PRODUCTION LEVEL 04</span>
+            </div>
+            <h1 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">
+              Content Management &amp; Archival Index
+            </h1>
+            <p class="font-body text-xs text-gray-400 max-w-2xl leading-relaxed">
+              Curate, publish, edit, and orchestrate case studies across Photography, Film, Brand Identity, and Digital Architecture.
+            </p>
+          </div>
+
+          <!-- Counter Stat Badges -->
+          <div class="flex flex-wrap items-center gap-2 font-mono text-[10.5px]">
+            <span class="px-2.5 py-1 rounded-full bg-blue-950/40 border border-blue-500/20 text-blue-300 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+              <span>42 Published Artifacts</span>
+            </span>
+            <span class="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/5 text-gray-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span>
+              <span>03 Pending Drafts</span>
+            </span>
+            <span class="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/5 text-gray-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <span>02 Scheduled</span>
+            </span>
+            <span class="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/5 text-gray-400 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[13px]">hard_drive</span>
+              <span>Vault: 14.8 GB / 100 GB</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 pt-1">
+          
+          <!-- Search Box -->
+          <div class="relative w-full max-w-md">
+            <span class="material-symbols-outlined absolute left-3.5 top-2.5 text-[16px] text-gray-500">search</span>
+            <input
+              type="text"
+              id="main-search-input"
+              oninput="filterWorksTable()"
+              placeholder="Search works by title, client, discipline..."
+              class="w-full bg-[#141417] border border-white/5 rounded-full pl-10 pr-4 py-2 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 font-mono shadow-inner"
+            />
+          </div>
+
+          <!-- Category Segmented Filters -->
+          <div class="flex flex-wrap items-center gap-1 bg-[#141417] p-1 rounded-full border border-white/5 font-mono text-[10.5px]">
+            <button
+              onclick="setDisciplineTab('all', this)"
+              class="disc-tab active px-3.5 py-1 rounded-full bg-white/10 text-white font-medium transition-colors"
+            >
+              ALL WORKS (42)
+            </button>
+            <button
+              onclick="setDisciplineTab('photo', this)"
+              class="disc-tab px-3 py-1 rounded-full text-gray-400 hover:text-white transition-colors"
+            >
+              PHOTO (12)
+            </button>
+            <button
+              onclick="setDisciplineTab('video', this)"
+              class="disc-tab px-3 py-1 rounded-full text-gray-400 hover:text-white transition-colors"
+            >
+              VIDEO (8)
+            </button>
+            <button
+              onclick="setDisciplineTab('design', this)"
+              class="disc-tab px-3 py-1 rounded-full text-gray-400 hover:text-white transition-colors"
+            >
+              DESIGN (14)
+            </button>
+            <button
+              onclick="setDisciplineTab('web', this)"
+              class="disc-tab px-3 py-1 rounded-full text-gray-400 hover:text-white transition-colors"
+            >
+              WEB (8)
+            </button>
+          </div>
+
+          <!-- Right Action Buttons -->
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              onclick="toggleBatchSort()"
+              class="px-3.5 py-2 rounded-full bg-[#18181c] hover:bg-[#202026] text-gray-300 font-mono text-[11px] border border-white/10 transition-colors flex items-center gap-1.5 cursor-pointer"
+            >
+              <span class="material-symbols-outlined text-[15px]">swap_vert</span>
+              <span>Batch Reorder &amp; Sort</span>
+            </button>
+
+            <button
+              type="button"
+              onclick="openCreateDrawer()"
+              class="px-4 py-2 rounded-full bg-[#2563eb] hover:bg-blue-600 text-white font-display font-medium text-xs shadow-lg shadow-blue-600/20 transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
+            >
+              <span class="material-symbols-outlined text-[16px]">add</span>
+              <span>Create New Entry</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Studio Metrics Cards Row (4 Metrics) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+          
+          <!-- Metric 1: Active Exposure -->
+          <div class="bg-[#141417] border border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+            <span class="font-mono text-[10px] text-gray-500 uppercase tracking-wider">ACTIVE EXPOSURE</span>
+            <div class="flex items-baseline gap-2 py-1">
+              <span class="font-display text-2xl font-bold text-white tracking-tight">143.0k</span>
+              <span class="font-mono text-[10.5px] text-emerald-400 font-medium">+18.4%</span>
+            </div>
+            <span class="font-mono text-[10px] text-gray-400">DCI-P3 High Res Hits</span>
+          </div>
+
+          <!-- Metric 2: Featured Awards -->
+          <div class="bg-[#141417] border border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+            <span class="font-mono text-[10px] text-gray-500 uppercase tracking-wider">FEATURED AWARDS</span>
+            <div class="flex items-baseline gap-2 py-1">
+              <span class="font-display text-2xl font-bold text-white tracking-tight">11</span>
+              <span class="font-mono text-[10px] text-gray-400">Awwwards / Red Dot</span>
+            </div>
+            <span class="font-mono text-[10px] text-gray-400">International juries</span>
+          </div>
+
+          <!-- Metric 3: Media Resolution -->
+          <div class="bg-[#141417] border border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+            <span class="font-mono text-[10px] text-gray-500 uppercase tracking-wider">MEDIA RESOLUTION</span>
+            <div class="flex items-baseline gap-2 py-1">
+              <span class="font-display text-2xl font-bold text-white tracking-tight">4K DCI</span>
+              <span class="font-mono text-[10px] text-blue-400 bg-blue-950/50 px-1.5 py-0.5 rounded">ProRes 4444</span>
+            </div>
+            <span class="font-mono text-[10px] text-gray-400">Cinematic Standard</span>
+          </div>
+
+          <!-- Metric 4: Sync Health -->
+          <div class="bg-[#141417] border border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+            <span class="font-mono text-[10px] text-gray-500 uppercase tracking-wider">SYNC HEALTH</span>
+            <div class="flex items-baseline gap-2 py-1">
+              <span class="material-symbols-outlined text-blue-400 text-[18px]">cloud_done</span>
+              <span class="font-display text-2xl font-bold text-white tracking-tight">99.98%</span>
+            </div>
+            <span class="font-mono text-[10px] text-gray-400">Global Edge CDN</span>
+          </div>
+
+        </div>
+
+        <!-- Curated Works List Table / Cards -->
+        <div class="flex flex-col gap-2.5" id="works-list-container">
+          <!-- Dynamic Items Injected Here -->
+        </div>
+
+        <!-- Pagination Bar -->
+        <div class="border-t border-white/5 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[10.5px] text-gray-500 pb-10">
+          <span id="pagination-status">Showing 06 of 42 cataloged exhibits</span>
+          <div class="flex items-center gap-3">
+            <button class="hover:text-white transition-colors" onclick="changePage(-1)">Previous Frame</button>
+            <span class="px-2 py-1 rounded bg-[#18181c] text-gray-300">1 / 7</span>
+            <button class="hover:text-white transition-colors" onclick="changePage(1)">Next Frame</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Static Bottom Telemetry Bar -->
+      <footer class="h-8 border-t border-white/5 px-6 flex items-center justify-between bg-[#0e0e10] shrink-0 font-mono text-[9.5px] text-gray-500 tracking-wider">
+        <div class="flex items-center gap-4">
+          <span>© FRAME OF RANGGA STUDIO</span>
+          <span class="hidden md:inline">LOC: 35.6762° N, 139.6503° E</span>
+          <span class="hidden lg:inline">COLOR PROFILE: DCI-P3 6500K</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span>ENGINE LATENCY: 14MS</span>
+          <span class="text-emerald-400">SECURE RESTRICTED ACCESS</span>
+        </div>
+      </footer>
+
+    </main>
+
+
+    <!-- ==============================================================
+         3. ACTIVE INSPECTOR (RIGHT DRAWER)
+         ============================================================== -->
+    <aside
+      id="inspector-drawer"
+      class="w-96 bg-[#131316] border-l border-white/5 h-full flex flex-col justify-between shrink-0 overflow-hidden transition-all duration-300 transform translate-x-full fixed right-0 top-0 bottom-0 z-30 shadow-2xl"
+    >
+      
+      <!-- Drawer Header -->
+      <div class="p-5 border-b border-white/5 flex items-center justify-between shrink-0">
+        <div class="flex flex-col">
+          <span class="font-mono text-[9px] uppercase tracking-widest text-gray-500">ACTIVE INSPECTOR</span>
+          <h2 class="font-display text-base font-bold text-white tracking-tight" id="inspector-title">Curate Work Detail</h2>
+        </div>
+        <button
+          type="button"
+          onclick="closeInspectorDrawer()"
+          class="p-1 rounded-full text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+        >
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Drawer Form Body (Scrollable) -->
+      <div class="flex-grow overflow-y-auto p-5 flex flex-col gap-4 font-mono text-xs">
+        
+        <!-- Hidden Item Identifiers -->
+        <input type="hidden" id="edit-id" />
+        <input type="hidden" id="edit-type" value="photo" />
+
+        <!-- Project Exhibition Title -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] text-gray-400 tracking-wider uppercase">PROJECT EXHIBITION TITLE</label>
+          <input
+            type="text"
+            id="edit-title"
+            value="The Ocean Series"
+            class="w-full bg-[#0d0d0f] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
+          />
+        </div>
+
+        <!-- Discipline Pillar Selector -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] text-gray-400 tracking-wider uppercase">DISCIPLINE PILLAR</label>
+          <div class="grid grid-cols-4 gap-1 bg-[#0d0d0f] p-1 rounded-xl border border-white/10 text-center">
+            <button type="button" onclick="selectPillar('photo')" id="pillar-photo" class="pillar-btn active py-1.5 rounded-lg bg-white text-[#0e0e10] font-bold text-[10px]">PHOTO</button>
+            <button type="button" onclick="selectPillar('video')" id="pillar-video" class="pillar-btn py-1.5 rounded-lg text-gray-400 hover:text-white font-medium text-[10px]">VIDEO</button>
+            <button type="button" onclick="selectPillar('design')" id="pillar-design" class="pillar-btn py-1.5 rounded-lg text-gray-400 hover:text-white font-medium text-[10px]">DESIGN</button>
+            <button type="button" onclick="selectPillar('web')" id="pillar-web" class="pillar-btn py-1.5 rounded-lg text-gray-400 hover:text-white font-medium text-[10px]">WEB</button>
+          </div>
+        </div>
+
+        <!-- Hero Master Asset (4K / RAW Dropzone) -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] text-gray-400 tracking-wider uppercase">HERO MASTER ASSET (4K / RAW)</label>
+          <div
+            onclick="document.getElementById('edit-file-input').click()"
+            class="border border-dashed border-white/20 hover:border-blue-500 rounded-2xl p-4 flex flex-col items-center justify-center text-center gap-2 cursor-pointer bg-[#0d0d0f] transition-colors group"
+          >
+            <span class="material-symbols-outlined text-[28px] text-gray-400 group-hover:text-blue-400 transition-colors">cloud_upload</span>
+            <p class="text-[10px] text-gray-400">
+              Drop high-res 4:5 or 16:9 still<br />
+              <span class="text-gray-500 text-[9px]">Supports DNG, TIFF, ProRes 4444, WebP</span>
+            </p>
+            <span id="current-asset-label" class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[9.5px] text-gray-300 font-mono">
+              Current: ocean_series_master_01.raw
+            </span>
+          </div>
+          <input type="file" id="edit-file-input" style="display: none;" onchange="handleFileChange(event)" accept="image/*,video/*" />
+        </div>
+
+        <!-- Client & Exhibition Year (2 cols) -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-[10px] text-gray-400 tracking-wider uppercase">CLIENT / PARTNER</label>
+            <input
+              type="text"
+              id="edit-client"
+              value="Self-Initiated Ex"
+              class="w-full bg-[#0d0d0f] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-[10px] text-gray-400 tracking-wider uppercase">CURATORIAL YEAR</label>
+            <input
+              type="text"
+              id="edit-year"
+              value="2026"
+              class="w-full bg-[#0d0d0f] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        <!-- Curator Statement (Markdown) -->
+        <div class="flex flex-col gap-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-[10px] text-gray-400 tracking-wider uppercase">CURATOR STATEMENT</label>
+            <span class="text-[9px] text-gray-500">Markdown Enabled</span>
+          </div>
+          <textarea
+            id="edit-statement"
+            rows="3"
+            class="w-full bg-[#0d0d0f] border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-500 resize-none font-sans leading-relaxed"
+          >A meditative exploration of nocturnal coastal tides. Captured across 14 consecutive nights using vintage medium format emulsions.</textarea>
+        </div>
+
+        <!-- Technical Stamps & Tags -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[10px] text-gray-400 tracking-wider uppercase">TECHNICAL STAMPS &amp; TAGS</label>
+          <div class="flex flex-wrap items-center gap-1.5" id="tags-container">
+            <span class="px-2 py-1 rounded bg-[#1e1e24] text-gray-300 text-[10px] flex items-center gap-1">
+              Leica M6
+              <button onclick="removeTag(this)" class="hover:text-red-400">&times;</button>
+            </span>
+            <span class="px-2 py-1 rounded bg-[#1e1e24] text-gray-300 text-[10px] flex items-center gap-1">
+              35mm Film
+              <button onclick="removeTag(this)" class="hover:text-red-400">&times;</button>
+            </span>
+            <span class="px-2 py-1 rounded bg-[#1e1e24] text-gray-300 text-[10px] flex items-center gap-1">
+              Analog Grade
+              <button onclick="removeTag(this)" class="hover:text-red-400">&times;</button>
+            </span>
+            <button
+              type="button"
+              onclick="addTagPrompt()"
+              class="px-2 py-1 rounded border border-dashed border-white/20 text-gray-400 hover:text-white text-[10px]"
+            >
+              + Tag
+            </button>
+          </div>
+        </div>
+
+        <!-- Public Visibility Toggle -->
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-[#0d0d0f] border border-white/5 mt-1">
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-white">Public Visibility</span>
+            <span class="text-[9.5px] text-gray-500">Synchronized to live global showcase</span>
+          </div>
+          <label class="custom-switch">
+            <input type="checkbox" id="edit-visibility" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Drawer Footer Actions -->
+      <div class="p-5 border-t border-white/5 flex flex-col gap-2 shrink-0 bg-[#111114]">
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            onclick="saveArchivalDraft()"
+            class="flex-1 py-2.5 rounded-full bg-[#1e1e24] hover:bg-[#282830] text-gray-300 font-mono text-xs transition-colors"
+          >
+            Save Draft
+          </button>
+          <button
+            type="button"
+            onclick="updateAndSyncLive()"
+            id="sync-submit-btn"
+            class="flex-1 py-2.5 rounded-full bg-[#2563eb] hover:bg-blue-600 text-white font-mono font-medium text-xs shadow-lg shadow-blue-600/30 transition-all cursor-pointer"
+          >
+            Update &amp; Sync
+          </button>
+        </div>
+
+        <button
+          type="button"
+          onclick="deleteArchivalRecord()"
+          class="text-center text-[10px] text-red-400/80 hover:text-red-400 transition-colors pt-1 cursor-pointer"
+        >
+          Delete Archival Record
+        </button>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- Toast Notification Overlay -->
+  <div id="cms-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="px-4 py-2.5 rounded-full bg-[#18181c] border border-blue-500/30 shadow-2xl text-white text-xs font-mono flex items-center gap-2">
+      <span class="material-symbols-outlined text-[16px] text-blue-400">check_circle</span>
+      <span id="toast-message">Record synchronized to edge node</span>
+    </div>
+  </div>
+
+
+  <!-- ==============================================================
+       CLIENT-SIDE SCRIPTING & SYNCHRONIZATION
+       ============================================================== -->
+  <script is:inline>
+    // Authentication Validation
+    const token = localStorage.getItem('for_studio_token');
+    if (!token) {
+      // If not logged in, redirect to login
+      window.location.href = '/admin/login';
+    }
+
+    // Default High-Fidelity Showcase Dataset (Matches Mockup)
+    let catalogItems = [
+      {
+        id: 'the-ocean-series',
+        badge: 'RAW',
+        discipline: 'photo',
+        disciplineLabel: 'PHOTO • Editorial & 35mm Analog',
+        title: 'The Ocean Series',
+        subtext: 'Self-Initiated Exhibition • Leica M6 / Summilux 35mm • 2026',
+        client: 'Self-Initiated Ex',
+        year: '2026',
+        status: 'published',
+        views: '14.2k views',
+        asset: 'ocean_series_master_01.raw',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLUmgq8ihNYNNLzO10X4Fi1Ng3GBBBovXTJ7Bsd6tIsPtyUVmZB5LfEFaZ7AZwga9UKqnvmCPyxy2qnxnNFmyqQZPpaH4fnhYAK3gCutU8eZr2DGUFiyA4nAf7ImlPqH1FlnQi7OjcCbZDwVMCithWVdMYOYB9OzMz_U1ubX3s_ysCGddStb91qOU3x5bGPAlK_2BqrCVoJf8LvqDIRy6HxjLztTwnmbYUZk5of-XF0rZIylsIbeun',
+        statement: 'A meditative exploration of nocturnal coastal tides. Captured across 14 consecutive nights using vintage medium format emulsions.',
+        tags: ['Leica M6', '35mm Film', 'Analog Grade']
+      },
+      {
+        id: 'the-last-light',
+        badge: '16MM',
+        discipline: 'video',
+        disciplineLabel: "VIDEO • Cinematic 16mm • Director's Cut",
+        title: 'The Last Light',
+        subtext: 'Festival Official Selection • Arri 416 • Kodak Vision3 • 2026',
+        client: 'Festival Official Selection',
+        year: '2026',
+        status: 'published',
+        views: '28.5k views',
+        asset: 'the_last_light_4k_prores.mov',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCVsrViwITXH4R3FyJjPU_RTHfLWOsIA9fiCVGhoJDqwZXZh9FNerV8bC35aNMDdmtWTtiJTZ78Vy7Lf8NGu8T92Ui60TGIpAVpwYYPZ2kywgPRlgviK84b6Z3rD3dJuxruD0THx7k77JklMn3WxaxukoXurkwtYiOG-uqc8YsICDnN69oBGAihQ0ahK7DOaJ8eade_slnpW2ufg-r4vHvefPe7YU5Nn-8wKRGrS5jB4LNfRbIxuhbK',
+        statement: 'Narrative short exploring isolation on alpine terrain. Directed on 16mm film stock with natural golden hour illumination.',
+        tags: ['Arri 416', 'Kodak Vision3', 'DaVinci Resolve']
+      },
+      {
+        id: 'lumen-brand-identity',
+        badge: 'ID',
+        discipline: 'design',
+        disciplineLabel: 'DESIGN • Brand Identity & Luxury Packaging',
+        title: 'LUMEN — Holistic Brand Ident',
+        subtext: 'Lumen Labs Inc. • Custom Typeface & Foil Craft • 2025',
+        client: 'Lumen Labs Inc.',
+        year: '2025',
+        status: 'published',
+        views: '39.1k views',
+        asset: 'lumen_identity_guidelines_v2.pdf',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbLNPRpGguviIR-bsQ2D2YKhwtK0ow5u0T_bwjr4Qc8E6j-J_eQ9E2fRKRSrWbO4k18vV4Le-yXya7X_lSL0vjZiLg-aTXqMqQLqpgeJEXbm_FXH8UR_TDMiLg3Zz83CWCmi9sDZUkJ7IB-k2lgMP9DC0EdkY0KU5bJpGtAAnYtjPOS9S35dZQQKX1m-rZzIi12E4PmVhw650CzHd_vxHhJghyjY6ncGyu71lHTkiChLCl2pKzBhJ6',
+        statement: 'Complete spatial and tactile identity design system engineered for an avant-garde architectural lighting atelier.',
+        tags: ['Custom Type', 'Foil Craft', 'Packaging']
+      },
+      {
+        id: 'aura-architecture',
+        badge: 'WEBGL',
+        discipline: 'web',
+        disciplineLabel: 'WEB • Interactive WebGL & Digital Experience',
+        title: 'Aura Architecture Flagship',
+        subtext: 'Aura Arkitekter Oslo • Three.js / GLSL / Next.js 15 • 2025',
+        client: 'Aura Arkitekter Oslo',
+        year: '2025',
+        status: 'published',
+        views: '41.8k views',
+        asset: 'aura_webgl_bundle.wasm',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO6BDLECnJXG_N7pL-pOVMtc27seTbmE5t8qZjZEaGcIcd4iUz_T9o6eRjphwdQfZwrN0cOpAcejk7mBFTiXKFK28OIN3VrL4ySepUSRcPwuP6kX6y5JSFf-LaZMzDEwpXBtsZnpypr9Hp1t8TE_AB_lDtKIeVjsPqzHSaGHLF1oZpWsAtnnDt1CMmKi8Y-xw67vUWoY6iiHnx6vbW3DawyPwISxo2xCGzClt2En0QBYU_UGVDT7xN',
+        statement: 'Zero-latency spatial flagship built with raw GLSL refraction shaders and fluid layout transitions.',
+        tags: ['Three.js', 'Next.js 15', 'GLSL']
+      },
+      {
+        id: 'nusantara-coffee-co',
+        badge: 'PKG',
+        discipline: 'design',
+        disciplineLabel: 'DESIGN • Sustainable Packaging & Monograph',
+        title: 'Nusantara Coffee Co.',
+        subtext: 'Nusantara Roasters • FSC Recycled Stock / Blind Deboss • 2024',
+        client: 'Nusantara Roasters',
+        year: '2024',
+        status: 'published',
+        views: '19.4k views',
+        asset: 'nusantara_roasters_packaging.dng',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLUmgq8ihNYNNLzO10X4Fi1Ng3GBBBovXTJ7Bsd6tIsPtyUVmZB5LfEFaZ7AZwga9UKqnvmCPyxy2qnxnNFmyqQZPpaH4fnhYAK3gCutU8eZr2DGUFiyA4nAf7ImlPqH1FlnQi7OjcCbZDwVMCithWVdMYOYB9OzMz_U1ubX3s_ysCGddStb91qOU3x5bGPAlK_2BqrCVoJf8LvqDIRy6HxjLztTwnmbYUZk5of-XF0rZIylsIbeun',
+        statement: 'Tactile blind-debossed kraft monograph packaging celebrating high-elevation Indonesian single-origin coffees.',
+        tags: ['Blind Deboss', 'FSC Stock', 'Branding']
+      },
+      {
+        id: 'kinesis-pavilion',
+        badge: 'DRAFT',
+        discipline: 'web',
+        disciplineLabel: 'WEB / SOUND • 3D Spatial Sound Sculpture',
+        title: 'Kinesis Pavilion Real-time WebG',
+        subtext: 'Venice Biennale Exhibition • Web Audio API / WebGPU • 2024',
+        client: 'Venice Biennale Exhibition',
+        year: '2024',
+        status: 'draft',
+        views: '—',
+        asset: 'kinesis_webgpu_scene.glb',
+        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO6BDLECnJXG_N7pL-pOVMtc27seTbmE5t8qZjZEaGcIcd4iUz_T9o6eRjphwdQfZwrN0cOpAcejk7mBFTiXKFK28OIN3VrL4ySepUSRcPwuP6kX6y5JSFf-LaZMzDEwpXBtsZnpypr9Hp1t8TE_AB_lDtKIeVjsPqzHSaGHLF1oZpWsAtnnDt1CMmKi8Y-xw67vUWoY6iiHnx6vbW3DawyPwISxo2xCGzClt2En0QBYU_UGVDT7xN',
+        statement: 'A generative acoustic interface visualizing structural vibrations recorded across the Venetian lagoon.',
+        tags: ['WebGPU', 'Web Audio API', 'Spatial UI']
+      }
+    ];
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    // Initialize View
+    document.addEventListener('DOMContentLoaded', () => {
+      renderWorksList();
+    });
+
+    function renderWorksList() {
+      const container = document.getElementById('works-list-container');
+      const filtered = catalogItems.filter(item => {
+        const matchesCategory = currentFilter === 'all' || item.discipline === currentFilter;
+        const matchesSearch = !searchQuery || 
+          item.title.toLowerCase().includes(searchQuery) ||
+          item.subtext.toLowerCase().includes(searchQuery) ||
+          item.client.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="p-12 text-center flex flex-col items-center justify-center gap-2 border border-white/5 rounded-2xl bg-[#141417]">
+            <span class="material-symbols-outlined text-gray-500 text-[36px]">filter_list_off</span>
+            <p class="font-mono text-xs text-gray-400">Tidak ada karya yang sesuai dengan filter '${searchQuery || currentFilter}'</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="bg-[#141417] hover:bg-[#18181c] border border-white/5 rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-colors group">
+          
+          <!-- Left: Thumbnail & Core Metadata -->
+          <div class="flex items-center gap-4 min-w-0">
+            <div class="relative w-16 h-12 rounded-xl overflow-hidden bg-black/60 shrink-0 border border-white/10">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <span class="absolute bottom-1 right-1 font-mono text-[8px] bg-black/80 px-1 py-0.2 rounded text-gray-300 uppercase">${item.badge}</span>
+            </div>
+
+            <div class="flex flex-col min-w-0">
+              <span class="font-mono text-[9.5px] uppercase tracking-wider text-gray-400 truncate">${item.disciplineLabel}</span>
+              <h3 class="font-display text-sm font-bold text-white tracking-tight truncate">${item.title}</h3>
+              <p class="font-mono text-[10.5px] text-gray-500 truncate">${item.subtext}</p>
+            </div>
+          </div>
+
+          <!-- Right: Status, Views, Inline Actions -->
+          <div class="flex items-center gap-4 shrink-0 self-end md:self-center">
+            
+            ${item.status === 'published' ? `
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-full bg-cyan-950/40 border border-cyan-500/20 text-cyan-300 font-mono text-[10px] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  Published
+                </span>
+                <span class="font-mono text-[10px] text-gray-500">${item.views}</span>
+              </div>
+            ` : `
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-full bg-zinc-900 border border-white/10 text-gray-400 font-mono text-[10px]">
+                  Draft In-Review
+                </span>
+                <button
+                  type="button"
+                  onclick="publishDraftDirectly('${item.id}')"
+                  class="px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-mono text-[10px] font-semibold transition-all shadow-sm"
+                >
+                  PUBLISH NOW
+                </button>
+              </div>
+            `}
+
+            <!-- Inline Icon Actions -->
+            <div class="flex items-center gap-1 border-l border-white/10 pl-3">
+              <button
+                type="button"
+                onclick="openEditDrawer('${item.id}')"
+                title="Edit Work"
+                class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[17px]">edit</span>
+              </button>
+
+              <button
+                type="button"
+                onclick="previewWorkItem('${item.discipline}')"
+                title="Live Preview"
+                class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[17px]">visibility</span>
+              </button>
+
+              <button
+                type="button"
+                onclick="duplicateWorkItem('${item.id}')"
+                title="Duplicate Entry"
+                class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[17px]">content_copy</span>
+              </button>
+
+              <button
+                type="button"
+                onclick="deleteWorkItem('${item.id}')"
+                title="Delete Entry"
+                class="p-1.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-950/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[17px]">delete</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      `).join('');
+    }
+
+    // Filter Handlers
+    function setDisciplineTab(discipline, btn) {
+      currentFilter = discipline;
+      document.querySelectorAll('.disc-tab').forEach(b => {
+        b.classList.remove('active', 'bg-white/10', 'text-white');
+        b.classList.add('text-gray-400');
+      });
+      if (btn) {
+        btn.classList.add('active', 'bg-white/10', 'text-white');
+        btn.classList.remove('text-gray-400');
+      }
+      renderWorksList();
+    }
+
+    function setCatalogFilter(cat) {
+      document.querySelectorAll('.sidebar-nav-item').forEach(b => {
+        b.classList.remove('active', 'bg-white/10', 'text-white');
+        b.classList.add('text-gray-400');
+      });
+      const activeBtn = document.getElementById(`nav-${cat}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'bg-white/10', 'text-white');
+        activeBtn.classList.remove('text-gray-400');
+      }
+      currentFilter = cat;
+      renderWorksList();
+    }
+
+    function filterWorksTable() {
+      searchQuery = document.getElementById('main-search-input').value.toLowerCase().trim();
+      renderWorksList();
+    }
+
+    function handleQuickSearch(e) {
+      searchQuery = e.target.value.toLowerCase().trim();
+      document.getElementById('main-search-input').value = searchQuery;
+      renderWorksList();
+    }
+
+    // Drawer Management (Active Inspector)
+    function openEditDrawer(id) {
+      const item = catalogItems.find(i => i.id === id);
+      if (!item) return;
+
+      document.getElementById('edit-id').value = item.id;
+      document.getElementById('edit-type').value = item.discipline;
+      document.getElementById('inspector-title').textContent = 'Curate Work Detail';
+      document.getElementById('edit-title').value = item.title;
+      document.getElementById('edit-client').value = item.client;
+      document.getElementById('edit-year').value = item.year;
+      document.getElementById('edit-statement').value = item.statement;
+      document.getElementById('current-asset-label').textContent = `Current: ${item.asset}`;
+      document.getElementById('edit-visibility').checked = item.status === 'published';
+
+      selectPillar(item.discipline);
+      renderTags(item.tags || []);
+
+      const drawer = document.getElementById('inspector-drawer');
+      drawer.classList.remove('translate-x-full');
+    }
+
+    function openCreateDrawer() {
+      document.getElementById('edit-id').value = '';
+      document.getElementById('edit-type').value = 'photo';
+      document.getElementById('inspector-title').textContent = 'New Archival Entry';
+      document.getElementById('edit-title').value = '';
+      document.getElementById('edit-client').value = '';
+      document.getElementById('edit-year').value = new Date().getFullYear().toString();
+      document.getElementById('edit-statement').value = '';
+      document.getElementById('current-asset-label').textContent = 'No asset attached';
+      document.getElementById('edit-visibility').checked = true;
+
+      selectPillar('photo');
+      renderTags(['Leica M6', '35mm Film']);
+
+      const drawer = document.getElementById('inspector-drawer');
+      drawer.classList.remove('translate-x-full');
+    }
+
+    function closeInspectorDrawer() {
+      const drawer = document.getElementById('inspector-drawer');
+      drawer.classList.add('translate-x-full');
+    }
+
+    function selectPillar(pillar) {
+      document.getElementById('edit-type').value = pillar;
+      document.querySelectorAll('.pillar-btn').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-[#0e0e10]', 'font-bold');
+        btn.classList.add('text-gray-400', 'font-medium');
+      });
+      const activeBtn = document.getElementById(`pillar-${pillar}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-white', 'text-[#0e0e10]', 'font-bold');
+        activeBtn.classList.remove('text-gray-400', 'font-medium');
+      }
+    }
+
+    function renderTags(tags) {
+      const container = document.getElementById('tags-container');
+      container.innerHTML = tags.map(tag => `
+        <span class="px-2 py-1 rounded bg-[#1e1e24] text-gray-300 text-[10px] flex items-center gap-1">
+          ${tag}
+          <button type="button" onclick="removeTag(this)" class="hover:text-red-400">&times;</button>
+        </span>
+      `).join('') + `
+        <button
+          type="button"
+          onclick="addTagPrompt()"
+          class="px-2 py-1 rounded border border-dashed border-white/20 text-gray-400 hover:text-white text-[10px]"
+        >
+          + Tag
+        </button>
+      `;
+    }
+
+    function removeTag(btn) {
+      btn.parentElement.remove();
+    }
+
+    function addTagPrompt() {
+      const newTag = prompt('Masukkan nama tag teknis (contoh: 50mm Summilux, DaVinci):');
+      if (newTag && newTag.trim()) {
+        const container = document.getElementById('tags-container');
+        const tagSpan = document.createElement('span');
+        tagSpan.className = 'px-2 py-1 rounded bg-[#1e1e24] text-gray-300 text-[10px] flex items-center gap-1';
+        tagSpan.innerHTML = `${newTag.trim()} <button type="button" onclick="removeTag(this)" class="hover:text-red-400">&times;</button>`;
+        container.insertBefore(tagSpan, container.lastElementChild);
+      }
+    }
+
+    function handleFileChange(e) {
+      if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        document.getElementById('current-asset-label').textContent = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+        showToast(`Asset '${file.name}' di-buffer untuk upload`);
+      }
+    }
+
+    function updateAndSyncLive() {
+      const id = document.getElementById('edit-id').value;
+      const title = document.getElementById('edit-title').value.trim();
+      const discipline = document.getElementById('edit-type').value;
+      const client = document.getElementById('edit-client').value.trim();
+      const year = document.getElementById('edit-year').value.trim();
+      const statement = document.getElementById('edit-statement').value.trim();
+      const isVisible = document.getElementById('edit-visibility').checked;
+
+      if (!title) {
+        alert('Silakan isi judul pameran / proyek.');
+        return;
+      }
+
+      if (id) {
+        const item = catalogItems.find(i => i.id === id);
+        if (item) {
+          item.title = title;
+          item.discipline = discipline;
+          item.client = client;
+          item.year = year;
+          item.statement = statement;
+          item.status = isVisible ? 'published' : 'draft';
+        }
+      } else {
+        const newId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        catalogItems.unshift({
+          id: newId,
+          badge: discipline.toUpperCase(),
+          discipline: discipline,
+          disciplineLabel: `${discipline.toUpperCase()} • Curated Entry`,
+          title: title,
+          subtext: `${client || 'Studio Commission'} • ${year}`,
+          client: client,
+          year: year,
+          status: isVisible ? 'published' : 'draft',
+          views: '0 views',
+          asset: 'master_upload.raw',
+          image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLUmgq8ihNYNNLzO10X4Fi1Ng3GBBBovXTJ7Bsd6tIsPtyUVmZB5LfEFaZ7AZwga9UKqnvmCPyxy2qnxnNFmyqQZPpaH4fnhYAK3gCutU8eZr2DGUFiyA4nAf7ImlPqH1FlnQi7OjcCbZDwVMCithWVdMYOYB9OzMz_U1ubX3s_ysCGddStb91qOU3x5bGPAlK_2BqrCVoJf8LvqDIRy6HxjLztTwnmbYUZk5of-XF0rZIylsIbeun',
+          statement: statement,
+          tags: ['Studio', discipline]
+        });
+      }
+
+      showToast(`'${title}' berhasil disinkronkan ke Tokyo Ed. Node 01`);
+      closeInspectorDrawer();
+      renderWorksList();
+    }
+
+    function saveArchivalDraft() {
+      document.getElementById('edit-visibility').checked = false;
+      updateAndSyncLive();
+    }
+
+    function deleteArchivalRecord() {
+      const id = document.getElementById('edit-id').value;
+      if (!id) return;
+      if (confirm('Hapus permanen arsip karya ini dari cloud vault?')) {
+        catalogItems = catalogItems.filter(i => i.id !== id);
+        closeInspectorDrawer();
+        renderWorksList();
+        showToast('Arsip karya dihapus dari sistem');
+      }
+    }
+
+    function publishDraftDirectly(id) {
+      const item = catalogItems.find(i => i.id === id);
+      if (item) {
+        item.status = 'published';
+        renderWorksList();
+        showToast(`'${item.title}' kini live di pameran global`);
+      }
+    }
+
+    function duplicateWorkItem(id) {
+      const item = catalogItems.find(i => i.id === id);
+      if (!item) return;
+      const copy = { ...item, id: item.id + '-copy', title: item.title + ' (Copy)', status: 'draft' };
+      catalogItems.unshift(copy);
+      renderWorksList();
+      showToast(`Duplikasi karya berhasil dibuat`);
+    }
+
+    function previewWorkItem(discipline) {
+      const routeMap = {
+        photo: '/foto',
+        video: '/video',
+        design: '/design',
+        web: '/website'
+      };
+      window.open(routeMap[discipline] || '/', '_blank');
+    }
+
+    function deleteWorkItem(id) {
+      if (confirm('Hapus arsip ini?')) {
+        catalogItems = catalogItems.filter(i => i.id !== id);
+        renderWorksList();
+        showToast('Karya dihapus dari katalog');
+      }
+    }
+
+    function toggleBatchSort() {
+      catalogItems.reverse();
+      renderWorksList();
+      showToast('Urutan katalog diperbarui');
+    }
+
+    function changePage(delta) {
+      showToast(`Berpindah ke Frame halaman`);
+    }
+
+    function showVaultInfo() {
+      alert('Asset Vault: 14.8 GB terpakai dari 100 GB Cloudflare R2 / S3 archival tier.');
+    }
+
+    function showStudioPreferences() {
+      alert('Studio Preferences: Tokyo Ed. Node 01 • DCI-P3 6500K Calibration • Edge Cache: 99.98% Healthy');
+    }
+
+    function handleLogout() {
+      if (confirm('Keluar dari Studio Curation Engine?')) {
+        localStorage.removeItem('for_studio_token');
+        localStorage.removeItem('for_studio_token_time');
+        window.location.href = '/admin/login';
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('cms-toast');
+      const text = document.getElementById('toast-message');
+      text.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
