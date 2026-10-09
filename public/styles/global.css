@@ -66,18 +66,58 @@
   --gradient-red: linear-gradient(135deg, #93000a 0%, #ffb4ab 100%);
   --gradient-dark: linear-gradient(135deg, #0e0e10 0%, #1c1b1d 100%);
 
-  /* === THEME SEMANTIC MAPPINGS (STITCH DARKROOM TOKENS) === */
-  --bg-primary: #131315;
-  --bg-secondary: #0e0e10;
-
+  /* === MATERIAL DESIGN SEMANTIC TOKENS (used by Tailwind var() fallbacks) === */
+  --background: #131315;
+  --on-background: #e5e1e4;
   --surface: #131315;
+  --on-surface: #e5e1e4;
+  --on-surface-variant: #c3c6d7;
   --surface-container-lowest: #0e0e10;
-  --surface-dim: #131315;
   --surface-container-low: #1c1b1d;
   --surface-container: #201f21;
   --surface-container-high: #2a2a2c;
   --surface-container-highest: #353437;
+  --surface-dim: #131315;
   --surface-bright: #39393b;
+  --surface-variant: #353437;
+  --surface-tint: #b4c5ff;
+  --inverse-surface: #e5e1e4;
+  --inverse-on-surface: #313032;
+  --inverse-primary: #0053db;
+  --outline: #8d90a0;
+  --outline-variant: #434655;
+
+  --primary: #b4c5ff;
+  --on-primary: #002a78;
+  --primary-container: #2563eb;
+  --on-primary-container: #eeefff;
+  --primary-fixed: #dbe1ff;
+  --on-primary-fixed: #00174b;
+  --primary-fixed-variant: #003ea8;
+  --secondary: #b9c8de;
+  --on-secondary: #233143;
+  --secondary-container: #39485a;
+  --on-secondary-container: #a7b6cc;
+  --secondary-fixed: #d4e4fa;
+  --on-secondary-fixed: #0d1c2d;
+  --secondary-fixed-dim: #b9c8de;
+  --on-secondary-fixed-variant: #39485a;
+  --tertiary: #7bd0ff;
+  --on-tertiary: #00354a;
+  --tertiary-container: #00759f;
+  --on-tertiary-container: #e1f2ff;
+  --tertiary-fixed: #c4e7ff;
+  --on-tertiary-fixed: #001e2c;
+  --tertiary-fixed-dim: #7bd0ff;
+  --on-tertiary-fixed-variant: #004c69;
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
+  /* === THEME SEMANTIC MAPPINGS (STITCH DARKROOM TOKENS) === */
+  --bg-primary: #131315;
+  --bg-secondary: #0e0e10;
 
   /* Primary Accent — Stitch Blue */
   --accent-primary: #2563eb;
@@ -181,16 +221,57 @@
   --color-dark-text-muted: #8d90a0;
 
   /* Surface tokens (light) */
-  --bg-primary: #fafafa;
-  --bg-secondary: #ffffff;
+  --background: #fafafa;
+  --on-background: #131315;
   --surface: #fafafa;
+  --on-surface: #131315;
+  --on-surface-variant: #434655;
   --surface-container-lowest: #ffffff;
-  --surface-dim: #fafafa;
   --surface-container-low: #f1f3f5;
   --surface-container: #ffffff;
   --surface-container-high: #e8eaed;
   --surface-container-highest: #dde0e5;
+  --surface-dim: #fafafa;
   --surface-bright: #f5f5f7;
+  --surface-variant: #e8eaed;
+  --surface-tint: #dbeafe;
+  --inverse-surface: #131315;
+  --inverse-on-surface: #e5e1e4;
+  --inverse-primary: #b4c5ff;
+  --outline: #c3c6d7;
+  --outline-variant: #d3d4db;
+
+  --primary: #0053db;
+  --on-primary: #ffffff;
+  --primary-container: #dbeafe;
+  --on-primary-container: #1e40af;
+  --primary-fixed: #dbe1ff;
+  --on-primary-fixed: #00174b;
+  --primary-fixed-variant: #003ea8;
+  --secondary: #39485a;
+  --on-secondary: #e8eef7;
+  --secondary-container: #e8eef7;
+  --on-secondary-container: #233143;
+  --secondary-fixed: #d4e4fa;
+  --on-secondary-fixed: #0d1c2d;
+  --secondary-fixed-dim: #b9c8de;
+  --on-secondary-fixed-variant: #39485a;
+  --tertiary: #00759f;
+  --on-tertiary: #e0f2ff;
+  --tertiary-container: #e0f2ff;
+  --on-tertiary-container: #00354a;
+  --tertiary-fixed: #c4e7ff;
+  --on-tertiary-fixed: #001e2c;
+  --tertiary-fixed-dim: #7bd0ff;
+  --on-tertiary-fixed-variant: #004c69;
+  --error: #b71c1c;
+  --on-error: #ffffff;
+  --error-container: #fde8e8;
+  --on-error-container: #690005;
+
+  /* Stitch darkroom bg/bg-secondary (light) */
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
 
   /* Accents keep same hues but slightly adjusted for light bg */
   --accent-primary: #2563eb;
@@ -258,13 +339,13 @@
 
 /* Force theme on body background immediately (prevents flash) */
 html[data-theme="light"] body {
-  background-color: #fafafa;
-  color: #131315;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 html[data-theme="dark"] body,
 html:not([data-theme]) body {
-  background-color: #131315;
-  color: #e5e1e4;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 
@@ -386,7 +467,11 @@ textarea:focus-visible {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background-color: #131315;
+  background-color: var(--surface-container-lowest, #0e0e10);
+}
+
+[data-theme="light"] .bg-canvas {
+  background-color: var(--surface-container-lowest, #ffffff);
 }
 
 .bg-gradient {
